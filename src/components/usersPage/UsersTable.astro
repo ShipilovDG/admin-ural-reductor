@@ -1,0 +1,106 @@
+<div class="site-section__table-wrapper users-table__table-wrapper">
+    <nav class="site-section__table users-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list users-table__table-list users-table__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item users-table__table-list-item users-table__table-list-caption-item">
+            <div class="site-section__table-list-item-checkbox-wrapper users-table__table-list-item-checkbox-wrapper visibility-hidden desktop-hide" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox users-table__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label users-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+            </div>
+            <div class="site-section__table-list-item-checkbox-wrapper users-table__table-list-item-checkbox-wrapper mobile-hide" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+              <input type="checkbox" class="site-section__table-list-item-checkbox users-table__table-list-item-checkbox">
+              <label class="site-section__table-list-item-label users-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+              </label>
+          </div>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-table__table-list-item users-table__table-list-caption-item">
+            <button class="site-section__table-sort-btn site-section__table-name-sort-btn" type="button">
+                Имя
+                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                
+              </button>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-table__table-list-item users-table__table-list-caption-item">
+            Эл. почта
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-table__table-list-item users-table__table-list-caption-item">
+            Группа польз-й
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-table__table-list-item users-table__table-list-caption-item">
+            Разрешения
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-table__table-list-item users-table__table-list-caption-item">
+            Может автор-ся
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-table__table-list-item users-table__table-list-caption-item">
+            По умолчанию
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-table__table-list-item users-table__table-list-caption-item">
+            <span class="users-table__table-list-item-web-status-text visibility-hidden desktop-hide">В сети</span>
+            <span class="users-table__table-list-item-web-status-text mobile-hide">В сети</span>
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list users-table__table-list">
+        <li class="site-section__table-list-item users-table__table-list-item">
+            <div class="site-section__table-list-item-checkbox-wrapper users-table__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox users-table__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label users-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item users-table__table-list-item">
+            <div class="site-section__resp-wrapper users-table__resp-wrapper">
+                <img src="/images/header-avatar-placeholder.svg" alt="responsible face avatar" loading="lazy" decoding="async" width="24" height="24">
+                <a href="/userPage" class="users-table__resp-title">
+                  vtr@uralreduktor.ru
+                </a>
+              </div> 
+        </li>
+        <li class="site-section__table-list-item users-table__table-list-item user">
+            <time datetime="12 окт 2022" class="users-table__datetime">12 окт 2022</time>
+         </li>
+        <li class="site-section__table-list-item users-table__table-list-item form-control-select-wrapper">
+            <div class="site-section__form-control-wrapper users-table__form-control-wrapper
+                site-section__form-control-select-wrapper users-table__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: 'Администратор'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <p class="site-section__form-control-select-result-input users-table__form-control-select-result-input" x-text="resultInputVal"></p>
+                   <div class="site-section__form-control-dropdown users-table__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list users-table__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item users-table__form-control-select-list-item">
+                       <input type="text" value="Администратор" readonly class="site-section__form-control-select-list-item-input users-table__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item users-table__form-control-select-list-item">
+                       <input type="text" value="Администратор 2" readonly class="site-section__form-control-select-list-item-input users-table__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор 2'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item users-table__form-control-select-list-item">
+                       <input type="text" value="Администратор 3" readonly class="site-section__form-control-select-list-item-input users-table__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор 3'">
+                     </li>
+                   </ul>
+                   </div>
+                   <svg class="site-section__form-control-select-arrow users-table__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                     <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                  
+            </div>
+        </li>
+        <li class="site-section__table-list-item users-table__table-list-item">
+            <time datetime="12 окт 2022" class="users-table__datetime">12 окт 2022</time>
+        </li>
+        <li class="site-section__table-list-item users-table__table-list-item">
+            <div class="site-section__table-list-item-checkbox-wrapper users-table__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox users-table__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label users-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+            </div>
+       </li>
+       <li class="site-section__table-list-item users-table__table-list-item">
+        <time datetime="12 окт 2022" class="users-table__datetime">12 окт 2022</time>
+    </li>
+    <li class="site-section__table-list-item users-table__table-list-item web-status">
+      <span class="users-table__table-list-item-web-status-text desktop-hide">В сети</span>
+      <span class="users-table__table-list-item-indicator-new mobile-hide"></span>
+    </li>
+      </ul>
+    </template>
+    </nav>
+</div>

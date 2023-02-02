@@ -1,0 +1,26 @@
+.goods-page-chars-table {
+   
+    &__table-list {
+        @include media-extra-large() {
+            grid-template-columns: 24px repeat(2,1fr) 24px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+
+    &__text {
+        @include media-custom-max(1199px) {
+            max-width: 13ch;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &__choose-status-dropdown-list {
+        @include media-custom-max(1199px) {
+            top: -4rem;
+            right: -6rem;
+        }
+    }
+}

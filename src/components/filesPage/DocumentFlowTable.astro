@@ -1,0 +1,101 @@
+<div class="site-section__table-wrapper document-flow-table__table-wrapper" x-show="toggleView === 'tableList'">
+    <nav class="site-section__table document-flow-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list document-flow-table__table-list document-flow-table__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item document-flow-table__table-list-item document-flow-table__table-list-caption-item mobile-hide">
+        </li>
+        <li class="site-section__table-list-item site-section__table-caption-list-item document-flow-table__table-list-item document-flow-table__table-list-caption-item">
+            Название
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item document-flow-table__table-list-item document-flow-table__table-list-caption-item">
+            <button class="site-section__table-sort-btn site-section__table-data-sort-btn" type="button">
+                Дата
+                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                
+              </button>
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item document-flow-table__table-list-item document-flow-table__table-list-caption-item">
+            Контрагент
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item document-flow-table__table-list-item document-flow-table__table-list-caption-item">
+            Организация
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item document-flow-table__table-list-item document-flow-table__table-list-caption-item">
+            Тип файла
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item document-flow-table__table-list-item document-flow-table__table-list-caption-item">
+            Ответственный
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list document-flow-table__table-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item document-flow-table__table-list-item document-flow-table__table-list-caption-item mobile-hide" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+          <button type="button" class="document-flow-table__menu-btn" x-on:click="toggleDropdown = !toggleDropdown">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1H17M1 7H17M1 13H17" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>              
+          </button>
+          <div class="document-flow-table__menu-btn-dropdown" x-bind:class="{'active': toggleDropdown === true }">
+            <ul role="list" class="document-flow-table__menu-btn-dropdown-list">
+              <li class="document-flow-table__menu-btn-dropdown-list-item" x-on:click="toggleDropdown = false">
+                <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.8385 9.82826C12.4193 9.82826 12.9762 9.59757 13.3868 9.18693C13.7975 8.7763 14.0282 8.21936 14.0282 7.63863C14.0282 7.0579 13.7975 6.50096 13.3868 6.09033C12.9762 5.67969 12.4193 5.449 11.8385 5.449H11.2129C11.3042 5.04232 11.3056 4.62345 11.217 4.2163C11.1284 3.80914 10.9516 3.42167 10.6966 3.07602C10.4417 2.73036 10.1136 2.43329 9.73104 2.20176C9.34851 1.97023 8.91905 1.80878 8.46719 1.72662C8.01533 1.64447 7.54992 1.64322 7.09752 1.72294C6.64513 1.80266 6.21461 1.9618 5.83055 2.19127C5.0549 2.6547 4.51558 3.37647 4.33122 4.19778C3.66429 4.17106 3.0084 4.36694 2.47583 4.75188C1.94327 5.13682 1.56717 5.68687 1.41192 6.30785C1.25668 6.92883 1.33194 7.58212 1.62484 8.15587C1.91773 8.72961 2.41003 9.18813 3.01744 9.4529M7.45926 6.70025V12.3307M7.45926 12.3307L5.58244 10.4539M7.45926 12.3307L9.33609 10.4539" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>    
+                  Скачать              
+              </li>
+              <li class="document-flow-table__menu-btn-dropdown-list-item" x-on:click="toggleDropdown = false">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.66699 3.66667H12.3337M5.66699 6.33333V10.3333M8.33366 6.33333V10.3333M2.33366 3.66667L3.00033 11.6667C3.00033 12.0203 3.1408 12.3594 3.39085 12.6095C3.6409 12.8595 3.98004 13 4.33366 13H9.66699C10.0206 13 10.3598 12.8595 10.6098 12.6095C10.8598 12.3594 11.0003 12.0203 11.0003 11.6667L11.667 3.66667M5.00033 3.66667V1.66667C5.00033 1.48986 5.07056 1.32029 5.19559 1.19526C5.32061 1.07024 5.49018 1 5.66699 1H8.33366C8.51047 1 8.68004 1.07024 8.80506 1.19526C8.93009 1.32029 9.00033 1.48986 9.00033 1.66667V3.66667" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                     
+                  Удалить              
+              </li>
+              <li class="document-flow-table__menu-btn-dropdown-list-item" x-on:click="toggleDropdown = false">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.00033 2.3361L10.667 5.00277M1.66699 11.3361H4.33366L11.3337 4.33614C11.6873 3.98252 11.8859 3.5029 11.8859 3.00281C11.8859 2.50271 11.6873 2.02309 11.3337 1.66947C10.98 1.31585 10.5004 1.11719 10.0003 1.11719C9.50023 1.11719 9.02061 1.31585 8.66699 1.66947L1.66699 8.66947V11.3361Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                                    
+                  Переименовать              
+              </li>
+              <li class="document-flow-table__menu-btn-dropdown-list-item" x-on:click="toggleDropdown = false">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 3.66406H1M13 3.66406L11 5.66406M13 3.66406L11 1.66406M3 12.3307L1 10.3307M1 10.3307L3 8.33073M1 10.3307H13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Переместить              
+              </li>
+              <li class="document-flow-table__menu-btn-dropdown-list-item" x-on:click="toggleDropdown = false">
+                <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.99967 1V3.66667C7.99967 3.84348 8.06991 4.01305 8.19494 4.13807C8.31996 4.2631 8.48953 4.33333 8.66634 4.33333H11.333M7.99967 1H5.33301C4.97939 1 4.64025 1.14048 4.3902 1.39052C4.14015 1.64057 3.99967 1.97971 3.99967 2.33333V9C3.99967 9.35362 4.14015 9.69276 4.3902 9.94281C4.64025 10.1929 4.97939 10.3333 5.33301 10.3333H9.99967C10.3533 10.3333 10.6924 10.1929 10.9425 9.94281C11.1925 9.69276 11.333 9.35362 11.333 9V4.33333M7.99967 1L11.333 4.33333M8.66634 10.3333V11.6667C8.66634 12.0203 8.52587 12.3594 8.27582 12.6095C8.02577 12.8595 7.68663 13 7.33301 13H2.66634C2.31272 13 1.97358 12.8595 1.72353 12.6095C1.47348 12.3594 1.33301 12.0203 1.33301 11.6667V5C1.33301 4.64638 1.47348 4.30724 1.72353 4.05719C1.97358 3.80714 2.31272 3.66667 2.66634 3.66667H3.99967" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+                  Копировать              
+              </li>
+            </ul>
+          </div>
+      </li>
+        <li class="site-section__table-list-item document-flow-table__table-list-item">
+            00000001
+        </li>
+        <li class="site-section__table-list-item document-flow-table__table-list-item">
+            <time datetime="12 окт 2022" class="document-flow-table__datetime">12 окт 2022</time>
+         </li>
+         <li class="site-section__table-list-item document-flow-table__table-list-item" x-on:click="editContragentPopup = true">
+            УЗТМ
+         </li>
+         <li class="site-section__table-list-item document-flow-table__table-list-item">
+            Моя компания
+         </li>
+         <li class="site-section__table-list-item document-flow-table__table-list-item">
+            <svg class="document-flow-table__folder-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 4H9L12 7H19C19.5304 7 20.0391 7.21071 20.4142 7.58579C20.7893 7.96086 21 8.46957 21 9V17C21 17.5304 20.7893 18.0391 20.4142 18.4142C20.0391 18.7893 19.5304 19 19 19H5C4.46957 19 3.96086 18.7893 3.58579 18.4142C3.21071 18.0391 3 17.5304 3 17V6C3 5.46957 3.21071 4.96086 3.58579 4.58579C3.96086 4.21071 4.46957 4 5 4Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+         </li>
+        <li class="site-section__table-list-item document-flow-table__table-list-item">
+            <div class="site-section__resp-wrapper document-flow-table__resp-wrapper">
+                <img src="/images/header-avatar-placeholder.svg" alt="responsible face avatar" loading="lazy" decoding="async" width="24" height="24">
+                <span class="document-flow-table__resp-title">
+                  vtr@uralreduktor.ru
+                </span>
+              </div> 
+        </li>
+      </ul>
+    </template>
+    </nav>
+</div>

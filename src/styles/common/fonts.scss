@@ -1,0 +1,6 @@
+/* подключение шрифтов */
+
+@include font-face(SourceSansPro, "/fonts/source-sans-pro-400", 400);
+@include font-face(SourceSansPro, "/fonts/source-sans-pro-600", 600);
+@include font-face(Inter, "/fonts/inter-400", 400);
+@include font-face(Inter, "/fonts/inter-600", 600);

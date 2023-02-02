@@ -1,0 +1,100 @@
+.footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--gray200);
+    box-shadow: -4px 0px 8px rgba(73, 80, 87, 0.15);
+    position: fixed;
+    z-index: 99;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 54px;
+    border-top: 1px solid var(--grey-color);
+    border-bottom: 1px solid var(--grey-color);
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__hamb-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: 24px;
+        height: 20px;
+        position: relative;
+
+        span {
+            height: 2px;
+            background-color: var(--grey600);
+            width: 100%;
+            position: absolute;
+            transition: .3s ease-in-out;
+        }
+
+        span:first-child {
+            top: 0;
+        }
+
+        span:last-child {
+            bottom: 0;
+        }
+    }
+
+    &__hamb-btn.active {
+
+        span {
+            background-color: var(--primary);
+        }
+
+        span:first-child {
+            transform: rotate(45deg);
+            margin-top: 9px;
+        }
+
+        span:last-child {
+            transform: rotate(-45deg);
+            margin-bottom: 9px;
+        }
+
+        span:nth-child(2) {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    &__right {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(5,max-content);
+        gap: 30px;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__add-options-btn,
+    &__new-messages-btn,
+    &__profile-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (min-width:1200px) {
+    .footer {
+        display: none;
+    }
+}

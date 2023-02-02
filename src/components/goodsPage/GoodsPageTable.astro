@@ -1,0 +1,91 @@
+<div class="site-section__table-wrapper goods-page__table-wrapper">
+    <nav class="site-section__table goods-page__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list goods-page__table-list goods-page__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item goods-page__table-list-item goods-page__table-list-caption-item">
+            <div class="site-section__table-list-item-checkbox-wrapper goods-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox goods-page__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label goods-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page__table-list-item goods-page__table-list-caption-item">
+            <button class="site-section__table-sort-btn site-section__table-number-sort-btn" type="button">
+                Товар
+                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                
+              </button>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page__table-list-item goods-page__table-list-caption-item">
+            Тип товара
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page__table-list-item goods-page__table-list-caption-item">
+            Категория
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page__table-list-item goods-page__table-list-caption-item">
+            Код
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page__table-list-item goods-page__table-list-caption-item">
+            Производитель
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page__table-list-item goods-page__table-list-item--desktop goods-page__table-list-caption-item">
+            Розничная цена
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page__table-list-item goods-page__table-list-item--desktop goods-page__table-list-caption-item">
+            Теги
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list goods-page__table-list">
+        <li class="site-section__table-list-item goods-page__table-list-item">
+            <div class="site-section__table-list-item-checkbox-wrapper goods-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox goods-page__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label goods-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+                </div>
+        </li>
+        <li class="site-section__table-list-item goods-page__table-list-item" x-on:click="editGoodPopup = true">
+            Редуктор РМ-500     
+        </li>
+        <li class="site-section__table-list-item goods-page__table-list-item" x-on:click="editGoodPopup = true">
+            Продукт
+         </li>
+        <li class="site-section__table-list-item goods-page__table-list-item" x-on:click="editGoodPopup = true">
+            Редукторы
+        </li>
+        <li class="site-section__table-list-item goods-page__table-list-item" x-on:click="editGoodPopup = true">
+            3аа42534
+        </li>
+        <li class="site-section__table-list-item goods-page__table-list-item" x-on:click="editGoodPopup = true">
+            vtr@uralreduktor.ru
+         </li>
+         <li class="site-section__table-list-item goods-page__table-list-item" x-on:click="editGoodPopup = true">
+            50 000, 00 р.
+         </li>
+        <li class="site-section__table-list-item goods-page__table-list-item site-section__table-list-item--tag-btn" x-data="{tag: 'design', toggleTagDropdown: false}" x-on:click.outside="toggleTagDropdown = false">
+          <button class="btn site-section__tag-btn goods-page__tag-btn site-section__tag-btn--design" type="button" x-bind:class="{'site-section__tag-btn--design': tag === 'design', 'site-section__tag-btn--СЕО': tag === 'СЕО','site-section__tag-btn--project': tag === 'Проджект' }" x-text="tag === 'design' ? 'Дизайн' : tag === 'СЕО' ? 'СЕО' : tag === 'Проджект' ? 'Проджект' : ''">
+            Ожидает ответ
+          </button>
+          <div class="site-section__choose-tag-dropdown-wrapper goods-page__choose-tag-dropdown-wrapper">
+            <button type="button" class="site-section__choose-tag-btn goods-page__choose-tag-btn" x-on:click="toggleTagDropdown = !toggleTagDropdown">
+                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 1L7.5 7L13.5 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>          
+            </button>
+            <ul class="site-section__choose-tag-dropdown-list goods-page__choose-tag-dropdown-list" role="list" x-bind:class="{'active': toggleTagDropdown === true}">
+               <li class="site-section__choose-tag-dropdown-list-item goods-page__choose-tag-dropdown-list-item">
+                  <button class="site-section__choose-tag-dropdown-list-item-btn goods-page__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'design'; toggleStatusDropdown = false">Дизайн</button>
+               </li>
+               <li class="site-section__choose-tag-dropdown-list-item goods-page__choose-tag-dropdown-list-item">
+                <button class="site-section__choose-tag-dropdown-list-item-btn goods-page__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'СЕО'; toggleStatusDropdown = false">СЕО</button>
+             </li>
+             <li class="site-section__choose-tag-dropdown-list-item goods-page__choose-tag-dropdown-list-item">
+              <button class="site-section__choose-tag-dropdown-list-item-btn goods-page__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'Проджект'; toggleStatusDropdown = false">Проджект</button>
+           </li>
+            </ul>
+          </div>
+       </li>
+      </ul>
+    </template>
+    </nav>
+</div>

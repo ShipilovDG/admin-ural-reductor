@@ -1,0 +1,54 @@
+<div class="site-section__table-wrapper Q-and-A-table__table-wrapper">
+    <nav class="site-section__table Q-and-A-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list Q-and-A-table__table-list Q-and-A-table__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item Q-and-A-table__table-list-item Q-and-A-table__table-list-caption-item">
+            Новые
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item Q-and-A-table__table-list-item Q-and-A-table__table-list-caption-item">
+            Сайт
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item Q-and-A-table__table-list-item Q-and-A-table__table-list-caption-item">
+            Пользователь
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item Q-and-A-table__table-list-item Q-and-A-table__table-list-caption-item">
+            Дата
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item Q-and-A-table__table-list-item Q-and-A-table__table-list-caption-item">
+            Сообщение
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item Q-and-A-table__table-list-item Q-and-A-table__table-list-caption-item">
+            Статус
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list Q-and-A-table__table-list">
+        <li class="site-section__table-list-item Q-and-A-table__table-list-item">
+            <span class="site-section__indicator-new blinking"></span>
+        </li>
+        <li class="site-section__table-list-item Q-and-A-table__table-list-item">
+            uralreduktor     
+        </li>
+        <li class="site-section__table-list-item Q-and-A-table__table-list-item user">
+             <div class="Q-and-A-table__user-wrapper">
+                <img class="Q-and-A-table__avatar-user-img" src="/images/header-avatar-placeholder.svg" alt="avatar-user-img" width="24" height="24" loading="lazy" decoding="async">
+                <p class="Q-and-A-table__user-title">Имя пользователя</p>
+             </div>
+         </li>
+        <li class="site-section__table-list-item Q-and-A-table__table-list-item">
+            <div class="Q-and-A-table__datetime-wrapper">
+               <time datetime="11:15" class="Q-and-A-table__datetime">11:15</time>
+               <time datetime="28.10.2022" class="Q-and-A-table__datetime">28.10.2022</time>
+            </div> 
+        </li>
+        <li class="site-section__table-list-item Q-and-A-table__table-list-item" x-on:click="QandAEditMessagesAltPopup = true">
+            Здравствуйте, тык пык мык
+        </li>
+        <li class="site-section__table-list-item Q-and-A-table__table-list-item">
+            <button class="btn site-section__status-btn Q-and-A-table__status-btn site-section__status-btn--in-process Q-and-A-table__status-btn--in-process" type="button">
+                Ждёт ответа
+            </button>
+       </li>
+      </ul>
+    </template>
+    </nav>
+</div>

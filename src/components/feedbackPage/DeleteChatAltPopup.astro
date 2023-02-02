@@ -1,0 +1,32 @@
+<div class="alt-popup delete-chat-alt-popup" x-bind:class="{'active': deleteChatAltPopup === true}" x-on:click.self="deleteChatAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form delete-chat-alt-popup__form">
+    <div class="alt-popup__content delete-chat-alt-popup__content">
+     <div class="delete-chat-alt-popup__top-row">
+        <p class="alt-popup__title delete-chat-alt-popup__title">Удаление чата</p>
+        <button class="delete-chat-alt-popup__close-btn" type="button" x-on:click="deleteChatAltPopup = false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+     </div>
+    <div class="alt-popup__body delete-chat-alt-popup__body">
+            <fieldset class="alt-popup__fieldset delete-chat-alt-popup__fieldset b-b">
+              <strong class="delete-chat-alt-popup__strong-text">Чат будет удалён.</strong>
+              <p class="delete-chat-alt-popup__text">Продолжить удаление?</p>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group delete-chat-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item delete-chat-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary delete-chat-alt-popup__undo-btn" x-on:click="deleteChatAltPopup = false">
+                Отмена
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item delete-chat-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary delete-chat-alt-popup__delete-btn" x-on:click="$refs.feedbackPageChatsListItem.remove();$refs.feedbackPageDirectChat1.remove()">
+                Удалить
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

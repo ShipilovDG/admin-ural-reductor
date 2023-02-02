@@ -1,0 +1,893 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Pagination from "../components/Pagination.astro";
+import TableTabs from "../components/TableTabs.astro";
+import SearchForm from "../components/SearchForm.astro";
+import SearchBtn from "../components/SearchBtn.astro";
+import SearchBtnDropdown from "../components/SearchBtnDropdown.astro";
+import Filter from "../components/Filter.astro";
+import QATable from "../components/feedbackPage/Q&ATable.astro";
+import ApplicationsTable from "../components/feedbackPage/ApplicationsTable.astro";
+import QAEditMessageAltPopup from "../components/feedbackPage/Q&AEditMessageAltPopup.astro";
+import EditApplicationAltPopup from "../components/feedbackPage/EditApplicationAltPopup.astro";
+import DeleteChatAltPopup from "../components/feedbackPage/DeleteChatAltPopup.astro";
+import ArchiveChatAltPopup from "../components/feedbackPage/ArchiveChatAltPopup.astro";
+---
+<Layout title="страница Заявки и обращения">
+  <section class="site-section feedback-page__site-section" x-data="{table: 1, searchBtnDropdown: false, QandAEditMessagesAltPopup: false, editApplicationAltPopup: false, deleteChatAltPopup: false, archiveChatAltPopup: false }">
+    <h1 class="site-section__page-title feedback-page__page-title">Обратная связь</h1>
+    <TableTabs></TableTabs>
+    <div class="site-section__tab-wrapper" x-show="table === 1">
+    <div class="site-section__body feedback-page__body">
+      <div class="site-section__body-bottom feedback-page__body-bottom mobile">
+        <div class="site-section__body-bottom-left-group feedback-page__body-bottom-left-group">
+        <SearchBtn></SearchBtn>
+        <SearchBtnDropdown></SearchBtnDropdown>
+        </div>
+        <div class="site-section__body-bottom-right-group feedback-page__body-bottom-right-group">
+          <SearchForm></SearchForm>
+          <Filter></Filter>
+          <div class="choose-options-dropdown-wrapper feedback-page__choose-options-dropdown-wrapper" x-data="{toggleChooseOptionsDropdown: false}" x-on:click.outside="toggleChooseOptionsDropdown = false">
+            <button class="choose-options-btn feedback-page__choose-options-btn" type="button" x-on:click="toggleChooseOptionsDropdown = true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 1V15M1 8H15" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                    
+            </button>
+              <div class="choose-options-dropdown feedback-page__choose-options-dropdown" x-bind:class="{'active': toggleChooseOptionsDropdown === true}">
+                <ul role="list" class="choose-options-dropdown__list feedback-page__choose-options-dropdown-list feedback-page__choose-options-dropdown-list--b-b feedback-page__choose-options-dropdown-list--p-b">
+                    <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                        <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                            Cоздать проект
+                        </button>
+                    </li>
+                    <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                        <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                            Создать компанию
+                        </button>
+                    </li>
+                    <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                        <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                            Создать компанию
+                        </button>
+                    </li>
+                    <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                        <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                            Создать контакт
+                        </button>
+                    </li>
+                </ul>
+                <ul role="list" class="choose-options-dropdown__list feedback-page__choose-options-dropdown-list feedback-page__choose-options-dropdown-list--p-t">
+                    <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                        <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                            Новый пользователь
+                        </button>
+                    </li>
+                </ul>
+              </div>
+        </div>
+        </div>    
+    </div>
+    <div class="site-section__body-bottom feedback-page__body-bottom desktop">
+      <div class="site-section__body-bottom-left-group feedback-page__body-bottom-left-group">
+          <SearchForm></SearchForm>
+          <Filter></Filter>
+      </div>
+    </div>
+    <QATable></QATable>
+          <ul role="list" class="pagination feedback-page__pagination">
+            <Pagination></Pagination>
+          </ul>
+    </div>
+    </div>
+    <div class="site-section__tab-wrapper" x-show="table === 2">
+      <div class="site-section__body feedback-page__body">
+        <div class="site-section__body-bottom feedback-page__body-bottom mobile">
+          <div class="site-section__body-bottom-left-group feedback-page__body-bottom-left-group">
+          <SearchBtn></SearchBtn>
+          <SearchBtnDropdown></SearchBtnDropdown>
+          </div>
+          <div class="site-section__body-bottom-right-group feedback-page__body-bottom-right-group">
+            <SearchForm></SearchForm>
+            <Filter></Filter>
+            <div class="choose-options-dropdown-wrapper feedback-page__choose-options-dropdown-wrapper" x-data="{toggleChooseOptionsDropdown: false}" x-on:click.outside="toggleChooseOptionsDropdown = false">
+              <button class="choose-options-btn feedback-page__choose-options-btn" type="button" x-on:click="toggleChooseOptionsDropdown = true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 1V15M1 8H15" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>                    
+              </button>
+                <div class="choose-options-dropdown feedback-page__choose-options-dropdown" x-bind:class="{'active': toggleChooseOptionsDropdown === true}">
+                  <ul role="list" class="choose-options-dropdown__list feedback-page__choose-options-dropdown-list feedback-page__choose-options-dropdown-list--b-b feedback-page__choose-options-dropdown-list--p-b">
+                      <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                          <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                              Cоздать проект
+                          </button>
+                      </li>
+                      <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                          <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                              Создать компанию
+                          </button>
+                      </li>
+                      <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                          <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                              Создать компанию
+                          </button>
+                      </li>
+                      <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                          <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                              Создать контакт
+                          </button>
+                      </li>
+                  </ul>
+                  <ul role="list" class="choose-options-dropdown__list feedback-page__choose-options-dropdown-list feedback-page__choose-options-dropdown-list--p-t">
+                      <li class="choose-options-dropdown__list-item feedback-page__choose-options-dropdown-list-item">
+                          <button class="choose-options-dropdown__add-btn feedback-page__choose-options-dropdown-btn" type="button">
+                              Новый пользователь
+                          </button>
+                      </li>
+                  </ul>
+                </div>
+          </div>
+          </div>    
+      </div>
+      <div class="site-section__body-bottom feedback-page__body-bottom desktop">
+        <div class="site-section__body-bottom-left-group feedback-page__body-bottom-left-group">
+            <SearchForm></SearchForm>
+            <Filter></Filter>
+        </div>
+      </div>
+      <ApplicationsTable></ApplicationsTable>
+            <ul role="list" class="pagination feedback-page__pagination">
+              <Pagination></Pagination>
+            </ul>
+      </div>
+      </div>
+    <div class="site-section__tab-wrapper" x-show="table === 3" x-data="{chat: 'techSupport' , directChat: ''}">
+       <div class="feedback-page__chat-grid">
+       <div class="feedback-page__chat-wrapper desktop-hide" x-show="directChat === ''">
+         <form action="#" method="post" class="feedback-page__chat-search-wrapper">
+            <button type="submit" class="feedback-page__chat-search-submit-btn">
+              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.624 19L13.624 13M15.624 8C15.624 11.866 12.49 15 8.62402 15C4.75803 15 1.62402 11.866 1.62402 8C1.62402 4.13401 4.75803 1 8.62402 1C12.49 1 15.624 4.13401 15.624 8Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+            </button>
+            <input type="search" class="feedback-page__chat-search" placeholder="Поиск ...">
+          </form>
+          <div class="feedback-page__chats-lists" x-show="chat === 'techSupport'">
+            <div class="feedback-page__chats-top">
+               <p class="feedback-page__chats-title">Тех. поддержка</p>
+              <button type="button" class="feedback-page__chats-btn" x-on:click="chat = 'closedChats'">
+                <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18.7778 5.44444C20.0051 5.44444 21 4.44952 21 3.22222C21 1.99492 20.0051 1 18.7778 1H3.22222C1.99492 1 1 1.99492 1 3.22222C1 4.44952 1.99492 5.44444 3.22222 5.44444M18.7778 5.44444H3.22222M18.7778 5.44444V16.5556C18.7778 17.1449 18.5437 17.7102 18.1269 18.1269C17.7102 18.5437 17.1449 18.7778 16.5556 18.7778H5.44444C4.85507 18.7778 4.28984 18.5437 3.8731 18.1269C3.45635 17.7102 3.22222 17.1449 3.22222 16.5556V5.44444M8.77778 9.88889H13.2222" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+              </button>
+            </div>
+            <ul role="list" class="feedback-page__chats-list">
+               <li class="feedback-page__chats-list-item" x-on:click="directChat = 'Степан Кириллович'">
+                 <div class="feedback-page__chats-list-item-left">
+                   <span class="feedback-page__chats-list-item-indicator-new blinking"></span>
+                   <div class="feedback-page__chats-list-item-info">
+                     <p class="feedback-page__chats-list-item-name">Степан Кириллович</p>
+                     <p class="feedback-page__chats-list-item-company">
+                      uralreduktor
+                     </p>
+                   </div>
+                 </div>
+                 <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+               </li>
+               <li class="feedback-page__chats-list-item" x-on:click="directChat = 'Иван Воробьёв'">
+                <div class="feedback-page__chats-list-item-left">
+                  <span class="feedback-page__chats-list-item-indicator-new blinking"></span>
+                  <div class="feedback-page__chats-list-item-info">
+                    <p class="feedback-page__chats-list-item-name">Иван Воробьёв</p>
+                    <p class="feedback-page__chats-list-item-company">
+                      mammoh
+                    </p>
+                  </div>
+                </div>
+                <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+              </li>
+              <li class="feedback-page__chats-list-item" x-on:click="directChat = 'Иван Шашклычкофф'">
+                <div class="feedback-page__chats-list-item-left">
+                  <span class="feedback-page__chats-list-item-indicator-new blinking"></span>
+                  <div class="feedback-page__chats-list-item-info">
+                    <p class="feedback-page__chats-list-item-name">Иван Шашклычкофф</p>
+                    <p class="feedback-page__chats-list-item-company">
+                      gearbox
+                    </p>
+                  </div>
+                </div>
+                <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+              </li>
+            </ul>
+          </div>
+          <div class="feedback-page__chats-lists" x-show="chat === 'closedChats'">
+            <div class="feedback-page__chats-top">
+               <p class="feedback-page__chats-title">Закрытые чаты</p>
+              <button type="button" class="feedback-page__chats-btn" x-on:click="chat = 'techSupport'">
+                <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.8 10.3333L1 5.66667M1 5.66667L5.8 1M1 5.66667H14.2C15.473 5.66667 16.6939 6.15833 17.5941 7.0335C18.4943 7.90867 19 9.09566 19 10.3333C19 11.571 18.4943 12.758 17.5941 13.6332C16.6939 14.5083 15.473 15 14.2 15H13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                                   
+              </button>
+            </div>
+            <ul role="list" class="feedback-page__chats-list">
+               <li class="feedback-page__chats-list-item">
+                 <div class="feedback-page__chats-list-item-left">
+                   <span class="feedback-page__chats-list-item-indicator-new"></span>
+                   <div class="feedback-page__chats-list-item-info">
+                     <p class="feedback-page__chats-list-item-name">Степан Кириллович</p>
+                     <p class="feedback-page__chats-list-item-company">
+                      uralreduktor
+                     </p>
+                   </div>
+                 </div>
+                 <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+               </li>
+               <li class="feedback-page__chats-list-item">
+                <div class="feedback-page__chats-list-item-left">
+                  <span class="feedback-page__chats-list-item-indicator-new"></span>
+                  <div class="feedback-page__chats-list-item-info">
+                    <p class="feedback-page__chats-list-item-name">Иван Воробьёв</p>
+                    <p class="feedback-page__chats-list-item-company">
+                      mammoh
+                    </p>
+                  </div>
+                </div>
+                <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+              </li>
+              <li class="feedback-page__chats-list-item">
+                <div class="feedback-page__chats-list-item-left">
+                  <span class="feedback-page__chats-list-item-indicator-new"></span>
+                  <div class="feedback-page__chats-list-item-info">
+                    <p class="feedback-page__chats-list-item-name">Иван Шашклычкофф</p>
+                    <p class="feedback-page__chats-list-item-company">
+                      gearbox
+                    </p>
+                  </div>
+                </div>
+                <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="feedback-page__chat-wrapper mobile-hide">
+          <form action="#" method="post" class="feedback-page__chat-search-wrapper">
+             <button type="submit" class="feedback-page__chat-search-submit-btn">
+               <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M19.624 19L13.624 13M15.624 8C15.624 11.866 12.49 15 8.62402 15C4.75803 15 1.62402 11.866 1.62402 8C1.62402 4.13401 4.75803 1 8.62402 1C12.49 1 15.624 4.13401 15.624 8Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>                
+             </button>
+             <input type="search" class="feedback-page__chat-search" placeholder="Поиск ...">
+           </form>
+           <div class="feedback-page__chats-lists" x-show="chat === 'techSupport'">
+             <div class="feedback-page__chats-top">
+                <p class="feedback-page__chats-title">Тех. поддержка</p>
+               <button type="button" class="feedback-page__chats-btn" x-on:click="chat = 'closedChats'">
+                 <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M18.7778 5.44444C20.0051 5.44444 21 4.44952 21 3.22222C21 1.99492 20.0051 1 18.7778 1H3.22222C1.99492 1 1 1.99492 1 3.22222C1 4.44952 1.99492 5.44444 3.22222 5.44444M18.7778 5.44444H3.22222M18.7778 5.44444V16.5556C18.7778 17.1449 18.5437 17.7102 18.1269 18.1269C17.7102 18.5437 17.1449 18.7778 16.5556 18.7778H5.44444C4.85507 18.7778 4.28984 18.5437 3.8731 18.1269C3.45635 17.7102 3.22222 17.1449 3.22222 16.5556V5.44444M8.77778 9.88889H13.2222" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>                  
+               </button>
+             </div>
+             <ul role="list" class="feedback-page__chats-list">
+                <li class="feedback-page__chats-list-item" x-on:click="directChat = 'Степан Кириллович'" x-ref="feedbackPageChatsListItem">
+                  <div class="feedback-page__chats-list-item-left">
+                    <span class="feedback-page__chats-list-item-indicator-new blinking"></span>
+                    <div class="feedback-page__chats-list-item-info">
+                      <p class="feedback-page__chats-list-item-name">Степан Кириллович</p>
+                      <p class="feedback-page__chats-list-item-company">
+                       uralreduktor
+                      </p>
+                    </div>
+                  </div>
+                  <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+                  <DeleteChatAltPopup></DeleteChatAltPopup>
+                </li>
+                <li class="feedback-page__chats-list-item" x-on:click="directChat = 'Иван Воробьёв'" x-ref="feedbackPageChatsListItem2">
+                 <div class="feedback-page__chats-list-item-left">
+                   <span class="feedback-page__chats-list-item-indicator-new blinking"></span>
+                   <div class="feedback-page__chats-list-item-info">
+                     <p class="feedback-page__chats-list-item-name">Иван Воробьёв</p>
+                     <p class="feedback-page__chats-list-item-company">
+                       mammoh
+                     </p>
+                   </div>
+                 </div>
+                 <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+               </li>
+               <li class="feedback-page__chats-list-item" x-on:click="directChat = 'Иван Шашклычкофф'" x-ref="feedbackPageChatsListItem3">
+                 <div class="feedback-page__chats-list-item-left">
+                   <span class="feedback-page__chats-list-item-indicator-new blinking"></span>
+                   <div class="feedback-page__chats-list-item-info">
+                     <p class="feedback-page__chats-list-item-name">Иван Шашклычкофф</p>
+                     <p class="feedback-page__chats-list-item-company">
+                       gearbox
+                     </p>
+                   </div>
+                 </div>
+                 <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+               </li>
+             </ul>
+           </div>
+           <div class="feedback-page__chats-lists" x-show="chat === 'closedChats'">
+             <div class="feedback-page__chats-top">
+                <p class="feedback-page__chats-title">Закрытые чаты</p>
+               <button type="button" class="feedback-page__chats-btn" x-on:click="chat = 'techSupport'">
+                 <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M5.8 10.3333L1 5.66667M1 5.66667L5.8 1M1 5.66667H14.2C15.473 5.66667 16.6939 6.15833 17.5941 7.0335C18.4943 7.90867 19 9.09566 19 10.3333C19 11.571 18.4943 12.758 17.5941 13.6332C16.6939 14.5083 15.473 15 14.2 15H13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>                                   
+               </button>
+             </div>
+             <ul role="list" class="feedback-page__chats-list">
+                <li class="feedback-page__chats-list-item">
+                  <div class="feedback-page__chats-list-item-left">
+                    <span class="feedback-page__chats-list-item-indicator-new"></span>
+                    <div class="feedback-page__chats-list-item-info">
+                      <p class="feedback-page__chats-list-item-name">Степан Кириллович</p>
+                      <p class="feedback-page__chats-list-item-company">
+                       uralreduktor
+                      </p>
+                    </div>
+                  </div>
+                  <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+                </li>
+                <li class="feedback-page__chats-list-item">
+                 <div class="feedback-page__chats-list-item-left">
+                   <span class="feedback-page__chats-list-item-indicator-new"></span>
+                   <div class="feedback-page__chats-list-item-info">
+                     <p class="feedback-page__chats-list-item-name">Иван Воробьёв</p>
+                     <p class="feedback-page__chats-list-item-company">
+                       mammoh
+                     </p>
+                   </div>
+                 </div>
+                 <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+               </li>
+               <li class="feedback-page__chats-list-item">
+                 <div class="feedback-page__chats-list-item-left">
+                   <span class="feedback-page__chats-list-item-indicator-new"></span>
+                   <div class="feedback-page__chats-list-item-info">
+                     <p class="feedback-page__chats-list-item-name">Иван Шашклычкофф</p>
+                     <p class="feedback-page__chats-list-item-company">
+                       gearbox
+                     </p>
+                   </div>
+                 </div>
+                 <time datetime="15:35" class="feedback-page__chats-list-item-time">15:35</time>
+               </li>
+             </ul>
+           </div>
+         </div>
+        <div class="feedback-page__chat-grid-main">
+        <div class="feedback-page__direct-chat" x-show="directChat === 'Степан Кириллович'" x-ref="feedbackPageDirectChat1">
+           <div class="feedback-page__direct-chat-top">
+              <div class="feedback-page__direct-chat-top-left">
+                 <button type="button" class="feedback-page__direct-chat-back-btn" x-on:click="directChat = ''">
+                  <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 1L1 9L9 17" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                 </button>
+                 <div class="feedback-page__direct-chat-top-letter-name">
+                    <p class="feedback-page__direct-chat-letter">
+                      ШК
+                    </p>
+                    <p class="feedback-page__direct-chat-top-name">Степан Кириллович</p>
+                 </div>
+              </div>
+              <p class="feedback-page__direct-chat-top-company">uralreduktor</p>
+           </div>
+           <div class="feedback-page__direct-chat-search-wrapper">
+            <form action="#" method="post" class="feedback-page__direct-chat-search">
+              <button type="submit" class="feedback-page__direct-chat-search-submit-btn">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.624 19L13.624 13M15.624 8C15.624 11.866 12.49 15 8.62402 15C4.75803 15 1.62402 11.866 1.62402 8C1.62402 4.13401 4.75803 1 8.62402 1C12.49 1 15.624 4.13401 15.624 8Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                
+              </button>
+              <input type="search" class="feedback-page__direct-chat-search-input" placeholder="Поиск сообщений">
+            </form>
+            <div class="site-section__choose-status-dropdown-wrapper feedback-page__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+              <button type="button" class="site-section__choose-status-btn feedback-page__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>     
+              </button>
+              <ul class="site-section__choose-status-dropdown-list feedback-page__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                 <li class="site-section__choose-status-dropdown-list-item feedback-page__choose-status-dropdown-list-item">
+                    <input type="text" readonly="" class="site-section__choose-status-dropdown-list-item-input feedback-page__choose-status-dropdown-list-item-input" value="Открыть чат" x-on:click="toggleStatusDropdown = false">
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item feedback-page__choose-status-dropdown-list-item">
+                  <input type="text" readonly="" class="site-section__choose-status-dropdown-list-item-input feedback-page__choose-status-dropdown-list-item-input delete" value="Удалить чат" x-on:click="toggleStatusDropdown = false; deleteChatAltPopup = true">
+               </li>
+              </ul>
+            </div>
+           </div>
+           <div class="feedback-page__direct-chat-window" 
+           x-data="{
+            replyPanel: false,
+            chats:[],
+            answerInput: ''
+          }">
+            <div class="feedback-page__direct-chat-message-wrapper">
+             <div class="feedback-page__direct-chat-message">
+              <img class="feedback-page__direct-chat-message-avatar-img" src="/images/comment-avatar-placeholder.png" alt="direct-chat-message-avatar-img" width="36" height="36" loading="lazy" decoding="async">
+              <div class="feedback-page__direct-chat-message-info">
+                 <div class="feedback-page__direct-chat-message-box left">
+                  <p class="feedback-page__direct-chat-message-box-text">Хорошо :)</p>
+                 </div>
+                 <div class="feedback-page__direct-chat-message-bottom-info">
+                   <div class="feedback-page__direct-chat-message-datetime">
+                   <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                   в
+                   <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+                  </div>
+                   <div class="feedback-page__direct-chat-message-replied-check">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                      
+                   </div>
+                 </div>
+              </div>
+             </div>
+             <div class="feedback-page__direct-chat-message client">
+              <div class="feedback-page__direct-chat-message-info">
+                 <div class="feedback-page__direct-chat-message-box right">
+                  <p class="feedback-page__direct-chat-message-box-text">In volutpat dui iaculis hendrerit cursus. Maecenas et semper mauris. Sed ac purus ac velit fringilla fringilla vel id lectus. Fusce sed consectetur ligula. Maecenas luctus ante aliquam maximus pretium. Nullam sit amet aliquet massa. Etiam in pretium quam.</p>
+                 </div>
+                 <div class="feedback-page__direct-chat-message-bottom-info reply-message">
+                   <div class="feedback-page__direct-chat-message-datetime">
+                   <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                   в
+                   <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+                  </div>
+                   <div class="feedback-page__direct-chat-message-check">
+                    <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.3335 4.9974L4.66683 8.33073L11.3335 1.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                                          
+                   </div>
+                 </div>
+              </div>
+              <p class="feedback-page__direct-chat-message-avatar">
+                ВК
+              </p>
+             </div>
+             <div class="feedback-page__direct-chat-message">
+              <img class="feedback-page__direct-chat-message-avatar-img" src="/images/comment-avatar-placeholder.png" alt="direct-chat-message-avatar-img" width="36" height="36" loading="lazy" decoding="async">
+              <div class="feedback-page__direct-chat-message-info">
+                 <div class="feedback-page__direct-chat-message-box left">
+                  <p class="feedback-page__direct-chat-message-box-text">Хорошо :)</p>
+                  <a href="#" class="feedback-page__direct-chat-message-question-answer-link">Ответ на вопрос</a>
+                 </div>
+                 <div class="feedback-page__direct-chat-message-bottom-info">
+                   <div class="feedback-page__direct-chat-message-datetime">
+                   <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                   в
+                   <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+                  </div>
+                   <div class="feedback-page__direct-chat-message-replied-check">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                      
+                   </div>
+                 </div>
+              </div>
+             </div>
+             <template x-for="chat in chats">
+              <div class='feedback-page__direct-chat-message'>
+                <img class='feedback-page__direct-chat-message-avatar-img' src='/images/comment-avatar-placeholder.png' alt='direct-chat-message-avatar-img' width='36' height='36' loading='lazy' decoding='async'>
+                <div class='feedback-page__direct-chat-message-info'>
+                   <div class='feedback-page__direct-chat-message-box left'>
+                    <p class='feedback-page__direct-chat-message-box-text' x-text='chat.answer'></p>
+                   </div>
+                   <div class='feedback-page__direct-chat-message-bottom-info'>
+                     <div class='feedback-page__direct-chat-message-datetime'>
+                     <time datetime='18.08.2022' class='feedback-page__direct-chat-message-date'>18.08.2022</time>
+                     в
+                     <time datetime='15:35' class='feedback-page__direct-chat-message-date'>15:35</time>
+                    </div>
+                     <div class='feedback-page__direct-chat-message-replied-check'>
+                      <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                        <path d='M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                        </svg>                      
+                     </div>
+                   </div>
+                </div>
+              </div>
+             </template>
+              </div>
+             <button type="button" class="btn btn--primary feedback-page__direct-chat-message-reply-btn desktop-hide" x-on:click="replyPanel = true; answerInput = ''">
+              Ответить
+             </button>
+             <div class="feedback-page__direct-chat-message-reply-panel-overlay desktop-hide" x-show="replyPanel === true" x-on:click.self="replyPanel = false">
+             <form class="feedback-page__direct-chat-message-reply-panel" action="#" method="post">
+                <div class="feedback-page__direct-chat-message-reply-panel-attach-input-wrapper">
+                  <input type="file" class="feedback-page__direct-chat-message-reply-panel-attach-input">
+                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </div>
+                <input type="text" class="feedback-page__direct-chat-message-reply-panel-answer-input" x-model="answerInput" placeholder="Введите текст ответа">
+                <button type="button" class="feedback-page__direct-chat-message-reply-panel-submit-btn" x-on:click="chats.push({answer:answerInput});replyPanel = false;answerInput = ''" x-bind:class="{'disabled': answerInput.length === 0}">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.99183 13.0082L21 1M8.99183 13.0082L12.8126 20.6497C12.8605 20.7542 12.9374 20.8428 13.0342 20.9049C13.1309 20.967 13.2435 21 13.3584 21C13.4734 21 13.586 20.967 13.6827 20.9049C13.7795 20.8428 13.8564 20.7542 13.9043 20.6497L21 1M8.99183 13.0082L1.35028 9.18738C1.24576 9.13949 1.1572 9.06259 1.0951 8.96583C1.03301 8.86908 1 8.75653 1 8.64156C1 8.52659 1.03301 8.41404 1.0951 8.31728C1.1572 8.22052 1.24576 8.14363 1.35028 8.09573L21 1" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </button>
+             </form>
+            </div>
+            <div class="feedback-page__direct-chat-window-bottom">
+              <form class="feedback-page__direct-chat-message-reply-panel" action="#" method="post">
+                <div class="feedback-page__direct-chat-message-reply-panel-attach-input-wrapper">
+                  <input type="file" class="feedback-page__direct-chat-message-reply-panel-attach-input">
+                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </div>
+                <input type="text" class="feedback-page__direct-chat-message-reply-panel-answer-input" x-model="answerInput" placeholder="Введите текст ответа">
+              </form>
+              <button type="button" class="btn btn--primary feedback-page__direct-chat-message-reply-btn" x-on:click="chats.push({answer:answerInput});replyPanel = false; answerInput = ''" x-bind:class="{'disabled': answerInput.length === 0}">
+                Ответить
+               </button>
+            </div>
+           </div>
+        </div>
+        <div class="feedback-page__direct-chat" x-show="directChat === 'Иван Воробьёв'" x-ref="feedbackPageDirectChat2">
+          <div class="feedback-page__direct-chat-top">
+             <div class="feedback-page__direct-chat-top-left">
+                <button type="button" class="feedback-page__direct-chat-back-btn" x-on:click="directChat = ''">
+                 <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M9 1L1 9L9 17" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>                    
+                </button>
+                <div class="feedback-page__direct-chat-top-letter-name">
+                   <p class="feedback-page__direct-chat-letter">
+                     ШК
+                   </p>
+                   <p class="feedback-page__direct-chat-top-name">Иван Воробьёв</p>
+                </div>
+             </div>
+             <p class="feedback-page__direct-chat-top-company">mammoh</p>
+          </div>
+          <div class="feedback-page__direct-chat-search-wrapper">
+            <form action="#" method="post" class="feedback-page__direct-chat-search">
+              <button type="submit" class="feedback-page__direct-chat-search-submit-btn">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.624 19L13.624 13M15.624 8C15.624 11.866 12.49 15 8.62402 15C4.75803 15 1.62402 11.866 1.62402 8C1.62402 4.13401 4.75803 1 8.62402 1C12.49 1 15.624 4.13401 15.624 8Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                
+              </button>
+              <input type="search" class="feedback-page__direct-chat-search-input" placeholder="Поиск сообщений">
+            </form>
+            <div class="site-section__choose-status-dropdown-wrapper feedback-page__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+              <button type="button" class="site-section__choose-status-btn feedback-page__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>     
+              </button>
+              <ul class="site-section__choose-status-dropdown-list feedback-page__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                 <li class="site-section__choose-status-dropdown-list-item feedback-page__choose-status-dropdown-list-item">
+                    <input type="text" readonly="" class="site-section__choose-status-dropdown-list-item-input feedback-page__choose-status-dropdown-list-item-input" value="Открыть чат" x-on:click="toggleStatusDropdown = false">
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item feedback-page__choose-status-dropdown-list-item">
+                  <input type="text" readonly="" class="site-section__choose-status-dropdown-list-item-input feedback-page__choose-status-dropdown-list-item-input delete" value="Удалить чат" x-on:click="toggleStatusDropdown = false;deleteChatAltPopup = true">
+               </li>
+              </ul>
+            </div>
+           </div>
+          <div class="feedback-page__direct-chat-window" 
+          x-data="{
+           replyPanel: false,
+           chats:[],
+           answerInput: ''
+         }">
+           <div class="feedback-page__direct-chat-message-wrapper">
+            <div class="feedback-page__direct-chat-message">
+             <img class="feedback-page__direct-chat-message-avatar-img" src="/images/comment-avatar-placeholder.png" alt="direct-chat-message-avatar-img" width="36" height="36" loading="lazy" decoding="async">
+             <div class="feedback-page__direct-chat-message-info">
+                <div class="feedback-page__direct-chat-message-box left">
+                 <p class="feedback-page__direct-chat-message-box-text">Хорошо :)</p>
+                </div>
+                <div class="feedback-page__direct-chat-message-bottom-info">
+                  <div class="feedback-page__direct-chat-message-datetime">
+                  <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                  в
+                  <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+                 </div>
+                  <div class="feedback-page__direct-chat-message-replied-check">
+                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                      
+                  </div>
+                </div>
+             </div>
+            </div>
+            <div class="feedback-page__direct-chat-message client">
+             <div class="feedback-page__direct-chat-message-info">
+                <div class="feedback-page__direct-chat-message-box right">
+                 <p class="feedback-page__direct-chat-message-box-text">In volutpat dui iaculis hendrerit cursus. Maecenas et semper mauris. Sed ac purus ac velit fringilla fringilla vel id lectus. Fusce sed consectetur ligula. Maecenas luctus ante aliquam maximus pretium. Nullam sit amet aliquet massa. Etiam in pretium quam.</p>
+                </div>
+                <div class="feedback-page__direct-chat-message-bottom-info reply-message">
+                  <div class="feedback-page__direct-chat-message-datetime">
+                  <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                  в
+                  <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+                 </div>
+                  <div class="feedback-page__direct-chat-message-check">
+                   <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M1.3335 4.9974L4.66683 8.33073L11.3335 1.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                                          
+                  </div>
+                </div>
+             </div>
+             <p class="feedback-page__direct-chat-message-avatar">
+               ВК
+             </p>
+            </div>
+            <div class="feedback-page__direct-chat-message">
+             <img class="feedback-page__direct-chat-message-avatar-img" src="/images/comment-avatar-placeholder.png" alt="direct-chat-message-avatar-img" width="36" height="36" loading="lazy" decoding="async">
+             <div class="feedback-page__direct-chat-message-info">
+                <div class="feedback-page__direct-chat-message-box left">
+                 <p class="feedback-page__direct-chat-message-box-text">Хорошо :)</p>
+                 <a href="#" class="feedback-page__direct-chat-message-question-answer-link">Ответ на вопрос</a>
+                </div>
+                <div class="feedback-page__direct-chat-message-bottom-info">
+                  <div class="feedback-page__direct-chat-message-datetime">
+                  <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                  в
+                  <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+                 </div>
+                  <div class="feedback-page__direct-chat-message-replied-check">
+                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                      
+                  </div>
+                </div>
+             </div>
+            </div>
+            <template x-for="chat in chats">
+              <div class='feedback-page__direct-chat-message'>
+                <img class='feedback-page__direct-chat-message-avatar-img' src='/images/comment-avatar-placeholder.png' alt='direct-chat-message-avatar-img' width='36' height='36' loading='lazy' decoding='async'>
+                <div class='feedback-page__direct-chat-message-info'>
+                   <div class='feedback-page__direct-chat-message-box left'>
+                    <p class='feedback-page__direct-chat-message-box-text' x-text='chat.answer'></p>
+                   </div>
+                   <div class='feedback-page__direct-chat-message-bottom-info'>
+                     <div class='feedback-page__direct-chat-message-datetime'>
+                     <time datetime='18.08.2022' class='feedback-page__direct-chat-message-date'>18.08.2022</time>
+                     в
+                     <time datetime='15:35' class='feedback-page__direct-chat-message-date'>15:35</time>
+                    </div>
+                     <div class='feedback-page__direct-chat-message-replied-check'>
+                      <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                        <path d='M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                        </svg>                      
+                     </div>
+                   </div>
+                </div>
+              </div>
+             </template>
+             </div>
+             <button type="button" class="btn btn--primary feedback-page__direct-chat-message-reply-btn desktop-hide" x-on:click="replyPanel = true; answerInput = ''">
+              Ответить
+             </button>
+             <div class="feedback-page__direct-chat-message-reply-panel-overlay desktop-hide" x-show="replyPanel === true" x-on:click.self="replyPanel = false">
+             <form class="feedback-page__direct-chat-message-reply-panel" action="#" method="post">
+                <div class="feedback-page__direct-chat-message-reply-panel-attach-input-wrapper">
+                  <input type="file" class="feedback-page__direct-chat-message-reply-panel-attach-input">
+                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </div>
+                <input type="text" class="feedback-page__direct-chat-message-reply-panel-answer-input" x-model="answerInput" placeholder="Введите текст ответа">
+                <button type="button" class="feedback-page__direct-chat-message-reply-panel-submit-btn" x-on:click="chats.push({answer:answerInput});replyPanel = false;answerInput = ''" x-bind:class="{'disabled': answerInput.length === 0}">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.99183 13.0082L21 1M8.99183 13.0082L12.8126 20.6497C12.8605 20.7542 12.9374 20.8428 13.0342 20.9049C13.1309 20.967 13.2435 21 13.3584 21C13.4734 21 13.586 20.967 13.6827 20.9049C13.7795 20.8428 13.8564 20.7542 13.9043 20.6497L21 1M8.99183 13.0082L1.35028 9.18738C1.24576 9.13949 1.1572 9.06259 1.0951 8.96583C1.03301 8.86908 1 8.75653 1 8.64156C1 8.52659 1.03301 8.41404 1.0951 8.31728C1.1572 8.22052 1.24576 8.14363 1.35028 8.09573L21 1" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </button>
+             </form>
+            </div>
+            <div class="feedback-page__direct-chat-window-bottom">
+              <form class="feedback-page__direct-chat-message-reply-panel" action="#" method="post">
+                <div class="feedback-page__direct-chat-message-reply-panel-attach-input-wrapper">
+                  <input type="file" class="feedback-page__direct-chat-message-reply-panel-attach-input">
+                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </div>
+                <input type="text" class="feedback-page__direct-chat-message-reply-panel-answer-input" x-model="answerInput" placeholder="Введите текст ответа">
+              </form>
+              <button type="button" class="btn btn--primary feedback-page__direct-chat-message-reply-btn" x-on:click="chats.push({answer:answerInput});replyPanel = false; answerInput = ''" x-bind:class="{'disabled': answerInput.length === 0}">
+                Ответить
+               </button>
+            </div>
+          </div>
+       </div>
+       <div class="feedback-page__direct-chat" x-show="directChat === 'Иван Шашклычкофф'" x-ref="feedbackPageDirectChat3">
+        <div class="feedback-page__direct-chat-top">
+           <div class="feedback-page__direct-chat-top-left">
+              <button type="button" class="feedback-page__direct-chat-back-btn" x-on:click="directChat = ''">
+               <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M9 1L1 9L9 17" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>                    
+              </button>
+              <div class="feedback-page__direct-chat-top-letter-name">
+                 <p class="feedback-page__direct-chat-letter">
+                   ШК
+                 </p>
+                 <p class="feedback-page__direct-chat-top-name">Иван Шашклычкофф</p>
+              </div>
+           </div>
+           <p class="feedback-page__direct-chat-top-company">gearbox</p>
+        </div>
+        <div class="feedback-page__direct-chat-search-wrapper">
+          <form action="#" method="post" class="feedback-page__direct-chat-search">
+            <button type="submit" class="feedback-page__direct-chat-search-submit-btn">
+              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.624 19L13.624 13M15.624 8C15.624 11.866 12.49 15 8.62402 15C4.75803 15 1.62402 11.866 1.62402 8C1.62402 4.13401 4.75803 1 8.62402 1C12.49 1 15.624 4.13401 15.624 8Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>                
+            </button>
+            <input type="search" class="feedback-page__direct-chat-search-input" placeholder="Поиск сообщений">
+          </form>
+          <div class="site-section__choose-status-dropdown-wrapper feedback-page__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+            <button type="button" class="site-section__choose-status-btn feedback-page__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>     
+            </button>
+            <ul class="site-section__choose-status-dropdown-list feedback-page__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+               <li class="site-section__choose-status-dropdown-list-item feedback-page__choose-status-dropdown-list-item">
+                  <input type="text" readonly="" class="site-section__choose-status-dropdown-list-item-input feedback-page__choose-status-dropdown-list-item-input" value="Открыть чат" x-on:click="toggleStatusDropdown = false">
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item feedback-page__choose-status-dropdown-list-item">
+                <input type="text" readonly="" class="site-section__choose-status-dropdown-list-item-input feedback-page__choose-status-dropdown-list-item-input delete" value="Удалить чат" x-on:click="toggleStatusDropdown = false;deleteChatAltPopup = true">
+             </li>
+            </ul>
+          </div>
+         </div>
+        <div class="feedback-page__direct-chat-window" 
+        x-data="{
+          replyPanel: false,
+          chats:[],
+          answerInput: ''
+        }">
+         <div class="feedback-page__direct-chat-message-wrapper">
+          <div class="feedback-page__direct-chat-message">
+           <img class="feedback-page__direct-chat-message-avatar-img" src="/images/comment-avatar-placeholder.png" alt="direct-chat-message-avatar-img" width="36" height="36" loading="lazy" decoding="async">
+           <div class="feedback-page__direct-chat-message-info">
+              <div class="feedback-page__direct-chat-message-box left">
+               <p class="feedback-page__direct-chat-message-box-text">Хорошо :)</p>
+              </div>
+              <div class="feedback-page__direct-chat-message-bottom-info">
+                <div class="feedback-page__direct-chat-message-datetime">
+                <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                в
+                <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+               </div>
+                <div class="feedback-page__direct-chat-message-replied-check">
+                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>                      
+                </div>
+              </div>
+           </div>
+          </div>
+          <div class="feedback-page__direct-chat-message client">
+           <div class="feedback-page__direct-chat-message-info">
+              <div class="feedback-page__direct-chat-message-box right">
+               <p class="feedback-page__direct-chat-message-box-text">In volutpat dui iaculis hendrerit cursus. Maecenas et semper mauris. Sed ac purus ac velit fringilla fringilla vel id lectus. Fusce sed consectetur ligula. Maecenas luctus ante aliquam maximus pretium. Nullam sit amet aliquet massa. Etiam in pretium quam.</p>
+              </div>
+              <div class="feedback-page__direct-chat-message-bottom-info reply-message">
+                <div class="feedback-page__direct-chat-message-datetime">
+                <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                в
+                <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+               </div>
+                <div class="feedback-page__direct-chat-message-check">
+                 <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M1.3335 4.9974L4.66683 8.33073L11.3335 1.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>                                          
+                </div>
+              </div>
+           </div>
+           <p class="feedback-page__direct-chat-message-avatar">
+             ВК
+           </p>
+          </div>
+          <div class="feedback-page__direct-chat-message">
+           <img class="feedback-page__direct-chat-message-avatar-img" src="/images/comment-avatar-placeholder.png" alt="direct-chat-message-avatar-img" width="36" height="36" loading="lazy" decoding="async">
+           <div class="feedback-page__direct-chat-message-info">
+              <div class="feedback-page__direct-chat-message-box left">
+               <p class="feedback-page__direct-chat-message-box-text">Хорошо :)</p>
+               <a href="#" class="feedback-page__direct-chat-message-question-answer-link">Ответ на вопрос</a>
+              </div>
+              <div class="feedback-page__direct-chat-message-bottom-info">
+                <div class="feedback-page__direct-chat-message-datetime">
+                <time datetime="18.08.2022" class="feedback-page__direct-chat-message-date">18.08.2022</time>
+                в
+                <time datetime="15:35" class="feedback-page__direct-chat-message-date">15:35</time>
+               </div>
+                <div class="feedback-page__direct-chat-message-replied-check">
+                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>                      
+                </div>
+              </div>
+           </div>
+          </div>
+          <template x-for="chat in chats">
+            <div class='feedback-page__direct-chat-message'>
+              <img class='feedback-page__direct-chat-message-avatar-img' src='/images/comment-avatar-placeholder.png' alt='direct-chat-message-avatar-img' width='36' height='36' loading='lazy' decoding='async'>
+              <div class='feedback-page__direct-chat-message-info'>
+                 <div class='feedback-page__direct-chat-message-box left'>
+                  <p class='feedback-page__direct-chat-message-box-text' x-text='chat.answer'></p>
+                 </div>
+                 <div class='feedback-page__direct-chat-message-bottom-info'>
+                   <div class='feedback-page__direct-chat-message-datetime'>
+                   <time datetime='18.08.2022' class='feedback-page__direct-chat-message-date'>18.08.2022</time>
+                   в
+                   <time datetime='15:35' class='feedback-page__direct-chat-message-date'>15:35</time>
+                  </div>
+                   <div class='feedback-page__direct-chat-message-replied-check'>
+                    <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <path d='M4.66683 7.9974L8.00016 11.3307L14.6668 4.66406M1.3335 7.9974L4.66683 11.3307M8.00016 7.9974L11.3335 4.66406' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                      </svg>                      
+                   </div>
+                 </div>
+              </div>
+            </div>
+           </template>
+           </div>
+           <button type="button" class="btn btn--primary feedback-page__direct-chat-message-reply-btn desktop-hide" x-on:click="replyPanel = true; answerInput = ''">
+            Ответить
+           </button>
+           <div class="feedback-page__direct-chat-message-reply-panel-overlay desktop-hide" x-show="replyPanel === true" x-on:click.self="replyPanel = false">
+           <form class="feedback-page__direct-chat-message-reply-panel" action="#" method="post">
+              <div class="feedback-page__direct-chat-message-reply-panel-attach-input-wrapper">
+                <input type="file" class="feedback-page__direct-chat-message-reply-panel-attach-input">
+                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                    
+              </div>
+              <input type="text" class="feedback-page__direct-chat-message-reply-panel-answer-input" x-model="answerInput" placeholder="Введите текст ответа">
+              <button type="button" class="feedback-page__direct-chat-message-reply-panel-submit-btn" x-on:click="chats.push({answer:answerInput});replyPanel = false;answerInput = ''" x-bind:class="{'disabled': answerInput.length === 0}">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.99183 13.0082L21 1M8.99183 13.0082L12.8126 20.6497C12.8605 20.7542 12.9374 20.8428 13.0342 20.9049C13.1309 20.967 13.2435 21 13.3584 21C13.4734 21 13.586 20.967 13.6827 20.9049C13.7795 20.8428 13.8564 20.7542 13.9043 20.6497L21 1M8.99183 13.0082L1.35028 9.18738C1.24576 9.13949 1.1572 9.06259 1.0951 8.96583C1.03301 8.86908 1 8.75653 1 8.64156C1 8.52659 1.03301 8.41404 1.0951 8.31728C1.1572 8.22052 1.24576 8.14363 1.35028 8.09573L21 1" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                    
+              </button>
+           </form>
+          </div>
+          <div class="feedback-page__direct-chat-window-bottom">
+            <form class="feedback-page__direct-chat-message-reply-panel" action="#" method="post">
+              <div class="feedback-page__direct-chat-message-reply-panel-attach-input-wrapper">
+                <input type="file" class="feedback-page__direct-chat-message-reply-panel-attach-input">
+                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                    
+              </div>
+              <input type="text" class="feedback-page__direct-chat-message-reply-panel-answer-input" x-model="answerInput" placeholder="Введите текст ответа">
+            </form>
+            <button type="button" class="btn btn--primary feedback-page__direct-chat-message-reply-btn" x-on:click="chats.push({answer:answerInput});replyPanel = false;answerInput = ''" x-bind:class="{'disabled': answerInput.length === 0}">
+              Ответить
+             </button>
+          </div>
+        </div>
+       </div>
+        </div>
+       </div>
+    </div>
+    <QAEditMessageAltPopup></QAEditMessageAltPopup>
+    <EditApplicationAltPopup></EditApplicationAltPopup>
+    <ArchiveChatAltPopup></ArchiveChatAltPopup>
+  </section>
+</Layout>
+

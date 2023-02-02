@@ -1,0 +1,71 @@
+---
+import '../styles/main.scss';
+import Header from "../components/Header.astro";
+import Footer from '../components/Footer.astro';
+import AsideNavMenu from '../components/AsideNavMenu.astro';
+import EventsBoardPopup from "../components/EventsBoardPopup.astro";
+import NotifyPopup from "../components/NotifyPopup.astro";
+import SettingsEventBoardPopup from "../components/SettingsEventBoardPopup.astro";
+import SettingsOrderListPopup from "../components/SettingsOrderListPopup.astro";
+const {title} = Astro.props;
+---
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Page description">
+    <meta property="og:title" content="Unique page title - My Site">
+    <meta property="og:description" content="Page description">
+    <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
+    <meta property="og:image:alt" content="Image description">
+    <meta property="og:locale" content="ru">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://www.mywebsite.com/page">
+    <meta name="theme-color" content="#fff" />
+    <link rel="canonical" href="https://www.mywebsite.com/page">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Tempus Dominus Styles https://getdatepicker.com/ -->
+<link href="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/css/tempus-dominus.css" rel="stylesheet" crossorigin="anonymous">
+ <!-- swiper.js styles -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+ <!-- Alpine Plugins -->
+ <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+ <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+
+ <!-- Alpine Core -->
+ <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+ <!--Tempus Dominus JavaScript datepicker https://getdatepicker.com/ -->
+ <!-- <script defer src="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.min.js"></script> -->
+ 
+ <!-- tippy.js popovers -->
+ <script src="https://unpkg.com/@popperjs/core@2" defer></script>
+ <script src="https://unpkg.com/tippy.js@6" defer></script>
+ <!-- Popperjs -->
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous" defer></script>
+     <script>
+         import '../js/main.js';
+     </script>
+  </head>
+  <body x-data="{eventsBoardPopup: false, notifyPopup: false,settingsPopup: false, settingsOrderListPopup: false, authRegAltPopup: false }">
+    <Header></Header>
+    <main class="main">
+      <div class="container main__container">
+      <AsideNavMenu></AsideNavMenu>
+      <slot />
+      </div>
+    </main>
+    <Footer></Footer>
+    <EventsBoardPopup></EventsBoardPopup>
+    <NotifyPopup></NotifyPopup>
+    <SettingsEventBoardPopup></SettingsEventBoardPopup>
+    <SettingsOrderListPopup></SettingsOrderListPopup>
+  </body>
+</html>

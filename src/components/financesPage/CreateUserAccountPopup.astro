@@ -1,0 +1,72 @@
+<div class="popup create-user-account-popup" x-bind:class="{'active': createUserAccountPopup === true}">
+    <form action="#" method="post" class="popup__form">
+    <div class="popup__content create-user-account-popup__content">
+  <div class="popup__top-row create-user-account-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="createUserAccountPopup = false">
+        <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>                  
+    </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="createUserAccountPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <div class="popup__title-top-controls-row create-user-account-popup__title-top-controls-row">
+    <h2 class="popup__title create-user-account-popup__title">
+        Создание аккаунта пользователя    
+    </h2>
+    </div>
+  </div>
+  <div class="popup__body create-user-account-popup__body">
+    <div class="create-user-account-popup__form-control-group">
+        <p class="create-user-account-popup__form-control-group-title">
+            E-mail
+        </p>
+        <div class="create-user-account-popup__form-control-wrapper create-user-account-popup__form-control-input-wrapper">
+          <input type="email" class="create-user-account-popup__form-control-input" value="rrr@gmail.com">
+        </div>
+     </div>
+     <div class="create-user-account-popup__form-control-group">
+        <p class="create-user-account-popup__form-control-group-title">
+            Группа
+        </p>
+        <div class="create-user-account-popup__form-control-wrapper create-user-account-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Группа'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+            <input type="text" class="create-user-account-popup__form-control-select-result-input" name="form-control-select-result-input" value="Россия" readonly x-model="resultInputVal">
+            <div class="create-user-account-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+            <ul role="list" class="create-user-account-popup__form-control-select-list">
+              <li class="create-user-account-popup__form-control-select-list-item">
+                <input type="text" value="Группа" readonly class="create-user-account-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Группа'">
+              </li>
+              <li class="create-user-account-popup__form-control-select-list-item">
+                <input type="text" value="Группа 2" readonly class="create-user-account-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Группа 2'">
+              </li>
+              <li class="create-user-account-popup__form-control-select-list-item">
+                <input type="text" value="Группа 3" readonly class="create-user-account-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Группа 3'">
+              </li>
+            </ul>
+            </div>
+            <svg class="create-user-account-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                  
+        </div>
+     </div>
+     <button type="button" class="btn btn--primary create-user-account-popup__add-user-btn desktop">
+        Добавить пользователя
+     </button>
+     <ul role="list" class="create-user-account-popup__btn-control-group">
+        <li class="create-user-account-popup__btn-control-group-item">
+            <button type="button" class="btn btn--flat create-user-account-popup__undo-btn" x-on:click="addOrganizationPopup = false">
+                Отменить
+            </button>
+        </li>
+        <li class="create-user-account-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary create-user-account-popup__add-user-btn">
+                Добавить пользователя
+            </button>
+        </li>
+       </ul>
+</div>
+</div>
+</form>
+  </div>

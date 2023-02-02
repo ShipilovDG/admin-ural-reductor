@@ -1,0 +1,96 @@
+.edit-actions-alt-popup {
+    &__title {
+        padding-bottom: 0;
+        line-height: 28px;
+    }
+
+    &__content {
+        max-height: 400px;
+    }
+
+    &__fieldset {
+        gap: 0;
+    }
+
+    &__top-row {
+        border-bottom: 1px solid var(--grey-color);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    &__title-name {
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+padding-bottom: 8px;
+    }
+
+    &__status-btn {
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+border: 1px solid var(--grey-color);
+margin-bottom: 16px;
+    }
+
+    &__search-list {
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 16px;
+    }
+
+    &__search-list-item {
+        padding: 8px;
+        display: grid;
+        align-items: center;
+        grid-template-columns: max-content 1fr max-content;
+        gap: 8px;
+        border-radius: 4px;
+        transition: .3s ease-in-out;
+    }
+
+    &__search-list-item:hover {
+        background-color: var(--hover);
+    }
+
+    &__search-list-item:hover .edit-actions-alt-popup__search-list-item-delete-btn {
+        display: flex;
+    }
+
+    &__search-list-item-img {
+        width: 24px;
+        height: 24px;
+    }
+
+    &__search-list-item-title {
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+    }
+
+    &__search-list-item-delete-btn {
+        width: 16px;
+        height: 16px;
+        display: none;
+    }
+
+    
+
+    &__undo-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 103px;
+    }
+
+    &__save-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 84px;
+    }
+}

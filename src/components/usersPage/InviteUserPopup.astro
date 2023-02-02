@@ -1,0 +1,179 @@
+<div class="popup invite-user-popup" x-bind:class="{'active': inviteUserPopup === true}" 
+x-data="
+{
+    addMoreUserFieldset() {
+        const fieldsetsWrapper = $el.querySelector('.invite-user-popup__fieldsets');
+        const userFieldsetContent = $el.querySelector('.invite-user-popup__fieldset.user-fields');
+        console.log(userFieldsetContent);
+        const clonedUserFieldsetContent = userFieldsetContent.cloneNode(true);
+        console.log(clonedUserFieldsetContent);
+        fieldsetsWrapper.appendChild(clonedUserFieldsetContent);
+    },
+    async copyInputValue() {
+       const copiedInputValue = document.querySelector('.invite-user-popup__form-control-input.copied-input').value;
+       try {
+        await navigator.clipboard.writeText(copiedInputValue);
+        alert('Ссылка скопирована в буфер обмена: ' + copiedInputValue);
+      } catch (err) {
+        console.error('Ошибка копирования: ', err);
+        alert('Ошибка копирования: ', err);
+      }
+    }
+}">
+    <form action="#" method="post" class="popup__form invite-user-popup__form">
+    <div class="popup__content invite-user-popup__content">
+  <div class="popup__top-row invite-user-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="inviteUserPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="inviteUserPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title invite-user-popup__title">
+        Пригласить пользователя
+    </h2>
+   </div>
+    <div class="popup__body invite-user-popup__body" x-data="{tab: null}">
+        <div class="invite-user-popup__body-wrapper" x-show="tab === null">
+        <ul role="list" class="invite-user-popup__btn-group">
+            <li class="invite-user-popup__btn-group-item">
+                <button type="button" class="invite-user-popup__tab-btn" x-on:click="tab = 1">Пригласить массово</button>
+            </li>
+            <li class="invite-user-popup__btn-group-item">
+                <button type="button" class="invite-user-popup__tab-btn" x-on:click="tab = 2">Пригласить по ссылке</button>
+            </li>
+        </ul>
+        <div class="invite-user-popup__fieldsets">
+        <fieldset class="invite-user-popup__fieldset user-fields">
+            <div class="site-section__form-control-group invite-user-popup__form-control-group">
+                <p class="site-section__form-control-group-title invite-user-popup__form-control-group-title">
+                    Электронная почта
+                </p>
+                <div class="site-section__form-control-wrapper invite-user-popup__form-control-wrapper invite-user-popup__form-control-input-wrapper">
+                  <input type="text" class="site-section__form-control-input invite-user-popup__form-control-input" value="vtr@uralreduktor.ru">
+                </div>
+             </div>
+             <div class="site-section__form-control-group invite-user-popup__form-control-group">
+                <p class="site-section__form-control-group-title invite-user-popup__form-control-group-title">
+                    Группа пользователей
+                </p>
+                <div class="site-section__form-control-wrapper invite-user-popup__form-control-wrapper
+                site-section__form-control-select-wrapper invite-user-popup__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: 'Выберите группу'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input invite-user-popup__form-control-select-result-input" value="Выберите группу" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown invite-user-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list invite-user-popup__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item invite-user-popup__form-control-select-list-item">
+                       <input type="text" value="Выберите группу" readonly class="site-section__form-control-select-list-item-input invite-user-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выберите группу'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item invite-user-popup__form-control-select-list-item">
+                       <input type="text" value="Администратор 2" readonly class="site-section__form-control-select-list-item-input invite-user-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выберите группу 2'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item invite-user-popup__form-control-select-list-item">
+                       <input type="text" value="Выберите группу 3" readonly class="site-section__form-control-select-list-item-input invite-user-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выберите группу 3'">
+                     </li>
+                   </ul>
+                   </div>
+                   <svg class="site-section__form-control-select-arrow invite-user-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                     <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                  
+                </div>
+             </div>
+        </fieldset>
+        <fieldset class="invite-user-popup__fieldset user-fields">
+            <div class="site-section__form-control-group invite-user-popup__form-control-group">
+                <p class="site-section__form-control-group-title invite-user-popup__form-control-group-title">
+                    Электронная почта
+                </p>
+                <div class="site-section__form-control-wrapper invite-user-popup__form-control-wrapper invite-user-popup__form-control-input-wrapper">
+                  <input type="text" class="site-section__form-control-input invite-user-popup__form-control-input" value="vtr@uralreduktor.ru">
+                </div>
+             </div>
+             <div class="site-section__form-control-group invite-user-popup__form-control-group">
+                <p class="site-section__form-control-group-title invite-user-popup__form-control-group-title">
+                    Группа пользователей
+                </p>
+                <div class="site-section__form-control-wrapper invite-user-popup__form-control-wrapper
+                site-section__form-control-select-wrapper invite-user-popup__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: 'Выберите группу'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input invite-user-popup__form-control-select-result-input" value="Выберите группу" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown invite-user-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list invite-user-popup__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item invite-user-popup__form-control-select-list-item">
+                       <input type="text" value="Выберите группу" readonly class="site-section__form-control-select-list-item-input invite-user-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выберите группу'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item invite-user-popup__form-control-select-list-item">
+                       <input type="text" value="Администратор 2" readonly class="site-section__form-control-select-list-item-input invite-user-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выберите группу 2'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item invite-user-popup__form-control-select-list-item">
+                       <input type="text" value="Выберите группу 3" readonly class="site-section__form-control-select-list-item-input invite-user-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выберите группу 3'">
+                     </li>
+                   </ul>
+                   </div>
+                   <svg class="site-section__form-control-select-arrow invite-user-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                     <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                  
+                </div>
+             </div>
+        </fieldset>
+        </div>
+        <button type="button" class="invite-user-popup__add-more-btn" x-on:click="addMoreUserFieldset">Добавить ещё</button>
+        </div>
+        <div class="invite-user-popup__body-wrapper" x-show="tab === 1">
+            <fieldset class="invite-user-popup__fieldset">
+                <p class="invite-user-popup__info-text">Введите email-адреса через запятую, пробел или каждый с новой строчки</p>
+                <textarea class="invite-user-popup__textarea"></textarea>
+            </fieldset>
+            <ul role="list" class="invite-user-popup__btn-group">
+                <li class="invite-user-popup__btn-group-item">
+                    <button type="button" class="invite-user-popup__back-btn" x-on:click="tab = null">Назад</button>
+                   </li>
+                   <li class="invite-user-popup__btn-group-item">
+                       <button type="button" class="invite-user-popup__tab-btn" x-on:click="tab = 2">Пригласить по ссылке</button>
+                      </li>
+            </ul>
+        </div>
+        <div class="invite-user-popup__body-wrapper" x-show="tab === 2">
+            <fieldset class="invite-user-popup__fieldset">
+            <p class="invite-user-popup__info-text">Введите email-адреса через запятую, пробел или каждый с новой строчки</p>
+            <div class="site-section__form-control-group invite-user-popup__form-control-group copy-link">
+                <div class="site-section__form-control-wrapper invite-user-popup__form-control-wrapper invite-user-popup__form-control-input-wrapper copied-input">
+                  <input type="text" class="site-section__form-control-input invite-user-popup__form-control-input copied-input" value="vtr@https://uralreduktor/join_user?token=ff4ff44a-4bb4-44ed-a444-fa444e4ff444">
+                </div>
+                <button type="button" class="invite-user-popup__copy-link-btn" x-on:click="copyInputValue">
+                    <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.6667 1V5.44444C11.6667 5.73913 11.779 6.02174 11.9791 6.23012C12.1791 6.43849 12.4504 6.55556 12.7333 6.55556H17M11.6667 1H7.4C6.83421 1 6.29158 1.23413 5.89151 1.65087C5.49143 2.06762 5.26667 2.63285 5.26667 3.22222V14.3333C5.26667 14.9227 5.49143 15.4879 5.89151 15.9047C6.29158 16.3214 6.83421 16.5556 7.4 16.5556H14.8667C15.4325 16.5556 15.9751 16.3214 16.3752 15.9047C16.7752 15.4879 17 14.9227 17 14.3333V6.55556M11.6667 1L17 6.55556M12.7333 16.5556V18.7778C12.7333 19.3671 12.5086 19.9324 12.1085 20.3491C11.7084 20.7659 11.1658 21 10.6 21H3.13333C2.56754 21 2.02492 20.7659 1.62484 20.3491C1.22476 19.9324 1 19.3671 1 18.7778V7.66667C1 7.0773 1.22476 6.51207 1.62484 6.09532C2.02492 5.67857 2.56754 5.44444 3.13333 5.44444H5.26667" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    </button>
+             </div>
+            </fieldset>
+            <ul role="list" class="invite-user-popup__btn-group">
+                <li class="invite-user-popup__btn-group-item">
+                     <button type="button" class="invite-user-popup__back-btn" x-on:click="tab = null">Назад</button>
+                    </li>
+                    <li class="invite-user-popup__btn-group-item">
+                        <button type="button" class="invite-user-popup__tab-btn" x-on:click="tab = null">Обновить ссылку</button>
+                       </li>
+                       <li class="invite-user-popup__btn-group-item">
+                        <button type="button" class="invite-user-popup__tab-btn" x-on:click="tab = 1">Пригласить массово</button>
+                       </li>
+                   </ul>
+        </div>
+        <ul role="list" class="popup__btn-control-group invite-user-popup__btn-control-group">
+            <li class="popup__btn-control-group-item invite-user-popup__btn-control-group-item">
+                <button type="button" class="btn btn--flat popup__undo-btn invite-user-popup__undo-btn" x-on:click="inviteUserPopup = false">
+                    Отменить
+                </button>
+            </li>
+            <li class="popup__btn-control-group-item invite-user-popup__btn-control-group-item">
+                <button type="button" class="btn btn--primary popup__save-btn invite-user-popup__save-btn" x-on:click="invitedUserAltPopup = true">
+                    Сохранить
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+</form>
+</div>

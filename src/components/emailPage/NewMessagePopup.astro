@@ -1,0 +1,445 @@
+<div class="popup new-message-popup" x-bind:class="{'active': newMessagePopup === true}" x-data="{table: 1}">
+    <form action="#" method="post" class="popup__form new-message-popup__form">
+    <div class="popup__content new-message-popup__content">
+  <div class="popup__top-row new-message-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="newMessagePopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="newMessagePopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <div class="new-message-popup__title-row">
+    <h2 class="popup__title new-message-popup__title">
+        Новое письмо
+    </h2>
+    </div> 
+   </div>
+    <div class="popup__body new-message-popup__body" x-data="dropInputFiler">
+        <fieldset class="new-message-popup__fieldset desktop-hide">
+        <div class="new-message-popup__form-control-group">
+            <div class="new-message-popup__form-control-group-row">
+            <p class="new-message-popup__form-control-group-title">
+                Номер
+            </p>
+            <div class="new-message-popup__form-control-btn-group">
+                <button type="button" class="new-message-popup__email-copy-btn">
+                    Копия
+                </button>
+                <button type="button" class="new-message-popup__email-hidden-copy-btn">
+                    Скрытая копия
+                </button>
+            </div>
+            </div>
+            <div class="new-message-popup__form-control-wrapper new-message-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'ООО “Уралредуктор”'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="new-message-popup__form-control-select-result-input" value="На согласовании" readonly x-model="resultInputVal">
+                <div class="new-message-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="new-message-popup__form-control-select-list">
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор”" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор”'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 2" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 2'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 3" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 3'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="new-message-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+            </div>
+            <div class="new-message-popup__form-control-wrapper new-message-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'ООО “Уралредуктор”'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="new-message-popup__form-control-select-result-input" value="На согласовании" readonly x-model="resultInputVal">
+                <div class="new-message-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="new-message-popup__form-control-select-list">
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор”" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор”'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 2" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 2'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 3" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 3'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="new-message-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+            </div>
+         </div>
+         <div class="new-message-popup__form-control-group">
+            <p class="new-message-popup__form-control-group-title">
+                Тема
+            </p>
+            <div class="new-message-popup__form-control-wrapper new-message-popup__form-control-input-wrapper">
+              <input type="text" class="new-message-popup__form-control-input">
+            </div>
+         </div>
+         <div class="new-message-popup__form-control-group">
+            <p class="new-message-popup__form-control-group-title">
+                Сообщение
+            </p>
+            <textarea class="new-message-popup__message-textarea" placeholder="Сообщение"></textarea>
+         </div>
+         <ul role="list" class="new-message-popup__attach-files-list">
+        </ul>
+        <button type="button" class=" new-message-popup__attach-files-btn">
+            <input class="new-message-popup__form-control-group-file-input" type="file" name="attachFiles" id="attachFiles" multiple x-on:change="handleFiles">
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.9998 4.66632L4.66647 8.99965C4.40125 9.26487 4.25226 9.62458 4.25226 9.99965C4.25226 10.3747 4.40125 10.7344 4.66647 10.9997C4.93169 11.2649 5.2914 11.4139 5.66647 11.4139C6.04154 11.4139 6.40125 11.2649 6.66647 10.9997L10.9998 6.66632C11.5302 6.13588 11.8282 5.41646 11.8282 4.66632C11.8282 3.91617 11.5302 3.19675 10.9998 2.66632C10.4694 2.13588 9.74995 1.83789 8.9998 1.83789C8.24966 1.83789 7.53024 2.13588 6.9998 2.66632L2.66647 6.99965C1.87082 7.7953 1.42383 8.87443 1.42383 9.99965C1.42383 11.1249 1.87082 12.204 2.66647 12.9997C3.46212 13.7953 4.54125 14.2423 5.66647 14.2423C6.79169 14.2423 7.87082 13.7953 8.66647 12.9997L12.9998 8.66632" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Прикрепить файлы              
+        </button>
+        <div class="new-message-popup__info-card">
+            <img class="new-message-popup__info-card-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+            <div class="new-message-popup__info-card-right">
+                <p class="new-message-popup__info-card-title">
+                    vtrpro@yandex.ru
+                </p>
+                <div class="new-message-popup__info-card-datetime">
+                    <time datetime="13.10.2022" class="new-message-popup__info-card-date">13.10.2022</time> 
+                    <time datetime="16:05" class="new-message-popup__info-card-time">16:05</time> 
+                </div>
+            </div>
+        </div>
+        <div class="new-message-popup__add-links-wrapper">
+            <p class="new-message-popup__add-links-title">Добавить связь</p>
+            <button type="button" class="new-message-popup__add-links-btn">
+                Добавить связи
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.00016 1.33594V10.6693M1.3335 6.0026H10.6668" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+        </div>
+        <ul role="list" class="popup__tags-list new-message-popup__tags-list" x-ref="popupTagsList"></ul>
+        <div class="popup__add-tags-btn-wrapper new-message-popup__add-tags-btn-wrapper" x-data="{toggleDropdown: false }">
+            <button type="button" class="popup__add-tags-btn new-message-popup__add-tags-btn" x-on:click="toggleDropdown = !toggleDropdown">
+                Добавить тег
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.00016 1.33594V10.6693M1.3335 6.0026H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+            <div class="popup__add-tags-dropdown new-message-popup__add-tags-dropdown" x-bind:class="{'active': toggleDropdown === true }">
+               <ul role="list" class="popup__add-tags-dropdown-list new-message-popup__add-tags-dropdown-list">
+                  <li class="popup__add-tags-dropdown-list-item new-message-popup__add-tags-dropdown-list-item">
+                    <input type="text" class="popup__add-tags-dropdown-list-item-input new-message-popup__add-tags-dropdown-list-item-input" readonly value="CEO" x-on:click='toggleDropdown = false;  
+                    $refs.popupTagsList.insertAdjacentHTML("beforeEnd", 
+                    `<li class="popup__tags-list-item new-message-popup__tags-list-item">
+                       <button type="button" class="popup__tags-list-item-btn new-message-popup__tags-list-item-btn">
+                           СЕО
+                       </button>
+                   </li>`)
+                    '>
+                  </li>
+                  <li class="popup__add-tags-dropdown-list-item new-message-popup__add-tags-dropdown-list-item">
+                   <input type="text" class="popup__add-tags-dropdown-list-item-input new-message-popup__add-tags-dropdown-list-item-input" readonly value="Дизайн" x-on:click='toggleDropdown = false;  
+                   $refs.popupTagsList.insertAdjacentHTML("beforeEnd", 
+                   `<li class="popup__tags-list-item new-message-popup__tags-list-item">
+                      <button type="button" class="popup__tags-list-item-btn new-message-popup__tags-list-item-btn">
+                       Дизайн
+                      </button>
+                  </li>`)
+                   '>
+                 </li>
+                 <li class="popup__add-tags-dropdown-list-item new-message-popup__add-tags-dropdown-list-item">
+                   <input type="text" class="popup__add-tags-dropdown-list-item-input new-message-popup__add-tags-dropdown-list-item-input" readonly value="Проектировка" x-on:click='toggleDropdown = false;  
+                   $refs.popupTagsList.insertAdjacentHTML("beforeEnd", 
+                   `<li class="popup__tags-list-item new-message-popup__tags-list-item">
+                      <button type="button" class="popup__tags-list-item-btn new-message-popup__tags-list-item-btn">
+                       Проектировка
+                      </button>
+                  </li>`)
+                   '>
+                 </li>
+               </ul>
+               <input type="text" class="popup__add-tags-dropdown-search-input new-message-popup__add-tags-dropdown-search-input">
+           </div>
+        </fieldset>
+      <div class="new-message-popup__body-grid">
+        <fieldset class="new-message-popup__fieldset b-r">
+          <div class="new-message-popup__form-control-group">
+            <div class="new-message-popup__form-control-group-row">
+            <p class="new-message-popup__form-control-group-title">
+                Номер
+            </p>
+            <div class="new-message-popup__form-control-btn-group">
+                <button type="button" class="new-message-popup__email-copy-btn">
+                    Копия
+                </button>
+                <button type="button" class="new-message-popup__email-hidden-copy-btn">
+                    Скрытая копия
+                </button>
+            </div>
+            </div>
+            <div class="new-message-popup__form-control-wrapper new-message-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'ООО “Уралредуктор”'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="new-message-popup__form-control-select-result-input" value="На согласовании" readonly x-model="resultInputVal">
+                <div class="new-message-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="new-message-popup__form-control-select-list">
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор”" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор”'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 2" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 2'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 3" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 3'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="new-message-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+            </div>
+            <div class="new-message-popup__form-control-wrapper new-message-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'ООО “Уралредуктор”'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="new-message-popup__form-control-select-result-input" value="На согласовании" readonly x-model="resultInputVal">
+                <div class="new-message-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="new-message-popup__form-control-select-list">
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор”" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор”'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 2" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 2'">
+                  </li>
+                  <li class="new-message-popup__form-control-select-list-item">
+                    <input type="text" value="ООО “Уралредуктор” 3" readonly class="new-message-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'ООО “Уралредуктор” 3'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="new-message-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+            </div>
+         </div>
+         <div class="new-message-popup__form-control-group">
+            <p class="new-message-popup__form-control-group-title">
+                Тема
+            </p>
+            <div class="new-message-popup__form-control-wrapper new-message-popup__form-control-input-wrapper">
+              <input type="text" class="new-message-popup__form-control-input">
+            </div>
+         </div>
+         <div class="new-message-popup__form-control-group">
+            <p class="new-message-popup__form-control-group-title">
+                Сообщение
+            </p>
+            <textarea class="new-message-popup__message-textarea" placeholder="Сообщение"></textarea>
+         </div>
+         <ul role="list" class="new-message-popup__attach-files-list desktop">
+        </ul>
+        <button type="button" class=" new-message-popup__attach-files-btn">
+            <input class="new-message-popup__form-control-group-file-input desktop" type="file" name="attachFilesDesktop" id="attachFilesDesktop" multiple x-on:change="handleFilesDesktop">
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.9998 4.66632L4.66647 8.99965C4.40125 9.26487 4.25226 9.62458 4.25226 9.99965C4.25226 10.3747 4.40125 10.7344 4.66647 10.9997C4.93169 11.2649 5.2914 11.4139 5.66647 11.4139C6.04154 11.4139 6.40125 11.2649 6.66647 10.9997L10.9998 6.66632C11.5302 6.13588 11.8282 5.41646 11.8282 4.66632C11.8282 3.91617 11.5302 3.19675 10.9998 2.66632C10.4694 2.13588 9.74995 1.83789 8.9998 1.83789C8.24966 1.83789 7.53024 2.13588 6.9998 2.66632L2.66647 6.99965C1.87082 7.7953 1.42383 8.87443 1.42383 9.99965C1.42383 11.1249 1.87082 12.204 2.66647 12.9997C3.46212 13.7953 4.54125 14.2423 5.66647 14.2423C6.79169 14.2423 7.87082 13.7953 8.66647 12.9997L12.9998 8.66632" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Прикрепить файлы              
+        </button>
+        </fieldset>
+        <fieldset class="new-message-popup__fieldset">
+          <div class="new-message-popup__info-card">
+            <img class="new-message-popup__info-card-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+            <div class="new-message-popup__info-card-right">
+                <p class="new-message-popup__info-card-title">
+                    vtrpro@yandex.ru
+                </p>
+                <div class="new-message-popup__info-card-datetime">
+                    <time datetime="13.10.2022" class="new-message-popup__info-card-date">13.10.2022</time> 
+                    <time datetime="16:05" class="new-message-popup__info-card-time">16:05</time> 
+                </div>
+            </div>
+        </div>
+        <div class="new-message-popup__add-links-wrapper">
+            <p class="new-message-popup__add-links-title">Добавить связь</p>
+            <button type="button" class="new-message-popup__add-links-btn">
+                Добавить связи
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.00016 1.33594V10.6693M1.3335 6.0026H10.6668" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+        </div>
+        <ul role="list" class="popup__tags-list new-message-popup__tags-list" x-ref="newMessagePopupTagsListDesktop"></ul>
+        <div class="popup__add-tags-btn-wrapper new-message-popup__add-tags-btn-wrapper" x-data="{toggleDropdown: false }">
+            <button type="button" class="popup__add-tags-btn new-message-popup__add-tags-btn" x-on:click="toggleDropdown = !toggleDropdown">
+                Добавить тег
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.00016 1.33594V10.6693M1.3335 6.0026H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+            <div class="popup__add-tags-dropdown new-message-popup__add-tags-dropdown" x-bind:class="{'active': toggleDropdown === true }">
+               <ul role="list" class="popup__add-tags-dropdown-list new-message-popup__add-tags-dropdown-list">
+                  <li class="popup__add-tags-dropdown-list-item new-message-popup__add-tags-dropdown-list-item">
+                    <input type="text" class="popup__add-tags-dropdown-list-item-input new-message-popup__add-tags-dropdown-list-item-input" readonly value="CEO" x-on:click='toggleDropdown = false;  
+                    $refs.newMessagePopupTagsListDesktop.insertAdjacentHTML("beforeEnd", 
+                    `<li class="popup__tags-list-item new-message-popup__tags-list-item">
+                       <button type="button" class="popup__tags-list-item-btn new-message-popup__tags-list-item-btn">
+                           СЕО
+                       </button>
+                   </li>`)
+                    '>
+                  </li>
+                  <li class="popup__add-tags-dropdown-list-item new-message-popup__add-tags-dropdown-list-item">
+                   <input type="text" class="popup__add-tags-dropdown-list-item-input new-message-popup__add-tags-dropdown-list-item-input" readonly value="Дизайн" x-on:click='toggleDropdown = false;  
+                   $refs.newMessagePopupTagsListDesktop.insertAdjacentHTML("beforeEnd", 
+                   `<li class="popup__tags-list-item new-message-popup__tags-list-item">
+                      <button type="button" class="popup__tags-list-item-btn new-message-popup__tags-list-item-btn">
+                       Дизайн
+                      </button>
+                  </li>`)
+                   '>
+                 </li>
+                 <li class="popup__add-tags-dropdown-list-item new-message-popup__add-tags-dropdown-list-item">
+                   <input type="text" class="popup__add-tags-dropdown-list-item-input new-message-popup__add-tags-dropdown-list-item-input" readonly value="Проектировка" x-on:click='toggleDropdown = false;  
+                   $refs.newMessagePopupTagsListDesktop.insertAdjacentHTML("beforeEnd", 
+                   `<li class="popup__tags-list-item new-message-popup__tags-list-item">
+                      <button type="button" class="popup__tags-list-item-btn new-message-popup__tags-list-item-btn">
+                       Проектировка
+                      </button>
+                  </li>`)
+                   '>
+                 </li>
+               </ul>
+               <input type="text" class="popup__add-tags-dropdown-search-input new-message-popup__add-tags-dropdown-search-input">
+           </div>
+        </fieldset>
+      </div>
+    <ul role="list" class="popup__btn-control-group new-message-popup__btn-control-group">
+      <li class="popup__btn-control-group-item new-message-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn new-message-popup__undo-btn" x-on:click="newMessagePopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item new-message-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn new-message-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+</div>
+
+<script is:inline>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('dropInputFiler', () => ({
+
+        handleFiles() {
+          const fileInput = document.querySelector('.new-message-popup__form-control-group-file-input');
+          const files = fileInput.files;
+          const fileList = document.querySelector('.new-message-popup__attach-files-list');
+
+          [...files].forEach((file, index) => {
+            fileList.insertAdjacentHTML('beforeEnd', 
+            `
+          <li class="new-message-popup__attach-files-list-item" x-ref="newMessagePopupAttachFilesListItem${index}">
+                        <div class="new-message-popup__attach-files-card">
+                        <img src="/images/attach-files-placeholder.png" alt="attach files image" class="new-message-popup__attach-files-list-item-img" loading="lazy" decoding="async">
+                        <div class="new-message-popup__attach-files-list-item-info">
+                            <p class="new-message-popup__attach-files-list-item-title">${file.name}</p>
+                            <p class="new-message-popup__attach-files-list-item-size-format">
+                                ${file.size} КБ <span>${file.type}</span> 
+                            </p>
+                        </div>
+                        <div class="new-message-popup__attach-files-list-item-controls desktop">
+                            <button type="button" class="new-message-popup__attach-files-list-item-add-btn">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.99967 1.33203V10.6654M1.33301 5.9987H10.6663" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>    
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-download-btn">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.66699 10.3346V11.668C1.66699 12.0216 1.80747 12.3607 2.05752 12.6108C2.30756 12.8608 2.6467 13.0013 3.00033 13.0013H11.0003C11.3539 13.0013 11.6931 12.8608 11.9431 12.6108C12.1932 12.3607 12.3337 12.0216 12.3337 11.668V10.3346M3.66699 6.33464L7.00033 9.66797M7.00033 9.66797L10.3337 6.33464M7.00033 9.66797V1.66797" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>      
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-delete-btn" x-on:click="$el.closest('.new-message-popup__attach-files-list-item').remove()">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                            </button>
+                        </div>
+                        </div>
+                        <div class="new-message-popup__attach-files-list-item-controls mobile">
+                            <button type="button" class="new-message-popup__attach-files-list-item-add-btn">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 1V17M1 9H17" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>        
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-download-btn">
+                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 14V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H15C15.5304 18 16.0391 17.7893 16.4142 17.4142C16.7893 17.0391 17 16.5304 17 16V14M4 8L9 13M9 13L14 8M9 13V1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>        
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-delete-btn" x-on:click="$refs.newMessagePopupAttachFilesListItem${index}.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+          `
+            )
+          });
+        },
+        handleFilesDesktop() {
+          const fileInputDesktop = document.querySelector('.new-message-popup__form-control-group-file-input.desktop');
+          const filesDesktop = fileInputDesktop.files;
+          const fileListDesktop = document.querySelector('.new-message-popup__attach-files-list.desktop');
+
+          [...filesDesktop].forEach((file, index) => {
+            fileListDesktop.insertAdjacentHTML('beforeEnd', 
+            `
+          <li class="new-message-popup__attach-files-list-item" x-ref="newMessagePopupAttachFilesListItemDesktop${index}">
+                        <div class="new-message-popup__attach-files-card">
+                        <img src="/images/attach-files-placeholder.png" alt="attach files image" class="new-message-popup__attach-files-list-item-img" loading="lazy" decoding="async">
+                        <div class="new-message-popup__attach-files-list-item-info">
+                            <p class="new-message-popup__attach-files-list-item-title">${file.name}</p>
+                            <p class="new-message-popup__attach-files-list-item-size-format">
+                                ${file.size} КБ <span>${file.type}</span> 
+                            </p>
+                        </div>
+                        <div class="new-message-popup__attach-files-list-item-controls desktop">
+                            <button type="button" class="new-message-popup__attach-files-list-item-add-btn">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.99967 1.33203V10.6654M1.33301 5.9987H10.6663" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>    
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-download-btn">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.66699 10.3346V11.668C1.66699 12.0216 1.80747 12.3607 2.05752 12.6108C2.30756 12.8608 2.6467 13.0013 3.00033 13.0013H11.0003C11.3539 13.0013 11.6931 12.8608 11.9431 12.6108C12.1932 12.3607 12.3337 12.0216 12.3337 11.668V10.3346M3.66699 6.33464L7.00033 9.66797M7.00033 9.66797L10.3337 6.33464M7.00033 9.66797V1.66797" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>      
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-delete-btn" x-on:click="$el.closest('.new-message-popup__attach-files-list-item').remove()">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                            </button>
+                        </div>
+                        </div>
+                        <div class="new-message-popup__attach-files-list-item-controls mobile">
+                            <button type="button" class="new-message-popup__attach-files-list-item-add-btn">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 1V17M1 9H17" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>        
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-download-btn">
+                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 14V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H15C15.5304 18 16.0391 17.7893 16.4142 17.4142C16.7893 17.0391 17 16.5304 17 16V14M4 8L9 13M9 13L14 8M9 13V1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>        
+                            </button>
+                            <button type="button" class="new-message-popup__attach-files-list-item-delete-btn" x-on:click="$refs.newMessagePopupAttachFilesListItemDesktop${index}.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+          `
+            )
+          });
+        }
+      }))
+   })
+</script>

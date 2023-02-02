@@ -1,0 +1,808 @@
+---
+import ChooseTransportCompanyDropdown from "../ChooseTransportCompanyDropdown.astro";
+import PaymentRequirementsDropdown from "../PaymentRequirementsDropdown.astro";
+import ParamsLists from "../ParamsLists.astro";
+
+let orderDocsList = [
+  {name: 'Договор 12345678', date: '25.10.2022', author: 'vtr@uralreduktor.ru'},
+  {name: 'Паспорт Цилиндрический редуктор ЦТНД-314', date: '25.10.2022', author: 'vtr@uralreduktor.ru'},
+  {name: 'Прочие документы 1', date: '25.10.2022', author: 'vtr@uralreduktor.ru'},
+  {name: 'Прочие документы 2', date: '25.10.2022', author: 'vtr@uralreduktor.ru'},
+  {name: 'Прочие документы 3', date: '25.10.2022', author: 'vtr@uralreduktor.ru'},
+  {name: 'Прочие документы 4', date: '25.10.2022', author: 'vtr@uralreduktor.ru'}
+]
+---
+
+<div class="popup edit-order-popup" x-bind:class="{'active': editOrderPopup === true}">
+    <form action="#" method="post" class="popup__form edit-order-popup__form" x-data="{mobileTab: 'order', desktopTab: 'delivery'}">
+    <div class="popup__content edit-order-popup__content">
+  <div class="popup__top-row edit-order-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="settingsPopup = false;editOrderPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="settingsPopup = false;editOrderPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title edit-order-popup__title">
+      Заказ 
+        <div class="edit-order-popup__title-bottom">
+        <span class="edit-order-popup__number-title">00000002</span>
+        от
+        <time datetime="25.10.2022" class="edit-order-popup__date-title">25.10.2022</time>
+        </div>
+    </h2>
+    <div class="edit-order-popup__top-row-btn-group">
+      <button type="button" class="edit-order-popup__top-row-download-btn">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 15H17C17.5304 15 18.0391 14.7893 18.4142 14.4142C18.7893 14.0391 19 13.5304 19 13V9C19 8.46957 18.7893 7.96086 18.4142 7.58579C18.0391 7.21071 17.5304 7 17 7H3C2.46957 7 1.96086 7.21071 1.58579 7.58579C1.21071 7.96086 1 8.46957 1 9V13C1 13.5304 1.21071 14.0391 1.58579 14.4142C1.96086 14.7893 2.46957 15 3 15H5M15 7V3C15 2.46957 14.7893 1.96086 14.4142 1.58579C14.0391 1.21071 13.5304 1 13 1H7C6.46957 1 5.96086 1.21071 5.58579 1.58579C5.21071 1.96086 5 2.46957 5 3V7M7 11H13C14.1046 11 15 11.8954 15 13V17C15 18.1046 14.1046 19 13 19H7C5.89543 19 5 18.1046 5 17V13C5 11.8954 5.89543 11 7 11Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>          
+      </button>
+      <div class="edit-order-popup__top-row-options-wrapper" x-data="{toggleDropdown: false}">
+        <button type="button" class="edit-order-popup__top-row-options-btn" x-on:click="toggleDropdown = !toggleDropdown">
+          <svg width="4" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"/>
+            <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"/>
+            <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"/>
+            <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+        </button>
+        <div class="edit-order-popup__top-row-options-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+          <ul role="list" class="edit-order-popup__top-row-options-dropdown-list">
+            <li class="edit-order-popup__top-row-options-dropdown-list-item">
+              <input readonly class="edit-order-popup__top-row-options-dropdown-list-item-input edit" value="Редактировать">
+            </li>
+            <li class="edit-order-popup__top-row-options-dropdown-list-item">
+              <input readonly class="edit-order-popup__top-row-options-dropdown-list-item-input delete" value="Удалить">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+   <ul role="list" class="edit-order-popup__tabs mobile">
+    <li class="edit-order-popup__tabs-item">
+      <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': mobileTab === 'order'}" x-on:click="mobileTab = 'order'">
+        Заказ
+      </button>
+    </li>
+    <li class="edit-order-popup__tabs-item">
+      <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': mobileTab === 'order docs'}" x-on:click="mobileTab = 'order docs'">
+        Документы заказа
+      </button>
+    </li>
+    <li class="edit-order-popup__tabs-item">
+      <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': mobileTab === 'comments'}" x-on:click="mobileTab = 'comments'">
+        Комментарии
+      </button>
+    </li>
+    <li class="edit-order-popup__tabs-item">
+      <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': mobileTab === 'order complete'}" x-on:click="mobileTab = 'order complete'">
+        Завершение заказа
+      </button>
+    </li>
+   </ul>
+    <div class="popup__body edit-order-popup__body" x-show="mobileTab === 'order'">
+       <fieldset class="edit-order-popup__fieldset edit-order-popup__fieldset--4-cols two-cols-adaptive b-b m-b">
+           <div class="edit-order-popup__form-control-group edit-order-popup__form-control-group--2-cols">
+              <p class="edit-order-popup__form-control-group-title">
+                Состояние
+              </p>
+              <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'На согласовании'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 5" value="На согласовании" readonly x-model="resultInputVal">
+                <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="edit-order-popup__form-control-select-list">
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="На согласовании" id="На согласовании" value="На согласовании" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'На согласовании'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="В работе" id="В работе" value="В работе" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'В работе'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="Завершён" id="Завершён" value="Завершён" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Завершён'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="Груз в пути" id="Груз в пути" value="Груз в пути" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Груз в пути'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="На оплате" id="На оплате" value="На оплате" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'На оплате'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="Оплачен" id="Оплачен" value="Оплачен" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Оплачен'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="Отгружен" id="Отгружен" value="Отгружен" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Отгружен'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+              </div>
+           </div>
+           <div class="edit-order-popup__form-control-group edit-order-popup__form-control-group--2-cols payment">
+            <p class="edit-order-popup__form-control-group-title">
+              Оплата
+            </p>
+            <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper payment-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Оплачен'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 5" value="Оплачен" readonly x-model="resultInputVal">
+              <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="edit-order-popup__form-control-select-list">
+                <li class="edit-order-popup__form-control-select-list-item">
+                  <input type="text" name="Оплачен" id="Оплачен" value="Оплачен" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Оплачен'">
+                </li>
+                <li class="edit-order-popup__form-control-select-list-item">
+                  <input type="text" name="не Оплачен" id="не Оплачен" value="не Оплачен" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'не Оплачен'">
+                </li>
+              </ul>
+              </div>
+              <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+           <div class="edit-order-popup__form-control-group edit-order-popup__form-control-group--2-cols number-group">
+            <p class="edit-order-popup__form-control-group-title">
+                Номер
+            </p>
+            <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-input-wrapper number-input">
+              <input type="number" readonly class="edit-order-popup__form-control-input-number" value="00000002">
+            </div>
+         </div>
+         <div class="edit-order-popup__form-control-group edit-order-popup__form-control-group--2-cols">
+          <p class="edit-order-popup__form-control-group-title data-title">
+              Дата
+          </p>
+          <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-input-wrapper datetimepicker-wrapper" id="datetimepicker1" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input class="edit-order-popup__form-control-input-date"
+          id="datetimepicker1Input" type="text" data-td-target="#datetimepicker1" readonly/>
+          <button type="button" data-td-target="#datetimepicker1" data-td-toggle="datetimepicker" class="edit-order-popup__form-control-datepicker-btn">
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 1V5M5 1V5M1 9H17M3 3H15C16.1046 3 17 3.89543 17 5V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V5C1 3.89543 1.89543 3 3 3ZM5 13H7V15H5V13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>              
+          </button>
+          </div>
+       </div>
+       </fieldset>
+       <fieldset class="edit-order-popup__fieldset edit-order-popup__fieldset--2-cols b-b m-b">
+        <div class="edit-order-popup__form-control-group">
+          <p class="edit-order-popup__form-control-group-title">
+            Контрагент
+          </p>
+          <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'УЗТМ'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+            <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 6" value="УЗТМ" readonly x-model="resultInputVal">
+            <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>  
+              <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="edit-order-popup__form-control-select-list">
+                  <li class="edit-order-popup__form-control-select-list-item search-input-item">
+                    <input type="text" class="edit-order-popup__form-control-select-list-item-input-search" placeholder="Поиск...">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="УЗТМ" id="УЗТМ" value="УЗТМ" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'УЗТМ'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="УЗТМ 1" id="УЗТМ 1" value="УЗТМ 1" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'УЗТМ 1'">
+                  </li>
+                  <li class="edit-order-popup__form-control-select-list-item">
+                    <input type="text" name="УЗТМ 2" id="УЗТМ 2" value="УЗТМ 2" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'УЗТМ 2'">
+                  </li>
+                </ul>
+                <ul role="list" class="edit-order-popup__form-control-select-list b-t">
+                  <li class="edit-order-popup__form-control-select-list-item">
+                  <button type="button" class="edit-order-popup__create-contragent-btn">
+                    <svg class="edit-order-popup__create-contragent-btn-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.00033 1.16663V12.8333M1.16699 6.99996H12.8337" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>    
+                      Создать контрагента                  
+                  </button>
+                  </li>
+                </ul>
+              </div>                
+          </div>
+        </div>
+        <div class="edit-order-popup__form-control-group">
+          <p class="edit-order-popup__form-control-group-title">
+            Организация
+          </p>
+          <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Моя организация'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+            <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 7" value="Моя организация" readonly x-model="resultInputVal">
+            <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+            <ul role="list" class="edit-order-popup__form-control-select-list">
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="Моя организация" id="Моя организация 1" value="Моя организация" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя организация'">
+              </li>
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="Моя организация 1" id="Моя организация 1" value="Моя организация 1" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя организация 1'">
+              </li>
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="Моя организация 2" id="Моя организация 3" value="Моя организация 2" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя организация 2'">
+              </li>
+            </ul>
+            </div>
+            <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                  
+          </div>
+        </div>
+        <div class="edit-order-popup__form-control-group offer-group">
+          <p class="edit-order-popup__form-control-group-title">
+            Основание
+          </p>
+          <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Предложение 11111 от 12.10.2022'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+            <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 8" value="Предложение 11111 от 12.10.2022" readonly x-model="resultInputVal">
+            <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+            <ul role="list" class="edit-order-popup__form-control-select-list">
+              <li class="edit-order-popup__form-control-select-list-item search-input-item">
+                <input type="text" class="edit-order-popup__form-control-select-list-item-input-search" placeholder="Поиск...">
+              </li>
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="Предложение 11111 от 12.10.2022" id="Предложение 11111 от 12.10.2022" value="Предложение 11111 от 12.10.2022" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Предложение 11111 от 12.10.2022'">
+              </li>
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="Предложение 11111 от 12.10.2022 2" id="Предложение 11111 от 12.10.2022 2" value="Предложение 11111 от 12.10.2022 2" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Предложение 11111 от 12.10.2022 2'">
+              </li>
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="Предложение 11111 от 12.10.2022 3" id="Предложение 11111 от 12.10.2022 3" value="Предложение 11111 от 12.10.2022 3" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Предложение 11111 от 12.10.2022 3'">
+              </li>
+            </ul>
+            </div>
+            <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                  
+          </div>
+        </div>
+        <div class="edit-order-popup__form-control-group accounts" x-data="dropInputFiler">
+          <div class="edit-order-popup__accounts-wrapper">
+          <p class="edit-order-popup__form-control-group-title">
+            Счета
+          </p>
+          <div class="edit-order-popup__form-control-group-file-input-wrapper">
+          <input class="edit-order-popup__form-control-group-file-input" type="file" name="accounts" id="accounts" multiple x-on:change="handleFiles">
+          <svg class="edit-order-popup__form-control-group-file-input-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66699 10.3334V11.6667C1.66699 12.0204 1.80747 12.3595 2.05752 12.6096C2.30756 12.8596 2.6467 13.0001 3.00033 13.0001H11.0003C11.3539 13.0001 11.6931 12.8596 11.9431 12.6096C12.1932 12.3595 12.3337 12.0204 12.3337 11.6667V10.3334M3.66699 6.33341L7.00033 9.66675M7.00033 9.66675L10.3337 6.33341M7.00033 9.66675V1.66675" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="edit-order-popup__form-control-group-file-input-text">Загрузить</span>            
+          </div>
+        </div>
+        <ul role="list" class="edit-order-popup__form-control-group-file-input-list">
+        </ul>
+        <script is:inline>
+          document.addEventListener('alpine:init', () => {
+            Alpine.data('dropInputFiler', () => ({
+ 
+              handleFiles() {
+                const fileInput = document.querySelector('.edit-order-popup__form-control-group-file-input');
+                const files = fileInput.files;
+                const fileList = document.querySelector('.edit-order-popup__form-control-group-file-input-list');
+                
+                [...files].forEach((file, index) => {
+                  fileList.insertAdjacentHTML('beforeEnd', 
+                  `<li class="edit-order-popup__form-control-group-file-input-list-item" x-ref="fileInputListItem${index}"><span class="edit-order-popup__form-control-group-file-input-list-item-name">${file.name}</span>
+                    <button type="button" class="edit-order-popup__form-control-group-file-input-list-item-open-btn">
+          <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.9997 5.99996L6.4997 12.5C6.10188 12.8978 5.87838 13.4374 5.87838 14C5.87838 14.5626 6.10188 15.1021 6.4997 15.5C6.89753 15.8978 7.43709 16.1213 7.9997 16.1213C8.56231 16.1213 9.10188 15.8978 9.4997 15.5L15.9997 8.99996C16.7954 8.20432 17.2423 7.12518 17.2423 5.99996C17.2423 4.87475 16.7954 3.79561 15.9997 2.99996C15.2041 2.20432 14.1249 1.75732 12.9997 1.75732C11.8745 1.75732 10.7954 2.20432 9.9997 2.99996L3.4997 9.49996C2.30623 10.6934 1.63574 12.3121 1.63574 14C1.63574 15.6878 2.30623 17.3065 3.4997 18.5C4.69318 19.6934 6.31188 20.3639 7.9997 20.3639C9.68753 20.3639 11.3062 19.6934 12.4997 18.5L18.9997 12" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                     
+        </button>
+                    <button type="button" class="edit-order-popup__form-control-group-file-input-list-item-delete-btn" x-on:click="$el.closest('.edit-order-popup__form-control-group-file-input-list-item').remove()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 1L1 13M1 1L13 13" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+        </button>
+                  </li>`
+                  )
+                });
+            }
+            }))
+         })
+        </script>
+        </div>
+       </fieldset>
+       <div class="edit-order-popup__form-control-group rubles-nds">
+        <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'руб. Розничная цена с НДС'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+          <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 10" value="руб. Розничная цена с НДС" readonly x-model="resultInputVal">
+          <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+          <ul role="list" class="edit-order-popup__form-control-select-list">
+            <li class="edit-order-popup__form-control-select-list-item">
+              <input type="text" name="руб. Розничная цена с НДС" id="руб. Розничная цена с НДС" value="руб. Розничная цена с НДС" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'руб. Розничная цена с НДС'">
+            </li>
+            <li class="edit-order-popup__form-control-select-list-item">
+              <input type="text" name="руб. Розничная цена с НДС 2" id="руб. Розничная цена с НДС 2" value="руб. Розничная цена с НДС 2" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'руб. Розничная цена с НДС 2'">
+            </li>
+            <li class="edit-order-popup__form-control-select-list-item">
+              <input type="text" name="руб. Розничная цена с НДС 3" id="руб. Розничная цена с НДС 3" value="руб. Розничная цена с НДС 3" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'руб. Розничная цена с НДС 3'">
+            </li>
+          </ul>
+          </div>
+          <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                  
+        </div>
+      </div>
+      <ParamsLists></ParamsLists>
+      <fieldset class="edit-order-popup__fieldset edit-order-popup__fieldset--3-cols payment-guarantee-prod">
+        <div class="edit-order-popup__form-control-group payment-req">
+           <p class="edit-order-popup__form-control-group-title">
+            Условия оплаты
+           </p>
+           <PaymentRequirementsDropdown></PaymentRequirementsDropdown>
+        </div>
+        <div class="edit-order-popup__form-control-group">
+          <p class="edit-order-popup__form-control-group-title">
+            Гарантийный срок
+          </p>
+          <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '12 месяцев'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+            <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 14" value="12 месяцев" readonly x-model="resultInputVal">
+            <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+            <ul role="list" class="edit-order-popup__form-control-select-list">
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="12 месяцев" id="12 месяцев" value="12 месяцев" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '12 месяцев'">
+              </li>
+              <li class="edit-order-popup__form-control-select-list-item">
+                <input type="text" name="5 месяцев" id="5 месяцев" value="5 месяцев" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '5 месяцев'">
+              </li>
+              <li class="edit-order-popup__form-control-select-list-item">
+               <input type="text" name="6 месяцев" id="6 месяцев" value="6 месяцев" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '6 месяцев'">
+             </li>
+            </ul>
+            </div>
+            <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                  
+          </div>
+        </div>
+       <div class="edit-order-popup__form-control-group">
+        <p class="edit-order-popup__form-control-group-title">
+          Срок изготовления
+        </p>
+        <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '30 дней'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+          <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 15" value="30 дней" readonly x-model="resultInputVal">
+          <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+          <ul role="list" class="edit-order-popup__form-control-select-list">
+            <li class="edit-order-popup__form-control-select-list-item">
+              <input type="text" name="30 дней" id="30 дней" value="30 дней" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '30 дней'">
+            </li>
+            <li class="edit-order-popup__form-control-select-list-item">
+              <input type="text" name="28 дней" id="28 дней" value="28 дней" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '28 дней'">
+            </li>
+            <li class="edit-order-popup__form-control-select-list-item">
+             <input type="text" name="24 дня" id="24 дня" value="24 дня" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '24 дня'">
+           </li>
+          </ul>
+          </div>
+          <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                  
+        </div>
+       </div>
+    </fieldset>
+      <ul role="list" class="edit-order-popup__tabs desktop">
+        <li class="edit-order-popup__tabs-item">
+          <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': desktopTab === 'delivery'}" x-on:click="desktopTab = 'delivery'">
+            Доставка
+          </button>
+        </li>
+        <li class="edit-order-popup__tabs-item">
+          <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': desktopTab === 'order docs'}" x-on:click="desktopTab = 'order docs'">
+            Документы заказа
+          </button>
+        </li>
+        <li class="edit-order-popup__tabs-item">
+          <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': desktopTab === 'comments'}" x-on:click="desktopTab = 'comments'">
+            Комментарии
+          </button>
+        </li>
+        <li class="edit-order-popup__tabs-item">
+          <button type="button" class="edit-order-popup__tabs-item-btn" x-bind:class="{'active': desktopTab === 'order complete'}" x-on:click="desktopTab = 'order complete'">
+            Завершение заказа
+          </button>
+        </li>
+       </ul>
+       <div class="edit-order-popup__tabs-body" x-show="desktopTab === 'delivery'">
+        <p class="edit-order-popup__form-control-group-title delivery-conds">Условия доставки</p>
+        <ul role="list" class="edit-order-popup__radio-list">
+         <li class="edit-order-popup__radio-list-item">
+           <input type="radio" name="Условия доставки" id="доставка до склада Получателя" class="edit-order-popup__radio-input" checked>
+           <div class="edit-order-popup__radio-list-item-info">
+             <label for="доставка до склада Получателя" class="edit-order-popup__radio-label">доставка до склада Получателя</label>
+             <div class="edit-order-popup__form-control-group">
+               <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-input-wrapper location-input-wrapper">
+                 <input type="text" class="edit-order-popup__form-control-input" placeholder="Введите населенный пункт или адрес">
+               </div>
+            </div>
+            <p class="edit-order-popup__radio-list-item-text">за счет</p>
+            <div class="edit-order-popup__form-control-group">
+             <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Поставщика'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+               <input type="text" class="edit-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 12" value="Поставщика" readonly x-model="resultInputVal">
+               <div class="edit-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+               <ul role="list" class="edit-order-popup__form-control-select-list">
+                 <li class="edit-order-popup__form-control-select-list-item">
+                   <input type="text" name="Поставщика" id="Поставщика" value="Поставщика" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Поставщика'">
+                 </li>
+                 <li class="edit-order-popup__form-control-select-list-item">
+                   <input type="text" name="Поставщика 1" id="Поставщика 1" value="Поставщика 1" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Поставщика 1'">
+                 </li>
+                 <li class="edit-order-popup__form-control-select-list-item">
+                   <input type="text" name="Поставщика 2" id="Поставщика 2" value="Поставщика 2" readonly class="edit-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Поставщика 2'">
+                 </li>
+               </ul>
+               </div>
+               <svg class="edit-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                 <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>                  
+             </div>
+           </div>
+            <button type="button" class="edit-order-popup__delivery-payment-btn">
+              Просчитать стоимость доставки
+            </button>
+            <div class="edit-order-popup__form-control-group edit-order-popup__form-control-group--3-cols radio-list-total-sum">
+              <p class="edit-order-popup__form-control-group-title">
+                Итого:
+              </p>
+              <div class="edit-order-popup__form-control-wrapper edit-order-popup__form-control-input-wrapper total-sum">
+                <input readonly class="edit-order-popup__form-control-input-number" value="7 000,00">
+              </div>
+              <button type="button" class="btn btn--secondary edit-order-popup__add-to-cost-btn">Добавить в стоимость</button>
+           </div>
+           </div>
+         </li>
+         <li class="edit-order-popup__radio-list-item">
+           <input type="radio" name="Условия доставки" id="самовывоз" class="edit-order-popup__radio-input">
+           <div class="edit-order-popup__radio-list-item-info two-cols">
+             <label for="самовывоз" class="edit-order-popup__radio-label">самовывоз</label>
+             <button type="button" class="edit-order-popup__storage-addr-btn">
+               Наш адрес склада
+             </button>
+           </div>
+         </li>
+         <li class="edit-order-popup__radio-list-item">
+           <input type="radio" name="Условия доставки" id="доставка до терминала транспортной компании" class="edit-order-popup__radio-input">
+           <div class="edit-order-popup__radio-list-item-info">
+             <label for="доставка до терминала транспортной компании" class="edit-order-popup__radio-label">доставка до терминала транспортной компании</label>
+             <ChooseTransportCompanyDropdown></ChooseTransportCompanyDropdown>
+           </div>
+         </li>
+        </ul>
+       </div>
+       <div class="edit-order-popup__tabs-body" x-show="desktopTab === 'order docs'">
+        <div class="edit-order-popup__order-docs-wrapper">
+          <div class="edit-order-popup__order-docs-btn-group">
+            <ul role="list" class="edit-order-popup__order-docs-btn-group-list">
+              <li class="edit-order-popup__order-docs-btn-group-list-item">
+                <button type="button" class="edit-order-popup__order-docs-delete-btn">
+                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 5.44444H18.7778M7.66667 9.88889V16.5556M12.1111 9.88889V16.5556M2.11111 5.44444L3.22222 18.7778C3.22222 19.3671 3.45635 19.9324 3.8731 20.3491C4.28984 20.7659 4.85507 21 5.44444 21H14.3333C14.9227 21 15.4879 20.7659 15.9047 20.3491C16.3214 19.9324 16.5556 19.3671 16.5556 18.7778L17.6667 5.44444M6.55556 5.44444V2.11111C6.55556 1.81643 6.67262 1.53381 6.88099 1.32544C7.08937 1.11706 7.37198 1 7.66667 1H12.1111C12.4058 1 12.6884 1.11706 12.8968 1.32544C13.1052 1.53381 13.2222 1.81643 13.2222 2.11111V5.44444" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>  
+                   Удалить                  
+                </button>
+              </li>
+              <li class="edit-order-popup__order-docs-btn-group-list-item">
+                <button type="button" class="edit-order-popup__order-docs-edit-btn">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Редактировать          
+                </button>
+              </li>
+            </ul>
+            <button type="button" class="btn btn--secondary edit-order-popup__order-docs-upload-btn">
+              Загрузить
+            </button>
+          </div>
+          <nav class="edit-order-popup__order-docs-table-list-wrapper">
+          <ul role="list" class="edit-order-popup__order-docs-table-list edit-order-popup__order-docs-table-caption-list">
+            <li class="edit-order-popup__order-docs-table-list-item"></li>
+              <li class="edit-order-popup__order-docs-table-list-item">Название</li>
+              <li class="edit-order-popup__order-docs-table-list-item t-a-c">Дата изменения</li>
+              <li class="edit-order-popup__order-docs-table-list-item t-a-c">Отредактировал</li>
+          </ul>
+          {
+            orderDocsList.map((item)=> 
+            <ul role="list" class="edit-order-popup__order-docs-table-list">
+              <li class="edit-order-popup__order-docs-table-list-item checkbox">
+                <input type="checkbox" name={item.name} id={item.name} class="edit-order-popup__order-docs-table-list-item-checkbox">
+                <label for={item.name} class="edit-order-popup__order-docs-table-list-item-label">{item.name}</label>
+              </li>
+              <li class="edit-order-popup__order-docs-table-list-item t-a-c">{item.date}</li>
+              <li class="edit-order-popup__order-docs-table-list-item t-a-c author">
+                <img class="edit-order-popup__order-docs-table-list-item-img" src="/images/header-avatar-placeholder.svg" alt="order docs avatar" width="36" height="36">
+                {item.author}
+                </li>
+            </ul>
+            )
+          }
+        </nav>
+        </div>
+       </div>
+       <div class="edit-order-popup__tabs-body" x-show="desktopTab === 'comments'" x-data="{
+      textAreaValue: '', 
+      commentsItems: []
+      }">
+        <ul role="list" class="edit-order-popup__comments-list main-list" x-bind:class="{'active': commentsItems.length > 0}">
+          <template x-for="commentsItem in commentsItems">
+            <li class="edit-order-popup__comments-list-item" x-data="{
+      textAreaValue: '', 
+      commentsItems: [],
+      toggleCommentsWrapper: false
+      }">
+            <div class="edit-order-popup__comments-list-item-block">
+            <img class="edit-order-popup__comments-img" src="/images/comment-avatar-placeholder.png" alt="order docs avatar" width="36" height="36">
+            <div class="edit-order-popup__comments-list-item-right">
+              <div class="edit-order-popup__comments-list-item-top-row">
+                <p class="edit-order-popup__comments-list-item-name">vtr@uralreduktor.ru</p>
+                <div class="edit-order-popup__comments-list-item-date-time">
+                  <time datetime="18.08.2022" class="edit-order-popup__comments-list-item-date">18.08.2022</time>
+                  в
+                  <time datetime="15:45" class="edit-order-popup__comments-list-item-time">15:45</time>
+                  </div>
+                </div>
+                <div class="edit-order-popup__comments-window">
+                  <p class="edit-order-popup__comments-window-text" x-text="commentsItem"></p>
+                </div>
+                <button type="button" class="edit-order-popup__reply-btn" x-on:click="toggleCommentsWrapper = !toggleCommentsWrapper">
+                  Ответить
+                  </button>
+                  <div class="edit-order-popup__comments-wrapper comments-list-item" x-show="toggleCommentsWrapper === true">
+        <textarea class="edit-order-popup__comments-textarea desktop-textarea" placeholder="Напишите комментарий" x-model="textAreaValue">Напишите комментарий
+        </textarea>
+        <button type="button" class="btn btn--secondary edit-order-popup__comments-publish-btn desktop-publish-btn" x-on:click="commentsItems.push(textAreaValue);textAreaValue = '';toggleCommentsWrapper = false">Опубликовать</button>
+        </div>
+            </div>
+            </div>
+            <ul role="list" class="edit-order-popup__comments-list sub-list">
+              <template x-for="commentsItem in commentsItems">
+                <li class="edit-order-popup__comments-list-item">
+              <div class="edit-order-popup__comments-list-item-block">
+            <img class="edit-order-popup__comments-img" src="/images/comment-avatar-placeholder.png" alt="order docs avatar" width="36" height="36">
+            <div class="edit-order-popup__comments-list-item-right">
+              <div class="edit-order-popup__comments-list-item-top-row">
+                <p class="edit-order-popup__comments-list-item-name">vtr@uralreduktor.ru</p>
+                <div class="edit-order-popup__comments-list-item-date-time">
+                  <time datetime="18.08.2022" class="edit-order-popup__comments-list-item-date">18.08.2022</time>
+                  в
+                  <time datetime="15:45" class="edit-order-popup__comments-list-item-time">15:45</time>
+                  </div>
+                </div>
+                <div class="edit-order-popup__comments-window">
+                  <p class="edit-order-popup__comments-window-text">От души</p>
+                </div>
+                <button type="button" class="edit-order-popup__reply-btn">
+                  Ответить
+                  </button>
+            </div>
+          </div>
+                </li>
+                </template>
+            </ul>
+            </li>
+          </template>
+        </ul>
+        <div class="edit-order-popup__comments-wrapper">
+        <p class="edit-order-popup__comments-mail">vtr@uralreduktor.ru</p>
+        <textarea class="edit-order-popup__comments-textarea desktop-textarea" placeholder="Напишите комментарий" x-model="textAreaValue">Напишите комментарий
+        </textarea>
+        <button type="button" class="btn btn--secondary edit-order-popup__comments-publish-btn desktop-publish-btn" x-on:click="commentsItems.push(textAreaValue);textAreaValue = ''">Опубликовать</button>
+        </div>
+        </div>
+        <div class="edit-order-popup__tabs-body" x-show="desktopTab === 'order complete'">
+          <div class="edit-order-popup__order-complete-wrapper">
+            <p class="edit-order-popup__order-complete-text">В случае отмены заказа, опишите причину.</p>
+            <textarea class="edit-order-popup__order-complete-textarea">Введите текст</textarea>
+          </div>
+          </div>
+    <ul role="list" class="edit-order-popup__btn-control-group">
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat edit-order-popup__undo-btn" x-on:click="editOrderPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary edit-order-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+  </ul>
+    </div>
+    <div class="popup__body edit-order-popup__body" x-show="mobileTab === 'order docs'">
+        <div class="edit-order-popup__order-docs-wrapper">
+          <div class="edit-order-popup__order-docs-btn-group">
+            <ul role="list" class="edit-order-popup__order-docs-btn-group-list">
+              <li class="edit-order-popup__order-docs-btn-group-list-item">
+                <button type="button" class="edit-order-popup__order-docs-delete-btn">
+                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 5.44444H18.7778M7.66667 9.88889V16.5556M12.1111 9.88889V16.5556M2.11111 5.44444L3.22222 18.7778C3.22222 19.3671 3.45635 19.9324 3.8731 20.3491C4.28984 20.7659 4.85507 21 5.44444 21H14.3333C14.9227 21 15.4879 20.7659 15.9047 20.3491C16.3214 19.9324 16.5556 19.3671 16.5556 18.7778L17.6667 5.44444M6.55556 5.44444V2.11111C6.55556 1.81643 6.67262 1.53381 6.88099 1.32544C7.08937 1.11706 7.37198 1 7.66667 1H12.1111C12.4058 1 12.6884 1.11706 12.8968 1.32544C13.1052 1.53381 13.2222 1.81643 13.2222 2.11111V5.44444" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </button>
+              </li>
+              <li class="edit-order-popup__order-docs-btn-group-list-item">
+                <button type="button" class="edit-order-popup__order-docs-edit-btn">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>          
+                </button>
+              </li>
+            </ul>
+            <button type="button" class="btn btn--secondary edit-order-popup__order-docs-upload-btn">
+              Загрузить
+            </button>
+          </div>
+          <nav class="edit-order-popup__order-docs-table-list-wrapper">
+          <ul role="list" class="edit-order-popup__order-docs-table-list edit-order-popup__order-docs-table-caption-list">
+            <li class="edit-order-popup__order-docs-table-list-item"></li>
+              <li class="edit-order-popup__order-docs-table-list-item">Название</li>
+              <li class="edit-order-popup__order-docs-table-list-item t-a-c">Дата изменения</li>
+          </ul>
+          {
+            orderDocsList.map((item)=> 
+            <ul role="list" class="edit-order-popup__order-docs-table-list">
+              <li class="edit-order-popup__order-docs-table-list-item checkbox">
+                <input type="checkbox" name={item.name} id={item.name} class="edit-order-popup__order-docs-table-list-item-checkbox">
+                <label for={item.name} class="edit-order-popup__order-docs-table-list-item-label">{item.name}</label>
+              </li>
+              <li class="edit-order-popup__order-docs-table-list-item t-a-c">{item.date}</li>
+            </ul>
+            )
+          }
+        </nav>
+        </div>
+        <ul role="list" class="edit-order-popup__btn-control-group">
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat edit-order-popup__undo-btn" x-on:click="editOrderPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary edit-order-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+  </ul>
+    </div>
+    <div class="popup__body edit-order-popup__body" x-show="mobileTab === 'comments'" 
+    x-data="{
+      textAreaValue: '', 
+      commentsItems: []
+  }">
+        <ul role="list" class="edit-order-popup__comments-mobile-list" x-bind:class="{'active': commentsItems.length > 0}">
+          <template x-for="commentsItem in commentsItems">
+            <li class="edit-order-popup__comments-mobile-list-item" x-data="{toggleCommentsWrapper: false, textAreaValue: '', commentsItems: []}">
+              <div class="edit-order-popup__comments-wrapper comments-mobile-list-item">
+                <div class="edit-order-popup__comments-wrapper-top">
+                  <p class="edit-order-popup__comments-mail comments-list-item">vtr@uralreduktor.ru</p>
+                  <div class="edit-order-popup__comments-datetime">
+                    <time class="edit-order-popup__comments-date" datetime="18.08.2022">18.08.2022</time>
+                    в
+                    <time class="edit-order-popup__comments-time" datetime="15:45">15:45</time>
+                    </div>
+                  </div>
+        <textarea class="edit-order-popup__comments-textarea comments-list-item" x-text="commentsItem" disabled></textarea>
+        <button type="button" class="edit-order-popup__comments-reply-btn" x-on:click="toggleCommentsWrapper = !toggleCommentsWrapper">Ответить</button>
+              </div>
+              <ul role="list" class="edit-order-popup__comments-mobile-list sublist" x-bind:class="{'active': commentsItems.length > 0}">
+                <template x-for="commentsItem in commentsItems">
+                  <div class="edit-order-popup__comments-wrapper comments-mobile-list-item">
+                <div class="edit-order-popup__comments-wrapper-top">
+                  <p class="edit-order-popup__comments-mail comments-list-item">vtr@uralreduktor.ru</p>
+                  <div class="edit-order-popup__comments-datetime">
+                    <time class="edit-order-popup__comments-date" datetime="18.08.2022">18.08.2022</time>
+                    в
+                    <time class="edit-order-popup__comments-time" datetime="15:45">15:45</time>
+                    </div>
+                  </div>
+        <textarea class="edit-order-popup__comments-textarea comments-list-item" x-text="commentsItem" disabled></textarea>
+        <button type="button" class="edit-order-popup__comments-reply-btn" x-on:click="toggleCommentsWrapper = !toggleCommentsWrapper">Ответить</button>
+                  </div>
+                </template>
+              </ul>
+              <div class="edit-order-popup__comments-wrapper sublist" x-show="toggleCommentsWrapper === true">
+        <textarea class="edit-order-popup__comments-textarea" placeholder="Напишите комментарий" x-model="textAreaValue">Напишите комментарий
+        </textarea>
+        <button type="button" class="btn btn--secondary edit-order-popup__comments-publish-btn" x-on:click="commentsItems.push(textAreaValue);textAreaValue='';toggleCommentsWrapper = false">Опубликовать</button>
+              </div>
+              </li>
+            </template>
+        </ul>
+       <div class="edit-order-popup__comments-wrapper">
+        <p class="edit-order-popup__comments-mail">vtr@uralreduktor.ru</p>
+        <textarea class="edit-order-popup__comments-textarea" placeholder="Напишите комментарий" x-model="textAreaValue">Напишите комментарий
+        </textarea>
+        <button type="button" class="btn btn--secondary edit-order-popup__comments-publish-btn" x-on:click="commentsItems.push(textAreaValue);textAreaValue=''">Опубликовать</button>
+        </div>
+        <ul role="list" class="edit-order-popup__btn-control-group">
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat edit-order-popup__undo-btn" x-on:click="editOrderPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary edit-order-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+  </ul>
+    </div>
+    <div class="popup__body edit-order-popup__body" x-show="mobileTab === 'order complete'">
+         <div class="edit-order-popup__order-complete-wrapper">
+            <p class="edit-order-popup__order-complete-text">В случае отмены заказа, опишите причину.</p>
+            <textarea class="edit-order-popup__order-complete-textarea">Введите текст</textarea>
+          </div>
+          <ul role="list" class="edit-order-popup__btn-control-group">
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat edit-order-popup__undo-btn" x-on:click="editOrderPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="edit-order-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary edit-order-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+  </ul>
+      </div>
+</div>
+</form>
+</div>
+
+
+<script type="module">
+  // Tempus Dominus JavaScript datepicker https://getdatepicker.com/ 
+  import { TempusDominus } from 'https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.esm.js';
+
+  new TempusDominus(document.getElementById('datetimepicker1'), {
+    display: {
+      theme: 'light',
+      buttons: {
+        clear: true,
+      },
+      components: {
+        clock: false,
+        hours: false,
+        minutes: false,
+        seconds: false,
+      },
+    }
+  });
+</script>
+<script is:inline>
+          document.addEventListener('alpine:init', () => {
+            Alpine.data('comments', () => ({
+              
+              publishComment() {
+                const commentsTextareaDesktop = document.querySelector('.edit-order-popup__comments-textarea.desktop-textarea');
+                const commentsPublishBtnDesktop = document.querySelector('.edit-order-popup__comments-publish-btn.desktop-publish-btn');
+                const commentsList = document.querySelector('.edit-order-popup__comments-list.main-list');
+                const commentsListItemHtml = `
+                <li class="edit-order-popup__comments-list-item">
+            <div class="edit-order-popup__comments-list-item-block">
+            <img class="edit-order-popup__comments-img" src="/images/comment-avatar-placeholder.png" alt="order docs avatar" width="36" height="36">
+            <div class="edit-order-popup__comments-list-item-right">
+              <div class="edit-order-popup__comments-list-item-top-row">
+                <p class="edit-order-popup__comments-list-item-name">vtr@uralreduktor.ru</p>
+                <div class="edit-order-popup__comments-list-item-date-time">
+                  <time datetime="18.08.2022" class="edit-order-popup__comments-list-item-date">18.08.2022</time>
+                  в
+                  <time datetime="15:45" class="edit-order-popup__comments-list-item-time">15:45</time>
+                  </div>
+                </div>
+                <div class="edit-order-popup__comments-window">
+                  <p class="edit-order-popup__comments-window-text">${commentsTextareaDesktop.value}</p>
+                </div>
+                <button type="button" class="edit-order-popup__reply-btn">
+                  Ответить
+                  </button>
+            </div>
+            </div>
+          </li>
+                `;
+
+                commentsList.insertAdjacentHTML('beforeEnd', commentsListItemHtml);
+               }
+            }))
+         })
+</script>  

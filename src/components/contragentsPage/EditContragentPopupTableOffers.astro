@@ -1,0 +1,104 @@
+<div class="site-section__table-wrapper edit-contragent-popup__table-wrapper">
+    <nav class="site-section__table edit-contragent-popup__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list edit-contragent-popup__table-list edit-contragent-popup__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-list-caption-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-caption-item">
+            <button class="site-section__table-sort-btn site-section__table-number-sort-btn" type="button">
+              Номер
+              <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+            </button>
+          </li>
+        <li class="site-section__table-list-item site-section__table-caption-list-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-caption-item">
+          <button class="site-section__table-sort-btn site-section__table-data-sort-btn" type="button">
+            Дата
+            <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                
+          </button>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-caption-item">
+            Сумма
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-caption-item">
+            Статус
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-caption-item">
+          Ответственный
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-item--desktop edit-contragent-popup__table-list-caption-item">
+            Счёт
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-item--desktop edit-contragent-popup__table-list-caption-item">
+            Срок действия
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list edit-contragent-popup__table-list">
+        <li class="site-section__table-list-item edit-contragent-popup__table-list-item" x-on:click="financesPageOfferPopup = true">
+            1001010
+        </li>
+        <li class="site-section__table-list-item edit-contragent-popup__table-list-item number">
+          22.12.2028
+        </li>
+        <li class="site-section__table-list-item edit-contragent-popup__table-list-item">
+            500 000
+        </li>
+        <li class="site-section__table-list-item edit-contragent-popup__table-list-item site-section__table-list-item--status-btn" x-data="{status: 'in process', toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+            <button class="btn site-section__status-btn site-section__status-btn--in-process" type="button" x-bind:class="{'site-section__status-btn--in-process': status === 'in process', 'site-section__status-btn--shipped': status === 'shipped','site-section__status-btn--cancelled': status === 'cancelled', 'site-section__status-btn--in-work': status === 'in work', 'site-section__status-btn--completed': status === 'completed', 'site-section__status-btn--cargo-in-way': status === 'cargo in way', 'site-section__status-btn--on-payment': status === 'on payment' }" x-text="status === 'in process' ? 'Ожидает ответ' : status === 'shipped' ? 'Отгружен' : status === 'cancelled' ? 'Отменён' : status === 'in work' ? 'В работе' : status === 'completed' ? 'Завершён' : status === 'cargo in way' ? 'Груз в пути': status === 'on payment' ? 'На оплате': ''">
+              Ожидает ответ
+            </button>
+            <div class="site-section__choose-status-dropdown-wrapper">
+              <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"/>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"/>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"/>
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>     
+              </button>
+              <ul class="site-section__choose-status-dropdown-list edit-contragent-popup-table-offers__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                 <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'in process'; toggleStatusDropdown = false">Ожидает ответ</button>
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'in work'; toggleStatusDropdown = false">В работе</button>
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'completed'; toggleStatusDropdown = false">Завершён</button>
+             </li>
+             <li class="site-section__choose-status-dropdown-list-item">
+              <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'cargo in way'; toggleStatusDropdown = false">Груз в пути</button>
+           </li>
+           <li class="site-section__choose-status-dropdown-list-item">
+            <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'on payment'; toggleStatusDropdown = false">На оплате</button>
+         </li>
+         <li class="site-section__choose-status-dropdown-list-item">
+          <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'cancelled'; toggleStatusDropdown = false">Отменен</button>
+       </li>
+       <li class="site-section__choose-status-dropdown-list-item">
+        <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'shipped'; toggleStatusDropdown = false">Отгружен</button>
+     </li>
+              </ul>
+            </div>
+         </li>
+       <li class="site-section__table-list-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-item--resp">
+        <div class="site-section__resp-wrapper">
+          <img src="/images/header-avatar-placeholder.svg" alt="responsible face avatar" loading="lazy" decoding="async" width="24" height="24">
+          <span class="edit-contragent-popup__resp-title">
+            vtr@uralreduktor.ru
+          </span>
+        </div>
+     </li>
+     <li class="site-section__table-list-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-item--org-link" x-on:click="financesPageOfferPopup = true">
+        1001010
+    </li>
+    <li class="site-section__table-list-item edit-contragent-popup__table-list-item edit-contragent-popup__table-list-item--org-link">
+        25.11.2022
+    </li>
+      </ul>
+    </template>
+    </nav>
+</div>

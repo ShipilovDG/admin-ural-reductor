@@ -1,0 +1,40 @@
+.site-section {
+    &__table-tabs {
+       padding: 0;
+        margin: 0;
+        display: grid;
+        align-items: center;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        gap: 52px;
+        position: relative;
+        top: 2px;
+        scrollbar-width: none;
+        z-index: 1;
+    }
+
+    &__table-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__table-tabs-item-btn {
+        font-family: 'Inter',sans-serif;
+font-weight: 600;
+font-size: 23px;
+line-height: 28px;
+color: var(--grey600);
+padding: 8px;
+border-width: 1px 1px 0px 1px;
+border-style: solid;
+border-radius: 4px 4px 0px 0px;
+transition: .3s ease-in-out;
+border-color: transparent;
+    }
+
+    &__table-tabs-item-btn.active {
+      border-color: #D5D8EA;
+      color: var(--dark);
+      background-color: var(--gray100);
+    }
+}
+

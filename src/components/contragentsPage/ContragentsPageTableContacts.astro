@@ -1,0 +1,87 @@
+<div class="site-section__table-wrapper contragents-page__table-wrapper">
+    <nav class="site-section__table contragents-page__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list contragents-page__table-list contragents-page__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item contragents-page__table-list-item contragents-page__table-list-caption-item">
+            <div class="contragents-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="contragents-page__table-list-item-checkbox">
+                <label class="contragents-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+                </div>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item contragents-page__table-list-item contragents-page__table-list-caption-item">
+          Тип
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item contragents-page__table-list-item contragents-page__table-list-caption-item">
+            Название
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item contragents-page__table-list-item contragents-page__table-list-caption-item">
+            Телефон
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item contragents-page__table-list-item contragents-page__table-list-caption-item">
+            Эл. почта
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item contragents-page__table-list-item contragents-page__table-list-caption-item">
+          Ответственный
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item contragents-page__table-list-item contragents-page__table-list-item--desktop contragents-page__table-list-caption-item">
+            Теги
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list contragents-page__table-list">
+        <li class="site-section__table-list-item contragents-page__table-list-item">
+            <div class="contragents-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+            <input type="checkbox" class="contragents-page__table-list-item-checkbox">
+            <label class="contragents-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+            </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item contragents-page__table-list-item">
+            <svg width="8" height="21" viewBox="0 0 8 21" fill="none" xmlns="http://www.w3.org/2000/svg" x-on:click="editContragentPopup = true">
+                <path d="M2 20V15L1 14V10C1 9.73478 1.10536 9.48043 1.29289 9.29289C1.48043 9.10536 1.73478 9 2 9H6C6.26522 9 6.51957 9.10536 6.70711 9.29289C6.89464 9.48043 7 9.73478 7 10V14L6 15V20M6 3C6 4.10457 5.10457 5 4 5C2.89543 5 2 4.10457 2 3C2 1.89543 2.89543 1 4 1C5.10457 1 6 1.89543 6 3Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                            
+        </li>
+        <li class="site-section__table-list-item contragents-page__table-list-item">
+            ООО “Уралредуктор
+         </li>
+        <li class="site-section__table-list-item contragents-page__table-list-item">
+            +7 999 999-99-99
+        </li>
+        <li class="site-section__table-list-item contragents-page__table-list-item">
+            vtrpro@yandex.ru
+        </li>
+        <li class="site-section__table-list-item contragents-page__table-list-item contragents-page__table-list-item--resp">
+            <div class="site-section__resp-wrapper">
+              <img src="/images/header-avatar-placeholder.svg" alt="responsible face avatar" loading="lazy" decoding="async" width="24" height="24">
+              <span class="contragents-page__resp-title">
+                vtr@uralreduktor.ru
+              </span>
+            </div>
+         </li>
+        <li class="site-section__table-list-item contragents-page__table-list-item contragents-page__table-list-item--tag-btn" x-data="{tag: 'design', toggleTagDropdown: false}" x-on:click.outside="toggleTagDropdown = false">
+          <button class="btn contragents-page__tag-btn contragents-page__tag-btn--design" type="button" x-bind:class="{'contragents-page__tag-btn--design': tag === 'design', 'contragents-page__tag-btn--СЕО': tag === 'СЕО','contragents-page__tag-btn--project': tag === 'Проджект' }" x-text="tag === 'design' ? 'Дизайн' : tag === 'СЕО' ? 'СЕО' : tag === 'Проджект' ? 'Проджект' : ''">
+            Ожидает ответ
+          </button>
+          <div class="contragents-page__choose-tag-dropdown-wrapper">
+            <button type="button" class="contragents-page__choose-tag-btn" x-on:click="toggleTagDropdown = !toggleTagDropdown">
+                <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 1L7.5 7L13.5 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>          
+            </button>
+            <ul class="contragents-page__choose-tag-dropdown-list contragents-page-table__choose-tag-dropdown-list" role="list" x-bind:class="{'active': toggleTagDropdown === true}">
+               <li class="contragents-page__choose-tag-dropdown-list-item">
+                  <button class="contragents-page__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'design'; toggleTagDropdown = false">Дизайн</button>
+               </li>
+               <li class="contragents-page__choose-tag-dropdown-list-item">
+                <button class="contragents-page__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'СЕО'; toggleTagDropdown = false">СЕО</button>
+             </li>
+             <li class="contragents-page__choose-tag-dropdown-list-item">
+              <button class="site-section__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'Проджект'; toggleTagDropdown = false">Проджект</button>
+           </li>
+            </ul>
+          </div>
+       </li>
+      </ul>
+    </template>
+    </nav>
+</div>

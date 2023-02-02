@@ -1,0 +1,227 @@
+---
+import Pagination from "../Pagination.astro";
+import AddOrganizationPopup from "./AddOrganizationPopup.astro";
+import CreateOfferFormPopup from "./CreateOfferFormPopup.astro";
+---
+
+<div class="popup settings-finance-module-popup" x-bind:class="{'active': settingsFinanceModulePopup === true}" x-data="{table: 1, addOrganizationPopup: false, createOfferFormPopup: false }">
+<form action="#" method="post" class="popup__form">
+    <div class="popup__content settings-finance-module-popup__content">
+  <div class="popup__top-row settings-finance-module-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="settingsFinanceModulePopup = false">
+        <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>                  
+    </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="settingsFinanceModulePopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <div class="popup__title-top-controls-row settings-finance-module-popup__title-top-controls-row">
+    <h2 class="popup__title settings-finance-module-popup__title">
+        Настройки модуля финансы
+    </h2>
+    </div>
+  </div>
+  <ul role="list" class="site-section__table-tabs settings-finance-module-popup__table-tabs">
+    <li class="site-section__table-tabs-item settings-finance-module-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn settings-finance-module-popup__table-tabs-item-btn" x-on:click="table = 1" x-bind:class="{'active': table === 1}">
+            Предложения
+        </button>
+    </li>
+    <li class="site-section__table-tabs-item settings-finance-module-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn settings-finance-module-popup__table-tabs-item-btn active" x-on:click="table = 2" x-bind:class="{'active': table === 2}">
+            Организации
+        </button>
+    </li>
+</ul>
+<div class="settings-finance-module-popup__tab-wrapper" x-bind:class="{'active': table === 1}">
+    <div class="settings-finance-module-popup__available-forms-wrapper mobile">
+        <h2 class="popup__title settings-finance-module-popup__title">
+            Доступные формы
+        </h2>
+        <button type="button" class="btn btn--primary settings-finance-module-popup__create-offer-btn" x-on:click="createOfferFormPopup = true">
+            Создать
+        </button>
+    </div>
+    <div class="site-section__body popup__body settings-finance-module-popup__body">
+      <div class="settings-finance-module-popup__available-forms-wrapper desktop">
+        <h2 class="popup__title settings-finance-module-popup__title">
+            Доступные формы коммерческих предложений
+        </h2>
+        <button type="button" class="btn btn--primary settings-finance-module-popup__create-offer-btn" x-on:click="createOfferFormPopup = true">
+            Создать
+        </button>
+    </div>
+        <div class="site-section__body-bottom settings-finance-module-popup__body-bottom">
+            <div class="site-section__body-bottom-left-group settings-finance-module-popup__body-bottom-left-group" x-data="{searchBtnDropdown: false}">
+                <button type="button" class="site-section__search-btn" x-on:click="searchBtnDropdown = !searchBtnDropdown">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M25 25L17 17M19.6667 10.3333C19.6667 15.488 15.488 19.6667 10.3333 19.6667C5.17868 19.6667 1 15.488 1 10.3333C1 5.17868 5.17868 1 10.3333 1C15.488 1 19.6667 5.17868 19.6667 10.3333Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>           
+                </button>
+                <div class="site-section__search-btn-dropdown settings-finance-module-popup__search-btn-dropdown" x-bind:class="{'active': searchBtnDropdown === true}">
+                    <input type="text" class="site-section__search-btn-dropdown-search-input">
+                    <ul role="list" class="site-section__search-btn-dropdown-list">
+                        <li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Результат поиска" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Результат поиска" x-on:click="searchBtnDropdown = false">
+                                </li>
+                    </ul>
+                </div>
+                <div class="site-section__search-form" x-data="{search: '', toggleDropdown: false}" x-on:click.outside="$refs.settingsFinanceModulePopupSearchFormDropdown.classList.remove('active')">
+                  <button type="submit" class="site-section__search-form-submit-btn">
+                    <svg class="site-section__search-form-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.7422 10.3439C12.5329 9.2673 13 7.9382 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13C7.93858 13 9.26801 12.5327 10.3448 11.7415L10.3439 11.7422C10.3734 11.7822 10.4062 11.8204 10.4424 11.8566L14.2929 15.7071C14.6834 16.0976 15.3166 16.0976 15.7071 15.7071C16.0976 15.3166 16.0976 14.6834 15.7071 14.2929L11.8566 10.4424C11.8204 10.4062 11.7822 10.3734 11.7422 10.3439ZM12 6.5C12 9.53757 9.53757 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1C9.53757 1 12 3.46243 12 6.5Z" fill="#7C69EF"/>
+                      </svg>         
+                  </button>
+                  <input class="site-section__search-form-input" type="text" name="orderSearchInput" id="orderSearchInput" placeholder="Найти..." x-model.debounce.500ms="search">
+                  <div class="site-section__search-form-dropdown" x-bind:class="{'active': search.length > 2}" x-ref="settingsFinanceModulePopupSearchFormDropdown">
+                    <ul role="list" class="site-section__search-form-dropdown-list">
+                      <template x-for="i in 5">
+                        <li class="site-section__search-form-dropdown-list-item">
+                          <input type="text" readonly class="site-section__search-form-dropdown-list-item-input" value="Результат поиска" x-on:click="$refs.settingsFinanceModulePopupSearchFormDropdown.classList.remove('active')">
+                       </li>
+                      </template>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-section__table-wrapper settings-finance-module-popup__table-wrapper">
+            <nav class="site-section__table settings-finance-module-popup__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+              <ul role="list" class="site-section__table-list site-section__table-caption-list settings-finance-module-popup__table-list settings-finance-module-popup__table-caption-list">
+                <li class="site-section__table-list-item site-section__table-caption-list-item settings-finance-module-popup__table-list-item settings-finance-module-popup__table-list-caption-item">
+                  <button class="site-section__table-sort-btn site-section__table-name-sort-btn" type="button">
+                    Название
+                    <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>                
+                  </button>
+                </li>
+                <li class="site-section__table-list-item site-section__table-list-caption-item settings-finance-module-popup__table-list-item settings-finance-module-popup__table-list-caption-item">
+                    Сортировка
+                  </li>
+                <li class="site-section__table-list-item site-section__table-list-caption-item settings-finance-module-popup__table-list-item settings-finance-module-popup__table-list-caption-item">
+                    Организация
+                </li>
+              </ul>
+              <template x-for="table in tables">
+              <ul role="list" class="site-section__table-list settings-finance-module-popup__table-list">
+                <li class="site-section__table-list-item settings-finance-module-popup__table-list-item" x-on:click="financesPageOfferPopup = true">
+                    Предложение
+                </li>
+                <li class="site-section__table-list-item settings-finance-module-popup__table-list-item number" x-on:click="financesPageOfferPopup = true">
+                    1001010
+                </li>
+                <li class="site-section__table-list-item settings-finance-module-popup__table-list-item">
+                  <a href="#" class="site-section__contragent-link">
+                    УЗТМ
+                  </a>
+                </li>
+              </ul>
+            </template>
+            </nav>
+        </div>
+        <ul role="list" class="pagination settings-finance-module-popup__pagination">
+            <Pagination></Pagination>
+          </ul>
+    </div>
+</div>
+<div class="settings-finance-module-popup__tab-wrapper" x-bind:class="{'active': table === 2}">
+    <div class="settings-finance-module-popup__org-top-wrapper">
+        <button type="button" class="btn btn--primary settings-finance-module-popup__add-org-btn mobile" x-on:click="addOrganizationPopup = true">
+            Добавить организацию
+        </button>
+    </div>
+    <div class="site-section__body popup__body settings-finance-module-popup__body">
+      <button type="button" class="btn btn--primary settings-finance-module-popup__add-org-btn desktop" x-on:click="addOrganizationPopup = true">
+        Добавить организацию
+    </button>
+        <div class="site-section__body-bottom settings-finance-module-popup__body-bottom">
+            <div class="site-section__body-bottom-left-group settings-finance-module-popup__body-bottom-left-group" x-data="{searchBtnDropdown: false}">
+                <button type="button" class="site-section__search-btn" x-on:click="searchBtnDropdown = !searchBtnDropdown">
+                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M25 25L17 17M19.6667 10.3333C19.6667 15.488 15.488 19.6667 10.3333 19.6667C5.17868 19.6667 1 15.488 1 10.3333C1 5.17868 5.17868 1 10.3333 1C15.488 1 19.6667 5.17868 19.6667 10.3333Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>           
+                </button>
+                <div class="site-section__search-btn-dropdown settings-finance-module-popup__search-btn-dropdown" x-bind:class="{'active': searchBtnDropdown === true}">
+                    <input type="text" class="site-section__search-btn-dropdown-search-input">
+                    <ul role="list" class="site-section__search-btn-dropdown-list">
+                        <li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Результат поиска" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Документы" x-on:click="searchBtnDropdown = false">
+                                </li><li class="site-section__search-btn-dropdown-list-item">
+                                <input readonly="" class="site-section__search-btn-dropdown-list-item-input" value="Результат поиска" x-on:click="searchBtnDropdown = false">
+                                </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="settings-finance-module-popup__org-tooltip">
+            <p class="settings-finance-module-popup__org-tooltip-text">
+                По каждой организации вы сможете выставлять отдельные счета и отслеживать финансовые операции. В рамках аккаунта должна быть создана хотя бы одна организация.
+            </p>
+        </div>
+        <div class="site-section__table-wrapper settings-finance-module-popup__table-wrapper">
+            <nav class="site-section__table settings-finance-module-popup__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+              <ul role="list" class="site-section__table-list site-section__table-caption-list settings-finance-module-popup__table-list settings-finance-module-popup__table-caption-list org-list">
+                <li class="site-section__table-list-item site-section__table-caption-list-item settings-finance-module-popup__table-list-item settings-finance-module-popup__table-list-caption-item">
+                  <button class="site-section__table-sort-btn site-section__table-name-sort-btn" type="button">
+                    Название
+                    <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>                
+                  </button>
+                </li>
+                <li class="site-section__table-list-item site-section__table-list-caption-item settings-finance-module-popup__table-list-item settings-finance-module-popup__table-list-caption-item">
+                    Сортировка
+                  </li>
+              </ul>
+              <template x-for="table in tables">
+              <ul role="list" class="site-section__table-list settings-finance-module-popup__table-list org-list">
+                <li class="site-section__table-list-item settings-finance-module-popup__table-list-item" x-on:click="financesPageOfferPopup = true">
+                    Предложение
+                </li>
+                <li class="site-section__table-list-item settings-finance-module-popup__table-list-item number" x-on:click="financesPageOfferPopup = true">
+                    1001010
+                </li>
+              </ul>
+            </template>
+            </nav>
+        </div>
+        <ul role="list" class="pagination settings-finance-module-popup__pagination">
+            <Pagination></Pagination>
+          </ul>
+    </div>
+</div>
+</div>
+</form>
+<AddOrganizationPopup></AddOrganizationPopup>
+<CreateOfferFormPopup></CreateOfferFormPopup>
+</div>

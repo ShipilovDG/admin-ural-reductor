@@ -1,0 +1,61 @@
+<div class="alt-popup choose-users-alt-popup" x-bind:class="{'active': chooseUsersAltPopup === true}" x-on:click.self="chooseUsersAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form choose-users-alt-popup__form">
+    <div class="alt-popup__content choose-users-alt-popup__content">
+     <div class="choose-users-alt-popup__top-row">
+        <p class="alt-popup__title choose-users-alt-popup__title">Выберите пользователя</p>
+        <button class="choose-users-alt-popup__close-btn" type="button" x-on:click="chooseUsersAltPopup = false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+     </div>
+    <div class="alt-popup__body choose-users-alt-popup__body">
+            <fieldset class="alt-popup__fieldset choose-users-alt-popup__fieldset b-b" x-data="{toggleList: ''}">
+             <div class="choose-users-alt-popup__search-wrapper">
+                <button type="button" class="choose-users-alt-popup__search-btn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 14L10 10M11.3333 6.66667C11.3333 9.244 9.244 11.3333 6.66667 11.3333C4.08934 11.3333 2 9.244 2 6.66667C2 4.08934 4.08934 2 6.66667 2C9.244 2 11.3333 4.08934 11.3333 6.66667Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <input type="text" class="choose-users-alt-popup__input-search" placeholder="Найти..." x-model.debounce.500ms="toggleList">
+                <svg class="choose-users-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>  
+             </div>
+             <ul role="list" class="choose-users-alt-popup__search-list" x-show="toggleList.length > 0">
+                <li class="choose-users-alt-popup__search-list-item" x-ref="newUsersGroupPopupSearchListItem1">
+                    <img class="choose-users-alt-popup__search-list-item-img" src="/images/header-avatar-placeholder.svg" alt="new Users Group Popup Search List Item image" width="24" height="24" loading="lazy" decoding="async">
+                    <p class="choose-users-alt-popup__search-list-item-title">vtr@uralreduktor.ru</p>
+                    <button type="button" class="choose-users-alt-popup__search-list-item-delete-btn" x-on:click="$refs.newUsersGroupPopupSearchListItem1.remove()">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </li>
+                <li class="choose-users-alt-popup__search-list-item" x-ref="newUsersGroupPopupSearchListItem2">
+                    <img class="choose-users-alt-popup__search-list-item-img" src="/images/header-avatar-placeholder.svg" alt="new Users Group Popup Search List Item image" width="36" height="36" loading="lazy" decoding="async">
+                    <p class="choose-users-alt-popup__search-list-item-title">vtr@uralreduktor.ru</p>
+                    <button type="button" class="choose-users-alt-popup__search-list-item-delete-btn" x-on:click="$refs.newUsersGroupPopupSearchListItem2.remove()">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group choose-users-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item choose-users-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary choose-users-alt-popup__undo-btn" x-on:click="chooseUsersAltPopup = false">
+                Отменить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item choose-users-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary choose-users-alt-popup__save-btn" x-on:click="chooseUsersAltPopup = false">
+                Ок
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

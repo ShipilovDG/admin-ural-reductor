@@ -1,0 +1,612 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TableTabs from "../components/TableTabs.astro";
+---
+<Layout title="страница Настройки">
+  <section class="site-section settings-page__site-section desktop-hide" x-data="{table: 1, attachAvatarPhoto: false }">
+    <h1 class="site-section__page-title settings-page__page-title">Настройки</h1>
+    <TableTabs></TableTabs>
+    <div class="site-section__tab-wrapper" x-show="table === 1" x-data="{
+        toggleBtn: 'edit',
+        editFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.removeAttribute('disabled');
+              })
+        },
+        saveFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.setAttribute('disabled', 'true');
+              })
+        }
+    }">
+        <form action="#" method="post" class="site-section__body settings-page__body">
+           <fieldset class="settings-page__fieldset">
+              <div class="settings-page__attach-avatar-wrapper">
+                <div class="settings-page__avatar">
+                    <img src="" alt="settings Page Avatar Img" class="settings-page__avatar-img hidden" decoding="async">
+                    <span class="settings-page__avatar-letter">
+                        V 
+                    </span>
+                </div>
+                <div class="settings-page__attach-avatar-btn">
+                    <input type="file" class ="settings-page__attach-avatar-file-input" disabled accept=".jpg, .jpeg, .png">
+                    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.66667 5.33594H5C5.70724 5.33594 6.38552 5.05499 6.88562 4.55489C7.38572 4.05479 7.66667 3.37651 7.66667 2.66927C7.66667 2.31565 7.80714 1.97651 8.05719 1.72646C8.30724 1.47641 8.64638 1.33594 9 1.33594H17C17.3536 1.33594 17.6928 1.47641 17.9428 1.72646C18.1929 1.97651 18.3333 2.31565 18.3333 2.66927C18.3333 3.37651 18.6143 4.05479 19.1144 4.55489C19.6145 5.05499 20.2928 5.33594 21 5.33594H22.3333C23.0406 5.33594 23.7189 5.61689 24.219 6.11699C24.719 6.61708 25 7.29536 25 8.0026V20.0026C25 20.7098 24.719 21.3881 24.219 21.8882C23.7189 22.3883 23.0406 22.6693 22.3333 22.6693H3.66667C2.95942 22.6693 2.28115 22.3883 1.78105 21.8882C1.28095 21.3881 1 20.7098 1 20.0026V8.0026C1 7.29536 1.28095 6.61708 1.78105 6.11699C2.28115 5.61689 2.95942 5.33594 3.66667 5.33594Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 17.3359C15.2091 17.3359 17 15.5451 17 13.3359C17 11.1268 15.2091 9.33594 13 9.33594C10.7909 9.33594 9 11.1268 9 13.3359C9 15.5451 10.7909 17.3359 13 17.3359Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                </div>
+              </div>
+              <div class="site-section__form-control-group settings-page__form-control-group">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    ФИО
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="text" disabled class="site-section__form-control-input settings-page__form-control-input" value="Иван Александрович">
+                </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Дата рождения
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input disabled class="site-section__form-control-input settings-page__form-control-input" placeholder="__.__.____" x-mask="99.99.9999">
+                </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Телефон
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="tel" disabled class="site-section__form-control-input settings-page__form-control-input" value="+7-999-999-99-99">
+                </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Эл. почта
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="email" disabled class="site-section__form-control-input settings-page__form-control-input" value="ivan@mail.ru">
+                </div>
+             </div>
+             <button type="button" class="btn btn--secondary settings-page__edit-btn" x-show="toggleBtn === 'edit'" x-on:click="editFields;toggleBtn = 'save'">Изменить</button>
+           <button type="button" class="btn btn--secondary settings-page__save-btn" x-show="toggleBtn === 'save'" x-on:click="saveFields;toggleBtn = 'edit'">Сохранить</button>
+           </fieldset>
+        </form>
+    </div>
+    <div class="site-section__tab-wrapper" x-show="table === 2" x-data="{
+        toggleBtn: 'edit',
+        avatarInputFileVal: '',
+        togglePasswordView1: false,
+        togglePasswordView2: false,
+        togglePasswordView3: false,
+        editFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.removeAttribute('disabled');
+              })
+        },
+        saveFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.setAttribute('disabled', 'true');
+              })
+        }
+    }">
+        <form action="#" method="post" class="site-section__body settings-page__body">
+            <fieldset class="settings-page__fieldset">
+               <div class="site-section__form-control-group settings-page__form-control-group" x-data="{togglePasswordView: false}">
+                 <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Старый пароль
+                 </p>
+                 <div class="settings-page__password-wrapper">
+                 <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                   <input type="password" disabled class="site-section__form-control-input settings-page__form-control-input" value="12345678" x-init="$watch('togglePasswordView1', value => value === true ? $el.type = 'text' : $el.type = 'password')">
+                 </div>
+                 <button type="button" class="settings-page__toggle-password-btn" x-on:click="togglePasswordView1 = !togglePasswordView1">
+                    <svg class="settings-page__toggle-password-icon unseen" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView1 === false">
+                        <path d="M2.1 1L21.9 20.8M10.4424 9.34567C10.0296 9.75819 9.79755 10.3178 9.79735 10.9014C9.79714 11.485 10.0288 12.0448 10.4413 12.4576C10.8538 12.8704 11.4134 13.1024 11.997 13.1026C12.5806 13.1028 13.1404 12.8712 13.5532 12.4587M9.0993 3.6015C10.0425 3.33169 11.019 3.19652 12 3.2C16.4 3.2 20.0663 5.7663 23 10.9C22.1442 12.3971 21.2268 13.6764 20.2467 14.7368M17.8927 16.7839C16.0986 17.9939 14.1362 18.6 12 18.6C7.6 18.6 3.9337 16.0337 1 10.9C2.5059 8.2655 4.2043 6.3075 6.0952 5.0249" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                    <svg class="settings-page__toggle-password-icon seen" width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView1 === true">
+                        <path d="M12.4286 11.2857C13.6909 11.2857 14.7143 10.2624 14.7143 9C14.7143 7.73764 13.6909 6.71429 12.4286 6.71429C11.1662 6.71429 10.1429 7.73764 10.1429 9C10.1429 10.2624 11.1662 11.2857 12.4286 11.2857Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.8571 9C20.8091 14.3337 17 17 12.4286 17C7.85714 17 4.048 14.3337 1 9C4.048 3.66629 7.85714 1 12.4286 1C17 1 20.8091 3.66629 23.8571 9Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                          
+                   </button>
+                </div>
+              </div>
+              <div class="site-section__form-control-group settings-page__form-control-group" x-data="{togglePasswordView: false}">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Новый пароль
+                </p>
+                <div class="settings-page__password-wrapper">
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="password" disabled class="site-section__form-control-input settings-page__form-control-input" value="12345678" x-init="$watch('togglePasswordView2', value => value === true ? $el.type = 'text' : $el.type = 'password')">
+                </div>
+                <button type="button" class="settings-page__toggle-password-btn" x-on:click="togglePasswordView2 = !togglePasswordView2">
+                    <svg class="settings-page__toggle-password-icon unseen" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView2 === false">
+                        <path d="M2.1 1L21.9 20.8M10.4424 9.34567C10.0296 9.75819 9.79755 10.3178 9.79735 10.9014C9.79714 11.485 10.0288 12.0448 10.4413 12.4576C10.8538 12.8704 11.4134 13.1024 11.997 13.1026C12.5806 13.1028 13.1404 12.8712 13.5532 12.4587M9.0993 3.6015C10.0425 3.33169 11.019 3.19652 12 3.2C16.4 3.2 20.0663 5.7663 23 10.9C22.1442 12.3971 21.2268 13.6764 20.2467 14.7368M17.8927 16.7839C16.0986 17.9939 14.1362 18.6 12 18.6C7.6 18.6 3.9337 16.0337 1 10.9C2.5059 8.2655 4.2043 6.3075 6.0952 5.0249" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                    <svg class="settings-page__toggle-password-icon seen" width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView2 === true">
+                        <path d="M12.4286 11.2857C13.6909 11.2857 14.7143 10.2624 14.7143 9C14.7143 7.73764 13.6909 6.71429 12.4286 6.71429C11.1662 6.71429 10.1429 7.73764 10.1429 9C10.1429 10.2624 11.1662 11.2857 12.4286 11.2857Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.8571 9C20.8091 14.3337 17 17 12.4286 17C7.85714 17 4.048 14.3337 1 9C4.048 3.66629 7.85714 1 12.4286 1C17 1 20.8091 3.66629 23.8571 9Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                          
+                   </button>
+               </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group" x-data="{togglePasswordView: false}">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Повторите пароль
+                </p>
+                <div class="settings-page__password-wrapper">
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="password" disabled class="site-section__form-control-input settings-page__form-control-input" value="12345678" x-init="$watch('togglePasswordView3', value => value === true ? $el.type = 'text' : $el.type = 'password')">
+                </div>
+                <button type="button" class="settings-page__toggle-password-btn" x-on:click="togglePasswordView3 = !togglePasswordView3">
+                    <svg class="settings-page__toggle-password-icon unseen" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView3 === false">
+                        <path d="M2.1 1L21.9 20.8M10.4424 9.34567C10.0296 9.75819 9.79755 10.3178 9.79735 10.9014C9.79714 11.485 10.0288 12.0448 10.4413 12.4576C10.8538 12.8704 11.4134 13.1024 11.997 13.1026C12.5806 13.1028 13.1404 12.8712 13.5532 12.4587M9.0993 3.6015C10.0425 3.33169 11.019 3.19652 12 3.2C16.4 3.2 20.0663 5.7663 23 10.9C22.1442 12.3971 21.2268 13.6764 20.2467 14.7368M17.8927 16.7839C16.0986 17.9939 14.1362 18.6 12 18.6C7.6 18.6 3.9337 16.0337 1 10.9C2.5059 8.2655 4.2043 6.3075 6.0952 5.0249" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                    <svg class="settings-page__toggle-password-icon seen" width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView3 === true">
+                        <path d="M12.4286 11.2857C13.6909 11.2857 14.7143 10.2624 14.7143 9C14.7143 7.73764 13.6909 6.71429 12.4286 6.71429C11.1662 6.71429 10.1429 7.73764 10.1429 9C10.1429 10.2624 11.1662 11.2857 12.4286 11.2857Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23.8571 9C20.8091 14.3337 17 17 12.4286 17C7.85714 17 4.048 14.3337 1 9C4.048 3.66629 7.85714 1 12.4286 1C17 1 20.8091 3.66629 23.8571 9Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                          
+                   </button>
+               </div>
+             </div>
+             <div class="settings-page__password-info">
+                <p class="settings-page__password-info-text">Длина пароля от 8 до 20 символов</p>
+                <p class="settings-page__password-info-text">Цифры (0...9)</p>
+                <p class="settings-page__password-info-text">Латинские буквы (A...Z)(a...z)</p>
+                <p class="settings-page__password-info-text">Спецсимволы (!@#_)</p>
+             </div>
+             <button type="button" class="btn btn--secondary settings-page__edit-btn" x-show="toggleBtn === 'edit'" x-on:click="editFields;toggleBtn = 'save'">Изменить</button>
+           <button type="button" class="btn btn--secondary settings-page__save-btn" x-show="toggleBtn === 'save'" x-on:click="saveFields;toggleBtn = 'edit'">Сохранить</button>
+            </fieldset>
+         </form>
+    </div>
+    <div class="site-section__tab-wrapper" x-show="table === 3" x-data="{
+        toggleBtn: 'edit',
+        avatarInputFileVal: '',
+        editFields() {
+            const inputs = $el.querySelectorAll('input');
+            const selectWrappers = $el.querySelectorAll('.settings-page__form-control-select-wrapper');
+            [...inputs].forEach((input) => {
+                input.removeAttribute('disabled');
+              });
+              [...selectWrappers].forEach((selectWrapper) => {
+                selectWrapper.classList.remove('disabled');
+              });
+        },
+        saveFields() {
+            const inputs = $el.querySelectorAll('input');
+            const selectWrappers = $el.querySelectorAll('.settings-page__form-control-select-wrapper');
+            [...inputs].forEach((input) => {
+                input.setAttribute('disabled', 'true');
+              });
+              [...selectWrappers].forEach((selectWrapper) => {
+                selectWrapper.classList.add('disabled');
+              });
+        }
+    }">
+        <form action="#" method="post" class="site-section__body settings-page__body">
+            <fieldset class="settings-page__fieldset">
+               <div class="site-section__form-control-group settings-page__form-control-group">
+                 <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                    Язык
+                 </p>
+                 <div class="site-section__form-control-wrapper settings-page__form-control-wrapper
+                 site-section__form-control-select-wrapper settings-page__form-control-select-wrapper disabled" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: 'Русский (Россия)'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                    <input type="text" class="site-section__form-control-select-result-input settings-page__form-control-select-result-input" value="Русский (Россия)" readonly x-model="resultInputVal">
+                    <div class="site-section__form-control-dropdown settings-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <ul role="list" class="site-section__form-control-select-list settings-page__form-control-select-list">
+                      <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="Русский (Россия)" id="Русский (Россия)" value="Русский (Россия)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Русский (Россия)'">
+                      </li>
+                      <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="English USA" id="English USA" value="English USA" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'English USA'">
+                      </li>
+                      <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="中国" id="中国" value="中国" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '中国'">
+                      </li>
+                      <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="الإمارات العربية المتحدة" id="الإمارات العربية المتحدة" value="الإمارات العربية المتحدة" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'الإمارات العربية المتحدة'">
+                      </li>
+                      <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="الشرق الأوسط وشمال أفريقيا - اللغة العربية" id="الشرق الأوسط وشمال أفريقيا - اللغة العربية" value="الشرق الأوسط وشمال أفريقيا - اللغة العربية" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'الشرق الأوسط وشمال أفريقيا - اللغة العربية'">
+                      </li>
+                    </ul>
+                    </div>
+                    <svg class="site-section__form-control-select-arrow settings-page__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                      <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                  
+                  </div>
+              </div>
+              <div class="site-section__form-control-group settings-page__form-control-group">
+                <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                    Часовой пояс
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper
+                site-section__form-control-select-wrapper settings-page__form-control-select-wrapper disabled" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input settings-page__form-control-select-result-input" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown settings-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list settings-page__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                       <input type="text" name="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" id="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" id="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                      </li>
+                      <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" id="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                      </li>
+                   </ul>
+                   </div>               
+                 </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group">
+                <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                    Уведомления
+                 </p>
+                 <div class="settings-page__checkbox-group-wrapper">
+                    <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                        События:
+                     </p>
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="event" id="event1" class="settings-page__checkbox" checked disabled>
+                        <label for="event1" class="settings-page__checkbox-label">Какое-то событие</label>
+                     </div>
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="event" id="event2" class="settings-page__checkbox" disabled>
+                        <label for="event2" class="settings-page__checkbox-label">Какое-то событие</label>
+                     </div>
+                 </div>
+                 <div class="settings-page__checkbox-group-wrapper">
+                    <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                        Способ связи:
+                     </p>
+                     <div class="settings-page__checkbox-group">
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="communication" id="communication1" class="settings-page__checkbox" checked disabled>
+                        <label for="communication1" class="settings-page__checkbox-label">СМС</label>
+                     </div>
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="communication" id="communication2" class="settings-page__checkbox" disabled>
+                        <label for="communication2" class="settings-page__checkbox-label">Эл. почта</label>
+                     </div>
+                    </div>
+                 </div>
+             </div>
+             <button type="button" class="btn btn--secondary settings-page__edit-btn" x-show="toggleBtn === 'edit'" x-on:click="editFields;toggleBtn = 'save'">Изменить</button>
+           <button type="button" class="btn btn--secondary settings-page__save-btn" x-show="toggleBtn === 'save'" x-on:click="saveFields;toggleBtn = 'edit'">Сохранить</button>
+            </fieldset>
+         </form>
+    </div>
+  </section>
+  <section class="site-section settings-page__site-section mobile-hide" x-data="{table: 1, attachAvatarPhoto: false }">
+    <div class="site-section__tab-wrapper settings-page__tab-wrapper" x-data="{
+        toggleBtn: 'edit',
+        editFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.removeAttribute('disabled');
+              })
+        },
+        saveFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.setAttribute('disabled', 'true');
+              })
+        }
+    }">
+        <form action="#" method="post" class="site-section__body settings-page__body personal-data">
+            <div class="settings-page__attach-avatar-wrapper">
+                <div class="settings-page__avatar desktop">
+                    <img src="" alt="settings Page Avatar Img" class="settings-page__avatar-img desktop hidden" decoding="async">
+                    <span class="settings-page__avatar-letter desktop">
+                        V 
+                    </span>
+                </div>
+                <div class="settings-page__attach-avatar-btn">
+                    <input type="file" class ="settings-page__attach-avatar-file-input desktop" disabled accept=".jpg, .jpeg, .png">
+                    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.66667 5.33594H5C5.70724 5.33594 6.38552 5.05499 6.88562 4.55489C7.38572 4.05479 7.66667 3.37651 7.66667 2.66927C7.66667 2.31565 7.80714 1.97651 8.05719 1.72646C8.30724 1.47641 8.64638 1.33594 9 1.33594H17C17.3536 1.33594 17.6928 1.47641 17.9428 1.72646C18.1929 1.97651 18.3333 2.31565 18.3333 2.66927C18.3333 3.37651 18.6143 4.05479 19.1144 4.55489C19.6145 5.05499 20.2928 5.33594 21 5.33594H22.3333C23.0406 5.33594 23.7189 5.61689 24.219 6.11699C24.719 6.61708 25 7.29536 25 8.0026V20.0026C25 20.7098 24.719 21.3881 24.219 21.8882C23.7189 22.3883 23.0406 22.6693 22.3333 22.6693H3.66667C2.95942 22.6693 2.28115 22.3883 1.78105 21.8882C1.28095 21.3881 1 20.7098 1 20.0026V8.0026C1 7.29536 1.28095 6.61708 1.78105 6.11699C2.28115 5.61689 2.95942 5.33594 3.66667 5.33594Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 17.3359C15.2091 17.3359 17 15.5451 17 13.3359C17 11.1268 15.2091 9.33594 13 9.33594C10.7909 9.33594 9 11.1268 9 13.3359C9 15.5451 10.7909 17.3359 13 17.3359Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                </div>
+              </div>
+           <fieldset class="settings-page__fieldset">
+            <div class="site-section__form-control-group settings-page__form-control-group b-b m-b">
+                <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                    Личные данные
+                 </p>
+            </div>
+              <div class="site-section__form-control-group settings-page__form-control-group b-b m-b two-cols">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    ФИО:
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="text" disabled class="site-section__form-control-input settings-page__form-control-input" value="Иван Александрович">
+                </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group b-b m-b two-cols">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Дата рождения:
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input disabled class="site-section__form-control-input settings-page__form-control-input" placeholder="__.__.____" x-mask="99.99.9999">
+                </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group b-b m-b three-cols">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Телефон:
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="tel" disabled class="site-section__form-control-input settings-page__form-control-input" value="+7-999-999-99-99">
+                </div>
+                 <div class="settings-page__check-mark">
+                    <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 6L6 11L16 1" stroke="#42BA96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                 </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group three-cols">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    E-mail:
+                </p>
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="email" disabled class="site-section__form-control-input settings-page__form-control-input" value="ivan@mail.ru">
+                </div>
+                <button type="button" class="settings-page__submit-email-btn">подтвердите</button>
+             </div>
+             <button type="button" class="btn btn--secondary settings-page__edit-btn" x-show="toggleBtn === 'edit'" x-on:click="editFields;toggleBtn = 'save'">Изменить</button>
+           <button type="button" class="btn btn--secondary settings-page__save-btn" x-show="toggleBtn === 'save'" x-on:click="saveFields;toggleBtn = 'edit'">Сохранить</button>
+           </fieldset>
+        </form>
+    </div>
+    <div class="site-section__tab-wrapper settings-page__tab-wrapper" x-data="{
+        toggleBtn: 'edit',
+        avatarInputFileVal: '',
+        togglePasswordView1: false,
+        togglePasswordView2: false,
+        togglePasswordView3: false,
+        editFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.removeAttribute('disabled');
+              })
+        },
+        saveFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.setAttribute('disabled', 'true');
+              })
+        }
+    }">
+        <form action="#" method="post" class="site-section__body settings-page__body">
+            <fieldset class="settings-page__fieldset">
+                <div class="site-section__form-control-group settings-page__form-control-group b-b m-b">
+                    <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                        Пароль
+                     </p>
+                </div>
+               <div class="site-section__form-control-group settings-page__form-control-group b-b m-b three-cols" x-data="{togglePasswordView: false}">
+                 <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Старый пароль
+                 </p>
+                 <div class="settings-page__password-wrapper">
+                 <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                   <input type="password" disabled class="site-section__form-control-input settings-page__form-control-input" value="12345678" x-init="$watch('togglePasswordView1', value => value === true ? $el.type = 'text' : $el.type = 'password')">
+                 </div>
+                 <button type="button" class="settings-page__toggle-password-btn" x-on:click="togglePasswordView1 = !togglePasswordView1">
+                    <svg class="settings-page__toggle-password-icon unseen" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"x-show="togglePasswordView1 === false">
+                        <path d="M2 1L20 19M9.58399 8.58698C9.20871 8.96199 8.99778 9.47073 8.99759 10.0013C8.9974 10.5318 9.20798 11.0407 9.58299 11.416C9.95801 11.7913 10.4667 12.0022 10.9973 12.0024C11.5278 12.0026 12.0367 11.792 12.412 11.417M8.363 3.365C9.22042 3.11972 10.1082 2.99684 11 3C15 3 18.333 5.333 21 10C20.222 11.361 19.388 12.524 18.497 13.488M16.357 15.349C14.726 16.449 12.942 17 11 17C7 17 3.667 14.667 1 10C2.369 7.605 3.913 5.825 5.632 4.659" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg class="settings-page__toggle-password-icon seen" width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView1 === true">
+                            <path d="M11 10C12.1046 10 13 9.10457 13 8C13 6.89543 12.1046 6 11 6C9.89543 6 9 6.89543 9 8C9 9.10457 9.89543 10 11 10Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 8C18.333 12.667 15 15 11 15C7 15 3.667 12.667 1 8C3.667 3.333 7 1 11 1C15 1 18.333 3.333 21 8Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                       
+                 </button>
+                </div>
+              </div>
+              <div class="site-section__form-control-group settings-page__form-control-group b-b m-b three-cols" x-data="{togglePasswordView: false}">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Новый пароль
+                </p>
+                <div class="settings-page__password-wrapper">
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="password" disabled class="site-section__form-control-input settings-page__form-control-input" value="12345678" x-init="$watch('togglePasswordView2', value => value === true ? $el.type = 'text' : $el.type = 'password')">
+                </div>
+                <button type="button" class="settings-page__toggle-password-btn" x-on:click="togglePasswordView2 = !togglePasswordView2">
+                    <svg class="settings-page__toggle-password-icon unseen" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"x-show="togglePasswordView2 === false">
+                        <path d="M2 1L20 19M9.58399 8.58698C9.20871 8.96199 8.99778 9.47073 8.99759 10.0013C8.9974 10.5318 9.20798 11.0407 9.58299 11.416C9.95801 11.7913 10.4667 12.0022 10.9973 12.0024C11.5278 12.0026 12.0367 11.792 12.412 11.417M8.363 3.365C9.22042 3.11972 10.1082 2.99684 11 3C15 3 18.333 5.333 21 10C20.222 11.361 19.388 12.524 18.497 13.488M16.357 15.349C14.726 16.449 12.942 17 11 17C7 17 3.667 14.667 1 10C2.369 7.605 3.913 5.825 5.632 4.659" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg class="settings-page__toggle-password-icon seen" width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView2 === true">
+                            <path d="M11 10C12.1046 10 13 9.10457 13 8C13 6.89543 12.1046 6 11 6C9.89543 6 9 6.89543 9 8C9 9.10457 9.89543 10 11 10Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 8C18.333 12.667 15 15 11 15C7 15 3.667 12.667 1 8C3.667 3.333 7 1 11 1C15 1 18.333 3.333 21 8Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                       
+                 </button>
+               </div>
+             </div>
+             <div class="site-section__form-control-group settings-page__form-control-group b-b m-b three-cols" x-data="{togglePasswordView: false}">
+                <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                    Повторите пароль
+                </p>
+                <div class="settings-page__password-wrapper">
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper settings-page__form-control-input-wrapper">
+                  <input type="password" disabled class="site-section__form-control-input settings-page__form-control-input" value="12345678" x-init="$watch('togglePasswordView3', value => value === true ? $el.type = 'text' : $el.type = 'password')">
+                </div>
+                <button type="button" class="settings-page__toggle-password-btn" x-on:click="togglePasswordView3 = !togglePasswordView3">
+                    <svg class="settings-page__toggle-password-icon unseen" width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"x-show="togglePasswordView3 === false">
+                        <path d="M2 1L20 19M9.58399 8.58698C9.20871 8.96199 8.99778 9.47073 8.99759 10.0013C8.9974 10.5318 9.20798 11.0407 9.58299 11.416C9.95801 11.7913 10.4667 12.0022 10.9973 12.0024C11.5278 12.0026 12.0367 11.792 12.412 11.417M8.363 3.365C9.22042 3.11972 10.1082 2.99684 11 3C15 3 18.333 5.333 21 10C20.222 11.361 19.388 12.524 18.497 13.488M16.357 15.349C14.726 16.449 12.942 17 11 17C7 17 3.667 14.667 1 10C2.369 7.605 3.913 5.825 5.632 4.659" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg class="settings-page__toggle-password-icon seen" width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="togglePasswordView3 === true">
+                            <path d="M11 10C12.1046 10 13 9.10457 13 8C13 6.89543 12.1046 6 11 6C9.89543 6 9 6.89543 9 8C9 9.10457 9.89543 10 11 10Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 8C18.333 12.667 15 15 11 15C7 15 3.667 12.667 1 8C3.667 3.333 7 1 11 1C15 1 18.333 3.333 21 8Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                       
+                 </button>
+               </div>
+             </div>
+             <div class="settings-page__password-info">
+                <div class="settings-page__password-info-left">
+                <p class="settings-page__password-info-text">Длина пароля от 8 до 20 символов</p>
+                <p class="settings-page__password-info-text">Цифры (0...9)</p>
+                <p class="settings-page__password-info-text">Латинские буквы (A...Z)(a...z)</p>
+                <p class="settings-page__password-info-text">Спецсимволы (!@#_)</p>
+                </div>
+                <div class="settings-page__password-info-right">
+                    <button type="button" class="btn btn--secondary settings-page__edit-btn" x-show="toggleBtn === 'edit'" x-on:click="editFields;toggleBtn = 'save'">Изменить</button>
+                    <button type="button" class="btn btn--secondary settings-page__save-btn" x-show="toggleBtn === 'save'" x-on:click="saveFields;toggleBtn = 'edit'">Сохранить</button>
+                </div>
+             </div>
+            </fieldset>
+         </form>
+    </div>
+    <div class="site-section__tab-wrapper settings-page__tab-wrapper">
+        <form action="#" method="post" class="site-section__body settings-page__body">
+            <fieldset class="settings-page__fieldset">
+                <div class="site-section__form-control-group settings-page__form-control-group b-b m-b">
+                    <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                        Язык
+                     </p>
+                </div>
+                <div class="site-section__form-control-group settings-page__form-control-group m-b">
+                    <div class="site-section__form-control-wrapper settings-page__form-control-wrapper
+                    site-section__form-control-select-wrapper settings-page__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: 'Русский (Россия)'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                       <input type="text" class="site-section__form-control-select-result-input settings-page__form-control-select-result-input" value="Русский (Россия)" readonly x-model="resultInputVal">
+                       <div class="site-section__form-control-dropdown settings-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                       <ul role="list" class="site-section__form-control-select-list settings-page__form-control-select-list">
+                         <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                           <input type="text" name="Русский (Россия)" id="Русский (Россия)" value="Русский (Россия)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Русский (Россия)'">
+                         </li>
+                         <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                           <input type="text" name="English USA" id="English USA" value="English USA" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'English USA'">
+                         </li>
+                         <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                           <input type="text" name="中国" id="中国" value="中国" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '中国'">
+                         </li>
+                         <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                           <input type="text" name="الإمارات العربية المتحدة" id="الإمارات العربية المتحدة" value="الإمارات العربية المتحدة" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'الإمارات العربية المتحدة'">
+                         </li>
+                         <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                           <input type="text" name="الشرق الأوسط وشمال أفريقيا - اللغة العربية" id="الشرق الأوسط وشمال أفريقيا - اللغة العربية" value="الشرق الأوسط وشمال أفريقيا - اللغة العربية" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'الشرق الأوسط وشمال أفريقيا - اللغة العربية'">
+                         </li>
+                       </ul>
+                       </div>
+                       <svg class="site-section__form-control-select-arrow settings-page__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                         <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                         </svg>                  
+                     </div>
+                </div>
+                <div class="site-section__form-control-group settings-page__form-control-group b-b m-b">
+                    <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                        Часовой пояс
+                    </p>
+                </div>
+                <div class="site-section__form-control-group settings-page__form-control-group">
+                <div class="site-section__form-control-wrapper settings-page__form-control-wrapper
+                site-section__form-control-select-wrapper settings-page__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input settings-page__form-control-select-result-input" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown settings-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list settings-page__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                       <input type="text" name="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" id="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" id="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                      </li>
+                      <li class="site-section__form-control-select-list-item settings-page__form-control-select-list-item">
+                        <input type="text" name="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" id="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input settings-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                      </li>
+                   </ul>
+                   </div>
+                   <svg class="site-section__form-control-select-arrow settings-page__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>               
+                 </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="site-section__tab-wrapper settings-page__tab-wrapper">
+        <form action="#" method="post" class="site-section__body settings-page__body">
+            <fieldset class="settings-page__fieldset">
+             <div class="site-section__form-control-group settings-page__form-control-group b-b m-b">
+                <p class="site-section__form-control-group-page-title settings-page__form-control-group-page-title">
+                    Уведомления
+                 </p>
+                </div>
+                <div class="site-section__form-control-group settings-page__form-control-group b-b m-b">
+                 <div class="settings-page__checkbox-group-wrapper">
+                    <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                        События:
+                     </p>
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="eventDesktop" id="eventDesktop1" class="settings-page__checkbox" checked>
+                        <label for="eventDesktop1" class="settings-page__checkbox-label">Какое-то событие</label>
+                     </div>
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="eventDesktop" id="eventDesktop2" class="settings-page__checkbox">
+                        <label for="eventDesktop2" class="settings-page__checkbox-label">Какое-то событие</label>
+                     </div>
+                 </div>
+                 </div>
+                 <div class="settings-page__checkbox-group-wrapper">
+                    <p class="site-section__form-control-group-title settings-page__form-control-group-title">
+                        Способ связи:
+                     </p>
+                     <div class="settings-page__checkbox-group">
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="communicationDesktop" id="communicationDesktop1" class="settings-page__checkbox" checked>
+                        <label for="communicationDesktop1" class="settings-page__checkbox-label">СМС</label>
+                     </div>
+                     <div class="settings-page__checkbox-item">
+                        <input type="checkbox" name="communicationDesktop" id="communicationDesktop2" class="settings-page__checkbox">
+                        <label for="communicationDesktop2" class="settings-page__checkbox-label">Эл. почта</label>
+                     </div>
+                    </div>
+                 </div>
+             </div>
+            </fieldset>
+         </form>
+    </div>
+  </section>
+
+  <script type="module">
+    function attachAvatarImg() {
+ const fileSelector = document.querySelector('.settings-page__attach-avatar-file-input');
+ const settingsPageAvatarLetter =  document.querySelector('.settings-page__avatar-letter');
+ const settingsPageAvatarImg = document.querySelector('.settings-page__avatar-img');
+fileSelector.addEventListener('change', (event) => {
+const file = event.target.files[0];
+const reader = new FileReader();
+reader.readAsDataURL(file);
+reader.addEventListener('load', event => {
+settingsPageAvatarImg.src = event.target.result;
+});
+settingsPageAvatarImg.classList.remove('hidden');
+settingsPageAvatarLetter.classList.add('hidden');
+});
+      }
+
+      attachAvatarImg();
+
+      function attachAvatarImgDesktop() {
+ const fileSelector = document.querySelector('.settings-page__attach-avatar-file-input.desktop');
+ const settingsPageAvatarLetter =  document.querySelector('.settings-page__avatar-letter.desktop');
+ const settingsPageAvatarImg = document.querySelector('.settings-page__avatar-img.desktop');
+fileSelector.addEventListener('change', (event) => {
+const file = event.target.files[0];
+const reader = new FileReader();
+reader.readAsDataURL(file);
+reader.addEventListener('load', event => {
+settingsPageAvatarImg.src = event.target.result;
+});
+settingsPageAvatarImg.classList.remove('hidden');
+settingsPageAvatarLetter.classList.add('hidden');
+});
+      }
+
+      attachAvatarImgDesktop();
+ </script>
+</Layout>
+

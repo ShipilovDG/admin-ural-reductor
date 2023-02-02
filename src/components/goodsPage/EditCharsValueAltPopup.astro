@@ -1,0 +1,41 @@
+<div class="alt-popup edit-chars-value-alt-popup" x-bind:class="{'active': editCharsValueAltPopup === true}">
+    <form action="#" method="post" class="alt-popup__form edit-chars-value-alt-popup__form">
+    <div class="alt-popup__content edit-chars-value-alt-popup__content">
+        <h2 class="alt-popup__title edit-chars-value-alt-popup__title">
+            Значение
+        </h2>
+    <div class="alt-popup__body edit-chars-value-alt-popup__body">
+            <fieldset class="alt-popup__fieldset edit-chars-value-alt-popup__fieldset">
+                <div class="alt-popup__form-control-group edit-chars-value-alt-popup__form-control-group">
+                    <p class="alt-popup__form-control-group-title edit-chars-value-alt-popup__form-control-group-title">
+                        Наименование
+                    </p>
+                    <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper edit-chars-value-alt-popup__form-control-wrapper edit-chars-value-alt-popup__form-control-input-wrapper">
+                        <input type="text" class="alt-popup__form-control-group-input  edit-chars-value-alt-popup__form-control-group-input" value="УВЛ">
+                    </div>
+                </div>
+                <div class="alt-popup__form-control-group edit-chars-value-alt-popup__form-control-group">
+                    <p class="alt-popup__form-control-group-title edit-chars-value-alt-popup__form-control-group-title">
+                        Печатное обозначение
+                    </p>
+                    <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper edit-chars-value-alt-popup__form-control-wrapper edit-chars-value-alt-popup__form-control-input-wrapper">
+                        <input type="text" class="alt-popup__form-control-group-input  edit-chars-value-alt-popup__form-control-group-input" value="Климатическое исполнение  -  УВЛ">
+                    </div>
+                </div>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group edit-chars-value-alt-popup__btn-control-group">
+      <li class="alt-popup__btn-control-group-item edit-chars-value-alt-popup__btn-control-group-item">
+          <button type="button" class="btn btn--secondary alt-popup__undo-btn edit-chars-value-alt-popup__undo-btn" x-on:click="editCharsValueAltPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="alt-popup__btn-control-group-item edit-chars-value-alt-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary alt-popup__save-btn edit-chars-value-alt-popup__save-btn" x-on:click="editCharsValueAltPopup = false">
+              Добавить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+</div>

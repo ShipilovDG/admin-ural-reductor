@@ -1,0 +1,169 @@
+.create-user-account-popup {
+    max-width: 705px;
+
+    &__body {
+        padding-left: 0;
+        padding-top: 24px;
+        display: grid;
+        gap: 24px;
+        grid-template-rows: repeat(2,max-content) auto;
+        height: 100%;
+    }
+
+    &__body > * {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    &__top-row {
+        @include media-extra-large() {
+            padding-bottom: 17px;
+        }
+    }
+
+    &__form-control-group {
+        display: grid;
+        gap: 8px;
+
+        @include media-extra-large() {
+            gap: 16px;
+        }
+      }
+  
+      &__form-control-group-title {
+        font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--dark);
+      }
+
+      &__form-control-wrapper {
+        background-color: var(--gray100);
+        border: 1px solid var(--grey-color);
+         border-radius: 4px; 
+         height: 34px;
+      }
+
+      &__form-control-input {
+        padding-left: 16px;
+        height: 100%;
+      }
+
+      &__form-control-select-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      &__form-control-select-result-input {
+        padding-left: 16px;
+        font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--dark-grey);
+  background: var(--gray100);
+  height: 100%;
+      }
+
+      &__form-control-select-arrow {
+        position: absolute;
+        right: 0;
+        width: 12px;
+        height: 6px;
+        margin-right: 18px;
+        margin-top: 4px;
+        transform: rotate(180deg);
+        transition: .3s ease-in-out;
+      }
+
+      &__form-control-select-arrow.active {
+        transform: rotate(0);
+      }
+
+      &__form-control-dropdown {
+        position: absolute;
+         z-index: 99;
+         top: 2.5rem;
+         background: var(--gray100);
+         border: 1px solid var(--grey-color);
+         box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+         border-radius: 4px;
+         opacity: 0;
+         visibility: hidden;
+         transition: .3s ease-in-out;
+         width: 100%;
+      }
+
+      &__form-control-dropdown.active {
+        opacity: 1;
+        visibility: visible;
+     }
+ 
+     &__form-control-select-list {
+        padding: 0;
+        margin: 0;
+        display: grid;
+        padding-top: 8px;
+        padding-bottom: 8px;
+     }
+
+     &__form-control-select-list-item {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 16px;
+    }
+
+    &__form-control-select-list-item-input {
+      font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+    }
+
+    &__btn-control-group {
+        padding: 20px 30px;
+        margin: 0;
+        border-top: 1px solid var(--grey-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: auto;
+    
+        @include media-extra-large() {
+            display: none;
+        }
+      }
+    
+    &__undo-btn {
+        min-width: 71px;
+        font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+      }
+    
+      &__add-user-btn {
+        min-width: 205px;
+        font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+
+    @include media-extra-large() {
+        min-width: unset;
+        max-width: 205px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+        margin-top: 8px;
+    }
+      }
+
+      &__add-user-btn.desktop {
+        display: none;
+
+        @include media-extra-large() {
+            display: flex;
+        }
+      }
+
+}

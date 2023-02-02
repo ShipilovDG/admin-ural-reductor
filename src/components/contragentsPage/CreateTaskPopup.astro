@@ -1,0 +1,884 @@
+<div class="popup create-task-popup" x-bind:class="{'active': createTaskPopup === true}" x-data="{table: 1}">
+    <form action="#" method="post" class="popup__form create-task-popup__form">
+    <div class="popup__content create-task-popup__content">
+  <div class="popup__top-row create-task-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="createTaskPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="createTaskPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title create-task-popup__title">
+        Создание задачи
+    </h2>
+   </div>
+   <ul role="list" class="site-section__table-tabs create-task-popup__table-tabs">
+    <li class="site-section__table-tabs-item create-task-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn create-task-popup__table-tabs-item-btn active" x-on:click="table = 1" x-bind:class="{'active': table === 1}">
+            Основные
+        </button>
+    </li><li class="site-section__table-tabs-item create-task-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn create-task-popup__table-tabs-item-btn" x-on:click="table = 2" x-bind:class="{'active': table === 2}">
+            Дополнительно
+        </button>
+    </li>
+   </ul>
+    <div class="popup__body create-task-popup__body" x-data="dropInputFiler">
+        <div class="create-task-popup__body-wrapper main" x-show="table === 1" x-data="{ createTaskPopupCheckList: false, 
+        createTaskPopupSubtaskList: false,
+        createTaskPopupCheckListProgress: false, taskCreatorType1: false, taskCreatorType2: false, taskCreatorType3: false, totalCheckBoxPercentageSum: '',
+        totalSubtaskPercentageSum: '',
+        checkListCheckBoxes: {percentage1: false, percentage2: false, percentage3: false},
+        subtaskCheckBoxes: {percentage1: false, percentage2: false, percentage3: false}
+        }"
+        x-init="$watch('checkListCheckBoxes', 
+        value => {
+        if(checkListCheckBoxes.percentage1 === true) {
+            checkListCheckBoxes.percentage1 = 33
+        } 
+        if(checkListCheckBoxes.percentage2 === true) {
+            checkListCheckBoxes.percentage2 = 33
+        } 
+        if(checkListCheckBoxes.percentage3 === true) {
+            checkListCheckBoxes.percentage3 = 33
+        } 
+        });
+        $watch('subtaskCheckBoxes', 
+        value => {
+        if(subtaskCheckBoxes.percentage1 === true) {
+            subtaskCheckBoxes.percentage1 = 33
+        } 
+        if(subtaskCheckBoxes.percentage2 === true) {
+            subtaskCheckBoxes.percentage2 = 33
+        } 
+        if(subtaskCheckBoxes.percentage3 === true) {
+            subtaskCheckBoxes.percentage3 = 33
+        } 
+        });
+        "
+        x-effect="totalCheckBoxPercentageSum = checkListCheckBoxes.percentage1 + checkListCheckBoxes.percentage2 + checkListCheckBoxes.percentage3; totalSubtaskPercentageSum = subtaskCheckBoxes.percentage1 + subtaskCheckBoxes.percentage2 + subtaskCheckBoxes.percentage3"
+        >
+            <fieldset class="create-task-popup__fieldset main-top m-b b-b">
+            <div class="create-task-popup__form-control-group task-name">
+                <p class="create-task-popup__form-control-group-title">
+                    Название
+                </p>
+                <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-input-wrapper">
+                  <input type="text" class="create-task-popup__form-control-input" placeholder="Задача #">
+                </div>
+             </div>
+             <div class="create-task-popup__form-control-group priority">
+                <p class="create-task-popup__form-control-group-title">
+                    Приоритет
+                </p>
+                <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Средний'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <div class="create-task-popup__task-priority-wrapper">
+                    <template x-if="resultInputVal === 'Низкий'">
+                        <svg class="create-task-popup__task-priority-icon low" width="2" height="12" viewBox="0 0 2 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10.6654V10.672M1 7.9987V1.33203" stroke="#42BA96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </template>  
+                    <template x-if="resultInputVal === 'Средний'">
+                        <svg class="create-task-popup__task-priority-icon medium" width="2" height="12" viewBox="0 0 2 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10.6654V10.672M1 7.9987V1.33203" stroke="#FFC107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>  
+                    </template> 
+                    <template x-if="resultInputVal === 'Высокий'">
+                        <svg class="create-task-popup__task-priority-icon high" width="2" height="12" viewBox="0 0 2 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10.6654V10.672M1 7.9987V1.33203" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </template>                      
+                  <input type="text" class="create-task-popup__form-control-select-result-input priority" value="Средний" readonly x-model="resultInputVal">
+                  </div>
+                  <div class="create-task-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="create-task-popup__form-control-select-list">
+                    <li class="create-task-popup__form-control-select-list-item priority">
+                        <svg class="create-task-popup__task-priority-icon low" width="2" height="12" viewBox="0 0 2 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10.6654V10.672M1 7.9987V1.33203" stroke="#42BA96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>  
+                      <input type="text" value="Низкий" readonly class="create-task-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Низкий'">
+                    </li>
+                    <li class="create-task-popup__form-control-select-list-item priority">
+                        <svg class="create-task-popup__task-priority-icon medium" width="2" height="12" viewBox="0 0 2 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10.6654V10.672M1 7.9987V1.33203" stroke="#FFC107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> 
+                      <input type="text" value="Средний" readonly class="create-task-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Средний'">
+                    </li>
+                    <li class="create-task-popup__form-control-select-list-item priority">
+                        <svg class="create-task-popup__task-priority-icon high" width="2" height="12" viewBox="0 0 2 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 10.6654V10.672M1 7.9987V1.33203" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>  
+                      <input type="text" value="Высокий" readonly class="create-task-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Высокий'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="create-task-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+             </div>
+             <textarea class="create-task-popup__full-task-explanation-textarea" placeholder="Подробное описание задачи"></textarea>
+             <div class="create-task-popup__check-list-progress-wrapper">
+                <button type="button" class="create-task-popup__add-check-list-btn" x-on:click="createTaskPopupCheckList = true;createTaskPopupCheckListProgress = true" x-text="createTaskPopupCheckList === true ? 'Чек-лист' : 'Добавить чек-лист'" x-bind:class="{'active': createTaskPopupCheckList === true }">Добавить чек-лист</button>
+                <div class="create-task-popup__check-list-progress" x-show="createTaskPopupCheckListProgress === true">
+                    <span class="create-task-popup__progress-percentage" x-text="`${totalCheckBoxPercentageSum}%`" x-ref="checkListProgressPercentageCount" x-init="$nextTick(() => { if($el.innerText === '99%') {console.log($el.innerText)} })"></span>
+                    <div class="create-task-popup__progress-bar-wrapper">
+                        <div class="create-task-popup__progress-bar" x-bind:style="`width: ${totalCheckBoxPercentageSum}%`" x-ref="checkListProgressBar" x-init="$watch('$refs.checkListProgressBar', 
+                        value => value.style.width === '99%' ? value.style.width = '100%': '');"></div>
+                    </div>
+                </div>
+            </div>
+                <ul role="list" class="create-task-popup__check-list" x-show="createTaskPopupCheckList === true">
+                    <li class="create-task-popup__check-list-item" x-ref="createTaskPopupCheckListItem1">
+                        <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                            <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>     
+                            </button>
+                            <ul class="site-section__choose-status-dropdown-list create-task-popup__choose-status-dropdown-list check-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                               <li class="site-section__choose-status-dropdown-list-item">
+                                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
+                               </li>
+                               <li class="site-section__choose-status-dropdown-list-item">
+                                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
+                             </li>
+                            </ul>
+                        </div>
+                        <div class="create-task-popup__check-list-checkbox-wrapper" x-on:click="toggleCheckboxState = !toggleCheckboxState;checkListCheckBoxes.percentage1 = !checkListCheckBoxes.percentage1" x-bind:class="{'active': toggleCheckboxState === true}" x-data="{toggleCheckboxState: false}">
+                            <input type="checkbox" class="create-task-popup__check-list-checkbox">
+                            </div>
+                        <input type="text" class="create-task-popup__check-list-input-text" value="Отправить что-нибудь">
+                        <button type="button" class="create-task-popup__check-list-item-delete-btn" x-on:click="$refs.createTaskPopupCheckListItem1.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="create-task-popup__check-list-item" x-ref="createTaskPopupCheckListItem2">
+                        <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                            <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>     
+                            </button>
+                            <ul class="site-section__choose-status-dropdown-list create-task-popup__choose-status-dropdown-list check-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                               <li class="site-section__choose-status-dropdown-list-item">
+                                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
+                               </li>
+                               <li class="site-section__choose-status-dropdown-list-item">
+                                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
+                             </li>
+                            </ul>
+                        </div>
+                        <div class="create-task-popup__check-list-checkbox-wrapper" x-on:click="toggleCheckboxState = !toggleCheckboxState;checkListCheckBoxes.percentage2 = !checkListCheckBoxes.percentage2" x-bind:class="{'active': toggleCheckboxState === true}" x-data="{toggleCheckboxState: false}">
+                            <input type="checkbox" class="create-task-popup__check-list-checkbox">
+                            </div>
+                        <input type="text" class="create-task-popup__check-list-input-text" value="Отправить что-нибудь">
+                        <button type="button" class="create-task-popup__check-list-item-delete-btn" x-on:click="$refs.createTaskPopupCheckListItem2.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="create-task-popup__check-list-item" x-ref="createTaskPopupCheckListItem3">
+                        <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                            <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>     
+                            </button>
+                            <ul class="site-section__choose-status-dropdown-list create-task-popup__choose-status-dropdown-list check-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                               <li class="site-section__choose-status-dropdown-list-item">
+                                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
+                               </li>
+                               <li class="site-section__choose-status-dropdown-list-item">
+                                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
+                             </li>
+                            </ul>
+                        </div>
+                        <div class="create-task-popup__check-list-checkbox-wrapper" x-on:click="toggleCheckboxState = !toggleCheckboxState;checkListCheckBoxes.percentage3 = !checkListCheckBoxes.percentage3" x-bind:class="{'active': toggleCheckboxState === true}" x-data="{toggleCheckboxState: false}">
+                            <input type="checkbox" class="create-task-popup__check-list-checkbox">
+                        </div>
+                        <input type="text" class="create-task-popup__check-list-input-text" placeholder="Нажмите, чтобы ввести текст">
+                        <button type="button" class="create-task-popup__check-list-item-delete-btn" x-on:click="$refs.createTaskPopupCheckListItem3.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+                <ul role="list" class="create-task-popup__attach-files-list">
+                </ul>
+                <button type="button" class="btn btn--secondary create-task-popup__attach-files-btn" x-on:click="handleFiles">
+                    <input class="create-task-popup__form-control-group-file-input" type="file" name="attachFiles" id="attachFiles" multiple x-on:change="handleFiles">
+                    <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.9998 4.66632L4.66647 8.99965C4.40125 9.26487 4.25226 9.62458 4.25226 9.99965C4.25226 10.3747 4.40125 10.7344 4.66647 10.9997C4.93169 11.2649 5.2914 11.4139 5.66647 11.4139C6.04154 11.4139 6.40125 11.2649 6.66647 10.9997L10.9998 6.66632C11.5302 6.13588 11.8282 5.41646 11.8282 4.66632C11.8282 3.91617 11.5302 3.19675 10.9998 2.66632C10.4694 2.13588 9.74995 1.83789 8.9998 1.83789C8.24966 1.83789 7.53024 2.13588 6.9998 2.66632L2.66647 6.99965C1.87082 7.7953 1.42383 8.87443 1.42383 9.99965C1.42383 11.1249 1.87082 12.204 2.66647 12.9997C3.46212 13.7953 4.54125 14.2423 5.66647 14.2423C6.79169 14.2423 7.87082 13.7953 8.66647 12.9997L12.9998 8.66632" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Прикрепить файлы              
+                </button>
+                <button type="button" class="btn btn--secondary create-task-popup__add-server-files-btn">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.00016 1.33203V10.6654M1.3335 5.9987H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>  
+                        Добавить файлы с сервера                  
+                </button>
+                <div class="create-task-popup__form-control-group resp">
+                    <p class="create-task-popup__form-control-group-title">
+                        Ответственный
+                    </p>
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                      <!-- <div class="create-task-popup__form-control-select-placeholer-wrapper">
+                        <p class="create-task-popup__placeholder-letter">
+                            И
+                        </p>
+                      <input type="text" class="create-task-popup__form-control-select-result-input" value="Иван" readonly>
+                       </div> -->
+                       <ul role="list" class="create-task-popup__form-control-select-names-list" x-ref="createTaskPopupFormControlSelectNamesListResp">
+                       </ul>
+                      <div class="create-task-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                      <ul role="list" class="create-task-popup__form-control-select-list">
+                        <li class="create-task-popup__form-control-select-list-item">
+                          <input type="text" value="Иван" readonly class="create-task-popup__form-control-select-list-item-input" 
+                          x-on:click="$refs.createTaskPopupFormControlSelectNamesListResp.insertAdjacentHTML('beforeend',
+                          `
+                          <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItem1'>
+                            <p class='create-task-popup__placeholder-letter'>
+                                И
+                            </p>
+                            <p class='create-task-popup__form-control-select-names-list-item-name'>Иван</p>
+                            <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItem1.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                </svg>
+                                </button>
+                        </li>
+                          `
+                          )">
+                        </li>
+                        <li class="create-task-popup__form-control-select-list-item">
+                            <input type="text" value="Андрей" readonly class="create-task-popup__form-control-select-list-item-input" 
+                            x-on:click="$refs.createTaskPopupFormControlSelectNamesListResp.insertAdjacentHTML('beforeend',
+                            `
+                            <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItem2'>
+                              <p class='create-task-popup__placeholder-letter'>
+                                А
+                              </p>
+                              <p class='create-task-popup__form-control-select-names-list-item-name'>Андрей</p>
+                              <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItem2.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                  <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                  </svg>
+                                  </button>
+                          </li>
+                            `
+                            )">
+                          </li>
+                      </ul>
+                      </div>
+                      <svg class="create-task-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                        <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                  
+                    </div>
+                 </div>
+                 <ul role="list" class="create-task-popup__task-creator-types-list desktop">
+                    <li class="create-task-popup__task-creator-types-list-item">
+                        <button type="button" class="create-task-popup__task-creator-types-list-item-btn" x-on:click="taskCreatorType1 = !taskCreatorType1">Постановщик</button>
+                    </li>
+                    <li class="create-task-popup__task-creator-types-list-item">
+                        <button type="button" class="create-task-popup__task-creator-types-list-item-btn" x-on:click="taskCreatorType2 = !taskCreatorType2">Соисполнители</button>
+                    </li>
+                    <li class="create-task-popup__task-creator-types-list-item">
+                        <button type="button" class="create-task-popup__task-creator-types-list-item-btn" x-on:click="taskCreatorType3 = !taskCreatorType3">Наблюдатели</button>
+                    </li>
+                 </ul>
+                 <button type="button" class="create-task-popup__add-few-btn">
+                    Выбрать несколько
+                 </button>
+                 <ul role="list" class="create-task-popup__task-creator-types-list mobile">
+                    <li class="create-task-popup__task-creator-types-list-item">
+                        <button type="button" class="create-task-popup__task-creator-types-list-item-btn" x-on:click="taskCreatorType1 = !taskCreatorType1">Постановщик</button>
+                    </li>
+                    <li class="create-task-popup__task-creator-types-list-item">
+                        <button type="button" class="create-task-popup__task-creator-types-list-item-btn" x-on:click="taskCreatorType2 = !taskCreatorType2">Соисполнители</button>
+                    </li>
+                    <li class="create-task-popup__task-creator-types-list-item">
+                        <button type="button" class="create-task-popup__task-creator-types-list-item-btn" x-on:click="taskCreatorType3 = !taskCreatorType3">Наблюдатели</button>
+                    </li>
+                 </ul>
+                 <div class="create-task-popup__form-control-group taskCreatorType1" x-show="taskCreatorType1 === true">
+                    <p class="create-task-popup__form-control-group-title">
+                        Постановщик
+                    </p>
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                      <!-- <div class="create-task-popup__form-control-select-placeholer-wrapper">
+                        <p class="create-task-popup__placeholder-letter">
+                            И
+                        </p>
+                      <input type="text" class="create-task-popup__form-control-select-result-input" placeholder="Иван" readonly>
+                       </div> -->
+                       <ul role="list" class="create-task-popup__form-control-select-names-list" x-ref="createTaskPopupFormControlSelectNamesListSetter">
+                       </ul>
+                      <div class="create-task-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                      <ul role="list" class="create-task-popup__form-control-select-list">
+                        <li class="create-task-popup__form-control-select-list-item">
+                          <input type="text" value="Иван" readonly class="create-task-popup__form-control-select-list-item-input" 
+                          x-on:click="$refs.createTaskPopupFormControlSelectNamesListSetter.insertAdjacentHTML('beforeend',
+                          `
+                          <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItemSetter1'>
+                            <p class='create-task-popup__placeholder-letter'>
+                                И
+                            </p>
+                            <p class='create-task-popup__form-control-select-names-list-item-name'>Иван</p>
+                            <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItemSetter1.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                </svg>
+                                </button>
+                        </li>
+                          `
+                          )">
+                        </li>
+                        <li class="create-task-popup__form-control-select-list-item">
+                            <input type="text" value="Андрей" readonly class="create-task-popup__form-control-select-list-item-input" 
+                            x-on:click="$refs.createTaskPopupFormControlSelectNamesListSetter.insertAdjacentHTML('beforeend',
+                            `
+                            <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItemSetter2'>
+                              <p class='create-task-popup__placeholder-letter'>
+                                А
+                              </p>
+                              <p class='create-task-popup__form-control-select-names-list-item-name'>Андрей</p>
+                              <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItemSetter2.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                  <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                  </svg>
+                                  </button>
+                          </li>
+                            `
+                            )">
+                          </li>
+                      </ul>
+                      </div>
+                      <svg class="create-task-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                        <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                  
+                    </div>
+                 </div>
+                 <div class="create-task-popup__form-control-group taskCreatorType2" x-show="taskCreatorType2 === true">
+                    <p class="create-task-popup__form-control-group-title">
+                        Соисполнители
+                    </p>
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                      <!-- <div class="create-task-popup__form-control-select-placeholer-wrapper">
+                        <p class="create-task-popup__placeholder-letter">
+                            И
+                        </p>
+                      <input type="text" class="create-task-popup__form-control-select-result-input" placeholder="Иван" readonly>
+                       </div> -->
+                       <ul role="list" class="create-task-popup__form-control-select-names-list" x-ref="createTaskPopupFormControlSelectNamesListCoExecutors">
+                       </ul>
+                      <div class="create-task-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                      <ul role="list" class="create-task-popup__form-control-select-list">
+                        <li class="create-task-popup__form-control-select-list-item">
+                          <input type="text" value="Иван" readonly class="create-task-popup__form-control-select-list-item-input" 
+                          x-on:click="$refs.createTaskPopupFormControlSelectNamesListCoExecutors.insertAdjacentHTML('beforeend',
+                          `
+                          <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItemCoExecutors1'>
+                            <p class='create-task-popup__placeholder-letter'>
+                                И
+                            </p>
+                            <p class='create-task-popup__form-control-select-names-list-item-name'>Иван</p>
+                            <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItemCoExecutors1.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                </svg>
+                                </button>
+                        </li>
+                          `
+                          )">
+                        </li>
+                        <li class="create-task-popup__form-control-select-list-item">
+                            <input type="text" value="Андрей" readonly class="create-task-popup__form-control-select-list-item-input" 
+                            x-on:click="$refs.createTaskPopupFormControlSelectNamesListCoExecutors.insertAdjacentHTML('beforeend',
+                            `
+                            <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItemCoExecutors2'>
+                              <p class='create-task-popup__placeholder-letter'>
+                                А
+                              </p>
+                              <p class='create-task-popup__form-control-select-names-list-item-name'>Андрей</p>
+                              <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItemCoExecutors2.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                  <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                  </svg>
+                                  </button>
+                          </li>
+                            `
+                            )">
+                          </li>
+                      </ul>
+                      </div>
+                      <svg class="create-task-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                        <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                  
+                    </div>
+                 </div>
+                 <div class="create-task-popup__form-control-group taskCreatorType3" x-show="taskCreatorType3 === true">
+                    <p class="create-task-popup__form-control-group-title">
+                        Наблюдатели
+                    </p>
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                      <!-- <div class="create-task-popup__form-control-select-placeholer-wrapper">
+                        <p class="create-task-popup__placeholder-letter">
+                            И
+                        </p>
+                      <input type="text" class="create-task-popup__form-control-select-result-input" placeholder="Иван" readonly>
+                       </div> -->
+                       <ul role="list" class="create-task-popup__form-control-select-names-list" x-ref="createTaskPopupFormControlSelectNamesListObservers">
+                       </ul>
+                      <div class="create-task-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                      <ul role="list" class="create-task-popup__form-control-select-list">
+                        <li class="create-task-popup__form-control-select-list-item">
+                          <input type="text" value="Иван" readonly class="create-task-popup__form-control-select-list-item-input" 
+                          x-on:click="$refs.createTaskPopupFormControlSelectNamesListObservers.insertAdjacentHTML('beforeend',
+                          `
+                          <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItemObservers1'>
+                            <p class='create-task-popup__placeholder-letter'>
+                                И
+                            </p>
+                            <p class='create-task-popup__form-control-select-names-list-item-name'>Иван</p>
+                            <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItemObservers1.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                </svg>
+                                </button>
+                        </li>
+                          `
+                          )">
+                        </li>
+                        <li class="create-task-popup__form-control-select-list-item">
+                            <input type="text" value="Андрей" readonly class="create-task-popup__form-control-select-list-item-input" 
+                            x-on:click="$refs.createTaskPopupFormControlSelectNamesListObservers.insertAdjacentHTML('beforeend',
+                            `
+                            <li class='create-task-popup__form-control-select-names-list-item' x-ref='createTaskPopupFormControlSelectNamesListItemObservers2'>
+                              <p class='create-task-popup__placeholder-letter'>
+                                А
+                              </p>
+                              <p class='create-task-popup__form-control-select-names-list-item-name'>Андрей</p>
+                              <button type='button' class='create-task-popup__form-control-select-names-list-item-delete-btn' x-on:click='$refs.createTaskPopupFormControlSelectNamesListItemObservers2.remove()''><svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                                  <path d='M9 1L1 9M1 1L9 9' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                                  </svg>
+                                  </button>
+                          </li>
+                            `
+                            )">
+                          </li>
+                      </ul>
+                      </div>
+                      <svg class="create-task-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                        <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                  
+                    </div>
+                 </div>
+            </fieldset>
+            <fieldset class="create-task-popup__fieldset dates m-b b-b">
+                <div class="create-task-popup__form-control-group">
+                    <p class="create-task-popup__form-control-group-title">
+                        Дата начала
+                    </p>
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-input-wrapper datetimepicker-wrapper" id="datetimepicker1" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                      <input class="create-task-popup__form-control-input-date" id="datetimepicker1Input" type="text" data-td-target="#datetimepicker1" readonly value="11.10.2022">
+                    <button type="button" data-td-target="#datetimepicker1" data-td-toggle="datetimepicker" class="create-task-popup__form-control-datepicker-btn">
+                      <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1V5M5 1V5M1 9H17M3 3H15C16.1046 3 17 3.89543 17 5V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V5C1 3.89543 1.89543 3 3 3ZM5 13H7V15H5V13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>              
+                    </button>
+                    </div>
+                </div>
+                <div class="create-task-popup__form-control-group">
+                    <p class="create-task-popup__form-control-group-title">
+                        Крайний срок
+                    </p>
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-input-wrapper datetimepicker-wrapper" id="datetimepicker2" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                      <input class="create-task-popup__form-control-input-date" id="datetimepicker2Input" type="text" data-td-target="#datetimepicker2" readonly value="11.10.2022">
+                    <button type="button" data-td-target="#datetimepicker2" data-td-toggle="datetimepicker" class="create-task-popup__form-control-datepicker-btn">
+                      <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1V5M5 1V5M1 9H17M3 3H15C16.1046 3 17 3.89543 17 5V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V5C1 3.89543 1.89543 3 3 3ZM5 13H7V15H5V13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>              
+                    </button>
+                    </div>
+                </div>
+                <div class="create-task-popup__checkbox-wrapper edge-date">
+                    <input type="checkbox" name="edgeDate" id="edgeDate" class="create-task-popup__checkbox">
+                    <label for="edgeDate" class="create-task-popup__label edge-date">Исполнитель может менять крайний срок задачи</label>
+                 </div>
+            </fieldset>
+            <fieldset class="create-task-popup__fieldset m-b b-b">
+                <div class="create-task-popup__checkbox-wrapper">
+                    <input type="checkbox" name="completeControl" id="completeControl" class="create-task-popup__checkbox">
+                    <label for="completeControl" class="create-task-popup__label">Отправить постановщику на контроль после выполнения</label>
+                 </div>
+            </fieldset>
+            <fieldset class="create-task-popup__fieldset m-b">
+                <div class="create-task-popup__subtask-title-row">
+                    <h2 class="popup__title create-task-popup__title">
+                        Подзадачи
+                    </h2>
+                        <div class="create-task-popup__subtask-progress">
+                            <span class="create-task-popup__progress-percentage" x-text="`${totalSubtaskPercentageSum}%`" x-ref="subtaskProgressPercentageCount" x-init="$nextTick(() => { if($refs.subtaskProgressPercentageCount.innerText === '99%') {console.log($refs.subtaskProgressPercentageCount.innerText)} })"></span>
+                            <div class="create-task-popup__progress-bar-wrapper">
+                                <div class="create-task-popup__progress-bar" x-bind:style="`width: ${totalSubtaskPercentageSum}%`" x-ref="subtaskProgressBar" x-init="$watch('$refs.subtaskProgressBar', 
+                        value => value.style.width === '99%' ? value.style.width = '100%': '');"></div>
+                            </div>
+                        </div>
+                </div>
+                <ul role="list" class="create-task-popup__subtask-list" x-show="createTaskPopupSubtaskList === true">
+                    <li class="create-task-popup__subtask-list-item" x-ref="createTaskPopupSubtaskListItem1">
+                        <div class="create-task-popup__subtask-list-item-inputs">
+                        <div class="create-task-popup__subtask-list-item-checkbox-wrapper" x-data="{toggleCheckboxState: false}" x-on:click="toggleCheckboxState = !toggleCheckboxState;subtaskCheckBoxes.percentage1 = !subtaskCheckBoxes.percentage1" x-bind:class="{'active': toggleCheckboxState === true}">
+                            <input type="checkbox" class="create-task-popup__subtask-list-item-checkbox">
+                        </div>
+                        <input type="text" class="create-task-popup__subtask-list-item-input-text" value="Отправить что-нибудь">
+                       </div>
+                        <div class="create-task-popup__subtask-list-item-controls">
+                            <button type="button" class="create-task-popup__subtask-list-item-view-btn">
+                                <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                 
+                            </button>
+                            <button type="button" class="create-task-popup__subtask-list-item-new-link-btn">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 4H3C2.46957 4 1.96086 4.21071 1.58579 4.58579C1.21071 4.96086 1 5.46957 1 6V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H12C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15V10M7 11L17 1M17 1H12M17 1V6" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                         
+                            </button>
+                            <button type="button" class="create-task-popup__subtask-list-item-delete-btn" x-on:click="$refs.createTaskPopupSubtaskListItem1.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="create-task-popup__subtask-list-item" x-ref="createTaskPopupSubtaskListItem2">
+                        <div class="create-task-popup__subtask-list-item-inputs">
+                        <div class="create-task-popup__subtask-list-item-checkbox-wrapper" x-data="{toggleCheckboxState: false}" x-on:click="toggleCheckboxState = !toggleCheckboxState;subtaskCheckBoxes.percentage2 = !subtaskCheckBoxes.percentage2" x-bind:class="{'active': toggleCheckboxState === true}">
+                            <input type="checkbox" class="create-task-popup__subtask-list-item-checkbox">
+                        </div>
+                        <input type="text" class="create-task-popup__subtask-list-item-input-text" value="Отправить что-нибудь">
+                       </div>
+                        <div class="create-task-popup__subtask-list-item-controls">
+                            <button type="button" class="create-task-popup__subtask-list-item-view-btn">
+                                <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                 
+                            </button>
+                            <button type="button" class="create-task-popup__subtask-list-item-new-link-btn">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 4H3C2.46957 4 1.96086 4.21071 1.58579 4.58579C1.21071 4.96086 1 5.46957 1 6V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H12C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15V10M7 11L17 1M17 1H12M17 1V6" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                         
+                            </button>
+                            <button type="button" class="create-task-popup__subtask-list-item-delete-btn" x-on:click="$refs.createTaskPopupSubtaskListItem2.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="create-task-popup__subtask-list-item" x-ref="createTaskPopupSubtaskListItem3">
+                        <div class="create-task-popup__subtask-list-item-inputs">
+                        <div class="create-task-popup__subtask-list-item-checkbox-wrapper" x-data="{toggleCheckboxState: false}" x-on:click="toggleCheckboxState = !toggleCheckboxState;subtaskCheckBoxes.percentage3 = !subtaskCheckBoxes.percentage3" x-bind:class="{'active': toggleCheckboxState === true}">
+                            <input type="checkbox" class="create-task-popup__subtask-list-item-checkbox">
+                        </div>
+                        <input type="text" class="create-task-popup__subtask-list-item-input-text" value="Отправить что-нибудь">
+                       </div>
+                        <div class="create-task-popup__subtask-list-item-controls">
+                            <button type="button" class="create-task-popup__subtask-list-item-view-btn">
+                                <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                 
+                            </button>
+                            <button type="button" class="create-task-popup__subtask-list-item-new-link-btn">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 4H3C2.46957 4 1.96086 4.21071 1.58579 4.58579C1.21071 4.96086 1 5.46957 1 6V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H12C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15V10M7 11L17 1M17 1H12M17 1V6" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                         
+                            </button>
+                            <button type="button" class="create-task-popup__subtask-list-item-delete-btn" x-on:click="$refs.createTaskPopupSubtaskListItem3.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <div class="create-task-popup__form-control-group" x-on:click="createTaskPopupSubtaskList = true">
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-input-wrapper subtask">
+                      <input type="text" class="create-task-popup__form-control-input" placeholder="Быстрое создание подзадачи">
+                      <svg class="create-task-popup__form-control-subtask-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.33341 3.66797H3.00008C2.64646 3.66797 2.30732 3.80844 2.05727 4.05849C1.80722 4.30854 1.66675 4.64768 1.66675 5.0013V11.0013C1.66675 11.3549 1.80722 11.6941 2.05727 11.9441C2.30732 12.1942 2.64646 12.3346 3.00008 12.3346H9.00008C9.3537 12.3346 9.69284 12.1942 9.94289 11.9441C10.1929 11.6941 10.3334 11.3549 10.3334 11.0013V7.66797M5.66675 8.33464L12.3334 1.66797M12.3334 1.66797H9.00008M12.3334 1.66797V5.0013" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                    </div>
+                 </div>
+                 <div class="create-task-popup__form-control-group new-subtask-group">
+                    <div class="create-task-popup__form-control-wrapper create-task-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Иван'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                      <div class="create-task-popup__task-priority-wrapper">
+                        <div class="create-task-popup__form-control-select-placeholer-wrapper">
+                            <p class="create-task-popup__placeholder-letter" x-text="resultInputVal === 'Иван' ? 'И' : resultInputVal === 'Андрей' ? 'A' : ''">
+                            </p>
+                            <input type="text" class="create-task-popup__form-control-select-result-input subtask" value="Иван" readonly x-model="resultInputVal">
+                           </div>                
+                      </div>
+                      <div class="create-task-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                      <ul role="list" class="create-task-popup__form-control-select-list">
+                        <li class="create-task-popup__form-control-select-list-item">
+                          <input type="text" value="Иван" readonly class="create-task-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван'">
+                        </li>
+                        <li class="create-task-popup__form-control-select-list-item">
+                          <input type="text" value="Андрей" readonly class="create-task-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Андрей'">
+                        </li>
+                      </ul>
+                      </div>
+                      <svg class="create-task-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                        <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                  
+                    </div>
+                    <div class="create-task-popup__subtask-controls">
+                        <button type="button" class="btn btn--secondary create-task-popup__subtask-delete-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 1L1 13M1 1L13 13" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                         </button>
+                         <button type="button" class="btn btn--primary create-task-popup__subtask-check-btn">
+                            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 6L6 11L16 1" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                
+                         </button>
+                    </div>
+                 </div>
+                 <button type="button" class="create-task-popup__new-subtask-btn">
+                    Новая подзадача
+                 </button>
+                 <button type="button" class="create-task-popup__add-exist-subtask-btn">
+                    Добавить подзадачу из сущеcтвующих
+                 </button>
+            </fieldset>
+        </div>
+        <div class="create-task-popup__body-wrapper add" x-show="table === 2">
+            <fieldset class="create-task-popup__fieldset add-info-tag m-b b-b">
+                <h2 class="popup__title create-task-popup__title">
+                    Теги
+                </h2>
+                <button type="button" class="create-task-popup__add-tag-btn">
+                    Добавить тег
+                 </button>
+            </fieldset>
+            <fieldset class="create-task-popup__fieldset add-info m-b b-b">
+                <h2 class="popup__title create-task-popup__title">
+                    Связи
+                </h2>
+                <div class="create-task-popup__add-info-link-card">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="create-task-popup__add-info-link-card-title">ООО “УРАЛРЕДУКТОР”</p>                        
+                </div> 
+                <button type="button" class="create-task-popup__add-links-btn">
+                    Добавить связи
+                 </button>
+            </fieldset>
+            <fieldset class="create-task-popup__fieldset add-info m-b b-b">
+                <h2 class="popup__title create-task-popup__title">
+                    Напоминание
+                </h2>
+                <ul role="list" class="create-task-popup__remind-list">
+                    <li class="create-task-popup__remind-list-item">
+                        <div class="create-task-popup__form-control-group remind-group">
+                            <p class="create-task-popup__remind-group-date">За 1 дней по крайнему сроку</p>
+                            <p class="create-task-popup__remind-group-resp">Ответственному</p>
+                            <!-- <input type="text" class="create-contragent-popup__form-control-input edge-date" value="За 1 дней по крайнему сроку" readonly>
+                            <input type="text" class="create-contragent-popup__form-control-input resp" value="Ответственному" readonly> -->
+                        </div>
+                            <div class="create-task-popup__remind-list-item-controls">
+                                <button type="button" class="create-task-popup__remind-list-item-edit-btn">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="create-task-popup__remind-list-item-delete-btn">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>             
+                                </button>
+                            </div>
+                    </li>
+                  </ul>
+                <button type="button" class="create-task-popup__add-remind-btn">
+                    Добавить напоминание
+                 </button>
+            </fieldset>
+            <fieldset class="create-task-popup__fieldset add-info">
+                <button type="button" class="create-task-popup__make-regular-btn">
+                    Сделать регулярной
+                 </button>
+                 <div class="create-task-popup__regular-remind-group-wrapper">
+                 <div class="create-task-popup__form-control-group regular-remind-group">
+                    <p class="create-task-popup__regular-remind-group-text-1">Будет создан шаблон задачи с заданными параметрами повторения</p>
+                    <p class="create-task-popup__regular-remind-group-text-2">Ежедневно, Интервал в днях: 1, в 14:47 (GMT +05:00), Без даты окончания</p>
+                    <!-- <input type="text" class="create-contragent-popup__form-control-input" value="Будет создан шаблон задачи с заданными параметрами повторения" readonly>
+                    <input type="text" class="create-contragent-popup__form-control-input" value="Ежедневно, Интервал в днях: 1, в 14:47 (GMT +05:00), Без даты окончания" readonly> -->
+                 </div>
+                 <div class="create-task-popup__remind-list-item-controls">
+                    <button type="button" class="create-task-popup__remind-list-item-edit-btn">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="create-task-popup__remind-list-item-delete-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>             
+                    </button>
+                </div>
+                </div>
+            </fieldset>
+        </div>
+    <ul role="list" class="popup__btn-control-group create-task-popup__btn-control-group">
+      <li class="popup__btn-control-group-item create-task-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn create-task-popup__undo-btn" x-on:click="createTaskPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item create-task-popup__btn-control-group-item">
+        <button type="button" class="btn btn--secondary create-task-popup__save-create-btn">
+            Сохр. создать
+        </button>
+    </li>
+      <li class="popup__btn-control-group-item create-task-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn create-task-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+</div>
+<script is:inline>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('dropInputFiler', () => ({
+
+        handleFiles() {
+          const fileInput = document.querySelector('.create-task-popup__form-control-group-file-input');
+          const files = fileInput.files;
+          const fileList = document.querySelector('.create-task-popup__attach-files-list');
+
+          [...files].forEach((file, index) => {
+            fileList.insertAdjacentHTML('beforeEnd', 
+            `
+          <li class="create-task-popup__attach-files-list-item" x-ref="createTaskPopupAttachFilesListItem${index}">
+                        <div class="create-task-popup__attach-files-card">
+                        <img src="/images/attach-files-placeholder.png" alt="attach files image" class="create-task-popup__attach-files-list-item-img" loading="lazy" decoding="async">
+                        <div class="create-task-popup__attach-files-list-item-info">
+                            <p class="create-task-popup__attach-files-list-item-title">${file.name}</p>
+                            <p class="create-task-popup__attach-files-list-item-size-format">
+                                ${file.size} КБ <span>${file.type}</span> 
+                            </p>
+                        </div>
+                        <div class="create-task-popup__attach-files-list-item-controls desktop">
+                            <button type="button" class="create-task-popup__attach-files-list-item-add-btn">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.99967 1.33203V10.6654M1.33301 5.9987H10.6663" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>    
+                            </button>
+                            <button type="button" class="create-task-popup__attach-files-list-item-download-btn">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.66699 10.3346V11.668C1.66699 12.0216 1.80747 12.3607 2.05752 12.6108C2.30756 12.8608 2.6467 13.0013 3.00033 13.0013H11.0003C11.3539 13.0013 11.6931 12.8608 11.9431 12.6108C12.1932 12.3607 12.3337 12.0216 12.3337 11.668V10.3346M3.66699 6.33464L7.00033 9.66797M7.00033 9.66797L10.3337 6.33464M7.00033 9.66797V1.66797" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>      
+                            </button>
+                            <button type="button" class="create-task-popup__attach-files-list-item-delete-btn" x-on:click="$el.closest('.create-task-popup__attach-files-list-item').remove()">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+                            </button>
+                        </div>
+                        </div>
+                        <div class="create-task-popup__attach-files-list-item-controls mobile">
+                            <button type="button" class="create-task-popup__attach-files-list-item-add-btn">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 1V17M1 9H17" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>        
+                            </button>
+                            <button type="button" class="create-task-popup__attach-files-list-item-download-btn">
+                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 14V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H15C15.5304 18 16.0391 17.7893 16.4142 17.4142C16.7893 17.0391 17 16.5304 17 16V14M4 8L9 13M9 13L14 8M9 13V1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>        
+                            </button>
+                            <button type="button" class="create-task-popup__attach-files-list-item-delete-btn" x-on:click="$refs.createTaskPopupAttachFilesListItem${index}.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+          `
+            )
+          });
+      }
+      }))
+   })
+  </script>
+<script type="module">
+    // Tempus Dominus JavaScript datepicker https://getdatepicker.com/ 
+    import { TempusDominus } from 'https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.esm.js';
+  
+    new TempusDominus(document.getElementById('datetimepicker1'), {
+      display: {
+        theme: 'light',
+        buttons: {
+          clear: true,
+        },
+        components: {
+          clock: false,
+          hours: false,
+          minutes: false,
+          seconds: false,
+        },
+      }
+    });
+
+    new TempusDominus(document.getElementById('datetimepicker2'), {
+      display: {
+        theme: 'light',
+        buttons: {
+          clear: true,
+        },
+        components: {
+          clock: false,
+          hours: false,
+          minutes: false,
+          seconds: false,
+        },
+      }
+    });
+    function initTippyTooltip() {
+        if (window.innerWidth >= 1200) {
+            tippy('.create-task-popup__add-few-btn', {
+           content: 'Для каждого ответственного будет создана своя задача',
+           placement: 'right'
+         })
+        } else {
+            tippy('.create-task-popup__add-few-btn', {
+           content: 'Для каждого ответственного будет создана своя задача',
+           placement: 'bottom'
+         })
+        }
+    }
+
+    initTippyTooltip();
+    
+  </script>

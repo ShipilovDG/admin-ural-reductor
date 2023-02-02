@@ -1,0 +1,335 @@
+<div class="create-offer-popup__params-lists-wrapper" x-data="{countInputVal1: 1, countInputVal2: 1, paramsLists:[1,2] }">
+    <nav class="create-offer-popup__params-lists-nav">
+    <ul role="list" class="create-offer-popup__params-list create-offer-popup__params-caption-list b-b p-b">
+      <li class="create-offer-popup__params-caption-list-item t-a-c">№</li>
+      <li class="create-offer-popup__params-caption-list-item">Название</li>
+      <li class="create-offer-popup__params-caption-list-item t-a-c">Хар-ки</li>
+      <li class="create-offer-popup__params-caption-list-item">Кол-во</li>
+      <li class="create-offer-popup__params-caption-list-item">Вес,кг</li>
+      <li class="create-offer-popup__params-caption-list-item">Объём, м3</li>
+      <li class="create-offer-popup__params-caption-list-item t-a-c">Цена с НДС</li>
+      <li class="create-offer-popup__params-caption-list-item t-a-c">Сумма</li>
+    </ul>
+    <template x-for="paramsList in paramsLists">
+    <ul role="list" class="create-offer-popup__params-list params-group b-b p-b">
+      <li class="create-offer-popup__params-list-item number-item t-a-c">
+        <span class="create-offer-popup__item-number" x-text="paramsList"></span>
+        <div class="create-offer-popup__delete-btn-wrapper mobile" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+         <button type="button" class="create-offer-popup__show-delete-btn" x-on:click="toggleDropdown = !toggleDropdown">
+           <svg width="4" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#495057"/>
+             <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#495057"/>
+             <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#495057"/>
+             <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>                    
+         </button>
+         <button type="button" class="create-offer-popup__delete-btn" x-bind:class="{'active': toggleDropdown === true}" x-on:click="paramsLists = paramsLists.filter(i => i !== paramsList)">
+           Удалить           
+        </button>
+        </div>
+      </li>
+      <li class="create-offer-popup__params-list-item type-item">
+       <h4 class="create-offer-popup__params-list-item-title">Название</h4>
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Тип'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+           <input type="text" class="create-offer-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 55" value="Тип" readonly x-model="resultInputVal">
+           <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+           <ul role="list" class="create-offer-popup__form-control-select-list">
+             <li class="create-offer-popup__form-control-select-list-item">
+               <input type="text" name="Тип" id="Тип 11" value="Тип" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Тип'">
+             </li>
+             <li class="create-offer-popup__form-control-select-list-item">
+               <input type="text" name="Тип 1" id="Тип 21" value="Тип 1" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Тип 1'">
+             </li>
+             <li class="create-offer-popup__form-control-select-list-item">
+               <input type="text" name="Тип 2" id="Тип 222" value="Тип 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Тип 2'">
+             </li>
+           </ul>
+            </div>
+           <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+             <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>                  
+         </div>
+       </div>
+      </li>
+      <li class="create-offer-popup__params-list-item chars-item">
+       <h4 class="create-offer-popup__params-list-item-title">Хар-ки</h4>
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper chars-wrapper">
+           <input type="text" class="create-offer-popup__form-control-input" value="УВЛ">
+         </div>
+      </div>
+      </li>
+      <li class="create-offer-popup__params-list-item count-item">
+       <h4 class="create-offer-popup__params-list-item-title">Кол-во</h4>
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper count-wrapper">
+           <input type="number" class="create-offer-popup__form-control-input count-input" value="1" x-ref="inputVal">
+         </div>
+      </div>
+      </li>
+      <li class="create-offer-popup__params-list-item weight-item">
+       <h4 class="create-offer-popup__params-list-item-title">Вес,кг</h4>
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper weight-wrapper">
+           <input type="number" class="create-offer-popup__form-control-input" value="1">
+         </div>
+      </div>
+      </li>
+      <li class="create-offer-popup__params-list-item volume-item">
+       <h4 class="create-offer-popup__params-list-item-title">Объём, м3</h4>
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper volume-wrapper">
+           <input type="number" class="create-offer-popup__form-control-input" value="1">
+         </div>
+      </div>
+      </li>
+      <li class="create-offer-popup__params-list-item nds-price-item">
+       <h4 class="create-offer-popup__params-list-item-title">Цена с НДС</h4>
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper nds-price-wrapper">
+           <input class="create-offer-popup__form-control-input" placeholder="0,00" x-mask:dynamic="$money($input, ',')">
+         </div>
+      </div>
+      </li>
+      <li class="create-offer-popup__params-list-item sum-item">
+       <h4 class="create-offer-popup__params-list-item-title">Сумма</h4>
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper price-wrapper">
+           <input class="create-offer-popup__form-control-input" placeholder="5 000 000,00" x-mask:dynamic="$money($input, ',')">
+         </div>
+      </div>
+      </li>
+      <li class="create-offer-popup__params-list-item options-item">
+        <div class="create-offer-popup__delete-btn-wrapper" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+             <button type="button" class="create-offer-popup__show-delete-btn" x-on:click="toggleDropdown = !toggleDropdown">
+               <svg width="4" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#495057"/>
+                 <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#495057"/>
+                 <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#495057"/>
+                 <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>                    
+             </button>
+             <button type="button" class="create-offer-popup__delete-btn" x-bind:class="{'active': toggleDropdown === true}" x-on:click="paramsLists = paramsLists.filter(i => i !== paramsList)">
+                     Удалить           
+             </button>
+        </div>
+      </li>
+      <li class="create-offer-popup__params-list-item name-item">
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper params-name-wrapper">
+           <input type="text" class="create-offer-popup__form-control-input" placeholder="Наименование">
+         </div>
+      </div>
+      </li>
+    </ul>
+   </template>
+   </nav>
+   <button class="create-offer-popup__bottom-params-list-add-btn adaptive" type="button" x-on:click="addParamsList">
+     Добавить строку
+   </button>
+   <ul role="list" class="create-offer-popup__bottom-params-list adaptive">
+     <li class="create-offer-popup__bottom-params-list-item title-item">
+       <h4 class="create-offer-popup__params-list-item-title bottom-params-list-item-title">Итого</h4>
+    </li>
+    <li class="create-offer-popup__bottom-params-list-item">
+     <h4 class="create-offer-popup__params-list-item-title">Кол-во</h4>
+     <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper sumup-input-wrapper">
+       <input readonly class="create-offer-popup__form-control-input-number" x-model="document.querySelector('.create-offer-popup__form-control-input.count-input').value">
+     </div>
+   </li>
+   <li class="create-offer-popup__bottom-params-list-item">
+     <h4 class="create-offer-popup__params-list-item-title">Вес,кг</h4>
+     <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper sumup-input-wrapper">
+       <input type="number" readonly class="create-offer-popup__form-control-input-number" value="2">
+     </div>
+   </li>
+   <li class="create-offer-popup__bottom-params-list-item">
+     <h4 class="create-offer-popup__params-list-item-title">Объём, м3</h4>
+     <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper sumup-input-wrapper-last">
+       <input type="number" readonly class="create-offer-popup__form-control-input-number" value="2">
+     </div>
+   </li>
+    <li class="create-offer-popup__bottom-params-list-item sum-item">
+     <h4 class="create-offer-popup__params-list-item-title">Сумма</h4>
+     <div class="create-offer-popup__form-control-group">
+       <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper count-input-wrapper">
+         <input type="number" readonly class="create-offer-popup__form-control-input-number" placeholder="0,00">
+       </div>
+     </div>
+  </li>
+   </ul>
+    <ul role="list" class="create-offer-popup__bottom-params-list desktop">
+       <li class="create-offer-popup__bottom-params-list-item add-btn-item">
+          <button class="create-offer-popup__bottom-params-list-add-btn" type="button" x-on:click="addParamsList">
+            Добавить строку
+          </button>
+       </li>
+       <li class="create-offer-popup__bottom-params-list-item">
+         <div class="create-offer-popup__form-control-group create-offer-popup__form-control-group--4-cols bottom-params-list">
+           <p class="create-offer-popup__form-control-group-title bottom-params-list">
+             Итого:
+           </p>
+           <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper sumup-input-wrapper">
+             <input readonly class="create-offer-popup__form-control-input-number" x-model="document.querySelector('.create-offer-popup__form-control-input.count-input').value">
+           </div>
+           <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper sumup-input-wrapper">
+             <input type="number" readonly class="create-offer-popup__form-control-input-number" value="2">
+           </div>
+           <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper sumup-input-wrapper-last">
+             <input type="number" readonly class="create-offer-popup__form-control-input-number" value="2">
+           </div>
+         </div>
+      </li>
+      <li class="create-offer-popup__bottom-params-list-item">
+       <div class="create-offer-popup__form-control-group">
+         <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper count-input-wrapper">
+           <input type="number" readonly class="create-offer-popup__form-control-input-number" placeholder="0,00">
+         </div>
+       </div>
+    </li>
+    </ul>
+   </div>
+
+<script is:inline>
+    document.addEventListener('alpine:init', () => {
+     const paramsListsNav = document.querySelector('.create-offer-popup__params-lists-nav');
+ 
+ function increaseParamsListNumber() {
+ let number = 3;
+ 
+ return function() {
+ return number++;
+ };
+ }
+ const paramsListNumber = increaseParamsListNumber();
+ 
+        Alpine.data('paramsList', () => ({
+          addParamsList() {
+           paramsListsNav.insertAdjacentHTML('beforeend', ` <ul role="list" class="create-offer-popup__params-list params-group b-b p-b">
+         <li class="create-offer-popup__params-list-item number-item t-a-c">
+           <span class="create-offer-popup__item-number">${paramsListNumber()}</span>
+           <div class="create-offer-popup__delete-btn-wrapper mobile" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+             <button type="button" class="create-offer-popup__show-delete-btn" x-on:click="toggleDropdown = !toggleDropdown">
+               <svg width="4" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#495057"></path>
+                 <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#495057"></path>
+                 <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#495057"></path>
+                 <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                 <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                 <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                 </svg>                    
+             </button>
+             <button type="button" class="create-offer-popup__delete-btn" x-bind:class="{'active': toggleDropdown === true}" x-on:click="paramsLists = paramsLists.filter(i => i !== paramsList)">
+                         Удалить           
+             </button>
+            </div>
+         </li>
+         <li class="create-offer-popup__params-list-item type-item">
+           <h4 class="create-offer-popup__params-list-item-title">Название</h4>
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Тип'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-offer-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 16" value="Тип" readonly x-model="resultInputVal">
+              <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-offer-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" name="Тип" id="Тип" value="Тип" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Тип'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" name="Тип 1" id="Тип 1" value="Тип 1" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Тип 1'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" name="Тип 2" id="Тип 2" value="Тип 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Тип 2'">
+                </li>
+              </ul>
+            </div>
+              <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+          </div>
+         </li>
+         <li class="create-offer-popup__params-list-item chars-item">
+           <h4 class="create-offer-popup__params-list-item-title">Хар-ки</h4>
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper chars-wrapper">
+              <input type="text" class="create-offer-popup__form-control-input" value="УВЛ">
+            </div>
+         </div>
+         </li>
+         <li class="create-offer-popup__params-list-item count-item">
+           <h4 class="create-offer-popup__params-list-item-title">Кол-во</h4>
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper count-wrapper">
+              <input type="number" class="create-offer-popup__form-control-input" value="1">
+            </div>
+         </div>
+         </li>
+         <li class="create-offer-popup__params-list-item weight-item">
+           <h4 class="create-offer-popup__params-list-item-title">Вес,кг</h4>
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper weight-wrapper">
+              <input type="number" class="create-offer-popup__form-control-input" value="1">
+            </div>
+         </div>
+         </li>
+         <li class="create-offer-popup__params-list-item volume-item">
+           <h4 class="create-offer-popup__params-list-item-title">Объём, м3</h4>
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper volume-wrapper">
+              <input type="number" class="create-offer-popup__form-control-input" value="1">
+            </div>
+         </div>
+         </li>
+         <li class="create-offer-popup__params-list-item nds-price-item">
+           <h4 class="create-offer-popup__params-list-item-title">Цена с НДС</h4>
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper nds-price-wrapper">
+              <input class="create-offer-popup__form-control-input" placeholder="0,00" x-mask:dynamic="$money($input, ',')">
+            </div>
+         </div>
+         </li>
+         <li class="create-offer-popup__params-list-item sum-item">
+           <h4 class="create-offer-popup__params-list-item-title">Сумма</h4>
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper price-wrapper">
+              <input class="create-offer-popup__form-control-input" placeholder="5 000 000,00" x-mask:dynamic="$money($input, ',')">
+            </div>
+         </div>
+         </li>
+         <li class="create-offer-popup__params-list-item options-item">
+           <div class="create-offer-popup__delete-btn-wrapper" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+                <button type="button" class="create-offer-popup__show-delete-btn" x-on:click="toggleDropdown = !toggleDropdown">
+                  <svg width="4" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#495057"/>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#495057"/>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#495057"/>
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </button>
+                <button type="button" class="create-offer-popup__delete-btn" x-bind:class="{'active': toggleDropdown === true}" x-on:click="paramsLists = paramsLists.filter(i => i !== paramsList)">
+                         Удалить           
+                 </button>
+           </div>
+         </li>
+         <li class="create-offer-popup__params-list-item name-item">
+          <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper params-name-wrapper">
+              <input type="text" class="create-offer-popup__form-control-input" placeholder="Наименование">
+            </div>
+         </div>
+         </li>
+       </ul>`);
+          }
+       }))
+   })
+ 
+   </script>
+ 

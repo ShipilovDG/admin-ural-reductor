@@ -1,0 +1,19 @@
+.settings-email-page-list-popup {
+
+    &__fieldset.btn-control-group {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2,max-content);
+        gap: 24px;
+    }
+
+    &__select-all-btn,
+    &__cancel-all-btn {
+        font-weight: 400;
+font-size: 14px;
+line-height: 18px;
+color: var(--primary);
+border-bottom: 1px dashed var(--primary);
+padding-bottom: 4px;
+    }
+ }

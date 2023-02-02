@@ -1,0 +1,95 @@
+<div class="alt-popup Q-and-A-edit-messages-alt-popup" x-bind:class="{'active': QandAEditMessagesAltPopup === true}" x-on:click.self="QandAEditMessagesAltPopup = false" 
+x-data="
+{
+    triggerAnswerTextArea: false,
+    answerTextArea: '',
+    sendComment() {
+        document.querySelector('.Q-and-A-edit-messages-alt-popup__answer-textarea-wrapper').insertAdjacentHTML('afterend',
+        `
+        <fieldset class='alt-popup__fieldset Q-and-A-edit-messages-alt-popup__fieldset m-b b-b' x-ref='answerCommentsFieldset'>
+            <div class='Q-and-A-edit-messages-alt-popup__answer-comments-wrapper'>
+                <div class='Q-and-A-edit-messages-alt-popup__answer-comment-left'>
+                    <p class='Q-and-A-edit-messages-alt-popup__answer-comment-title'>vtrpro@yandex.ru</p>
+                    <div class='Q-and-A-edit-messages-alt-popup__answer-comment-datetime'><time datetime='13.10.2022'>13.10.2022</time><time datetime='16:05'>16:05</time></div>
+                </div>
+                <div class='choose-options-dropdown-wrapper Q-and-A-edit-messages-alt-popup__choose-options-dropdown-wrapper' x-data='{toggleChooseOptionsDropdown: false}' x-on:click.outside='toggleChooseOptionsDropdown = false'>
+                    <button class='choose-options-btn Q-and-A-edit-messages-alt-popup__choose-options-btn' type='button' x-on:click='toggleChooseOptionsDropdown = !toggleChooseOptionsDropdown'>
+                        <svg width='6' height='24' viewBox='0 0 6 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <path d='M2.99984 13.3359C3.73622 13.3359 4.33317 12.739 4.33317 12.0026C4.33317 11.2662 3.73622 10.6693 2.99984 10.6693C2.26346 10.6693 1.6665 11.2662 1.6665 12.0026C1.6665 12.739 2.26346 13.3359 2.99984 13.3359Z' fill='#859AB9'/>
+                            <path d='M2.99984 22.6693C3.73622 22.6693 4.33317 22.0723 4.33317 21.3359C4.33317 20.5996 3.73622 20.0026 2.99984 20.0026C2.26346 20.0026 1.6665 20.5996 1.6665 21.3359C1.6665 22.0723 2.26346 22.6693 2.99984 22.6693Z' fill='#859AB9'/>
+                            <path d='M2.99984 4.0026C3.73622 4.0026 4.33317 3.40565 4.33317 2.66927C4.33317 1.93289 3.73622 1.33594 2.99984 1.33594C2.26346 1.33594 1.6665 1.93289 1.6665 2.66927C1.6665 3.40565 2.26346 4.0026 2.99984 4.0026Z' fill='#859AB9'/>
+                            <path d='M2.99984 13.3359C3.73622 13.3359 4.33317 12.739 4.33317 12.0026C4.33317 11.2662 3.73622 10.6693 2.99984 10.6693C2.26346 10.6693 1.6665 11.2662 1.6665 12.0026C1.6665 12.739 2.26346 13.3359 2.99984 13.3359Z' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                            <path d='M2.99984 22.6693C3.73622 22.6693 4.33317 22.0723 4.33317 21.3359C4.33317 20.5996 3.73622 20.0026 2.99984 20.0026C2.26346 20.0026 1.6665 20.5996 1.6665 21.3359C1.6665 22.0723 2.26346 22.6693 2.99984 22.6693Z' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                            <path d='M2.99984 4.0026C3.73622 4.0026 4.33317 3.40565 4.33317 2.66927C4.33317 1.93289 3.73622 1.33594 2.99984 1.33594C2.26346 1.33594 1.6665 1.93289 1.6665 2.66927C1.6665 3.40565 2.26346 4.0026 2.99984 4.0026Z' stroke='#859AB9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+                            </svg>             
+                    </button>
+                      <div class='choose-options-dropdown Q-and-A-edit-messages-alt-popup__choose-options-dropdown' x-show='toggleChooseOptionsDropdown === true' x-transition.opacity.duration.300ms>
+                        <ul role='list' class='choose-options-dropdown__list Q-and-A-edit-messages-alt-popup__choose-options-dropdown-list'>
+                            <li class='choose-options-dropdown__choose-options-dropdown-list-item Q-and-A-edit-messages-alt-popup__choose-options-dropdown-list-item'>
+                                <input type='text' readonly class='choose-options-dropdown__choose-options-dropdown-list-item-input Q-and-A-edit-messages-alt-popup__choose-options-dropdown-list-item-input' value='Редактировать'>
+                            </li>
+                            <li class='choose-options-dropdown__choose-options-dropdown-list-item Q-and-A-edit-messages-alt-popup__choose-options-dropdown-list-item'>
+                                <input type='text' readonly class='choose-options-dropdown__choose-options-dropdown-list-item-input Q-and-A-edit-messages-alt-popup__choose-options-dropdown-list-item-input delete' value='Удалить' x-on:click='$refs.answerCommentsFieldset.remove()'>
+                            </li>
+                        </ul>
+                      </div>
+                </div>
+                <p class='Q-and-A-edit-messages-alt-popup__answer-comment' x-text='answerTextArea'>Текст комментария</p>
+            </div>
+        </fieldset>
+        `)
+    }
+}
+">
+    <form action="#" method="post" class="alt-popup__form Q-and-A-edit-messages-alt-popup__form">
+    <div class="alt-popup__content Q-and-A-edit-messages-alt-popup__content">
+     <div class="Q-and-A-edit-messages-alt-popup__top-row">
+        <div class="Q-and-A-edit-messages-alt-popup__avatar-title">
+            <img class="Q-and-A-edit-messages-alt-popup__avatar-img" src="/images/header-avatar-placeholder.svg" alt="avatar-user-img" width="24" height="24" loading="lazy" decoding="async">
+            <p class="Q-and-A-edit-messages-alt-popup__title">vtr@uralreduktor.ru</p>
+        </div>
+        <button class="Q-and-A-edit-messages-alt-popup__close-btn" type="button" x-on:click="QandAEditMessagesAltPopup = false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+     </div>
+    <div class="alt-popup__body Q-and-A-edit-messages-alt-popup__body">
+            <fieldset class="alt-popup__fieldset Q-and-A-edit-messages-alt-popup__fieldset m-b b-b">
+                <div class="Q-and-A-edit-messages-alt-popup__wrapper subject">
+                <p class="Q-and-A-edit-messages-alt-popup__title">Тема:</p>
+                 <p class="Q-and-A-edit-messages-alt-popup__subject-title">Червячный мотор-редуктор МЧ-40</p>
+                </div>
+            </fieldset>
+            <fieldset class="alt-popup__fieldset Q-and-A-edit-messages-alt-popup__fieldset m-b b-b">
+                <div class="Q-and-A-edit-messages-alt-popup__wrapper">
+                <p class="Q-and-A-edit-messages-alt-popup__title">Вопрос:</p>
+                 <p class="Q-and-A-edit-messages-alt-popup__title">Текст вопроса</p>
+                </div>
+            </fieldset>
+            <div class="Q-and-A-edit-messages-alt-popup__answer-textarea-wrapper" x-show="triggerAnswerTextArea === true" >
+            <textarea class="Q-and-A-edit-messages-alt-popup__answer-textarea" placeholder="Текст комментария" x-model="answerTextArea"></textarea>
+            </div>
+    <ul role="list" class="alt-popup__btn-control-group Q-and-A-edit-messages-alt-popup__btn-control-group answer-btn" x-show="triggerAnswerTextArea === false" x-ref="altPopupBtnControlGroupAnswerBtn">
+      <li class="alt-popup__btn-control-group-item Q-and-A-edit-messages-alt-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary Q-and-A-edit-messages-alt-popup__answer-btn" x-on:click="triggerAnswerTextArea = true">
+            Ответить
+          </button>
+      </li>
+    </ul>
+    <ul role="list" class="alt-popup__btn-control-group Q-and-A-edit-messages-alt-popup__btn-control-group" x-show="triggerAnswerTextArea === true">
+        <li class="alt-popup__btn-control-group-item Q-and-A-edit-messages-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary Q-and-A-edit-messages-alt-popup__cancel-btn" x-on:click="">
+                Отменить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item Q-and-A-edit-messages-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary Q-and-A-edit-messages-alt-popup__submit-btn" x-on:click="sendComment;triggerAnswerTextArea = false; $refs.altPopupBtnControlGroupAnswerBtn.classList.add('hidden')">
+                Отправить
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

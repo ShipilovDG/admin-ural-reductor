@@ -1,0 +1,124 @@
+.aside-nav-menu {
+    background-color: var(--secondary);
+    border-radius: 4px;
+    display: none;
+
+    @include media-extra-large() {
+        display: block;
+        grid-row: span 2;
+        min-height: 852px;
+}
+
+
+    &__nav {
+        display: grid;
+        gap: 40px;
+    }
+
+    &__list {
+        display: grid;
+        padding: 0;
+        margin: 0;
+        font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+    }
+
+    &__list-item {
+        position: relative;
+        transition: .3s ease-in-out;
+    }
+
+    &__list-item:hover,
+    &__list-item:active,
+    &__list-item:focus {
+        background-color: var(--menu-hover);
+    }
+
+    &__list-item.active {
+        background-color: var(--menu-hover);
+    }
+
+    &__list-item-title--name {
+        max-width: 6ch;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__list-link {
+        display: grid;
+        align-items: center;
+        grid-template-columns: max-content 1fr;
+        gap: 12px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 24px;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    &__list-icon.active path {
+        stroke: var(--primary);
+    }
+
+    &__list-item-title.active {
+        color: var(--primary);
+    }
+
+    &__indicator-new {
+        width: 12px;
+        height: 12px;
+        background-color: var(--green);
+        border-radius: 12px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-top: 12px;
+        margin-right: 14px;
+    }
+
+   
+
+
+    &__list-item-submenu-arrow {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 1.2rem;
+        margin-top: 0.8rem;
+        transition: .3s ease-in-out;
+    }
+
+    &__list-item-submenu-arrow.active {
+         transform: rotate(-90deg);
+    }
+
+    &__sublist {
+        padding: 0;
+        padding-left: 3.2rem;
+        margin: 0;
+        display: grid;
+        gap: 20px;
+        font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+    }
+
+    &__sublist.active {
+        padding-bottom: 10px;
+    }
+
+    &__sublist-item-link {
+        color: inherit;
+        text-decoration: none;
+        transition: .3s ease-in-out;
+    }
+
+    &__sublist-item-link:hover {
+        color: var(--primary);
+    }
+}

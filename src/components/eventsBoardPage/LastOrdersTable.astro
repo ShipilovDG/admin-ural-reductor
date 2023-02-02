@@ -1,0 +1,162 @@
+---
+import SearchForm from "../SearchForm.astro";
+import Filter from "../Filter.astro";
+
+let items = ['Результат поиска', 'Документы', 'Документы', 'Документы', 'Документы', 'Документы', 'Документы', 'Результат поиска'];
+---
+<div class="events-board-page__body-top-wrapper" x-data="{searchBtnDropdown2: false}" x-bind:class="{'active': table === 2}">
+  <div class="site-section__body-top events-board-page__body-top">
+    <div class="events-board-page__subtitle-row">
+    <h3 class="site-section__subtitle events-board-page__subtitle">
+      Последние заказы
+    </h3>
+    <a href="#" class="events-board-page__more-link desktop">
+      Больше
+      <svg class="events-board-page__more-link-icon" width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L5 5L1 9" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 1L12 5L8 9" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>    
+    </a>
+    </div>
+    <div class="site-section__body-bottom events-board-page__body-bottom">
+      <div class="site-section__body-bottom-left-group events-board-page__body-bottom-left-group">
+        <button type="button" class="site-section__search-btn" x-on:click="searchBtnDropdown2 = !searchBtnDropdown2">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 25L17 17M19.6667 10.3333C19.6667 15.488 15.488 19.6667 10.3333 19.6667C5.17868 19.6667 1 15.488 1 10.3333C1 5.17868 5.17868 1 10.3333 1C15.488 1 19.6667 5.17868 19.6667 10.3333Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>           
+      </button>
+      <form action="#" method="post" class="site-section__search-btn-dropdown" x-bind:class="{'active': searchBtnDropdown2 === true}">
+        <input type="text" class="site-section__search-btn-dropdown-search-input">
+        <ul role="list" class="site-section__search-btn-dropdown-list">
+            {
+                items.map((item) => 
+                  <li class="site-section__search-btn-dropdown-list-item">
+                    <input readonly class="site-section__search-btn-dropdown-list-item-input" value={item} x-on:click="searchBtnDropdown2 = false">
+                    </li>
+                )
+            }
+        </ul>
+      </form>
+      <SearchForm></SearchForm>
+      <Filter></Filter>
+      </div>
+      <div class="site-section__body-bottom-right-group events-board-page__body-bottom-right-group">
+        <button class="events-board-page__body-bottom-right-settings-btn" type="button" x-on:click="settingsOrderListPopup = true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.325 2.317C8.751 0.561 11.249 0.561 11.675 2.317C11.7389 2.5808 11.8642 2.82578 12.0407 3.032C12.2172 3.23822 12.4399 3.39985 12.6907 3.50375C12.9414 3.60764 13.2132 3.65085 13.4838 3.62987C13.7544 3.60889 14.0162 3.5243 14.248 3.383C15.791 2.443 17.558 4.209 16.618 5.753C16.4769 5.98466 16.3924 6.24634 16.3715 6.51677C16.3506 6.78721 16.3938 7.05877 16.4975 7.30938C16.6013 7.55999 16.7627 7.78258 16.9687 7.95905C17.1747 8.13553 17.4194 8.26091 17.683 8.325C19.439 8.751 19.439 11.249 17.683 11.675C17.4192 11.7389 17.1742 11.8642 16.968 12.0407C16.7618 12.2172 16.6001 12.4399 16.4963 12.6907C16.3924 12.9414 16.3491 13.2132 16.3701 13.4838C16.3911 13.7544 16.4757 14.0162 16.617 14.248C17.557 15.791 15.791 17.558 14.247 16.618C14.0153 16.4769 13.7537 16.3924 13.4832 16.3715C13.2128 16.3506 12.9412 16.3938 12.6906 16.4975C12.44 16.6013 12.2174 16.7627 12.0409 16.9687C11.8645 17.1747 11.7391 17.4194 11.675 17.683C11.249 19.439 8.751 19.439 8.325 17.683C8.26108 17.4192 8.13578 17.1742 7.95929 16.968C7.7828 16.7618 7.56011 16.6001 7.30935 16.4963C7.05859 16.3924 6.78683 16.3491 6.51621 16.3701C6.24559 16.3911 5.98375 16.4757 5.752 16.617C4.209 17.557 2.442 15.791 3.382 14.247C3.5231 14.0153 3.60755 13.7537 3.62848 13.4832C3.64942 13.2128 3.60624 12.9412 3.50247 12.6906C3.3987 12.44 3.23726 12.2174 3.03127 12.0409C2.82529 11.8645 2.58056 11.7391 2.317 11.675C0.561 11.249 0.561 8.751 2.317 8.325C2.5808 8.26108 2.82578 8.13578 3.032 7.95929C3.23822 7.7828 3.39985 7.56011 3.50375 7.30935C3.60764 7.05859 3.65085 6.78683 3.62987 6.51621C3.60889 6.24559 3.5243 5.98375 3.383 5.752C2.443 4.209 4.209 2.442 5.753 3.382C6.753 3.99 8.049 3.452 8.325 2.317Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 13C11.6569 13 13 11.6569 13 10C13 8.34315 11.6569 7 10 7C8.34315 7 7 8.34315 7 10C7 11.6569 8.34315 13 10 13Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                           
+        </button>
+      </div>    
+    </div>
+  </div>
+<div class="site-section__table-wrapper events-board-page__table-wrapper">
+    <nav class="site-section__table events-board-page__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list events-board-page__table-list events-board-page__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-list-caption-item  events-board-page__table-list-item events-board-page__table-list-caption-item">
+          <button class="site-section__table-sort-btn site-section__table-data-sort-btn" type="button">
+            Дата
+            <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                
+          </button>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item  events-board-page__table-list-item events-board-page__table-list-caption-item status">
+          № заказа
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item  events-board-page__table-list-item events-board-page__table-list-caption-item">
+          <button class="site-section__table-sort-btn site-section__table-name-sort-btn" type="button">
+            Контрагент
+            <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 13L4 16M4 16L7 13M4 16V4M16 14C16 15.1046 15.1046 16 14 16C12.8954 16 12 15.1046 12 14C12 12.8954 12.8954 12 14 12C15.1046 12 16 12.8954 16 14ZM16 14V17C16 17.5304 15.7893 18.0391 15.4142 18.4142C15.0391 18.7893 14.5304 19 14 19H12.5M14 1C14.5304 1 15.0391 1.21071 15.4142 1.58579C15.7893 1.96086 16 2.46957 16 3V6C16 6.53043 15.7893 7.03914 15.4142 7.41421C15.0391 7.78929 14.5304 8 14 8C13.4696 8 12.9609 7.78929 12.5858 7.41421C12.2107 7.03914 12 6.53043 12 6V3C12 2.46957 12.2107 1.96086 12.5858 1.58579C12.9609 1.21071 13.4696 1 14 1Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                
+          </button>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item  events-board-page__table-list-item events-board-page__table-list-caption-item">
+          Комментарий
+        </li>
+          <li class="site-section__table-list-item site-section__table-list-caption-item  events-board-page__table-list-item events-board-page__table-list-caption-item status">
+            Статус
+          </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list events-board-page__table-list">
+        <li class="site-section__table-list-item events-board-page__table-list-item">
+            22.12.2028
+        </li>
+        <li class="site-section__table-list-item events-board-page__table-list-item">
+            1001010
+        </li>
+        <li class="site-section__table-list-item events-board-page__table-list-item" x-on:click="editContragentPopup = true">
+          УЗТМ
+        </li>
+        <li class="site-section__table-list-item events-board-page__table-list-item">
+          Текст комментария
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-item--status-btn events-board-page__table-list-item--status-btn" x-data="{status: 'in process', toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+            <button class="btn site-section__status-btn site-section__status-btn--in-process" type="button" x-bind:class="{'site-section__status-btn--in-process': status === 'in process', 'site-section__status-btn--shipped': status === 'shipped','site-section__status-btn--cancelled': status === 'cancelled', 'site-section__status-btn--in-work': status === 'in work', 'site-section__status-btn--completed': status === 'completed', 'site-section__status-btn--cargo-in-way': status === 'cargo in way', 'site-section__status-btn--on-payment': status === 'on payment' }" x-text="status === 'in process' ? 'Ожидает ответ' : status === 'shipped' ? 'Отгружен' : status === 'cancelled' ? 'Отменён' : status === 'in work' ? 'В работе' : status === 'completed' ? 'Завершён' : status === 'cargo in way' ? 'Груз в пути': status === 'on payment' ? 'На оплате': ''">
+              Ожидает ответ
+            </button>
+            <div class="site-section__choose-status-dropdown-wrapper">
+              <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"/>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"/>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"/>
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>     
+              </button>
+              <ul class="site-section__choose-status-dropdown-list last-orders-table__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                 <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'in process'; toggleStatusDropdown = false">Ожидает ответ</button>
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'in work'; toggleStatusDropdown = false">В работе</button>
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'completed'; toggleStatusDropdown = false">Завершён</button>
+             </li>
+             <li class="site-section__choose-status-dropdown-list-item">
+              <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'cargo in way'; toggleStatusDropdown = false">Груз в пути</button>
+           </li>
+           <li class="site-section__choose-status-dropdown-list-item">
+            <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'on payment'; toggleStatusDropdown = false">На оплате</button>
+         </li>
+         <li class="site-section__choose-status-dropdown-list-item">
+          <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'cancelled'; toggleStatusDropdown = false">Отменен</button>
+       </li>
+       <li class="site-section__choose-status-dropdown-list-item">
+        <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="status = 'shipped'; toggleStatusDropdown = false">Отгружен</button>
+     </li>
+              </ul>
+            </div>
+        </li>
+    <li class="site-section__table-list-item site-section__table-list-item--options-btn events-board-page__table-list-item--options-btn" x-data="{toggleDeleteBtn:false}" x-on:click.outside="toggleDeleteBtn = false">
+      <button type="button" class="site-section__table-list-item-options-btn events-board-page__table-list-item-options-btn" x-on:click="toggleDeleteBtn = !toggleDeleteBtn">
+        <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"/>
+          <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"/>
+          <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"/>
+          <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>            
+      </button>
+      <button type="button" class="site-section__table-list-item-options-delete-btn events-board-page__table-list-item-options-delete-btn" x-bind:class="{'active': toggleDeleteBtn === true}" x-on:click="tables = tables.filter(i => i !== table)">
+        Удалить         
+      </button>
+    </li>
+      </ul>
+    </template>
+    </nav>
+</div>
+<a href="#" class="events-board-page__more-link mobile">
+  Больше
+  <svg class="events-board-page__more-link-icon" width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 1L5 5L1 9" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8 1L12 5L8 9" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>    
+</a>
+</div>

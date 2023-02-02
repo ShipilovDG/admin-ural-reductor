@@ -1,0 +1,29 @@
+<div class="header-enter-account-dropdown" x-bind:class="{'active': headerEnterAccountDropdown === true}">
+    <h2 class="header-enter-account-dropdown__title">Вход в аккаунт</h2>
+    <form action="#" method="post" class="header-enter-account-dropdown__form">
+        <fieldset class="header-enter-account-dropdown__fieldset b-b">
+            <div class="header-enter-account-dropdown__form-control-group">
+                <label for="enterAccountEmailLogin" class="header-enter-account-dropdown__form-control-group-label">
+                  E-mail или логин
+                </label>
+                <div class="header-enter-account-dropdown__form-control-wrapper header-enter-account-dropdown__form-control-input-wrapper">
+                  <input type="text" id="enterAccountEmailLogin" placeholder="Введите логин" class="header-enter-account-dropdown__form-control-input">
+              </div>
+            </div>
+            <div class="header-enter-account-dropdown__form-control-group">
+                <label for="enterAccountPassword" class="header-enter-account-dropdown__form-control-group-label">
+                    Пароль
+                </label>
+                <div class="header-enter-account-dropdown__form-control-wrapper header-enter-account-dropdown__form-control-input-wrapper">
+                  <input type="text" id="enterAccountPassword" placeholder="Введите пароль" class="header-enter-account-dropdown__form-control-input">
+              </div>
+            </div>
+            <button type="button" class="header-enter-account-dropdown__sms-enter-btn">войти по смс</button>
+            <button type="submit" class="btn btn--primary header-enter-account-dropdown__submit-btn">Войти</button>
+        </fieldset>
+        <div class="header-enter-account-dropdown__btn-group">
+            <button type="button" class="header-enter-account-dropdown__reg-btn">Я здесь впервые</button>
+            <button type="button" class="header-enter-account-dropdown__forgot-pass-btn">Забыли пароль?</button>
+        </div>
+    </form>
+</div>

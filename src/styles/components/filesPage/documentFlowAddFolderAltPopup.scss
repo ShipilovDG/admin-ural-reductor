@@ -1,0 +1,131 @@
+.document-flow-add-folder-alt-popup {
+    &__title {
+        padding-bottom: 0;
+        line-height: 28px;
+    }
+
+    &__body {
+        overflow: hidden;
+    }
+
+    &__content {
+        max-height: 100%;
+        min-width: 532px;
+    }
+
+    &__top-row {
+        border-bottom: 1px solid var(--grey-color);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    &__form-control-select-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      &__form-control-select-result-input {
+        padding-left: 16px;
+        font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--dark-grey);
+  background: var(--gray100);
+  height: 100%;
+      }
+
+      &__form-control-select-result-input.email {
+        max-width: 10ch;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      &__form-control-select-arrow {
+        position: absolute;
+        right: 0;
+        width: 12px;
+        height: 6px;
+        margin-right: 18px;
+        margin-top: 4px;
+        transform: rotate(180deg);
+        transition: .3s ease-in-out;
+      }
+      &__form-control-select-arrow.active {
+        transform: rotate(0);
+      }
+  
+      &__form-control-dropdown {
+        position: absolute;
+         z-index: 99;
+         top: 2.5rem;
+         background: var(--gray100);
+         border: 1px solid var(--grey-color);
+         box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+         border-radius: 4px;
+         opacity: 0;
+         visibility: hidden;
+         transition: .3s ease-in-out;
+         width: 100%;
+      }
+  
+      &__form-control-dropdown.active {
+         opacity: 1;
+         visibility: visible;
+      }
+  
+      &__form-control-select-list {
+         padding: 0;
+         margin: 0;
+         display: grid;
+         padding-top: 8px;
+         padding-bottom: 8px;
+      }
+
+      &__form-control-select-list.b-t {
+        border-top: 1px solid var(--grey-color);
+      }
+
+      &__form-control-select-list-item {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 16px;
+    }
+
+    &__form-control-select-list-item-input {
+      font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+    }
+
+    &__form-control-dropdown-search-input {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        padding-left: 16px;
+    }
+
+    &__btn-control-group {
+      @include media-extra-large() {
+         justify-content: flex-end;
+         grid-gap: 16px;
+         gap: 16px;
+      }
+    }
+
+    &__undo-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 103px;
+    }
+
+    &__save-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 84px;
+    }
+}

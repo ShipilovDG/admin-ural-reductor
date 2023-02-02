@@ -1,0 +1,97 @@
+<div class="popup view-settings-popup" x-bind:class="{'active': viewSettingsPopup === true}">
+    <form action="#" method="post" class="popup__form view-settings-popup__form">
+    <div class="popup__content view-settings-popup__content">
+  <div class="popup__top-row view-settings-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="viewSettingsPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="viewSettingsPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <div class="view-settings-popup__title-row">
+    <h2 class="popup__title view-settings-popup__title">
+        Настройки представления
+    </h2>
+    </div> 
+   </div>
+    <div class="popup__body view-settings-popup__body">
+        <fieldset class="view-settings-popup__fieldset">
+            <div class="view-settings-popup__form-control-group">
+                <p class="view-settings-popup__form-control-group-title">
+                    Порядок отображения комментариев
+                </p>
+                <div class="view-settings-popup__form-control-wrapper view-settings-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Новые снизу'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                    <input type="text" class="view-settings-popup__form-control-select-result-input" value="Новые снизу" readonly x-model="resultInputVal">
+                    <div class="view-settings-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <ul role="list" class="view-settings-popup__form-control-select-list">
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Новые снизу" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Новые снизу'">
+                      </li>
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Новые сверху" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Новые сверху'">
+                      </li>
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Документы" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Документы'">
+                      </li>
+                    </ul>
+                    </div>
+                    <svg class="view-settings-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                      <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                  
+                </div>
+            </div>
+            <div class="view-settings-popup__form-control-group">
+                <p class="view-settings-popup__form-control-group-title">
+                    Порядок отображения комментариев
+                </p>
+                <div class="view-settings-popup__form-control-wrapper view-settings-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Всегда свернуты'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                    <input type="text" class="view-settings-popup__form-control-select-result-input" value="Всегда свернуты" readonly x-model="resultInputVal">
+                    <div class="view-settings-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <ul role="list" class="view-settings-popup__form-control-select-list">
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Всегда свернуты" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Всегда свернуты'">
+                      </li>
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Всегда развернуты" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Всегда развернуты'">
+                      </li>
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Документы" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Документы'">
+                      </li>
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Документы" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Документы'">
+                      </li>
+                      <li class="view-settings-popup__form-control-select-list-item">
+                        <input type="text" value="Документы" readonly class="view-settings-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Документы'">
+                      </li>
+                    </ul>
+                    </div>
+                    <svg class="view-settings-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                      <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                  
+                </div>
+            </div>
+            <div class="view-settings-popup__checkbox-wrapper">
+                <input type="checkbox" class="view-settings-popup__checkbox" id="ViewSettingSticky">
+                <label for="ViewSettingSticky" class="view-settings-popup__checkbox-label">Форма «прилипает» при прокрутке страницы</label>
+            </div>
+        </fieldset>
+    <ul role="list" class="popup__btn-control-group view-settings-popup__btn-control-group">
+      <li class="popup__btn-control-group-item view-settings-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn view-settings-popup__undo-btn" x-on:click="viewSettingsPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item view-settings-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn view-settings-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+</div>

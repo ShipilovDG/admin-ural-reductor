@@ -1,0 +1,163 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Pagination from "../components/Pagination.astro";
+import SearchForm from "../components/SearchForm.astro";
+import SearchBtn from "../components/SearchBtn.astro";
+import SearchBtnDropdown from "../components/SearchBtnDropdown.astro";
+import Filter from "../components/Filter.astro";
+import IncomingMessagesTable from "../components/emailPage/IncomingMessagesTable.astro";
+import NewMessagePopup from "../components/emailPage/NewMessagePopup.astro";
+import EditMessagePopup from "../components/emailPage/EditMessagePopup.astro";
+import SettingsEmailPageListPopup from "../components/emailPage/SettingsEmailPageListPopup.astro";
+---
+
+<Layout title="страница Почта">
+    <section class="site-section email-page__site-section" x-data="{ addNewFilterPopup: false, searchBtnDropdown: false, newMessagePopup: false, editMessagePopup: false, settingsEmailPageListPopup: false, viewSettingsPopup: false, toggleEmailBtn: false }">
+        <div class="site-section__top-row email-page__top-row">
+            <div class="email-page__top-row-left">
+                <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                    <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                      <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                        <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                        <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                        <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>     
+                    </button>
+                    <ul class="site-section__choose-status-dropdown-list email-page__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                       <li class="site-section__choose-status-dropdown-list-item">
+                          <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Подключить новый e-mail</button>
+                       </li>
+                       <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Настройки</button>
+                     </li>
+                     <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Чёрный список</button>
+                     </li>
+                     <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Контакты</button>
+                     </li>
+                    </ul>
+                </div>
+                <button type="button" class="site-section__top-row-settings-btn email-page__top-row-settings-btn" x-on:click="settingsEmailPageListPopup = true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.13889 2.46333C9.61222 0.512222 12.3878 0.512222 12.8611 2.46333C12.9321 2.75644 13.0714 3.02864 13.2675 3.25778C13.4636 3.48691 13.711 3.6665 13.9896 3.78194C14.2682 3.89738 14.5702 3.94539 14.8709 3.92208C15.1716 3.89876 15.4625 3.80478 15.72 3.64778C17.4344 2.60333 19.3978 4.56556 18.3533 6.28111C18.1966 6.53851 18.1027 6.82926 18.0795 7.12975C18.0562 7.43023 18.1042 7.73197 18.2195 8.01042C18.3348 8.28888 18.5142 8.5362 18.743 8.73228C18.9719 8.92836 19.2438 9.06767 19.5367 9.13889C21.4878 9.61222 21.4878 12.3878 19.5367 12.8611C19.2436 12.9321 18.9714 13.0714 18.7422 13.2675C18.5131 13.4636 18.3335 13.711 18.2181 13.9896C18.1026 14.2682 18.0546 14.5702 18.0779 14.8709C18.1012 15.1716 18.1952 15.4625 18.3522 15.72C19.3967 17.4344 17.4344 19.3978 15.7189 18.3533C15.4615 18.1966 15.1707 18.1027 14.8703 18.0795C14.5698 18.0562 14.268 18.1042 13.9896 18.2195C13.7111 18.3348 13.4638 18.5142 13.2677 18.743C13.0716 18.9719 12.9323 19.2438 12.8611 19.5367C12.3878 21.4878 9.61222 21.4878 9.13889 19.5367C9.06787 19.2436 8.92864 18.9714 8.73254 18.7422C8.53644 18.5131 8.28901 18.3335 8.01039 18.2181C7.73176 18.1026 7.42982 18.0546 7.12913 18.0779C6.82844 18.1012 6.5375 18.1952 6.28 18.3522C4.56556 19.3967 2.60222 17.4344 3.64667 15.7189C3.80345 15.4615 3.89728 15.1707 3.92054 14.8703C3.9438 14.5698 3.89583 14.268 3.78052 13.9896C3.66522 13.7111 3.48584 13.4638 3.25697 13.2677C3.02809 13.0716 2.75618 12.9323 2.46333 12.8611C0.512222 12.3878 0.512222 9.61222 2.46333 9.13889C2.75644 9.06787 3.02864 8.92864 3.25778 8.73254C3.48691 8.53644 3.6665 8.28901 3.78194 8.01039C3.89738 7.73176 3.94539 7.42982 3.92208 7.12913C3.89876 6.82844 3.80478 6.5375 3.64778 6.28C2.60333 4.56556 4.56556 2.60222 6.28111 3.64667C7.39222 4.32222 8.83222 3.72444 9.13889 2.46333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11 14.3333C12.8409 14.3333 14.3333 12.8409 14.3333 11C14.3333 9.15905 12.8409 7.66667 11 7.66667C9.15905 7.66667 7.66667 9.15905 7.66667 11C7.66667 12.8409 9.15905 14.3333 11 14.3333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                         
+                </button>
+                <button type="button" class="email-page__reload-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.6668 13.335C22.3408 15.6814 21.2523 17.8555 19.569 19.5224C17.8858 21.1893 15.7012 22.2565 13.3517 22.5596C11.0023 22.8628 8.61833 22.3851 6.5671 21.2C4.51587 20.015 2.91116 18.1884 2.00016 16.0017M1.3335 21.335V16.0017H6.66683M1.3335 10.6683C1.65958 8.32192 2.74807 6.14784 4.43131 4.48095C6.11455 2.81407 8.29915 1.74685 10.6486 1.4437C12.998 1.14054 15.382 1.61827 17.4332 2.80329C19.4845 3.98831 21.0892 5.81487 22.0002 8.00163M22.6668 2.66829V8.00163H17.3335" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                </button>
+            </div>
+               <div class="site-section__create-btn-wrapper email-page__create-btn-wrapper" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+                   <button class="btn btn--primary site-section__create-order-btn email-page__create-btn dropdown" type="button" x-on:click="toggleDropdown = !toggleDropdown">
+                    Создать
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <path d="M1 1L5 5L9 1" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                       </svg>            
+                  </button>
+                  <div class="site-section__create-btn-dropdown email-page__create-btn-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+                 <ul role="list" class="site-section__create-btn-dropdown-list email-page__create-btn-dropdown-list">
+                   <li class="site-section__create-btn-dropdown-list-item  email-page__create-btn-dropdown-list-item">
+                       <input type="text" value="Новое письмо" readonly="" class="site-section__create-btn-dropdown-list-item-input email-page__create-btn-dropdown-list-item-input" x-on:click="newMessagePopup = true">
+                   </li>
+                   <li class="site-section__create-btn-dropdown-list-item  email-page__create-btn-dropdown-list-item">
+                     <input type="text" value="Новое письмо 2" readonly="" class="site-section__create-btn-dropdown-list-item-input email-page__create-btn-dropdown-list-item-input" x-on:click="newMessagePopup = true">
+                   </li>
+                  </ul>  
+                  </div>
+               </div>
+        </div>
+        <div class="email-page__bottom-row">
+            <h2 class="site-section__title email-page__title" x-text="toggleEmailBtn === false ? 'Входящие' : 'Исходящие'"></h2>
+            <button type="button" class="email-page__toggle-email-type-btn" x-on:click="toggleEmailBtn = !toggleEmailBtn" x-text="toggleEmailBtn === false ? 'Переключить на исходящие' : 'Переключить на входящие'">
+            </button>
+        </div>
+        <div class="site-section__body email-page__body">
+          <div class="email-page__body-top">
+            <div class="email-page__body-top-left">
+              <h2 class="site-section__title email-page__title" x-text="toggleEmailBtn === false ? 'E-mail: Входящие' : 'E-mail: Исходящие'"></h2>
+            <button type="button" class="email-page__toggle-email-type-btn" x-on:click="toggleEmailBtn = !toggleEmailBtn" x-text="toggleEmailBtn === false ? 'Переключить на исходящие' : 'Переключить на входящие'">
+            </button>
+            </div>
+            <div class="email-page__body-top-right">
+              <button type="button" class="email-page__reload-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.6668 13.335C22.3408 15.6814 21.2523 17.8555 19.569 19.5224C17.8858 21.1893 15.7012 22.2565 13.3517 22.5596C11.0023 22.8628 8.61833 22.3851 6.5671 21.2C4.51587 20.015 2.91116 18.1884 2.00016 16.0017M1.3335 21.335V16.0017H6.66683M1.3335 10.6683C1.65958 8.32192 2.74807 6.14784 4.43131 4.48095C6.11455 2.81407 8.29915 1.74685 10.6486 1.4437C12.998 1.14054 15.382 1.61827 17.4332 2.80329C19.4845 3.98831 21.0892 5.81487 22.0002 8.00163M22.6668 2.66829V8.00163H17.3335" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+            </button>
+            <button class="btn btn--primary site-section__create-order-btn email-page__create-btn" type="button" x-on:click="newMessagePopup = true">
+              Создать          
+            </button>
+            <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+              <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                  <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>     
+              </button>
+              <ul class="site-section__choose-status-dropdown-list email-page__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                 <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Подключить новый e-mail</button>
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Настройки</button>
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Чёрный список</button>
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Контакты</button>
+               </li>
+              </ul>
+            </div>
+            </div>
+          </div>
+          <div class="site-section__body-bottom email-page__body-bottom desktop-hide">
+            <div class="site-section__body-bottom-left-group email-page__body-bottom-left-group">
+            <SearchBtn></SearchBtn>
+            <SearchBtnDropdown></SearchBtnDropdown>
+            </div>
+            <div class="email-page__body-bottom-right-group">
+              <SearchForm></SearchForm>
+              <Filter></Filter>
+            </div>    
+          </div>
+          <div class="site-section__body-bottom email-page__body-bottom mobile-hide">
+            <div class="email-page__body-bottom-left">
+              <SearchForm></SearchForm>
+              <Filter></Filter>
+            </div>    
+            <div class="email-page__body-bottom-right">
+              <button class="site-section__body-bottom-right-download-btn email-page__body-bottom-right-download-btn" type="button">
+                <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 14V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H15C15.5304 18 16.0391 17.7893 16.4142 17.4142C16.7893 17.0391 17 16.5304 17 16V14M4 8L9 13M9 13L14 8M9 13V1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>              
+              </button>
+              <button class="site-section__body-bottom-right-settings-btn email-page__body-bottom-right-settings-btn" type="button" x-on:click="settingsOrderListPopup = true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.325 2.317C8.751 0.561 11.249 0.561 11.675 2.317C11.7389 2.5808 11.8642 2.82578 12.0407 3.032C12.2172 3.23822 12.4399 3.39985 12.6907 3.50375C12.9414 3.60764 13.2132 3.65085 13.4838 3.62987C13.7544 3.60889 14.0162 3.5243 14.248 3.383C15.791 2.443 17.558 4.209 16.618 5.753C16.4769 5.98466 16.3924 6.24634 16.3715 6.51677C16.3506 6.78721 16.3938 7.05877 16.4975 7.30938C16.6013 7.55999 16.7627 7.78258 16.9687 7.95905C17.1747 8.13553 17.4194 8.26091 17.683 8.325C19.439 8.751 19.439 11.249 17.683 11.675C17.4192 11.7389 17.1742 11.8642 16.968 12.0407C16.7618 12.2172 16.6001 12.4399 16.4963 12.6907C16.3924 12.9414 16.3491 13.2132 16.3701 13.4838C16.3911 13.7544 16.4757 14.0162 16.617 14.248C17.557 15.791 15.791 17.558 14.247 16.618C14.0153 16.4769 13.7537 16.3924 13.4832 16.3715C13.2128 16.3506 12.9412 16.3938 12.6906 16.4975C12.44 16.6013 12.2174 16.7627 12.0409 16.9687C11.8645 17.1747 11.7391 17.4194 11.675 17.683C11.249 19.439 8.751 19.439 8.325 17.683C8.26108 17.4192 8.13578 17.1742 7.95929 16.968C7.7828 16.7618 7.56011 16.6001 7.30935 16.4963C7.05859 16.3924 6.78683 16.3491 6.51621 16.3701C6.24559 16.3911 5.98375 16.4757 5.752 16.617C4.209 17.557 2.442 15.791 3.382 14.247C3.5231 14.0153 3.60755 13.7537 3.62848 13.4832C3.64942 13.2128 3.60624 12.9412 3.50247 12.6906C3.3987 12.44 3.23726 12.2174 3.03127 12.0409C2.82529 11.8645 2.58056 11.7391 2.317 11.675C0.561 11.249 0.561 8.751 2.317 8.325C2.5808 8.26108 2.82578 8.13578 3.032 7.95929C3.23822 7.7828 3.39985 7.56011 3.50375 7.30935C3.60764 7.05859 3.65085 6.78683 3.62987 6.51621C3.60889 6.24559 3.5243 5.98375 3.383 5.752C2.443 4.209 4.209 2.442 5.753 3.382C6.753 3.99 8.049 3.452 8.325 2.317Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M10 13C11.6569 13 13 11.6569 13 10C13 8.34315 11.6569 7 10 7C8.34315 7 7 8.34315 7 10C7 11.6569 8.34315 13 10 13Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                           
+              </button>
+            </div>
+          </div>
+          <IncomingMessagesTable></IncomingMessagesTable>
+              <ul role="list" class="pagination email-page__pagination">
+                <Pagination></Pagination>
+              </ul>
+        </div>
+        </div>
+        <NewMessagePopup></NewMessagePopup>
+        <EditMessagePopup></EditMessagePopup>
+        <SettingsEmailPageListPopup></SettingsEmailPageListPopup>
+    </section>
+  </Layout>

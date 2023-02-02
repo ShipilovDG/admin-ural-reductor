@@ -1,0 +1,86 @@
+<ul class="document-flow-cards-list files-page__document-flow-cards-list" role="list" x-show="toggleView === 'layout'">
+    <template x-for="(file,index) in files" :key="file.name">
+     <li class="document-flow-cards-list__item files-page__document-flow-cards-list-item" x-data="{viewCardInfoAltPopup: false}">
+       <figure class="document-flow-cards-list__card files-page__document-flow-card" x-on:click="toggleCardInfoView = index" x-bind:class="{'active': toggleCardInfoView === index }">
+          <div class="document-flow-cards-list__card-top files-page__document-flow-card-top">
+              <img class="document-flow-cards-list__card-img files-page__document-flow-card-img" src="/images/document-flow-cards-img.png" alt="footer avatar" width="188" height="120" loading="lazy" decoding="async">
+              <p class="document-flow-cards-list__card-title files-page__document-flow-card-title" x-text="file.name">
+              </p>
+              <time datetime="12.05.2022" class="document-flow-cards-list__time">12.05.2022</time>
+          </div>
+          <figcaption class="document-flow-cards-list__figcaption files-page__document-flow-card-figcaption">
+              <button type="button" class="document-flow-cards-list__toggle-view-btn files-page__document-flow-card-toggle-view-btn">
+                  <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.4286 11.2857C13.6909 11.2857 14.7143 10.2624 14.7143 9C14.7143 7.73764 13.6909 6.71429 12.4286 6.71429C11.1662 6.71429 10.1429 7.73764 10.1429 9C10.1429 10.2624 11.1662 11.2857 12.4286 11.2857Z" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M23.8571 9C20.8091 14.3337 17 17 12.4286 17C7.85714 17 4.048 14.3337 1 9C4.048 3.66629 7.85714 1 12.4286 1C17 1 20.8091 3.66629 23.8571 9Z" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                        
+              </button>
+              <button type="button" class="document-flow-cards-list__info-btn files-page__document-flow-card-info-btn" x-on:click="viewCardInfoAltPopup = true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11 6.55556H11.0111M9.88889 11H11V15.4444H12.1111M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                        
+              </button>
+              <button type="button" class="document-flow-cards-list__download-btn files-page__document-flow-card-download-btn">
+                  <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 14V16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H15C15.5304 18 16.0391 17.7893 16.4142 17.4142C16.7893 17.0391 17 16.5304 17 16V14M4 8L9 13M9 13L14 8M9 13V1" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>    
+              </button>
+          </figcaption>
+       </figure>
+       <div class="alt-popup view-card-info-alt-popup" x-bind:class="{'active': viewCardInfoAltPopup === true}" x-on:click.self="viewCardInfoAltPopup = false">
+         <form action="#" method="post" class="alt-popup__form view-card-info-alt-popup__form">
+         <div class="alt-popup__content view-card-info-alt-popup__content">
+          <div class="view-card-info-alt-popup__top-row">
+             <p class="alt-popup__title view-card-info-alt-popup__title" x-text="file.name"></p>
+          </div>
+         <div class="alt-popup__body view-card-info-alt-popup__body">
+                 <fieldset class="alt-popup__fieldset view-card-info-alt-popup__fieldset b-b">
+                  <ul role="list" class="view-card-info-alt-popup__list">
+                     <li class="view-card-info-alt-popup__list-item">
+                        <div class="view-card-info-alt-popup__list-item-top">
+                         <p class="view-card-info-alt-popup__list-item-title">Размер:</p>
+                         <p class="view-card-info-alt-popup__list-item-info" x-text="file.size"></p>
+                        </div>
+                        <div class="view-card-info-alt-popup__list-item-bottom">
+                         <p class="view-card-info-alt-popup__list-item-title">Тип файла:</p>
+                         <p class="view-card-info-alt-popup__list-item-info" x-text="file.type"></p>
+                        </div>
+                     </li>
+                     <li class="view-card-info-alt-popup__list-item">
+                         <div class="view-card-info-alt-popup__list-item-top">
+                          <p class="view-card-info-alt-popup__list-item-title">Создан:</p>
+                          <p class="view-card-info-alt-popup__list-item-info">19.10.2022 17:32</p>
+                         </div>
+                         <div class="view-card-info-alt-popup__list-item-bottom">
+                          <p class="view-card-info-alt-popup__list-item-title">Автор:</p>
+                          <p class="view-card-info-alt-popup__list-item-info"><a class="view-card-info-alt-popup__list-item-mail" href="mailto:vtr@uralreduktor.ru">vtr@uralreduktor.ru</a></p>
+                         </div>
+                      </li>
+                      <li class="view-card-info-alt-popup__list-item">
+                         <div class="view-card-info-alt-popup__list-item-top">
+                          <p class="view-card-info-alt-popup__list-item-title">Изменен:</p>
+                          <p class="view-card-info-alt-popup__list-item-info">19.10.2022 17:32</p>
+                         </div>
+                         <div class="view-card-info-alt-popup__list-item-bottom">
+                          <p class="view-card-info-alt-popup__list-item-title">Кем:</p>
+                          <p class="view-card-info-alt-popup__list-item-info"><a class="view-card-info-alt-popup__list-item-mail" href="mailto:vtr@uralreduktor.ru">vtr@uralreduktor.ru</a></p>
+                         </div>
+                      </li>
+                 </ul>
+                 </fieldset>
+         <ul role="list" class="alt-popup__btn-control-group view-card-info-alt-popup__btn-control-group">
+             <li class="alt-popup__btn-control-group-item view-card-info-alt-popup__btn-control-group-item">
+                 <button type="button" class="view-card-info-alt-popup__cancel-btn" x-on:click="viewCardInfoAltPopup = false">
+                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                         </svg>                    
+                 </button>
+             </li>
+           </ul>
+         </div>
+     </div>
+     </form>
+     </div>
+     </li>
+    </template>
+ </ul>

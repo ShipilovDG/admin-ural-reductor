@@ -1,0 +1,63 @@
+<div class="site-section__table-wrapper applications-table__table-wrapper">
+    <nav class="site-section__table applications-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list applications-table__table-list applications-table__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item applications-table__table-list-item applications-table__table-list-caption-item">
+            Новые
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item applications-table__table-list-item applications-table__table-list-caption-item">
+            Сайт
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item applications-table__table-list-item applications-table__table-list-caption-item">
+            Дата
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item applications-table__table-list-item applications-table__table-list-caption-item">
+            Товар
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item applications-table__table-list-item applications-table__table-list-caption-item">
+            Заказчик
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item applications-table__table-list-item applications-table__table-list-caption-item">
+            Статус
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item applications-table__table-list-item applications-table__table-list-caption-item">
+            Ответственный
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list applications-table__table-list">
+        <li class="site-section__table-list-item applications-table__table-list-item">
+            <span class="site-section__indicator-new blinking"></span>
+        </li>
+        <li class="site-section__table-list-item applications-table__table-list-item">
+            uralreduktor     
+        </li>
+        <li class="site-section__table-list-item applications-table__table-list-item">
+            <div class="applications-table__datetime-wrapper">
+               <time datetime="11:15" class="applications-table__datetime">11:15</time>
+               <time datetime="28.10.2022" class="applications-table__datetime">28.10.2022</time>
+            </div> 
+        </li>
+        <li class="site-section__table-list-item applications-table__table-list-item" x-on:click="editApplicationAltPopup = true">
+            <p class="applications-table__table-list-item-product">Редуктор цилиндрический; Редуктор конич</p>    
+        </li>
+        <li class="site-section__table-list-item applications-table__table-list-item user" x-on:click="editApplicationAltPopup = true">
+             <div class="applications-table__user-wrapper">
+                <img class="applications-table__avatar-user-img" src="/images/header-avatar-placeholder.svg" alt="avatar-user-img" width="24" height="24" loading="lazy" decoding="async">
+                <p class="applications-table__user-title">Имя пользователя</p>
+             </div>
+         </li>
+        <li class="site-section__table-list-item applications-table__table-list-item">
+            <button class="btn site-section__status-btn applications-table__status-btn site-section__status-btn--in-process applications-table__status-btn--in-process" type="button">
+                Ждёт ответа
+            </button>
+       </li>
+       <li class="site-section__table-list-item applications-table__table-list-item user" x-on:click="editApplicationAltPopup = true">
+        <div class="applications-table__resp-wrapper">
+           <img class="applications-table__avatar-resp-img" src="/images/header-avatar-placeholder.svg" alt="avatar-resp-img" width="24" height="24" loading="lazy" decoding="async">
+           <p class="applications-table__resp-title">ИванИванович</p>
+        </div>
+    </li>
+      </ul>
+    </template>
+    </nav>
+</div>

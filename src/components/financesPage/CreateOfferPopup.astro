@@ -1,0 +1,380 @@
+---
+import PaymentRequirementsDropdownOffer from "./PaymentRequirementsDropdownOffer.astro";
+import ParamsListsOffer from "./ParamsListsOffer.astro";
+import ChooseTransportCompanyDropdownOffer from "./ChooseTransportCompanyDropdownOffer.astro";
+---
+
+<div class="popup create-offer-popup" x-bind:class="{'active': createOfferPopup === true}" x-data="paramsList">
+    <form action="#" method="post" class="popup__form create-offer-popup__form">
+    <div class="popup__content create-offer-popup__content">
+  <div class="popup__top-row create-offer-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="settingsPopup = false;createOfferPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="settingsPopup = false;createOfferPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title create-offer-popup__title">
+        Создание предложения 
+    </h2>
+</div>
+    <div class="popup__body create-offer-popup__body">
+       <fieldset class="create-offer-popup__fieldset b-b m-b">
+           <div class="create-offer-popup__form-control-group">
+              <p class="create-offer-popup__form-control-group-title">
+                Заказчик
+              </p>
+              <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Выбор контрагента'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-offer-popup__form-control-select-result-input customer" value="Выбор контрагента" readonly x-model="resultInputVal">
+                <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-offer-popup__form-control-select-list">
+                  <li class="create-offer-popup__form-control-select-list-item">
+                    <input type="text" value="Выбор контрагента" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выбор контрагента'">
+                  </li>
+                  <li class="create-offer-popup__form-control-select-list-item">
+                    <input type="text" value="Выбор контрагента 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выбор контрагента 2'">
+                  </li>
+                  <li class="create-offer-popup__form-control-select-list-item">
+                    <input type="text" value="Выбор контрагента 3" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Выбор контрагента 3'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+              </div>
+           </div>
+         <div class="create-offer-popup__form-control-group">
+          <p class="create-offer-popup__form-control-group-title data-title">
+              Дата
+          </p>
+          <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper datetimepicker-wrapper" id="datetimepicker1" data-td-target-input="nearest" data-td-target-toggle="nearest">
+            <input class="create-offer-popup__form-control-input-date"
+          id="datetimepicker1Input" type="text" data-td-target="#datetimepicker1" readonly/>
+          <button type="button" data-td-target="#datetimepicker1" data-td-toggle="datetimepicker" class="create-offer-popup__form-control-datepicker-btn">
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 1V5M5 1V5M1 9H17M3 3H15C16.1046 3 17 3.89543 17 5V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V5C1 3.89543 1.89543 3 3 3ZM5 13H7V15H5V13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>              
+          </button>
+          </div>
+         </div>
+         <div class="create-offer-popup__form-control-group">
+            <p class="create-offer-popup__form-control-group-title data-title">
+                Срок действия
+            </p>
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper datetimepicker-wrapper" id="datetimepicker2" data-td-target-input="nearest" data-td-target-toggle="nearest">
+              <input class="create-offer-popup__form-control-input-date"
+            id="datetimepicker2Input" type="text" data-td-target="#datetimepicker2" readonly/>
+            <button type="button" data-td-target="#datetimepicker2" data-td-toggle="datetimepicker" class="create-offer-popup__form-control-datepicker-btn">
+              <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1V5M5 1V5M1 9H17M3 3H15C16.1046 3 17 3.89543 17 5V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V5C1 3.89543 1.89543 3 3 3ZM5 13H7V15H5V13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>              
+            </button>
+            </div>
+           </div>
+       </fieldset>
+       <fieldset class="create-offer-popup__fieldset b-b m-b">
+        <div class="create-offer-popup__form-control-group">
+            <p class="create-offer-popup__form-control-group-title">
+              Ответственный
+            </p>
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'vtr@uralreduktor.ru'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <div class="create-offer-popup__icon-select-result-wrapper">
+              <input type="text" class="create-offer-popup__form-control-select-result-input resp-input" value="vtr@uralreduktor.ru" readonly x-model="resultInputVal">
+              </div>
+              <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-offer-popup__form-control-select-list">
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="vtr@uralreduktor.ru 1" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 1'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="vtr@uralreduktor.ru 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 2'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="vtr@uralreduktor.ru 3" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 3'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+        </div>
+        <div class="create-offer-popup__form-control-group">
+            <p class="create-offer-popup__form-control-group-title">
+              Валюта
+            </p>
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Rubles, RUB, p.'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <div class="create-offer-popup__icon-select-result-wrapper">
+              <input type="text" class="create-offer-popup__form-control-select-result-input curr-input" value="Rubles, RUB, p." readonly x-model="resultInputVal">
+              </div>
+              <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-offer-popup__form-control-select-list">
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="Rubles, RUB, p. 1" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Rubles, RUB, p. 1'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="Rubles, RUB, p. 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Rubles, RUB, p. 2'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="Rubles, RUB, p. 3" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Rubles, RUB, p. 3'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+        </div>
+        <div class="create-offer-popup__form-control-group">
+            <p class="create-offer-popup__form-control-group-title">
+              Шаблон
+            </p>
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Предложение'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <div class="create-offer-popup__icon-select-result-wrapper">
+              <input type="text" class="create-offer-popup__form-control-select-result-input tmpl-input" value="Предложение" readonly x-model="resultInputVal">
+              </div>
+              <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-offer-popup__form-control-select-list">
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="Предложение 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Предложение 2'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="Предложение 3" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Предложение 3'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" value="Предложение 4" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Предложение 4'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+        </div>
+       </fieldset>
+       <fieldset class="create-offer-popup__fieldset b-b m-b">
+        <div class="create-offer-popup__form-control-group offer-receivers">
+            <p class="create-offer-popup__form-control-group-title">
+                Получатели предложения по e-mail
+            </p>
+            <p class="create-offer-popup__form-control-group-subtitle">
+                Вы можете выбрать несколько получателей.
+            </p>
+            <ul role="list" class="create-offer-popup__recepient-offer-list">
+                <li class="create-offer-popup__recepient-offer-list-item">
+                    <input type="checkbox" class="create-offer-popup__recepient-offer-list-item-checkbox" id="recepientOfferPopupName1">
+                    <label class="create-offer-popup__recepient-offer-list-item-info" for="recepientOfferPopupName1">
+                        <p class="create-offer-popup__recepient-offer-list-item-name">Иван Иван</p>
+                        <span class="create-offer-popup__recepient-offer-list-item-mail">vtr@uralreduktor.ru</span>
+                    </label>
+                </li>
+                <li class="create-offer-popup__recepient-offer-list-item">
+                    <input type="checkbox" class="create-offer-popup__recepient-offer-list-item-checkbox" id="recepientOfferPopupName2">
+                    <label class="create-offer-popup__recepient-offer-list-item-info" for="recepientOfferPopupName2">
+                        <p class="create-offer-popup__recepient-offer-list-item-name">Степан Степанович</p>
+                        <span class="create-offer-popup__recepient-offer-list-item-mail">vtr@uralreduktor.ru</span>
+                    </label>
+                </li>
+            </ul>
+            <button type="button" class="create-offer-popup__add-recepient-btn" x-on:click="newContactPopup = true">
+                <svg class="create-offer-popup__add-recepient-btn-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.00016 1.33301V10.6663M1.3335 5.99967H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                
+                Добавить контакт
+            </button>
+        </div>
+       </fieldset>
+       <div class="create-offer-popup__form-control-group opt-price">
+        <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'руб. Розничная цена'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+          <input type="text" class="create-offer-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 10" value="руб. Розничная цена" readonly x-model="resultInputVal">
+          <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+          <ul role="list" class="create-offer-popup__form-control-select-list">
+            <li class="create-offer-popup__form-control-select-list-item">
+              <input type="text" name="руб. Розничная цена" id="руб. Розничная цена" value="руб. Розничная цена" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'руб. Розничная цена'">
+            </li>
+            <li class="create-offer-popup__form-control-select-list-item">
+              <input type="text" name="руб. Розничная цена 2" id="руб. Розничная цена 2" value="руб. Розничная цена 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'руб. Розничная цена 2'">
+            </li>
+            <li class="create-offer-popup__form-control-select-list-item">
+              <input type="text" name="руб. Розничная цена 3" id="руб. Розничная цена 3" value="руб. Розничная цена 3" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'руб. Розничная цена 3'">
+            </li>
+          </ul>
+          </div>
+          <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                  
+        </div>
+       </div>
+      <ParamsListsOffer></ParamsListsOffer>
+      <fieldset class="create-offer-popup__fieldset b-b m-b">
+        <div class="create-offer-popup__form-control-group offer-sign">
+            <p class="create-offer-popup__form-control-group-title">
+                Подпись к предложению
+            </p>
+            <textarea class="create-offer-popup__textarea" placeholder="Введите текст"></textarea>
+         </div>
+      </fieldset>
+       <p class="create-offer-popup__form-control-group-title delivery-conds">Условия доставки</p>
+       <ul role="list" class="create-offer-popup__radio-list">
+        <li class="create-offer-popup__radio-list-item">
+          <input type="radio" name="Условия доставки" id="createOfferPopupRadioListInput 1" class="create-offer-popup__radio-input" checked>
+          <div class="create-offer-popup__radio-list-item-info">
+            <label for="createOfferPopupRadioListInput 1" class="create-offer-popup__radio-label">доставка до склада Получателя</label>
+            <div class="create-offer-popup__form-control-group">
+              <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-input-wrapper location-input-wrapper">
+                <input type="text" class="create-offer-popup__form-control-input" placeholder="Введите населенный пункт или адрес">
+              </div>
+           </div>
+           <p class="create-offer-popup__radio-list-item-text">за счет</p>
+           <div class="create-offer-popup__form-control-group">
+            <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Поставщика'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-offer-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 12" value="Поставщика" readonly x-model="resultInputVal">
+              <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-offer-popup__form-control-select-list">
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" name="Поставщика" id="Поставщика" value="Поставщика" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Поставщика'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" name="Поставщика 1" id="Поставщика 1" value="Поставщика 1" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Поставщика 1'">
+                </li>
+                <li class="create-offer-popup__form-control-select-list-item">
+                  <input type="text" name="Поставщика 2" id="Поставщика 2" value="Поставщика 2" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Поставщика 2'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+          </div>
+          </div>
+        </li>
+        <li class="create-offer-popup__radio-list-item">
+          <input type="radio" name="Условия доставки" id="самовывоз" class="create-offer-popup__radio-input">
+          <div class="create-offer-popup__radio-list-item-info two-cols">
+            <label for="самовывоз" class="create-offer-popup__radio-label">самовывоз</label>
+            <button type="button" class="create-offer-popup__storage-addr-btn">
+              Наш адрес склада
+            </button>
+          </div>
+        </li>
+        <li class="create-offer-popup__radio-list-item">
+          <input type="radio" name="Условия доставки" id="доставка до терминала транспортной компании" class="create-offer-popup__radio-input">
+          <div class="create-offer-popup__radio-list-item-info">
+            <label for="доставка до терминала транспортной компании" class="create-offer-popup__radio-label">доставка до терминала транспортной компании</label>
+            <ChooseTransportCompanyDropdownOffer></ChooseTransportCompanyDropdownOffer>
+          </div>
+        </li>
+       </ul>
+       <fieldset class="create-offer-popup__fieldset create-offer-popup__fieldset--3-cols payment-guarantee-prod">
+        <div class="create-offer-popup__form-control-group payment-req">
+           <p class="create-offer-popup__form-control-group-title">
+            Условия оплаты
+           </p>
+           <PaymentRequirementsDropdownOffer></PaymentRequirementsDropdownOffer>
+        </div>
+        <div class="create-offer-popup__form-control-group">
+          <p class="create-offer-popup__form-control-group-title">
+            Гарантийный срок
+          </p>
+          <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '12 месяцев'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+            <input type="text" class="create-offer-popup__form-control-select-result-input" value="12 месяцев" readonly x-model="resultInputVal">
+            <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+            <ul role="list" class="create-offer-popup__form-control-select-list">
+              <li class="create-offer-popup__form-control-select-list-item">
+                <input type="text" value="12 месяцев" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '12 месяцев'">
+              </li>
+              <li class="create-offer-popup__form-control-select-list-item">
+                <input type="text" value="5 месяцев" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '5 месяцев'">
+              </li>
+              <li class="create-offer-popup__form-control-select-list-item">
+               <input type="text" value="6 месяцев" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '6 месяцев'">
+             </li>
+            </ul>
+            </div>
+            <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                  
+          </div>
+        </div>
+       <div class="create-offer-popup__form-control-group">
+        <p class="create-offer-popup__form-control-group-title">
+          Срок изготовления
+        </p>
+        <div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '30 дней'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+          <input type="text" class="create-offer-popup__form-control-select-result-input" value="30 дней" readonly x-model="resultInputVal">
+          <div class="create-offer-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+          <ul role="list" class="create-offer-popup__form-control-select-list">
+            <li class="create-offer-popup__form-control-select-list-item">
+              <input type="text" value="30 дней" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '30 дней'">
+            </li>
+            <li class="create-offer-popup__form-control-select-list-item">
+              <input type="text" value="28 дней" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '28 дней'">
+            </li>
+            <li class="create-offer-popup__form-control-select-list-item">
+             <input type="text" value="24 дня" readonly class="create-offer-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '24 дня'">
+           </li>
+          </ul>
+          </div>
+          <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                  
+        </div>
+       </div>
+    </fieldset>
+    <ul role="list" class="create-offer-popup__btn-control-group">
+      <li class="create-offer-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat create-offer-popup__undo-btn" x-on:click="createOfferPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="create-offer-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary create-offer-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+  </ul>
+    </div>
+</div>
+</form>
+  </div>
+
+<script type="module">
+  // Tempus Dominus JavaScript datepicker https://getdatepicker.com/ 
+  import { TempusDominus } from 'https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.esm.js';
+
+  new TempusDominus(document.getElementById('datetimepicker1'), {
+    display: {
+      theme: 'light',
+      buttons: {
+        clear: true,
+      },
+      components: {
+        clock: false,
+        hours: false,
+        minutes: false,
+        seconds: false,
+      },
+    }
+  });
+  new TempusDominus(document.getElementById('datetimepicker2'), {
+    display: {
+      theme: 'light',
+      buttons: {
+        clear: true,
+      },
+      components: {
+        clock: false,
+        hours: false,
+        minutes: false,
+        seconds: false,
+      },
+    }
+  });
+</script>
+  

@@ -1,0 +1,572 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Pagination from "../components/Pagination.astro";
+import TableTabs from "../components/TableTabs.astro";
+import SearchForm from "../components/SearchForm.astro";
+import SearchBtn from "../components/SearchBtn.astro";
+import SearchBtnDropdown from "../components/SearchBtnDropdown.astro";
+import Filter from "../components/Filter.astro";
+import DocumentFlowTable from "../components/filesPage/DocumentFlowTable.astro";
+import DocumentFlowTablePassport from "../components/filesPage/DocumentFlowTablePassport.astro";
+import DocumentFlowCardsList from "../components/filesPage/DocumentFlowCardsList.astro";
+import DocumentFlowCardsListPassport from "../components/filesPage/DocumentFlowCardsListPassport.astro";
+import TransferSectionsAltPopup from "../components/filesPage/TransferSectionsAltPopup.astro";
+import EditActionsAltPopup from "../components/filesPage/EditActionsAltPopup.astro";
+import AddPassportFolderAltPopup from "../components/filesPage/AddPassportFolderAltPopup.astro";
+import DocumentFlowAddFolderAltPopup from "../components/filesPage/DocumentFlowAddFolderAltPopup.astro";
+import EditContragentPopup from "../components/contragentsPage/EditContragentPopup.astro";
+---
+<Layout title="страница Файлы">
+  <section class="site-section files-page__site-section" x-data="{table: 1, searchBtnDropdown: false, transferSectionsAltPopup: false, editActionsAltPopup: false, addPassportFolderAltPopup: false, documentFlowAddFolderAltPopup: false, editContragentPopup: false }">
+    <TableTabs></TableTabs>
+    <div class="site-section__tab-wrapper" x-show="table === 1" x-data="{toggleView: 'tableList'}">
+    <div class="site-section__top-row files-page__top-row desktop-hide">
+        <button type="button" class="site-section__top-row-settings-btn files-page__top-row-settings-btn" x-on:click="">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.7667 2.756C11.3347 0.414667 14.6653 0.414667 15.2333 2.756C15.3186 3.10773 15.4856 3.43437 15.7209 3.70933C15.9563 3.98429 16.2532 4.19981 16.5875 4.33833C16.9219 4.47685 17.2842 4.53447 17.645 4.50649C18.0059 4.47852 18.355 4.36574 18.664 4.17733C20.7213 2.924 23.0773 5.27867 21.824 7.33733C21.6359 7.64621 21.5233 7.99512 21.4954 8.3557C21.4674 8.71628 21.525 9.07836 21.6634 9.41251C21.8017 9.74665 22.017 10.0434 22.2916 10.2787C22.5663 10.514 22.8926 10.6812 23.244 10.7667C25.5853 11.3347 25.5853 14.6653 23.244 15.2333C22.8923 15.3186 22.5656 15.4856 22.2907 15.7209C22.0157 15.9563 21.8002 16.2532 21.6617 16.5875C21.5232 16.9219 21.4655 17.2842 21.4935 17.645C21.5215 18.0059 21.6343 18.355 21.8227 18.664C23.076 20.7213 20.7213 23.0773 18.6627 21.824C18.3538 21.6359 18.0049 21.5233 17.6443 21.4954C17.2837 21.4674 16.9216 21.525 16.5875 21.6634C16.2533 21.8017 15.9566 22.017 15.7213 22.2916C15.486 22.5663 15.3188 22.8926 15.2333 23.244C14.6653 25.5853 11.3347 25.5853 10.7667 23.244C10.6814 22.8923 10.5144 22.5656 10.2791 22.2907C10.0437 22.0157 9.74682 21.8002 9.41246 21.6617C9.07811 21.5232 8.71578 21.4655 8.35495 21.4935C7.99413 21.5215 7.645 21.6343 7.336 21.8227C5.27867 23.076 2.92267 20.7213 4.176 18.6627C4.36414 18.3538 4.47673 18.0049 4.50465 17.6443C4.53256 17.2837 4.47499 16.9216 4.33663 16.5875C4.19827 16.2533 3.98301 15.9566 3.70836 15.7213C3.43371 15.486 3.10742 15.3188 2.756 15.2333C0.414667 14.6653 0.414667 11.3347 2.756 10.7667C3.10773 10.6814 3.43437 10.5144 3.70933 10.2791C3.98429 10.0437 4.19981 9.74682 4.33833 9.41246C4.47685 9.07811 4.53447 8.71578 4.50649 8.35495C4.47852 7.99413 4.36574 7.645 4.17733 7.336C2.924 5.27867 5.27867 2.92267 7.33733 4.176C8.67067 4.98667 10.3987 4.26933 10.7667 2.756Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M13 17C15.2091 17 17 15.2091 17 13C17 10.7909 15.2091 9 13 9C10.7909 9 9 10.7909 9 13C9 15.2091 10.7909 17 13 17Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>        
+           </button>
+           <div class="site-section__create-btn-wrapper files-page__create-btn-wrapper" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+               <button class="btn btn--primary site-section__create-order-btn files-page__create-btn dropdown" type="button" x-on:click="toggleDropdown = !toggleDropdown">
+                Добавить
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path d="M1 1L5 5L9 1" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                   </svg>            
+              </button>
+              <div class="site-section__create-btn-dropdown files-page__create-btn-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+             <ul role="list" class="site-section__create-btn-dropdown-list files-page__create-btn-dropdown-list">
+               <li class="site-section__create-btn-dropdown-list-item  files-page__create-btn-dropdown-list-item">
+                   <input type="text" value="Пригласить пользователя" readonly="" class="site-section__create-btn-dropdown-list-item-input files-page__create-btn-dropdown-list-item-input" x-on:click="inviteUserPopup = true">
+               </li>
+               <li class="site-section__create-btn-dropdown-list-item  files-page__create-btn-dropdown-list-item">
+                 <input type="text" value="Добавить группу" readonly="" class="site-section__create-btn-dropdown-list-item-input files-page__create-btn-dropdown-list-item-input" x-on:click="">
+               </li>
+              </ul>  
+              </div>
+           </div>
+    </div>
+    <div class="site-section__body files-page__body">
+      <div class="site-section__body-bottom files-page__body-bottom mobile">
+        <div class="site-section__body-bottom-left-group files-page__body-bottom-left-group">
+        <SearchBtn></SearchBtn>
+        <SearchBtnDropdown></SearchBtnDropdown>
+        </div>
+        <div class="site-section__body-bottom-right-group files-page__body-bottom-right-group">
+          <SearchForm></SearchForm>
+          <Filter></Filter>
+        </div>    
+      </div>
+      <div class="files-page__body-btn-controls-group desktop-hide">
+        <button type="button" class="files-page__cloud-download-btn">
+            <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.2055 14.7771C20.2119 14.7771 21.177 14.3878 21.8886 13.6948C22.6002 13.0019 23 12.0621 23 11.0821C23 10.1021 22.6002 9.16227 21.8886 8.46932C21.177 7.77637 20.2119 7.38708 19.2055 7.38708H18.1213C18.2795 6.70082 18.2819 5.99397 18.1284 5.30689C17.9749 4.61982 17.6685 3.96597 17.2267 3.38267C16.7848 2.79938 16.2162 2.29807 15.5533 1.90737C14.8904 1.51666 14.1462 1.24421 13.3631 1.10557C12.5801 0.966933 11.7736 0.964821 10.9896 1.09936C10.2056 1.23389 9.45954 1.50244 8.79399 1.88967C7.44984 2.67171 6.51522 3.88968 6.19574 5.27565C5.03999 5.23057 3.90335 5.56111 2.98045 6.21069C2.05755 6.86027 1.40579 7.78848 1.13676 8.83639C0.867724 9.8843 0.998157 10.9867 1.50572 11.9549C2.01329 12.9231 2.86641 13.6969 3.91903 14.1437M11.6165 9.49856V19M11.6165 19L8.36402 15.8329M11.6165 19L14.8689 15.8329" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+        </button>
+        <button type="button" class="files-page__delete-trash-btn">
+            <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.7998 5.44444H19.5776M8.46647 9.88889V16.5556M12.9109 9.88889V16.5556M2.91092 5.44444L4.02203 18.7778C4.02203 19.3671 4.25615 19.9324 4.6729 20.3491C5.08965 20.7659 5.65488 21 6.24425 21H15.1331C15.7225 21 16.2877 20.7659 16.7045 20.3491C17.1212 19.9324 17.3554 19.3671 17.3554 18.7778L18.4665 5.44444M7.35536 5.44444V2.11111C7.35536 1.81643 7.47242 1.53381 7.6808 1.32544C7.88917 1.11706 8.17179 1 8.46647 1H12.9109C13.2056 1 13.4882 1.11706 13.6966 1.32544C13.905 1.53381 14.022 1.81643 14.022 2.11111V5.44444" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                              
+        </button>
+        <button type="button" class="files-page__edit-btn" x-on:click="editActionsAltPopup = true">
+            <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.5158 2.90847L15.6911 7.08372M1.59961 17H5.77486L16.7349 6.03997C17.2886 5.4863 17.5996 4.73536 17.5996 3.95235C17.5996 3.16934 17.2886 2.4184 16.7349 1.86472C16.1812 1.31105 15.4303 1 14.6473 1C13.8643 1 13.1133 1.31105 12.5596 1.86472L1.59961 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                                           
+        </button>
+        <button type="button" class="files-page__swap-btn" x-on:click="transferSectionsAltPopup = true">
+            <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.4004 4H1.40039M19.4004 4L16.4004 7M19.4004 4L16.4004 1M4.40039 17L1.40039 14M1.40039 14L4.40039 11M1.40039 14H19.4004" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+        </button>
+        <button type="button" class="files-page__copy-btn">
+            <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.8669 1V5.44444C11.8669 5.73913 11.9792 6.02174 12.1793 6.23012C12.3793 6.43849 12.6506 6.55556 12.9335 6.55556H17.2002M11.8669 1H7.6002C7.0344 1 6.49178 1.23413 6.0917 1.65087C5.69162 2.06762 5.46686 2.63285 5.46686 3.22222V14.3333C5.46686 14.9227 5.69162 15.4879 6.0917 15.9047C6.49178 16.3214 7.0344 16.5556 7.6002 16.5556H15.0669C15.6327 16.5556 16.1753 16.3214 16.5754 15.9047C16.9754 15.4879 17.2002 14.9227 17.2002 14.3333V6.55556M11.8669 1L17.2002 6.55556M12.9335 16.5556V18.7778C12.9335 19.3671 12.7088 19.9324 12.3087 20.3491C11.9086 20.7659 11.366 21 10.8002 21H3.33353C2.76773 21 2.22511 20.7659 1.82503 20.3491C1.42496 19.9324 1.2002 19.3671 1.2002 18.7778V7.66667C1.2002 7.0773 1.42496 6.51207 1.82503 6.09532C2.22511 5.67857 2.76773 5.44444 3.33353 5.44444H5.46686" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+        </button>
+        <button type="button" class="files-page__layout-btn" x-show="toggleView === 'tableList'" x-on:click="toggleView = 'layout'">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.125 3.25C2.74632 3.25 3.25 2.74632 3.25 2.125C3.25 1.50368 2.74632 1 2.125 1C1.50368 1 1 1.50368 1 2.125C1 2.74632 1.50368 3.25 2.125 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 3.25C10.6213 3.25 11.125 2.74632 11.125 2.125C11.125 1.50368 10.6213 1 10 1C9.37868 1 8.875 1.50368 8.875 2.125C8.875 2.74632 9.37868 3.25 10 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.875 3.25C18.4963 3.25 19 2.74632 19 2.125C19 1.50368 18.4963 1 17.875 1C17.2537 1 16.75 1.50368 16.75 2.125C16.75 2.74632 17.2537 3.25 17.875 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2.125 11.125C2.74632 11.125 3.25 10.6213 3.25 10C3.25 9.37868 2.74632 8.875 2.125 8.875C1.50368 8.875 1 9.37868 1 10C1 10.6213 1.50368 11.125 2.125 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 11.125C10.6213 11.125 11.125 10.6213 11.125 10C11.125 9.37868 10.6213 8.875 10 8.875C9.37868 8.875 8.875 9.37868 8.875 10C8.875 10.6213 9.37868 11.125 10 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.875 11.125C18.4963 11.125 19 10.6213 19 10C19 9.37868 18.4963 8.875 17.875 8.875C17.2537 8.875 16.75 9.37868 16.75 10C16.75 10.6213 17.2537 11.125 17.875 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2.125 19C2.74632 19 3.25 18.4963 3.25 17.875C3.25 17.2537 2.74632 16.75 2.125 16.75C1.50368 16.75 1 17.2537 1 17.875C1 18.4963 1.50368 19 2.125 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 19C10.6213 19 11.125 18.4963 11.125 17.875C11.125 17.2537 10.6213 16.75 10 16.75C9.37868 16.75 8.875 17.2537 8.875 17.875C8.875 18.4963 9.37868 19 10 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.875 19C18.4963 19 19 18.4963 19 17.875C19 17.2537 18.4963 16.75 17.875 16.75C17.2537 16.75 16.75 17.2537 16.75 17.875C16.75 18.4963 17.2537 19 17.875 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                              
+        </button>
+        <button type="button" class="files-page__table-list-btn" x-show="toggleView === 'layout'" x-on:click="toggleView = 'tableList'">
+            <svg width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.00033 1H21.667M7.00033 9H21.667M7.00033 17H21.667M1.66699 1V1.01333M1.66699 9V9.01333M1.66699 17V17.0133" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                                            
+        </button>
+      </div>
+    <div class="site-section__top-row files-page__top-row mobile-hide">
+      <div class="files-page__toggle-view-btn-wrapper" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+      <button type="button" class="files-page__toggle-view-btn" x-on:click="toggleDropdown = !toggleDropdown">
+        <svg class="files-page__toggle-view-btn layout" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleView === 'layout'">
+            <path d="M2.125 3.25C2.74632 3.25 3.25 2.74632 3.25 2.125C3.25 1.50368 2.74632 1 2.125 1C1.50368 1 1 1.50368 1 2.125C1 2.74632 1.50368 3.25 2.125 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M10 3.25C10.6213 3.25 11.125 2.74632 11.125 2.125C11.125 1.50368 10.6213 1 10 1C9.37868 1 8.875 1.50368 8.875 2.125C8.875 2.74632 9.37868 3.25 10 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M17.875 3.25C18.4963 3.25 19 2.74632 19 2.125C19 1.50368 18.4963 1 17.875 1C17.2537 1 16.75 1.50368 16.75 2.125C16.75 2.74632 17.2537 3.25 17.875 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2.125 11.125C2.74632 11.125 3.25 10.6213 3.25 10C3.25 9.37868 2.74632 8.875 2.125 8.875C1.50368 8.875 1 9.37868 1 10C1 10.6213 1.50368 11.125 2.125 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M10 11.125C10.6213 11.125 11.125 10.6213 11.125 10C11.125 9.37868 10.6213 8.875 10 8.875C9.37868 8.875 8.875 9.37868 8.875 10C8.875 10.6213 9.37868 11.125 10 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M17.875 11.125C18.4963 11.125 19 10.6213 19 10C19 9.37868 18.4963 8.875 17.875 8.875C17.2537 8.875 16.75 9.37868 16.75 10C16.75 10.6213 17.2537 11.125 17.875 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2.125 19C2.74632 19 3.25 18.4963 3.25 17.875C3.25 17.2537 2.74632 16.75 2.125 16.75C1.50368 16.75 1 17.2537 1 17.875C1 18.4963 1.50368 19 2.125 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M10 19C10.6213 19 11.125 18.4963 11.125 17.875C11.125 17.2537 10.6213 16.75 10 16.75C9.37868 16.75 8.875 17.2537 8.875 17.875C8.875 18.4963 9.37868 19 10 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M17.875 19C18.4963 19 19 18.4963 19 17.875C19 17.2537 18.4963 16.75 17.875 16.75C17.2537 16.75 16.75 17.2537 16.75 17.875C16.75 18.4963 17.2537 19 17.875 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg> 
+        <svg class="files-page__toggle-view-btn tableList" width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleView === 'tableList'">
+          <path d="M7.00033 1H21.667M7.00033 9H21.667M7.00033 17H21.667M1.66699 1V1.01333M1.66699 9V9.01333M1.66699 17V17.0133" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg> 
+        <span class="files-page__layout-btn-text" x-text="toggleView === 'layout' ? 'Списком' : 'Таблицей'"></span>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="files-page__toggle-view-arrow" x-bind:class="{'active': toggleDropdown === true }">
+          <path d="M1 1L5 5L9 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                                       
+      </button>
+      <div class="files-page__toggle-view-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+         <ul role="list" class="files-page__toggle-view-dropdown-list">
+          <li class="files-page__toggle-view-dropdown-list-item" x-on:click="toggleView = 'layout'; toggleDropdown = false">
+            <svg class="files-page__toggle-view-btn layout" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.125 3.25C2.74632 3.25 3.25 2.74632 3.25 2.125C3.25 1.50368 2.74632 1 2.125 1C1.50368 1 1 1.50368 1 2.125C1 2.74632 1.50368 3.25 2.125 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M10 3.25C10.6213 3.25 11.125 2.74632 11.125 2.125C11.125 1.50368 10.6213 1 10 1C9.37868 1 8.875 1.50368 8.875 2.125C8.875 2.74632 9.37868 3.25 10 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M17.875 3.25C18.4963 3.25 19 2.74632 19 2.125C19 1.50368 18.4963 1 17.875 1C17.2537 1 16.75 1.50368 16.75 2.125C16.75 2.74632 17.2537 3.25 17.875 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M2.125 11.125C2.74632 11.125 3.25 10.6213 3.25 10C3.25 9.37868 2.74632 8.875 2.125 8.875C1.50368 8.875 1 9.37868 1 10C1 10.6213 1.50368 11.125 2.125 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M10 11.125C10.6213 11.125 11.125 10.6213 11.125 10C11.125 9.37868 10.6213 8.875 10 8.875C9.37868 8.875 8.875 9.37868 8.875 10C8.875 10.6213 9.37868 11.125 10 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M17.875 11.125C18.4963 11.125 19 10.6213 19 10C19 9.37868 18.4963 8.875 17.875 8.875C17.2537 8.875 16.75 9.37868 16.75 10C16.75 10.6213 17.2537 11.125 17.875 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M2.125 19C2.74632 19 3.25 18.4963 3.25 17.875C3.25 17.2537 2.74632 16.75 2.125 16.75C1.50368 16.75 1 17.2537 1 17.875C1 18.4963 1.50368 19 2.125 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M10 19C10.6213 19 11.125 18.4963 11.125 17.875C11.125 17.2537 10.6213 16.75 10 16.75C9.37868 16.75 8.875 17.2537 8.875 17.875C8.875 18.4963 9.37868 19 10 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M17.875 19C18.4963 19 19 18.4963 19 17.875C19 17.2537 18.4963 16.75 17.875 16.75C17.2537 16.75 16.75 17.2537 16.75 17.875C16.75 18.4963 17.2537 19 17.875 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+             </svg>
+             Списком
+          </li>
+          <li class="files-page__toggle-view-dropdown-list-item" x-on:click="toggleView = 'tableList'; toggleDropdown = false">
+            <svg class="files-page__toggle-view-btn tableList" width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.00033 1H21.667M7.00033 9H21.667M7.00033 17H21.667M1.66699 1V1.01333M1.66699 9V9.01333M1.66699 17V17.0133" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg> 
+             Таблицей
+          </li>
+         </ul>
+      </div>
+       </div>
+        <div class="site-section__top-row-btn-group files-page__top-row-btn-group">
+          <button class="btn btn--primary files-page__download-btn" type="button" x-on:click="">
+            Загрузить        
+          </button>
+          <button class="btn btn--primary files-page__create-folder-btn" type="button" x-on:click="documentFlowAddFolderAltPopup = true">
+            Создать папку        
+          </button>
+             <button type="button" class="site-section__top-row-settings-btn files-page__top-row-settings-btn" x-on:click="">
+              <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.7667 2.756C11.3347 0.414667 14.6653 0.414667 15.2333 2.756C15.3186 3.10773 15.4856 3.43437 15.7209 3.70933C15.9563 3.98429 16.2532 4.19981 16.5875 4.33833C16.9219 4.47685 17.2842 4.53447 17.645 4.50649C18.0059 4.47852 18.355 4.36574 18.664 4.17733C20.7213 2.924 23.0773 5.27867 21.824 7.33733C21.6359 7.64621 21.5233 7.99512 21.4954 8.3557C21.4674 8.71628 21.525 9.07836 21.6634 9.41251C21.8017 9.74665 22.017 10.0434 22.2916 10.2787C22.5663 10.514 22.8926 10.6812 23.244 10.7667C25.5853 11.3347 25.5853 14.6653 23.244 15.2333C22.8923 15.3186 22.5656 15.4856 22.2907 15.7209C22.0157 15.9563 21.8002 16.2532 21.6617 16.5875C21.5232 16.9219 21.4655 17.2842 21.4935 17.645C21.5215 18.0059 21.6343 18.355 21.8227 18.664C23.076 20.7213 20.7213 23.0773 18.6627 21.824C18.3538 21.6359 18.0049 21.5233 17.6443 21.4954C17.2837 21.4674 16.9216 21.525 16.5875 21.6634C16.2533 21.8017 15.9566 22.017 15.7213 22.2916C15.486 22.5663 15.3188 22.8926 15.2333 23.244C14.6653 25.5853 11.3347 25.5853 10.7667 23.244C10.6814 22.8923 10.5144 22.5656 10.2791 22.2907C10.0437 22.0157 9.74682 21.8002 9.41246 21.6617C9.07811 21.5232 8.71578 21.4655 8.35495 21.4935C7.99413 21.5215 7.645 21.6343 7.336 21.8227C5.27867 23.076 2.92267 20.7213 4.176 18.6627C4.36414 18.3538 4.47673 18.0049 4.50465 17.6443C4.53256 17.2837 4.47499 16.9216 4.33663 16.5875C4.19827 16.2533 3.98301 15.9566 3.70836 15.7213C3.43371 15.486 3.10742 15.3188 2.756 15.2333C0.414667 14.6653 0.414667 11.3347 2.756 10.7667C3.10773 10.6814 3.43437 10.5144 3.70933 10.2791C3.98429 10.0437 4.19981 9.74682 4.33833 9.41246C4.47685 9.07811 4.53447 8.71578 4.50649 8.35495C4.47852 7.99413 4.36574 7.645 4.17733 7.336C2.924 5.27867 5.27867 2.92267 7.33733 4.176C8.67067 4.98667 10.3987 4.26933 10.7667 2.756Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M13 17C15.2091 17 17 15.2091 17 13C17 10.7909 15.2091 9 13 9C10.7909 9 9 10.7909 9 13C9 15.2091 10.7909 17 13 17Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>        
+             </button>
+        </div>
+    </div>
+    <DocumentFlowTable></DocumentFlowTable>
+    <div class="files-page__view-layout-grid desktop-hide" x-data="{toggleCardInfoView: ''}">
+    <DocumentFlowCardsList></DocumentFlowCardsList>
+          <ul role="list" class="pagination files-page__pagination">
+            <Pagination></Pagination>
+          </ul>
+    </div>
+    <div class="files-page__view-layout-grid mobile-hide" x-show="toggleView === 'layout'" x-data="{toggleCardInfoView: ''}">
+      <div class="files-page__view-layout-grid-left">
+      <div class="files-page__body-btn-controls-group">
+        <button type="button" class="files-page__cloud-download-btn">
+            <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.2055 14.7771C20.2119 14.7771 21.177 14.3878 21.8886 13.6948C22.6002 13.0019 23 12.0621 23 11.0821C23 10.1021 22.6002 9.16227 21.8886 8.46932C21.177 7.77637 20.2119 7.38708 19.2055 7.38708H18.1213C18.2795 6.70082 18.2819 5.99397 18.1284 5.30689C17.9749 4.61982 17.6685 3.96597 17.2267 3.38267C16.7848 2.79938 16.2162 2.29807 15.5533 1.90737C14.8904 1.51666 14.1462 1.24421 13.3631 1.10557C12.5801 0.966933 11.7736 0.964821 10.9896 1.09936C10.2056 1.23389 9.45954 1.50244 8.79399 1.88967C7.44984 2.67171 6.51522 3.88968 6.19574 5.27565C5.03999 5.23057 3.90335 5.56111 2.98045 6.21069C2.05755 6.86027 1.40579 7.78848 1.13676 8.83639C0.867724 9.8843 0.998157 10.9867 1.50572 11.9549C2.01329 12.9231 2.86641 13.6969 3.91903 14.1437M11.6165 9.49856V19M11.6165 19L8.36402 15.8329M11.6165 19L14.8689 15.8329" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>  
+                Скачать              
+        </button>
+        <button type="button" class="files-page__delete-trash-btn">
+            <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.7998 5.44444H19.5776M8.46647 9.88889V16.5556M12.9109 9.88889V16.5556M2.91092 5.44444L4.02203 18.7778C4.02203 19.3671 4.25615 19.9324 4.6729 20.3491C5.08965 20.7659 5.65488 21 6.24425 21H15.1331C15.7225 21 16.2877 20.7659 16.7045 20.3491C17.1212 19.9324 17.3554 19.3671 17.3554 18.7778L18.4665 5.44444M7.35536 5.44444V2.11111C7.35536 1.81643 7.47242 1.53381 7.6808 1.32544C7.88917 1.11706 8.17179 1 8.46647 1H12.9109C13.2056 1 13.4882 1.11706 13.6966 1.32544C13.905 1.53381 14.022 1.81643 14.022 2.11111V5.44444" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg> 
+                Удалить                             
+        </button>
+        <button type="button" class="files-page__edit-btn" x-on:click="editActionsAltPopup = true">
+            <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.5158 2.90847L15.6911 7.08372M1.59961 17H5.77486L16.7349 6.03997C17.2886 5.4863 17.5996 4.73536 17.5996 3.95235C17.5996 3.16934 17.2886 2.4184 16.7349 1.86472C16.1812 1.31105 15.4303 1 14.6473 1C13.8643 1 13.1133 1.31105 12.5596 1.86472L1.59961 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            Переименовать
+        </button>
+        <button type="button" class="files-page__swap-btn" x-on:click="transferSectionsAltPopup = true">
+            <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.4004 4H1.40039M19.4004 4L16.4004 7M19.4004 4L16.4004 1M4.40039 17L1.40039 14M1.40039 14L4.40039 11M1.40039 14H19.4004" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                Переместить
+        </button>
+        <button type="button" class="files-page__copy-btn">
+            <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.8669 1V5.44444C11.8669 5.73913 11.9792 6.02174 12.1793 6.23012C12.3793 6.43849 12.6506 6.55556 12.9335 6.55556H17.2002M11.8669 1H7.6002C7.0344 1 6.49178 1.23413 6.0917 1.65087C5.69162 2.06762 5.46686 2.63285 5.46686 3.22222V14.3333C5.46686 14.9227 5.69162 15.4879 6.0917 15.9047C6.49178 16.3214 7.0344 16.5556 7.6002 16.5556H15.0669C15.6327 16.5556 16.1753 16.3214 16.5754 15.9047C16.9754 15.4879 17.2002 14.9227 17.2002 14.3333V6.55556M11.8669 1L17.2002 6.55556M12.9335 16.5556V18.7778C12.9335 19.3671 12.7088 19.9324 12.3087 20.3491C11.9086 20.7659 11.366 21 10.8002 21H3.33353C2.76773 21 2.22511 20.7659 1.82503 20.3491C1.42496 19.9324 1.2002 19.3671 1.2002 18.7778V7.66667C1.2002 7.0773 1.42496 6.51207 1.82503 6.09532C2.22511 5.67857 2.76773 5.44444 3.33353 5.44444H5.46686" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>  
+                Копировать              
+        </button>
+      </div>
+      <DocumentFlowCardsList></DocumentFlowCardsList>
+      <ul role="list" class="pagination files-page__pagination">
+        <Pagination></Pagination>
+      </ul>
+       </div> 
+      <aside class="files-page__document-flow-card-aside">
+          <div class="files-page__document-flow-card-aside-info" x-show="toggleCardInfoView === ''">
+            <svg width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M39 22.3333H39.0417M34.8333 39H39V55.6667H43.1667M76.5 39C76.5 59.7107 59.7107 76.5 39 76.5C18.2893 76.5 1.5 59.7107 1.5 39C1.5 18.2893 18.2893 1.5 39 1.5C59.7107 1.5 76.5 18.2893 76.5 39Z" stroke="#859AB9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p class="files-page__document-flow-card-aside-info-text">
+                Здесь показывается детальная информация о выбранном файле или папке
+              </p>              
+          </div>
+          <template x-for="i in 5">
+            <figure class="files-page__document-flow-card-aside-figure" x-show="toggleCardInfoView === i">
+              <div class="files-page__document-flow-card-aside-figure-top">
+                <img class="files-page__document-flow-card-aside-img" src="/images/document-flow-cards-img.png" alt="footer avatar" width="210" height="180" loading="lazy" decoding="async">
+                <p class="files-page__document-flow-card-aside-title">
+                  редуктор цилиндрический
+                </p>
+                <button type="button" class="btn btn--primary files-page__document-flow-card-aside-view-btn">
+                  Посмотреть
+                </button>
+                <button type="button" class="btn btn--primary files-page__document-flow-card-aside-download-btn">
+                  Скачать
+                </button>
+              </div>
+              <figcaption class="files-page__document-flow-card-aside-figcaption">
+                <ul role="list" class="files-page__document-flow-card-aside-list">
+                  <li class="files-page__document-flow-card-aside-list-item">
+                     <div class="files-page__document-flow-card-aside-list-item-top">
+                      <p class="files-page__document-flow-card-aside-list-item-title">Размер:</p>
+                      <p class="files-page__document-flow-card-aside-list-item-info">19,06 КБ</p>
+                     </div>
+                     <div class="files-page__document-flow-card-aside-list-item-bottom">
+                      <p class="files-page__document-flow-card-aside-list-item-title">Тип файла:</p>
+                      <p class="files-page__document-flow-card-aside-list-item-info">png</p>
+                     </div>
+                  </li>
+                  <li class="files-page__document-flow-card-aside-list-item">
+                      <div class="files-page__document-flow-card-aside-list-item-top">
+                       <p class="files-page__document-flow-card-aside-list-item-title">Создан:</p>
+                       <p class="files-page__document-flow-card-aside-list-item-info">19.10.2022 17:32</p>
+                      </div>
+                      <div class="files-page__document-flow-card-aside-list-item-bottom">
+                       <p class="files-page__document-flow-card-aside-list-item-title">Автор:</p>
+                       <p class="files-page__document-flow-card-aside-list-item-info"><a class="files-page__document-flow-card-aside-list-item-mail" href="mailto:vtr@uralreduktor.ru">vtr@uralreduktor.ru</a></p>
+                      </div>
+                   </li>
+                   <li class="files-page__document-flow-card-aside-list-item">
+                      <div class="view-card-info-alt-popup__list-item-top">
+                       <p class="files-page__document-flow-card-aside-list-item-title">Изменен:</p>
+                       <p class="files-page__document-flow-card-aside-list-item-info">19.10.2022 17:32</p>
+                      </div>
+                      <div class="files-page__document-flow-card-aside-list-item-bottom">
+                       <p class="files-page__document-flow-card-aside-list-item-title">Кем:</p>
+                       <p class="files-page__document-flow-card-aside-list-item-info"><a class="files-page__document-flow-card-aside-list-item-mail" href="mailto:vtr@uralreduktor.ru">vtr@uralreduktor.ru</a></p>
+                      </div>
+                   </li>
+              </ul>
+              </figcaption>
+            </figure>
+          </template>
+      </aside>
+    </div>
+    </div>
+    </div>
+    <div class="site-section__tab-wrapper" x-show="table === 2" x-data="{toggleView: 'tableList', files: [] }">
+        <div class="site-section__top-row files-page__top-row desktop-hide">
+            <!-- <button type="button" class="site-section__top-row-settings-btn files-page__top-row-settings-btn" x-on:click="">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.7667 2.756C11.3347 0.414667 14.6653 0.414667 15.2333 2.756C15.3186 3.10773 15.4856 3.43437 15.7209 3.70933C15.9563 3.98429 16.2532 4.19981 16.5875 4.33833C16.9219 4.47685 17.2842 4.53447 17.645 4.50649C18.0059 4.47852 18.355 4.36574 18.664 4.17733C20.7213 2.924 23.0773 5.27867 21.824 7.33733C21.6359 7.64621 21.5233 7.99512 21.4954 8.3557C21.4674 8.71628 21.525 9.07836 21.6634 9.41251C21.8017 9.74665 22.017 10.0434 22.2916 10.2787C22.5663 10.514 22.8926 10.6812 23.244 10.7667C25.5853 11.3347 25.5853 14.6653 23.244 15.2333C22.8923 15.3186 22.5656 15.4856 22.2907 15.7209C22.0157 15.9563 21.8002 16.2532 21.6617 16.5875C21.5232 16.9219 21.4655 17.2842 21.4935 17.645C21.5215 18.0059 21.6343 18.355 21.8227 18.664C23.076 20.7213 20.7213 23.0773 18.6627 21.824C18.3538 21.6359 18.0049 21.5233 17.6443 21.4954C17.2837 21.4674 16.9216 21.525 16.5875 21.6634C16.2533 21.8017 15.9566 22.017 15.7213 22.2916C15.486 22.5663 15.3188 22.8926 15.2333 23.244C14.6653 25.5853 11.3347 25.5853 10.7667 23.244C10.6814 22.8923 10.5144 22.5656 10.2791 22.2907C10.0437 22.0157 9.74682 21.8002 9.41246 21.6617C9.07811 21.5232 8.71578 21.4655 8.35495 21.4935C7.99413 21.5215 7.645 21.6343 7.336 21.8227C5.27867 23.076 2.92267 20.7213 4.176 18.6627C4.36414 18.3538 4.47673 18.0049 4.50465 17.6443C4.53256 17.2837 4.47499 16.9216 4.33663 16.5875C4.19827 16.2533 3.98301 15.9566 3.70836 15.7213C3.43371 15.486 3.10742 15.3188 2.756 15.2333C0.414667 14.6653 0.414667 11.3347 2.756 10.7667C3.10773 10.6814 3.43437 10.5144 3.70933 10.2791C3.98429 10.0437 4.19981 9.74682 4.33833 9.41246C4.47685 9.07811 4.53447 8.71578 4.50649 8.35495C4.47852 7.99413 4.36574 7.645 4.17733 7.336C2.924 5.27867 5.27867 2.92267 7.33733 4.176C8.67067 4.98667 10.3987 4.26933 10.7667 2.756Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M13 17C15.2091 17 17 15.2091 17 13C17 10.7909 15.2091 9 13 9C10.7909 9 9 10.7909 9 13C9 15.2091 10.7909 17 13 17Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>        
+            </button> -->
+               <div class="site-section__create-btn-wrapper files-page__create-btn-wrapper passport" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+                   <button class="btn btn--primary site-section__create-order-btn files-page__create-btn dropdown" type="button" x-on:click="toggleDropdown = !toggleDropdown">
+                    Добавить
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <path d="M1 1L5 5L9 1" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                       </svg>            
+                  </button>
+                  <div class="site-section__create-btn-dropdown files-page__create-btn-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+                 <ul role="list" class="site-section__create-btn-dropdown-list files-page__create-btn-dropdown-list">
+                   <li class="site-section__create-btn-dropdown-list-item  files-page__create-btn-dropdown-list-item passport-list-item">
+                    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.33301 1V3.66667C7.33301 3.84348 7.40325 4.01305 7.52827 4.13807C7.65329 4.2631 7.82286 4.33333 7.99967 4.33333H10.6663M7.33301 1H2.66634C2.31272 1 1.97358 1.14048 1.72353 1.39052C1.47348 1.64057 1.33301 1.97971 1.33301 2.33333V11.6667C1.33301 12.0203 1.47348 12.3594 1.72353 12.6095C1.97358 12.8595 2.31272 13 2.66634 13H9.33301C9.68663 13 10.0258 12.8595 10.2758 12.6095C10.5259 12.3594 10.6663 12.0203 10.6663 11.6667V4.33333M7.33301 1L10.6663 4.33333M3.99967 5H4.66634M3.99967 7.66667H7.99967M3.99967 10.3333H7.99967" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                       <input type="text" value="Документ" readonly="" class="site-section__create-btn-dropdown-list-item-input files-page__create-btn-dropdown-list-item-input" x-on:click="">
+                   </li>
+                   <li class="site-section__create-btn-dropdown-list-item  files-page__create-btn-dropdown-list-item passport-list-item">
+                    <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.33333 1.66406H5L7 3.66406H11.6667C12.0203 3.66406 12.3594 3.80454 12.6095 4.05459C12.8595 4.30464 13 4.64377 13 4.9974V10.3307C13 10.6844 12.8595 11.0235 12.6095 11.2735C12.3594 11.5236 12.0203 11.6641 11.6667 11.6641H2.33333C1.97971 11.6641 1.64057 11.5236 1.39052 11.2735C1.14048 11.0235 1 10.6844 1 10.3307V2.9974C1 2.64377 1.14048 2.30464 1.39052 2.05459C1.64057 1.80454 1.97971 1.66406 2.33333 1.66406Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                     <input type="text" value="Папку" readonly="" class="site-section__create-btn-dropdown-list-item-input files-page__create-btn-dropdown-list-item-input" x-on:click="addPassportFolderAltPopup = true">
+                   </li>
+                  </ul>  
+                  </div>
+               </div>
+        </div>
+        <div class="site-section__body files-page__body">
+          <div class="site-section__body-bottom files-page__body-bottom mobile">
+            <div class="site-section__body-bottom-left-group files-page__body-bottom-left-group">
+            <SearchBtn></SearchBtn>
+            <SearchBtnDropdown></SearchBtnDropdown>
+            </div>
+            <div class="site-section__body-bottom-right-group files-page__body-bottom-right-group">
+              <SearchForm></SearchForm>
+              <Filter></Filter>
+            </div>    
+          </div>
+          <div class="files-page__body-btn-controls-group desktop-hide" x-bind:class="{'disabled': files.length === 0 }">
+            <button type="button" class="files-page__cloud-download-btn">
+                <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.2055 14.7771C20.2119 14.7771 21.177 14.3878 21.8886 13.6948C22.6002 13.0019 23 12.0621 23 11.0821C23 10.1021 22.6002 9.16227 21.8886 8.46932C21.177 7.77637 20.2119 7.38708 19.2055 7.38708H18.1213C18.2795 6.70082 18.2819 5.99397 18.1284 5.30689C17.9749 4.61982 17.6685 3.96597 17.2267 3.38267C16.7848 2.79938 16.2162 2.29807 15.5533 1.90737C14.8904 1.51666 14.1462 1.24421 13.3631 1.10557C12.5801 0.966933 11.7736 0.964821 10.9896 1.09936C10.2056 1.23389 9.45954 1.50244 8.79399 1.88967C7.44984 2.67171 6.51522 3.88968 6.19574 5.27565C5.03999 5.23057 3.90335 5.56111 2.98045 6.21069C2.05755 6.86027 1.40579 7.78848 1.13676 8.83639C0.867724 9.8843 0.998157 10.9867 1.50572 11.9549C2.01329 12.9231 2.86641 13.6969 3.91903 14.1437M11.6165 9.49856V19M11.6165 19L8.36402 15.8329M11.6165 19L14.8689 15.8329" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                
+            </button>
+            <button type="button" class="files-page__delete-trash-btn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.7998 5.44444H19.5776M8.46647 9.88889V16.5556M12.9109 9.88889V16.5556M2.91092 5.44444L4.02203 18.7778C4.02203 19.3671 4.25615 19.9324 4.6729 20.3491C5.08965 20.7659 5.65488 21 6.24425 21H15.1331C15.7225 21 16.2877 20.7659 16.7045 20.3491C17.1212 19.9324 17.3554 19.3671 17.3554 18.7778L18.4665 5.44444M7.35536 5.44444V2.11111C7.35536 1.81643 7.47242 1.53381 7.6808 1.32544C7.88917 1.11706 8.17179 1 8.46647 1H12.9109C13.2056 1 13.4882 1.11706 13.6966 1.32544C13.905 1.53381 14.022 1.81643 14.022 2.11111V5.44444" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                              
+            </button>
+            <button type="button" class="files-page__edit-btn" x-on:click="editActionsAltPopup = true">
+                <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.5158 2.90847L15.6911 7.08372M1.59961 17H5.77486L16.7349 6.03997C17.2886 5.4863 17.5996 4.73536 17.5996 3.95235C17.5996 3.16934 17.2886 2.4184 16.7349 1.86472C16.1812 1.31105 15.4303 1 14.6473 1C13.8643 1 13.1133 1.31105 12.5596 1.86472L1.59961 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                                           
+            </button>
+            <button type="button" class="files-page__swap-btn" x-on:click="transferSectionsAltPopup = true">
+                <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.4004 4H1.40039M19.4004 4L16.4004 7M19.4004 4L16.4004 1M4.40039 17L1.40039 14M1.40039 14L4.40039 11M1.40039 14H19.4004" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+            </button>
+            <button type="button" class="files-page__copy-btn">
+                <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.8669 1V5.44444C11.8669 5.73913 11.9792 6.02174 12.1793 6.23012C12.3793 6.43849 12.6506 6.55556 12.9335 6.55556H17.2002M11.8669 1H7.6002C7.0344 1 6.49178 1.23413 6.0917 1.65087C5.69162 2.06762 5.46686 2.63285 5.46686 3.22222V14.3333C5.46686 14.9227 5.69162 15.4879 6.0917 15.9047C6.49178 16.3214 7.0344 16.5556 7.6002 16.5556H15.0669C15.6327 16.5556 16.1753 16.3214 16.5754 15.9047C16.9754 15.4879 17.2002 14.9227 17.2002 14.3333V6.55556M11.8669 1L17.2002 6.55556M12.9335 16.5556V18.7778C12.9335 19.3671 12.7088 19.9324 12.3087 20.3491C11.9086 20.7659 11.366 21 10.8002 21H3.33353C2.76773 21 2.22511 20.7659 1.82503 20.3491C1.42496 19.9324 1.2002 19.3671 1.2002 18.7778V7.66667C1.2002 7.0773 1.42496 6.51207 1.82503 6.09532C2.22511 5.67857 2.76773 5.44444 3.33353 5.44444H5.46686" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                
+            </button>
+            <button type="button" class="files-page__layout-btn" x-show="toggleView === 'tableList'" x-on:click="toggleView = 'layout'">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.125 3.25C2.74632 3.25 3.25 2.74632 3.25 2.125C3.25 1.50368 2.74632 1 2.125 1C1.50368 1 1 1.50368 1 2.125C1 2.74632 1.50368 3.25 2.125 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 3.25C10.6213 3.25 11.125 2.74632 11.125 2.125C11.125 1.50368 10.6213 1 10 1C9.37868 1 8.875 1.50368 8.875 2.125C8.875 2.74632 9.37868 3.25 10 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.875 3.25C18.4963 3.25 19 2.74632 19 2.125C19 1.50368 18.4963 1 17.875 1C17.2537 1 16.75 1.50368 16.75 2.125C16.75 2.74632 17.2537 3.25 17.875 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.125 11.125C2.74632 11.125 3.25 10.6213 3.25 10C3.25 9.37868 2.74632 8.875 2.125 8.875C1.50368 8.875 1 9.37868 1 10C1 10.6213 1.50368 11.125 2.125 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 11.125C10.6213 11.125 11.125 10.6213 11.125 10C11.125 9.37868 10.6213 8.875 10 8.875C9.37868 8.875 8.875 9.37868 8.875 10C8.875 10.6213 9.37868 11.125 10 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.875 11.125C18.4963 11.125 19 10.6213 19 10C19 9.37868 18.4963 8.875 17.875 8.875C17.2537 8.875 16.75 9.37868 16.75 10C16.75 10.6213 17.2537 11.125 17.875 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2.125 19C2.74632 19 3.25 18.4963 3.25 17.875C3.25 17.2537 2.74632 16.75 2.125 16.75C1.50368 16.75 1 17.2537 1 17.875C1 18.4963 1.50368 19 2.125 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 19C10.6213 19 11.125 18.4963 11.125 17.875C11.125 17.2537 10.6213 16.75 10 16.75C9.37868 16.75 8.875 17.2537 8.875 17.875C8.875 18.4963 9.37868 19 10 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.875 19C18.4963 19 19 18.4963 19 17.875C19 17.2537 18.4963 16.75 17.875 16.75C17.2537 16.75 16.75 17.2537 16.75 17.875C16.75 18.4963 17.2537 19 17.875 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                              
+            </button>
+            <button type="button" class="files-page__table-list-btn" x-show="toggleView === 'layout'" x-on:click="toggleView = 'tableList'">
+                <svg width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.00033 1H21.667M7.00033 9H21.667M7.00033 17H21.667M1.66699 1V1.01333M1.66699 9V9.01333M1.66699 17V17.0133" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                                            
+            </button>
+          </div>
+          <div class="site-section__top-row files-page__top-row mobile-hide">
+            <div class="files-page__toggle-view-btn-wrapper" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+            <button type="button" class="files-page__toggle-view-btn" x-on:click="toggleDropdown = !toggleDropdown">
+              <svg class="files-page__toggle-view-btn layout" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleView === 'layout'" style="display: none;">
+                  <path d="M2.125 3.25C2.74632 3.25 3.25 2.74632 3.25 2.125C3.25 1.50368 2.74632 1 2.125 1C1.50368 1 1 1.50368 1 2.125C1 2.74632 1.50368 3.25 2.125 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M10 3.25C10.6213 3.25 11.125 2.74632 11.125 2.125C11.125 1.50368 10.6213 1 10 1C9.37868 1 8.875 1.50368 8.875 2.125C8.875 2.74632 9.37868 3.25 10 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M17.875 3.25C18.4963 3.25 19 2.74632 19 2.125C19 1.50368 18.4963 1 17.875 1C17.2537 1 16.75 1.50368 16.75 2.125C16.75 2.74632 17.2537 3.25 17.875 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2.125 11.125C2.74632 11.125 3.25 10.6213 3.25 10C3.25 9.37868 2.74632 8.875 2.125 8.875C1.50368 8.875 1 9.37868 1 10C1 10.6213 1.50368 11.125 2.125 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M10 11.125C10.6213 11.125 11.125 10.6213 11.125 10C11.125 9.37868 10.6213 8.875 10 8.875C9.37868 8.875 8.875 9.37868 8.875 10C8.875 10.6213 9.37868 11.125 10 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M17.875 11.125C18.4963 11.125 19 10.6213 19 10C19 9.37868 18.4963 8.875 17.875 8.875C17.2537 8.875 16.75 9.37868 16.75 10C16.75 10.6213 17.2537 11.125 17.875 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M2.125 19C2.74632 19 3.25 18.4963 3.25 17.875C3.25 17.2537 2.74632 16.75 2.125 16.75C1.50368 16.75 1 17.2537 1 17.875C1 18.4963 1.50368 19 2.125 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M10 19C10.6213 19 11.125 18.4963 11.125 17.875C11.125 17.2537 10.6213 16.75 10 16.75C9.37868 16.75 8.875 17.2537 8.875 17.875C8.875 18.4963 9.37868 19 10 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M17.875 19C18.4963 19 19 18.4963 19 17.875C19 17.2537 18.4963 16.75 17.875 16.75C17.2537 16.75 16.75 17.2537 16.75 17.875C16.75 18.4963 17.2537 19 17.875 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg> 
+              <svg class="files-page__toggle-view-btn tableList" width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleView === 'tableList'">
+                <path d="M7.00033 1H21.667M7.00033 9H21.667M7.00033 17H21.667M1.66699 1V1.01333M1.66699 9V9.01333M1.66699 17V17.0133" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg> 
+              <span class="files-page__layout-btn-text" x-text="toggleView === 'layout' ? 'Списком' : 'Таблицей'">Таблицей</span>
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="files-page__toggle-view-arrow" x-bind:class="{'active': toggleDropdown === true }">
+                <path d="M1 1L5 5L9 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>                                       
+            </button>
+            <div class="files-page__toggle-view-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+               <ul role="list" class="files-page__toggle-view-dropdown-list">
+                <li class="files-page__toggle-view-dropdown-list-item" x-on:click="toggleView = 'layout'; toggleDropdown = false">
+                  <svg class="files-page__toggle-view-btn layout" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.125 3.25C2.74632 3.25 3.25 2.74632 3.25 2.125C3.25 1.50368 2.74632 1 2.125 1C1.50368 1 1 1.50368 1 2.125C1 2.74632 1.50368 3.25 2.125 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10 3.25C10.6213 3.25 11.125 2.74632 11.125 2.125C11.125 1.50368 10.6213 1 10 1C9.37868 1 8.875 1.50368 8.875 2.125C8.875 2.74632 9.37868 3.25 10 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M17.875 3.25C18.4963 3.25 19 2.74632 19 2.125C19 1.50368 18.4963 1 17.875 1C17.2537 1 16.75 1.50368 16.75 2.125C16.75 2.74632 17.2537 3.25 17.875 3.25Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2.125 11.125C2.74632 11.125 3.25 10.6213 3.25 10C3.25 9.37868 2.74632 8.875 2.125 8.875C1.50368 8.875 1 9.37868 1 10C1 10.6213 1.50368 11.125 2.125 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10 11.125C10.6213 11.125 11.125 10.6213 11.125 10C11.125 9.37868 10.6213 8.875 10 8.875C9.37868 8.875 8.875 9.37868 8.875 10C8.875 10.6213 9.37868 11.125 10 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M17.875 11.125C18.4963 11.125 19 10.6213 19 10C19 9.37868 18.4963 8.875 17.875 8.875C17.2537 8.875 16.75 9.37868 16.75 10C16.75 10.6213 17.2537 11.125 17.875 11.125Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2.125 19C2.74632 19 3.25 18.4963 3.25 17.875C3.25 17.2537 2.74632 16.75 2.125 16.75C1.50368 16.75 1 17.2537 1 17.875C1 18.4963 1.50368 19 2.125 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10 19C10.6213 19 11.125 18.4963 11.125 17.875C11.125 17.2537 10.6213 16.75 10 16.75C9.37868 16.75 8.875 17.2537 8.875 17.875C8.875 18.4963 9.37868 19 10 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M17.875 19C18.4963 19 19 18.4963 19 17.875C19 17.2537 18.4963 16.75 17.875 16.75C17.2537 16.75 16.75 17.2537 16.75 17.875C16.75 18.4963 17.2537 19 17.875 19Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                   </svg>
+                   Списком
+                </li>
+                <li class="files-page__toggle-view-dropdown-list-item" x-on:click="toggleView = 'tableList'; toggleDropdown = false">
+                  <svg class="files-page__toggle-view-btn tableList" width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.00033 1H21.667M7.00033 9H21.667M7.00033 17H21.667M1.66699 1V1.01333M1.66699 9V9.01333M1.66699 17V17.0133" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                   </svg> 
+                   Таблицей
+                </li>
+               </ul>
+            </div>
+             </div>
+              <div class="site-section__top-row-btn-group files-page__top-row-btn-group">
+                <div class="site-section__search-form" x-data="{search: '', toggleDropdown: false}" x-on:click.outside="$refs.sectionSearchFormDropdown.classList.remove('active')">
+                  <button type="submit" class="site-section__search-form-submit-btn">
+                    <svg class="site-section__search-form-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.7422 10.3439C12.5329 9.2673 13 7.9382 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13C7.93858 13 9.26801 12.5327 10.3448 11.7415L10.3439 11.7422C10.3734 11.7822 10.4062 11.8204 10.4424 11.8566L14.2929 15.7071C14.6834 16.0976 15.3166 16.0976 15.7071 15.7071C16.0976 15.3166 16.0976 14.6834 15.7071 14.2929L11.8566 10.4424C11.8204 10.4062 11.7822 10.3734 11.7422 10.3439ZM12 6.5C12 9.53757 9.53757 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1C9.53757 1 12 3.46243 12 6.5Z" fill="#7C69EF"></path>
+                      </svg>         
+                  </button>
+                  <input class="site-section__search-form-input" type="text" name="orderSearchInput" id="orderSearchInput" placeholder="Найти..." x-model.debounce.500ms="search">
+                  <div class="site-section__search-form-dropdown" x-bind:class="{'active': search.length > 2}" x-ref="sectionSearchFormDropdown">
+                    <ul role="list" class="site-section__search-form-dropdown-list">
+                      <template x-for="i in 5">
+                        <li class="site-section__search-form-dropdown-list-item">
+                          <input type="text" readonly="" class="site-section__search-form-dropdown-list-item-input" value="Результат поиска" x-on:click="$refs.sectionSearchFormDropdown.classList.remove('active')">
+                       </li>
+                      </template><li class="site-section__search-form-dropdown-list-item">
+                          <input type="text" readonly="" class="site-section__search-form-dropdown-list-item-input" value="Результат поиска" x-on:click="$refs.sectionSearchFormDropdown.classList.remove('active')">
+                       </li><li class="site-section__search-form-dropdown-list-item">
+                          <input type="text" readonly="" class="site-section__search-form-dropdown-list-item-input" value="Результат поиска" x-on:click="$refs.sectionSearchFormDropdown.classList.remove('active')">
+                       </li><li class="site-section__search-form-dropdown-list-item">
+                          <input type="text" readonly="" class="site-section__search-form-dropdown-list-item-input" value="Результат поиска" x-on:click="$refs.sectionSearchFormDropdown.classList.remove('active')">
+                       </li><li class="site-section__search-form-dropdown-list-item">
+                          <input type="text" readonly="" class="site-section__search-form-dropdown-list-item-input" value="Результат поиска" x-on:click="$refs.sectionSearchFormDropdown.classList.remove('active')">
+                       </li><li class="site-section__search-form-dropdown-list-item">
+                          <input type="text" readonly="" class="site-section__search-form-dropdown-list-item-input" value="Результат поиска" x-on:click="$refs.sectionSearchFormDropdown.classList.remove('active')">
+                       </li>
+                    </ul>
+                  </div>
+              </div>
+                <button class="btn btn--primary files-page__download-btn" type="button" x-on:click="">
+                  Загрузить        
+                </button>
+                <button class="btn btn--primary files-page__create-folder-btn" type="button" x-on:click="documentFlowAddFolderAltPopup = true">
+                  Создать папку        
+                </button>
+              </div>
+          </div>
+          <DocumentFlowTablePassport></DocumentFlowTablePassport>
+          <div class="files-page__upload-file-zone" x-show="files.length === 0">
+            <input type="file" multiple="" x-on:change="files = $el.files; toggleView = 'tableList'" multiple class="files-page__upload-file-zone-input">
+            <svg class="files-page__upload-file-zone-icon" width="63" height="78" viewBox="0 0 63 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M39.833 1.5V18.1667C39.833 19.2717 40.272 20.3315 41.0534 21.1129C41.8348 21.8943 42.8946 22.3333 43.9997 22.3333H60.6663M39.833 1.5H10.6663C8.4562 1.5 6.33659 2.37797 4.77378 3.94078C3.21098 5.50358 2.33301 7.6232 2.33301 9.83333V68.1667C2.33301 70.3768 3.21098 72.4964 4.77378 74.0592C6.33659 75.622 8.4562 76.5 10.6663 76.5H52.333C54.5431 76.5 56.6628 75.622 58.2256 74.0592C59.7884 72.4964 60.6663 70.3768 60.6663 68.1667V22.3333M39.833 1.5L60.6663 22.3333" stroke="#859AB9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+             <p class="files-page__upload-file-zone-text">Загрузить файлы</p>
+             <p class="files-page__upload-file-zone-text-2">Перетащить с помощью Drag and Drop</p>              
+         </div>
+        <div class="files-page__view-layout-grid desktop-hide" x-data="{toggleCardInfoView: ''}">
+          <DocumentFlowCardsListPassport></DocumentFlowCardsListPassport>
+          <ul role="list" class="pagination files-page__pagination">
+            <Pagination></Pagination>
+          </ul>
+        </div>
+        <div class="files-page__view-layout-grid mobile-hide" x-data="{toggleCardInfoView: ''}" x-show="toggleView === 'layout' && files.length > 0">
+          <div class="files-page__view-layout-grid-left">
+            <div class="files-page__body-btn-controls-group">
+              <button type="button" class="files-page__cloud-download-btn">
+                  <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.2055 14.7771C20.2119 14.7771 21.177 14.3878 21.8886 13.6948C22.6002 13.0019 23 12.0621 23 11.0821C23 10.1021 22.6002 9.16227 21.8886 8.46932C21.177 7.77637 20.2119 7.38708 19.2055 7.38708H18.1213C18.2795 6.70082 18.2819 5.99397 18.1284 5.30689C17.9749 4.61982 17.6685 3.96597 17.2267 3.38267C16.7848 2.79938 16.2162 2.29807 15.5533 1.90737C14.8904 1.51666 14.1462 1.24421 13.3631 1.10557C12.5801 0.966933 11.7736 0.964821 10.9896 1.09936C10.2056 1.23389 9.45954 1.50244 8.79399 1.88967C7.44984 2.67171 6.51522 3.88968 6.19574 5.27565C5.03999 5.23057 3.90335 5.56111 2.98045 6.21069C2.05755 6.86027 1.40579 7.78848 1.13676 8.83639C0.867724 9.8843 0.998157 10.9867 1.50572 11.9549C2.01329 12.9231 2.86641 13.6969 3.91903 14.1437M11.6165 9.49856V19M11.6165 19L8.36402 15.8329M11.6165 19L14.8689 15.8329" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>  
+                      Скачать              
+              </button>
+              <button type="button" class="files-page__delete-trash-btn">
+                  <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.7998 5.44444H19.5776M8.46647 9.88889V16.5556M12.9109 9.88889V16.5556M2.91092 5.44444L4.02203 18.7778C4.02203 19.3671 4.25615 19.9324 4.6729 20.3491C5.08965 20.7659 5.65488 21 6.24425 21H15.1331C15.7225 21 16.2877 20.7659 16.7045 20.3491C17.1212 19.9324 17.3554 19.3671 17.3554 18.7778L18.4665 5.44444M7.35536 5.44444V2.11111C7.35536 1.81643 7.47242 1.53381 7.6808 1.32544C7.88917 1.11706 8.17179 1 8.46647 1H12.9109C13.2056 1 13.4882 1.11706 13.6966 1.32544C13.905 1.53381 14.022 1.81643 14.022 2.11111V5.44444" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg> 
+                      Удалить                             
+              </button>
+              <button type="button" class="files-page__edit-btn" x-on:click="editActionsAltPopup = true">
+                  <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.5158 2.90847L15.6911 7.08372M1.59961 17H5.77486L16.7349 6.03997C17.2886 5.4863 17.5996 4.73536 17.5996 3.95235C17.5996 3.16934 17.2886 2.4184 16.7349 1.86472C16.1812 1.31105 15.4303 1 14.6473 1C13.8643 1 13.1133 1.31105 12.5596 1.86472L1.59961 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                  Переименовать
+              </button>
+              <button type="button" class="files-page__swap-btn" x-on:click="transferSectionsAltPopup = true">
+                  <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.4004 4H1.40039M19.4004 4L16.4004 7M19.4004 4L16.4004 1M4.40039 17L1.40039 14M1.40039 14L4.40039 11M1.40039 14H19.4004" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                      Переместить
+              </button>
+              <button type="button" class="files-page__copy-btn">
+                  <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.8669 1V5.44444C11.8669 5.73913 11.9792 6.02174 12.1793 6.23012C12.3793 6.43849 12.6506 6.55556 12.9335 6.55556H17.2002M11.8669 1H7.6002C7.0344 1 6.49178 1.23413 6.0917 1.65087C5.69162 2.06762 5.46686 2.63285 5.46686 3.22222V14.3333C5.46686 14.9227 5.69162 15.4879 6.0917 15.9047C6.49178 16.3214 7.0344 16.5556 7.6002 16.5556H15.0669C15.6327 16.5556 16.1753 16.3214 16.5754 15.9047C16.9754 15.4879 17.2002 14.9227 17.2002 14.3333V6.55556M11.8669 1L17.2002 6.55556M12.9335 16.5556V18.7778C12.9335 19.3671 12.7088 19.9324 12.3087 20.3491C11.9086 20.7659 11.366 21 10.8002 21H3.33353C2.76773 21 2.22511 20.7659 1.82503 20.3491C1.42496 19.9324 1.2002 19.3671 1.2002 18.7778V7.66667C1.2002 7.0773 1.42496 6.51207 1.82503 6.09532C2.22511 5.67857 2.76773 5.44444 3.33353 5.44444H5.46686" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>  
+                      Копировать              
+              </button>
+            </div>
+            <DocumentFlowCardsListPassport></DocumentFlowCardsListPassport>
+            <ul role="list" class="pagination files-page__pagination" x-show="files.length > 0">
+              <Pagination></Pagination>
+            </ul>
+          </div>
+          <aside class="files-page__document-flow-card-aside">
+            <div class="files-page__document-flow-card-aside-info" x-show="toggleCardInfoView === ''">
+              <svg width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M39 22.3333H39.0417M34.8333 39H39V55.6667H43.1667M76.5 39C76.5 59.7107 59.7107 76.5 39 76.5C18.2893 76.5 1.5 59.7107 1.5 39C1.5 18.2893 18.2893 1.5 39 1.5C59.7107 1.5 76.5 18.2893 76.5 39Z" stroke="#859AB9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="files-page__document-flow-card-aside-info-text">
+                  Здесь показывается детальная информация о выбранном файле или папке
+                </p>              
+            </div>
+            <template x-for="(file,index) in files" :key="file.name">
+              <figure class="files-page__document-flow-card-aside-figure" x-show="toggleCardInfoView === index">
+                <div class="files-page__document-flow-card-aside-figure-top">
+                  <img class="files-page__document-flow-card-aside-img" src="/images/document-flow-cards-img.png" alt="footer avatar" width="210" height="180" loading="lazy" decoding="async">
+                  <p class="files-page__document-flow-card-aside-title" x-text="file.name">
+                    редуктор цилиндрический
+                  </p>
+                  <button type="button" class="btn btn--primary files-page__document-flow-card-aside-view-btn">
+                    Посмотреть
+                  </button>
+                  <button type="button" class="btn btn--primary files-page__document-flow-card-aside-download-btn">
+                    Скачать
+                  </button>
+                </div>
+                <figcaption class="files-page__document-flow-card-aside-figcaption">
+                  <ul role="list" class="files-page__document-flow-card-aside-list">
+                    <li class="files-page__document-flow-card-aside-list-item">
+                       <div class="files-page__document-flow-card-aside-list-item-top">
+                        <p class="files-page__document-flow-card-aside-list-item-title">Размер:</p>
+                        <p class="files-page__document-flow-card-aside-list-item-info"><span x-text="file.size"></span> КБ</p>
+                       </div>
+                       <div class="files-page__document-flow-card-aside-list-item-bottom">
+                        <p class="files-page__document-flow-card-aside-list-item-title">Тип файла:</p>
+                        <p class="files-page__document-flow-card-aside-list-item-info" x-text="file.type">png</p>
+                       </div>
+                    </li>
+                    <li class="files-page__document-flow-card-aside-list-item">
+                        <div class="files-page__document-flow-card-aside-list-item-top">
+                         <p class="files-page__document-flow-card-aside-list-item-title">Создан:</p>
+                         <p class="files-page__document-flow-card-aside-list-item-info">19.10.2022 17:32</p>
+                        </div>
+                        <div class="files-page__document-flow-card-aside-list-item-bottom">
+                         <p class="files-page__document-flow-card-aside-list-item-title">Автор:</p>
+                         <p class="files-page__document-flow-card-aside-list-item-info"><a class="files-page__document-flow-card-aside-list-item-mail" href="mailto:vtr@uralreduktor.ru">vtr@uralreduktor.ru</a></p>
+                        </div>
+                     </li>
+                     <li class="files-page__document-flow-card-aside-list-item">
+                        <div class="view-card-info-alt-popup__list-item-top">
+                         <p class="files-page__document-flow-card-aside-list-item-title">Изменен:</p>
+                         <p class="files-page__document-flow-card-aside-list-item-info">19.10.2022 17:32</p>
+                        </div>
+                        <div class="files-page__document-flow-card-aside-list-item-bottom">
+                         <p class="files-page__document-flow-card-aside-list-item-title">Кем:</p>
+                         <p class="files-page__document-flow-card-aside-list-item-info"><a class="files-page__document-flow-card-aside-list-item-mail" href="mailto:vtr@uralreduktor.ru">vtr@uralreduktor.ru</a></p>
+                        </div>
+                     </li>
+                </ul>
+                </figcaption>
+              </figure>
+            </template>
+        </aside>
+        </div>
+        </div>
+        </div>
+    <TransferSectionsAltPopup></TransferSectionsAltPopup>
+    <EditActionsAltPopup></EditActionsAltPopup>
+    <AddPassportFolderAltPopup></AddPassportFolderAltPopup>
+    <DocumentFlowAddFolderAltPopup></DocumentFlowAddFolderAltPopup>
+    <EditContragentPopup></EditContragentPopup>
+  </section>
+</Layout>
+

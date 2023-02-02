@@ -1,0 +1,626 @@
+<div class="popup create-contragent-popup" x-bind:class="{'active': createContragentPopup === true}" x-data="{table: 1, orgName: '', orgFullName: '', regWord: '', orgReg: '', INNword:'', orgINN: '', KPPword:'', orgKPP: '', OGRNword:'',orgOGRN: ''}">
+    <form action="#" method="post" class="popup__form create-contragent-popup__form">
+    <div class="popup__content create-contragent-popup__content">
+  <div class="popup__top-row create-contragent-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="createContragentPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="createContragentPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title create-contragent-popup__title">
+        Новый контрагент
+    </h2>
+</div>
+    <div class="popup__body create-contragent-popup__body" x-data="addEntity">
+       <fieldset class="create-contragent-popup__fieldset b-b m-b">
+           <div class="create-contragent-popup__form-control-group col-2">
+              <p class="create-contragent-popup__form-control-group-title">
+                Тип контрагента
+              </p>
+              <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Юр.лицо'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-contragent-popup__form-control-select-result-input" value="Юр.лицо" readonly x-model="resultInputVal">
+                <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-contragent-popup__form-control-select-list">
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Юр.лицо" readonly class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Юр.лицо'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Юр.лицо 1" readonly class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Юр.лицо 1'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Юр.лицо 2" readonly class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Юр.лицо 2'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+              </div>
+           </div>
+           <div class="create-contragent-popup__form-control-group col-2">
+            <p class="create-contragent-popup__form-control-group-title">
+                Название компании
+            </p>
+            <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper name-inn" x-data="{search: '', toggleDropdown: false }">
+              <input type="text" class="create-contragent-popup__form-control-input" placeholder="Введите название или ИНН" x-model.debounce.500ms="search">
+              <div class="create-contragent-popup__search-company-dropdown" x-bind:class="{'active': search.length >= 2 && toggleDropdown === false }">
+                <ul role="list" class="create-contragent-popup__search-company-dropdown-list">
+                   <li class="create-contragent-popup__search-company-dropdown-list-item" 
+                   x-on:click="
+                   search = 'ООО “Уралредуктор”';
+                   orgName = 'ООО “Уралредуктор”'; 
+                   orgFullName = 'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ “УРАЛРЕДУКТОР“'; 
+                   regWord = 'Адрес регистрации'; 
+                   orgReg = '620100, Свердловская обл, г Екатеринбург, Октябрьский р-н, ул Куйбышева, д. 102, кв. 21'; INNword = 'ИНН'; 
+                   orgINN = '6672228600'; 
+                   KPPword = 'КПП';
+                   orgKPP = '668501001'; 
+                   OGRNword = 'ОГРН';
+                   orgOGRN = '1076672014528 от 20.03.2007';
+                   toggleDropdown = true
+                   ">
+                     <p class="create-contragent-popup__search-company-dropdown-list-item-title">
+                      ООО “Уралредуктор”, 6672228600
+                     </p>
+                     <p class="create-contragent-popup__search-company-dropdown-list-item-data">620100, Свердловская обл, г.Екатеринбург, ул. Куйбышева, д. 102, кв. 21</p>
+                   </li>
+                </ul>
+              </div>
+            </div>
+           </div>
+           <div class="create-contragent-popup__requisites-dropdown" x-data="{toggleDropdown: false}">
+             <button type="button" class="create-contragent-popup__requisites-dropdown-btn" x-on:click="toggleDropdown = !toggleDropdown">Реквизиты <svg class="create-contragent-popup__requisites-dropdown-btn-arrow" x-bind:class="{'active': toggleDropdown === true }" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L5 5L9 1" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              </button>
+              <ul role="list" class="create-contragent-popup__requisites-dropdown-list" x-show="toggleDropdown === true" x-collapse.duration.750ms>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="orgName">ООО "УРАЛРЕДУКТОР"
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="orgFullName">ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "УРАЛРЕДУКТОР"
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="regWord">Адрес регистрации
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="orgReg">620100, Свердловская обл, г Екатеринбург, Октябрьский р-н, ул Куйбышева, д. 102, кв. 21
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="INNword">ИНН
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="orgINN">6672228600
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="KPPword">КПП
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="orgKPP">668501001
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="OGRNword">ОГРН
+                </li>
+                <li class="create-contragent-popup__requisites-dropdown-list-item" x-text="orgOGRN">1076672014528 от 20.03.2007
+                </li>
+              </ul>
+           </div>
+           <div class="create-contragent-popup__form-control-group">
+            <p class="create-contragent-popup__form-control-group-title">
+                Ответственный
+            </p>
+            <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Иван Иван'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <div class="create-contragent-popup__icon-select-result-wrapper">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.33376 10.3333C6.54404 10.4251 6.771 10.4725 7.00043 10.4725C7.22986 10.4725 7.45682 10.4251 7.66709 10.3333M4.33376 6.33333L5.66709 7.66667M9.66709 6.33333L8.33376 7.66667M7.00043 1C3.8911 1 2.06976 2.554 1.7591 4.73C1.4474 6.73987 1.92518 8.7924 3.09243 10.458C3.65421 11.2792 4.38043 11.9748 5.22509 12.5007C6.33576 13.1673 7.66776 13.1673 8.77843 12.5007C9.62309 11.9748 10.3493 11.2792 10.9111 10.458C12.0736 8.79028 12.5509 6.73967 12.2444 4.73C11.9338 2.55333 10.1124 1 7.00309 1H7.00043Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              <input type="text" class="create-contragent-popup__form-control-select-result-input email" value="vtr@uralreduktor.ru" readonly x-model="resultInputVal">
+              </div>
+              <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-contragent-popup__form-control-select-list">
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="Иван Иван 1" readonly class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван Иван 1'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="Иван Иван 2" readonly class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван Иван 2'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="Иван Иван 3" readonly class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван Иван 3'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+          </div>
+          <div class="create-contragent-popup__form-control-group">
+            <p class="create-contragent-popup__form-control-group-title">
+                Сайт
+            </p>
+            <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+              <input type="text" class="create-contragent-popup__form-control-input">
+            </div>
+          </div>
+          <div class="create-contragent-popup__tels-emails-form-control-wrapper">
+            <div class="create-contragent-popup__tels-wrapper">
+          <div class="create-contragent-popup__tels-form-control-wrapper">
+            <p class="create-contragent-popup__form-control-group-title">
+                Телефон
+            </p>
+          <div class="create-contragent-popup__form-control-group tel">
+            <div class="create-contragent-popup__form-control-tel-wrapper">
+            <div class="create-contragent-popup__form-control-select-wrapper tel-wrapper-1" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '+86'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="+86" readonly="" x-model="resultInputVal">
+              <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-contragent-popup__form-control-select-list">
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+86" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+86'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+87" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+87'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+7" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+7'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>                  
+            </div>
+            <input class="create-contragent-popup__form-control-tel-input" x-mask="999-99-99-99" placeholder="Номер">
+            <div class="create-contragent-popup__form-control-select-wrapper tel-wrapper-2" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Рабочий'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="Рабочий" readonly="" x-model="resultInputVal">
+                <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-contragent-popup__form-control-select-list">
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Рабочий" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Сотовый" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Другое" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+            </div>
+           </div>
+         </div>
+         <div class="create-contragent-popup__form-control-group tel">
+            <div class="create-contragent-popup__form-control-tel-wrapper">
+            <div class="create-contragent-popup__form-control-select-wrapper tel-wrapper-1" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '+7'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="+7" readonly="" x-model="resultInputVal">
+              <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-contragent-popup__form-control-select-list">
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+7" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+7'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+87" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+87'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+88" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+88'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>                  
+            </div>
+            <input class="create-contragent-popup__form-control-tel-input" x-mask="999-99-99-99" placeholder="Номер">
+            <div class="create-contragent-popup__form-control-select-wrapper tel-wrapper-2" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Другое'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="Другое" readonly="" x-model="resultInputVal">
+                <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-contragent-popup__form-control-select-list">
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Другое" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Рабочий" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Сотовый" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+            </div>
+           </div>
+         </div>
+          </div>
+          <div class="create-contragent-popup__form-control-group col-2">
+            <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+              <input type="text" class="create-contragent-popup__form-control-input" placeholder="Введите своё название">
+            </div>
+         </div>
+         <button type="button" class="create-contragent-popup__add-tel-btn" x-on:click="addTelephone">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.99967 1.33398V10.6673M1.33301 6.00065H10.6663" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            Добавить телефон               
+         </button>
+            </div>
+            <div class="create-contragent-popup__emails-wrapper">
+          <div class="create-contragent-popup__emails-form-control-wrapper">
+            <p class="create-contragent-popup__form-control-group-title">
+              Электронная почта
+          </p>
+          <div class="create-contragent-popup__form-control-group col-2 email">
+            <div class="create-contragent-popup__form-control-email-wrapper">
+            <input type="email" placeholder="Введите e-mail">
+            <div class="create-contragent-popup__form-control-select-wrapper email-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Рабочий'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="Рабочий" readonly="" x-model="resultInputVal">
+                <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-contragent-popup__form-control-select-list">
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Рабочий" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Сотовый" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Другое" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+            </div>
+           </div>
+        </div>
+          </div>
+          <button type="button" class="create-contragent-popup__add-email-btn" x-on:click="addEmail">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.99967 1.33398V10.6673M1.33301 6.00065H10.6663" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Добавить email               
+          </button>
+           </div>
+          </div>
+       </fieldset>
+       <div class="create-contragent-popup__form-control-group">
+        <p class="create-contragent-popup__form-control-group-title">
+            Описание
+        </p>
+        <textarea class="create-contragent-popup__textarea" placeholder="Введите текст"></textarea>
+       </div>
+       <button type="button" class="create-contragent-popup__attach-files-btn">
+        <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.9998 4.66632L4.66647 8.99965C4.40125 9.26487 4.25226 9.62458 4.25226 9.99965C4.25226 10.3747 4.40125 10.7344 4.66647 10.9997C4.93169 11.2649 5.2914 11.4139 5.66647 11.4139C6.04154 11.4139 6.40125 11.2649 6.66647 10.9997L10.9998 6.66632C11.5302 6.13588 11.8282 5.41646 11.8282 4.66632C11.8282 3.91617 11.5302 3.19675 10.9998 2.66632C10.4694 2.13588 9.74995 1.83789 8.9998 1.83789C8.24966 1.83789 7.53024 2.13588 6.9998 2.66632L2.66647 6.99965C1.87082 7.7953 1.42383 8.87443 1.42383 9.99965C1.42383 11.1249 1.87082 12.204 2.66647 12.9997C3.46212 13.7953 4.54125 14.2423 5.66647 14.2423C6.79169 14.2423 7.87082 13.7953 8.66647 12.9997L12.9998 8.66632" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Прикрепить файлы              
+       </button>
+       <ul role="list" class="site-section__table-tabs create-contragent-popup__table-tabs">
+        <li class="site-section__table-tabs-item create-contragent-popup__table-tabs-item">
+            <button type="button" class="site-section__table-tabs-item-btn create-contragent-popup__table-tabs-item-btn active" x-on:click="table = 1" x-bind:class="{'active': table === 1}">
+                Реквизиты
+            </button>
+        </li><li class="site-section__table-tabs-item create-contragent-popup__table-tabs-item">
+            <button type="button" class="site-section__table-tabs-item-btn create-contragent-popup__table-tabs-item-btn" x-on:click="table = 2" x-bind:class="{'active': table === 2}">
+                Адреса
+            </button>
+        </li><li class="site-section__table-tabs-item create-contragent-popup__table-tabs-item">
+            <button type="button" class="site-section__table-tabs-item-btn create-contragent-popup__table-tabs-item-btn" x-on:click="table = 3" x-bind:class="{'active': table === 3}">
+                Дополнительные контакты
+            </button>
+        </li>
+       </ul>
+           <fieldset class="create-contragent-popup__fieldset cols-2" x-show="table === 1">
+            <div class="create-contragent-popup__form-control-group col-2">
+                <p class="create-contragent-popup__form-control-group-title">
+                    Название компании
+                </p>
+                <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                  <input type="text" class="create-contragent-popup__form-control-input" x-model="orgName">
+                </div>
+            </div>
+            <div class="create-contragent-popup__form-control-group col-2">
+                <p class="create-contragent-popup__form-control-group-title">
+                    Полное юридическое наименование
+                </p>
+                <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper fullName">
+                  <input type="text" class="create-contragent-popup__form-control-input fullName" x-model="orgFullName">
+                </div>
+            </div>
+            <div class="create-contragent-popup__form-control-group">
+                <p class="create-contragent-popup__form-control-group-title">
+                    ИНН
+                </p>
+                <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                  <input type="text" class="create-contragent-popup__form-control-input" x-model="orgINN">
+                </div>
+            </div>
+            <div class="create-contragent-popup__form-control-group">
+                <p class="create-contragent-popup__form-control-group-title">
+                    КПП
+                </p>
+                <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                  <input type="text" class="create-contragent-popup__form-control-input" x-model="orgKPP">
+                </div>
+            </div>
+            <div class="create-contragent-popup__form-control-group col-2">
+                <p class="create-contragent-popup__form-control-group-title">
+                    ОГРН
+                </p>
+                <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                  <input type="text" class="create-contragent-popup__form-control-input" x-model="orgOGRN">
+                </div>
+            </div>
+            <div class="create-contragent-popup__form-control-group col-2">
+                <p class="create-contragent-popup__form-control-group-title">
+                    Банковские реквизиты
+                </p>
+                <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                  <input type="text" class="create-contragent-popup__form-control-input">
+                </div>
+            </div>
+           </fieldset>
+           <fieldset class="create-contragent-popup__fieldset address cols-1" x-show="table === 2">
+            <div class="create-contragent-popup__address-fieldset-wrapper">
+                <legend class="create-contragent-popup__address-fieldset-title">Адрес регистрации</legend>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Страна
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Регион
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Почтовый индекс
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Улица / номер дома
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Квартира, офис, комната, этаж
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Дополнительно
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+            </div>
+            <div class="create-contragent-popup__address-fieldset-wrapper">
+                <legend class="create-contragent-popup__address-fieldset-title">Фактический адрес</legend>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Страна
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Регион
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Почтовый индекс
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Улица / номер дома
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Квартира, офис, комната, этаж
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Дополнительно
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+            </div>
+           </fieldset>
+           <fieldset class="create-contragent-popup__fieldset add-contacts cols-1" x-show="table === 3">
+            <div class="create-contragent-popup__address-fieldset-wrapper add-contacts">
+                <legend class="create-contragent-popup__address-fieldset-title add-contacts">Адрес регистрации</legend>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Соц. сеть
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        VK
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Whatsapp
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Telegram
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Linkedin
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+                <div class="create-contragent-popup__form-control-group">
+                    <p class="create-contragent-popup__form-control-group-title">
+                        Instagram
+                    </p>
+                    <div class="create-contragent-popup__form-control-wrapper create-contragent-popup__form-control-input-wrapper">
+                      <input type="text" class="create-contragent-popup__form-control-input">
+                    </div>
+                </div>
+            </div>
+           </fieldset>
+    <ul role="list" class="popup__btn-control-group create-contragent-popup__btn-control-group">
+      <li class="popup__btn-control-group-item create-contragent-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn create-contragent-popup__undo-btn" x-on:click="createContragentPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item create-contragent-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn create-contragent-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+  </div>
+
+  <script is:inline>
+      document.addEventListener('alpine:init', () => {
+
+        Alpine.data('addEntity', () => ({
+
+          addTelephone() {
+               const createContragentPopupTelsFormControlWrapper = document.querySelector('.create-contragent-popup__tels-form-control-wrapper');
+               const createContragentPopupFormControlGroupTel = 
+               `
+               <div class="create-contragent-popup__form-control-group">
+            <div class="create-contragent-popup__form-control-tel-wrapper">
+            <div class="create-contragent-popup__form-control-select-wrapper tel-wrapper-1" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '+86'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="+86" readonly="" x-model="resultInputVal">
+              <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-contragent-popup__form-control-select-list">
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+86" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+86'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+87" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+87'">
+                </li>
+                <li class="create-contragent-popup__form-control-select-list-item">
+                  <input type="text" value="+7" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+7'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>                  
+            </div>
+            <input class="create-contragent-popup__form-control-tel-input" x-mask="999-99-99-99" placeholder="Номер">
+            <div class="create-contragent-popup__form-control-select-wrapper tel-wrapper-2" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Рабочий'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="Рабочий" readonly="" x-model="resultInputVal">
+                <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-contragent-popup__form-control-select-list">
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Рабочий" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Сотовый" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Другое" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+            </div>
+           </div>
+         </div>
+               `;
+               createContragentPopupTelsFormControlWrapper.insertAdjacentHTML('beforeend',createContragentPopupFormControlGroupTel);
+          },
+
+          addEmail() {
+            createContragentPopupEmailsFormControlWrapper = document.querySelector('.create-contragent-popup__emails-form-control-wrapper');
+            const createContragentPopupFormControlGroupEmail = 
+            `
+            <div class="create-contragent-popup__form-control-group col-2 email">
+            <div class="create-contragent-popup__form-control-email-wrapper">
+            <input type="email" placeholder="Введите e-mail">
+            <div class="create-contragent-popup__form-control-select-wrapper email-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Рабочий'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-contragent-popup__form-control-select-result-input" name="form-control-select-result-input" value="Рабочий" readonly="" x-model="resultInputVal">
+                <div class="create-contragent-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-contragent-popup__form-control-select-list">
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Рабочий" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Сотовый" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                  </li>
+                  <li class="create-contragent-popup__form-control-select-list-item">
+                    <input type="text" value="Другое" readonly="" class="create-contragent-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-contragent-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+            </div>
+           </div>
+        </div>
+            `;
+            createContragentPopupEmailsFormControlWrapper.insertAdjacentHTML('beforeend',createContragentPopupFormControlGroupEmail);
+          }
+        }))
+
+      })
+  </script>

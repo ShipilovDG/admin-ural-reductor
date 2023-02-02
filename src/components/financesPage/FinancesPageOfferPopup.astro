@@ -1,0 +1,232 @@
+<div class="popup finances-page-offer-popup" x-bind:class="{'active': financesPageOfferPopup === true}" x-data="{table: 1}">
+    <form action="#" method="post" class="popup__form">
+    <div class="popup__content finances-page-offer-popup__content">
+  <div class="popup__top-row finances-page-offer-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="financesPageOfferPopup = false">
+        <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>                  
+    </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="financesPageOfferPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <div class="popup__title-top-controls-row finances-page-offer-popup__title-top-controls-row">
+    <h2 class="popup__title finances-page-offer-popup__title">
+        00000002
+    </h2>
+    <div class="popup__top-row-controls finances-page-offer-popup__top-row-controls">
+        <button type="button" class="btn btn--secondary finances-page-offer-popup__account-convert-btn desktop">
+            Конвертировать в счёт
+          </button>
+        <button class="finances-page-offer-popup__page-link-btn" type="button">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4H3C2.46957 4 1.96086 4.21071 1.58579 4.58579C1.21071 4.96086 1 5.46957 1 6V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H12C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15V10M7 11L17 1M17 1H12M17 1V6" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                               
+        </button>
+        <div class="finances-page-offer-popup__options-dropdown-btn-wrapper" x-data="{toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+        <button class="finances-page-offer-popup__options-dropdown-btn" type="button" x-on:click="toggleDropdown = !toggleDropdown">
+            <svg width="6" height="24" viewBox="0 0 6 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.99984 13.333C3.73622 13.333 4.33317 12.7361 4.33317 11.9997C4.33317 11.2633 3.73622 10.6663 2.99984 10.6663C2.26346 10.6663 1.6665 11.2633 1.6665 11.9997C1.6665 12.7361 2.26346 13.333 2.99984 13.333Z" fill="#859AB9"/>
+                <path d="M2.99984 22.6663C3.73622 22.6663 4.33317 22.0694 4.33317 21.333C4.33317 20.5966 3.73622 19.9997 2.99984 19.9997C2.26346 19.9997 1.6665 20.5966 1.6665 21.333C1.6665 22.0694 2.26346 22.6663 2.99984 22.6663Z" fill="#859AB9"/>
+                <path d="M2.99984 3.99967C3.73622 3.99967 4.33317 3.40272 4.33317 2.66634C4.33317 1.92996 3.73622 1.33301 2.99984 1.33301C2.26346 1.33301 1.6665 1.92996 1.6665 2.66634C1.6665 3.40272 2.26346 3.99967 2.99984 3.99967Z" fill="#859AB9"/>
+                <path d="M2.99984 13.333C3.73622 13.333 4.33317 12.7361 4.33317 11.9997C4.33317 11.2633 3.73622 10.6663 2.99984 10.6663C2.26346 10.6663 1.6665 11.2633 1.6665 11.9997C1.6665 12.7361 2.26346 13.333 2.99984 13.333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2.99984 22.6663C3.73622 22.6663 4.33317 22.0694 4.33317 21.333C4.33317 20.5966 3.73622 19.9997 2.99984 19.9997C2.26346 19.9997 1.6665 20.5966 1.6665 21.333C1.6665 22.0694 2.26346 22.6663 2.99984 22.6663Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2.99984 3.99967C3.73622 3.99967 4.33317 3.40272 4.33317 2.66634C4.33317 1.92996 3.73622 1.33301 2.99984 1.33301C2.26346 1.33301 1.6665 1.92996 1.6665 2.66634C1.6665 3.40272 2.26346 3.99967 2.99984 3.99967Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                              
+        </button>
+         <div class="finances-page-offer-popup__options-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+         <ul role="list" class="finances-page-offer-popup__options-dropdown-list">
+           <li class="finances-page-offer-popup__options-dropdown-list-item">
+            <input readonly class="finances-page-offer-popup__options-dropdown-list-item-input" value="Скачать в PDF" x-on:click="toggleDropdown = false">
+           </li>
+           <li class="finances-page-offer-popup__options-dropdown-list-item">
+            <input readonly class="finances-page-offer-popup__options-dropdown-list-item-input" value="Распечатать" x-on:click="toggleDropdown = false">
+           </li>
+           <li class="finances-page-offer-popup__options-dropdown-list-item">
+            <input readonly class="finances-page-offer-popup__options-dropdown-list-item-input" value="Дублировать" x-on:click="toggleDropdown = false">
+           </li>
+           <li class="finances-page-offer-popup__options-dropdown-list-item">
+            <input readonly class="finances-page-offer-popup__options-dropdown-list-item-input" value="Редактировать" x-on:click="toggleDropdown = false">
+           </li>
+           <li class="finances-page-offer-popup__options-dropdown-list-item">
+            <input readonly class="finances-page-offer-popup__options-dropdown-list-item-input delete" value="Удалить" x-on:click="toggleDropdown = false">
+           </li>
+         </ul>
+         </div>
+        </div>
+    </div>
+    </div>
+    <div class="popup__title-top-controls-row finances-page-offer-popup__title-top-controls-row mobile">
+      <button type="button" class="btn btn--danger finances-page-offer-popup__draft-btn">
+        Черновик
+      </button>
+      <button type="button" class="btn btn--secondary finances-page-offer-popup__account-convert-btn">
+        Конвертировать в счёт
+      </button>
+    </div>
+  </div>
+  <ul role="list" class="site-section__table-tabs finances-page-offer-popup__table-tabs">
+    <li class="site-section__table-tabs-item finances-page-offer-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn finances-page-offer-popup__table-tabs-item-btn" x-on:click="table = 1" x-bind:class="{'active': table === 1}">
+            Информация
+        </button>
+    </li>
+    <li class="site-section__table-tabs-item finances-page-offer-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn finances-page-offer-popup__table-tabs-item-btn active" x-on:click="table = 2" x-bind:class="{'active': table === 2}">
+            Общий вид
+        </button>
+    </li>
+</ul>
+<div class="finances-page-offer-popup__body-wrapper">
+    <div class="popup__body finances-page-offer-popup__body table-1" x-bind:class="{'active': table === 1}">
+        <div class="finances-page-offer-popup__offer-recipients-wrapper">
+        <strong class="finances-page-offer-popup__title">
+            Получатели предложения по e-mail
+        </strong>
+        <p class="finances-page-offer-popup__recepient-text">
+            Вы можете выбрать несколько получателей.
+        </p>
+        <ul role="list" class="finances-page-offer-popup__recepient-offer-list">
+            <li class="finances-page-offer-popup__recepient-offer-list-item">
+                <input type="checkbox" class="finances-page-offer-popup__recepient-offer-list-item-checkbox" id="recepientName1">
+                <label class="finances-page-offer-popup__recepient-offer-list-item-info" for="recepientName1">
+                    <p class="finances-page-offer-popup__recepient-offer-list-item-name">Иван Иван</p>
+                    <span class="finances-page-offer-popup__recepient-offer-list-item-mail">vtr@uralreduktor.ru</span>
+                </label>
+            </li>
+            <li class="finances-page-offer-popup__recepient-offer-list-item">
+                <input type="checkbox" class="finances-page-offer-popup__recepient-offer-list-item-checkbox" id="recepientName2">
+                <label class="finances-page-offer-popup__recepient-offer-list-item-info" for="recepientName2">
+                    <p class="finances-page-offer-popup__recepient-offer-list-item-name">Степан Степанович</p>
+                    <span class="finances-page-offer-popup__recepient-offer-list-item-mail">vtr@uralreduktor.ru</span>
+                </label>
+            </li>
+        </ul>
+        <button type="button" class="finances-page-offer-popup__add-recepient-btn" x-on:click="createContragentPopup = true">
+            <svg class="finances-page-offer-popup__add-recepient-btn-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.00016 1.33301V10.6663M1.3335 5.99967H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+            Добавить контакт
+        </button>
+        <div class="finances-page-offer-popup__btn-group">
+        <button type="button" class="btn btn--secondary finances-page-offer-popup__send-via-email-btn" x-on:click="sendOfferPopup = true">
+            Отправить по e-mail
+        </button>
+        <button type="button" class="finances-page-offer-popup__marked-as-sended-btn">Отметить как отправленное</button>
+        </div>
+       </div>
+       <div class="finances-page-offer-popup__order-wrapper">
+        <strong class="finances-page-offer-popup__title order">
+            Заказ
+        </strong>
+        <ul role="list" class="finances-page-offer-popup__order-list">
+            <li class="finances-page-offer-popup__order-list-item">
+                <p class="finances-page-offer-popup__order-list-item-name">1111111111111</p>
+                <p class="finances-page-offer-popup__order-list-item-date">
+                    от <time datetime="25.10.2022">25.10.2022</time> 
+                </p>
+            </li>
+            <li class="finances-page-offer-popup__order-list-item">
+                <p class="finances-page-offer-popup__order-list-item-name">1111111111111</p>
+                <p class="finances-page-offer-popup__order-list-item-date">
+                    от <time datetime="25.10.2022">25.10.2022</time> 
+                </p>
+            </li>
+        </ul>
+        <button type="button" class="btn btn--primary finances-page-offer-popup__create-order-btn" x-on:click="createOrderPopup = true">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.00016 1.33301V10.6663M1.3335 5.99967H10.6668" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Создать заказ         
+        </button>
+       </div>
+       <div class="create-order-popup__form-control-group finances-page-offer-popup__form-control-group">
+        <p class="create-order-popup__form-control-group-title">
+          Ответственный
+        </p>
+        <div class="create-order-popup__form-control-wrapper create-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'vtr@uralreduktor.ru'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+          <div class="create-order-popup__icon-select-result-wrapper">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.33376 10.3333C6.54404 10.4251 6.771 10.4725 7.00043 10.4725C7.22986 10.4725 7.45682 10.4251 7.66709 10.3333M4.33376 6.33333L5.66709 7.66667M9.66709 6.33333L8.33376 7.66667M7.00043 1C3.8911 1 2.06976 2.554 1.7591 4.73C1.4474 6.73987 1.92518 8.7924 3.09243 10.458C3.65421 11.2792 4.38043 11.9748 5.22509 12.5007C6.33576 13.1673 7.66776 13.1673 8.77843 12.5007C9.62309 11.9748 10.3493 11.2792 10.9111 10.458C12.0736 8.79028 12.5509 6.73967 12.2444 4.73C11.9338 2.55333 10.1124 1 7.00309 1H7.00043Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+          <input type="text" class="create-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 9" value="vtr@uralreduktor.ru" readonly x-model="resultInputVal">
+          </div>
+          <div class="create-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+          <ul role="list" class="create-order-popup__form-control-select-list">
+            <li class="create-order-popup__form-control-select-list-item">
+              <input type="text" name="vtr@uralreduktor.ru 1" id="vtr@uralreduktor.ru 1" value="vtr@uralreduktor.ru 1" readonly class="create-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 1'">
+            </li>
+            <li class="create-order-popup__form-control-select-list-item">
+              <input type="text" name="vtr@uralreduktor.ru 2" id="vtr@uralreduktor.ru 2" value="vtr@uralreduktor.ru 2" readonly class="create-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 2'">
+            </li>
+            <li class="create-order-popup__form-control-select-list-item">
+              <input type="text" name="vtr@uralreduktor.ru 3" id="vtr@uralreduktor.ru 3" value="vtr@uralreduktor.ru 3" readonly class="create-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 3'">
+            </li>
+          </ul>
+          </div>
+          <svg class="create-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                  
+        </div>
+       </div>
+       <div class="create-order-popup__form-control-group finances-page-offer-popup__form-control-group">
+        <p class="create-order-popup__form-control-group-title">
+            Контрагент
+          </p>
+          <p class="finances-page-offer-popup__form-control-group-сontragent-name" x-on:click="editContragentPopup = true">
+            УЗТМ
+          </p>
+       </div>
+       <div class="create-order-popup__form-control-group finances-page-offer-popup__form-control-group">
+        <p class="create-order-popup__form-control-group-title">
+          Организация
+        </p>
+        <div class="create-order-popup__form-control-wrapper create-order-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Моя организация'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+          <input type="text" class="create-order-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 7" value="Моя организация" readonly x-model="resultInputVal">
+          <div class="create-order-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+          <ul role="list" class="create-order-popup__form-control-select-list">
+            <li class="create-order-popup__form-control-select-list-item">
+              <input type="text" name="Моя организация" id="Моя организация 1" value="Моя организация" readonly class="create-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя организация'">
+            </li>
+            <li class="create-order-popup__form-control-select-list-item">
+              <input type="text" name="Моя организация 1" id="Моя организация 1" value="Моя организация 1" readonly class="create-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя организация 1'">
+            </li>
+            <li class="create-order-popup__form-control-select-list-item">
+              <input type="text" name="Моя организация 2" id="Моя организация 3" value="Моя организация 2" readonly class="create-order-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя организация 2'">
+            </li>
+          </ul>
+          </div>
+          <svg class="create-order-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                  
+        </div>
+      </div>
+      <div class="create-order-popup__form-control-group finances-page-offer-popup__form-control-group">
+        <p class="create-order-popup__form-control-group-title">
+            Комментарий
+          </p>
+        <textarea class="finances-page-offer-popup__form-control-group-textarea">Введите текст
+        </textarea>
+      </div>
+    </div>
+    <div class="popup__body finances-page-offer-popup__body table-2" x-bind:class="{'active': table === 2}">
+      <div class="finances-page-offer-popup__general-view-wrapper">
+        <button type="button" class="btn btn--danger finances-page-offer-popup__draft-btn desktop">
+            Черновик
+          </button>
+           <img src="/images/finances-page-offer-popup-view-img.jpg" alt="general view image" loading="lazy" decoding="async" width="343" height="486" class="finances-page-offer-popup__general-view-img">
+      </div>
+    </div>
+</div>
+</div>
+</form>
+  </div>
+
+<script type="module">
+    tippy('.finances-page-offer-popup__page-link-btn', {
+           content: 'Открыть отдельной страницей',
+           placement: 'bottom',
+         });
+</script>

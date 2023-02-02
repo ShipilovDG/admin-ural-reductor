@@ -1,0 +1,145 @@
+.account-enter-popup {
+    max-width: 100%;
+    max-height: 488px;
+    top: auto;
+    bottom: 3.3rem;
+
+
+    &__body {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 16px;
+      border-top: none;
+    }
+
+    &__content {
+      border: 1px solid var(--grey-color);
+    }
+
+    @media (min-width:1200px) {
+      &__content {
+        min-width: 600px;
+        max-height: 784px;
+        margin-top: 60px;
+        border-radius: 20px;
+        box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+      }
+    }
+
+    &__title {
+        font-family: 'Inter',sans-serif;
+        font-weight: 600;
+         font-size: 16px;
+         line-height: 18px;
+         color: var(--primary);
+         text-align: center;
+    }
+
+    &__fieldset {
+      display: grid;
+      gap: 16px;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 32px;
+    }
+
+    &__form-control-group-label {
+        font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+    }
+
+    &__form-control-group {
+      display: grid;
+      gap: 16px;
+    }
+
+    &__form-control-wrapper {
+      background-color: var(--gray100);
+      border: 1px solid var(--grey-color);
+       border-radius: 4px; 
+       height: 34px;
+    }
+
+    &__form-control-input-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 16px;
+    }
+
+    &__form-control-input::placeholder {
+        color: var(--grey600);
+    }
+
+    &__sms-enter-btn {
+        justify-content: flex-start;
+        font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-grey);
+text-decoration: underline;
+    }
+
+    &__submit-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+    }
+
+    &__btn-group {
+        border-top: 1px solid var(--grey-color);
+        padding-top: 12px;
+        padding-left: 24px;
+        display: grid;
+        justify-content: flex-start;
+        gap: 24px;
+    }
+
+    &__reg-btn,
+    &__forgot-pass-btn {
+        font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--primary);
+    }
+}
+
+@media (min-width:1200px) {
+  .account-enter-popup {
+     transform: unset;
+     max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -99;
+
+    &__close-btn.desktop {
+      position: static;
+    order: 1;
+    margin: 0;
+    border: none;
+    }
+
+    &__close-btn-icon {
+       width: 12px;
+       height: 12px;
+    }
+
+    &__top-row {
+      padding-bottom: 16px;
+    }
+  }
+
+  .account-enter-popup.active {
+    background-color: rgba(73, 80, 8, 0.2);
+    opacity: 1;
+    visibility: visible;
+    z-index: 99;
+  }
+}

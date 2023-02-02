@@ -1,0 +1,55 @@
+.invite-user-table {
+    &__table-list {
+        @include media-extra-large() {
+          grid-template-columns: 40px repeat(5,1fr);
+          padding-left: 20px;
+        }
+      }
+    
+        &__table-list-item {
+            padding: 15px 26px;
+    
+            @include media-extra-large() {
+              padding: 15px 10px;
+            }
+        }
+    
+        &__status-btn {
+            font-weight: 600;
+font-size: 15px;
+line-height: 18px;
+color: var(--dark);
+max-width: 76px;
+        }
+
+        &__status-btn.in-process {
+            background-color: var(--yellow);
+        }
+
+        &__resp-wrapper {
+            grid-template-columns: repeat(2,max-content);
+        }
+
+        &__resp-title {
+            @include media-custom-max(1199px) {
+                max-width: 14ch;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        &__table-list-item-checkbox-wrapper.mobile-hide {
+            display: none;
+      
+            @include media-extra-large() {
+                display: block;
+            }
+          }
+      
+          &__table-list-item-checkbox-wrapper.desktop-hide {
+            @include media-extra-large() {
+              display: none;
+            }
+          }
+}

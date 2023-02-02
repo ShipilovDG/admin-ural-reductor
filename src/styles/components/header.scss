@@ -1,0 +1,122 @@
+.header {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--grey-color);
+    background-color: var(--gray200);
+    position: sticky;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    display: none;
+
+    @include media-extra-large() {
+        display: block;
+    }
+
+    &__container {
+        --max-width:100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 33px;
+	    padding-right: 30px;
+    }
+
+    &__left {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2,max-content);
+        gap: 96px;
+    }
+
+    &__logo {
+        text-decoration: none;
+    }
+
+    &__choose-options-btn {
+        margin-top: -4px;
+    }
+
+    &__choose-options-dropdown-wrapper {
+        position: relative;
+    }
+
+    &__choose-options-dropdown {
+        min-width: 197px;
+        position: absolute;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        background-color: var(--gray100);
+        border: 1px solid var(--grey-color);
+        box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+        border-radius: 4px;
+        margin-top: 27px;
+        padding-bottom: 16px;
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s ease-in-out;
+    }
+
+    &__choose-options-dropdown.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &__choose-options-dropdown-list {
+        display: grid;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__choose-options-dropdown-list--b-b {
+        border-bottom: 1px solid var(--grey-color);
+    }
+
+    &__choose-options-dropdown-list-item {
+        padding: 16px;
+        padding-right: 0;
+        transition: .3s ease-in-out;
+    }
+
+    &__choose-options-dropdown-list-item:hover {
+        background-color: var(--hover);
+    }
+
+    &__choose-options-dropdown-btn {
+        font-family: Inter,sans-serif;
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+    }
+
+    &__right {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(4,max-content);
+    }
+
+    &__board-btn {
+        width: 14px;
+        height: 18px;
+        margin-right: 39px;
+    }
+
+    &__notify-btn {
+        width: 16px;
+        height: 18px;
+        margin-right: 34px;
+    }
+
+    &__avatar-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50px;
+    }
+
+    &__calc-btn {
+        height: 20px;
+        width: 18px;
+        margin-right: 37px;
+    }
+   }

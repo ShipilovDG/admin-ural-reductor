@@ -1,0 +1,32 @@
+<div class="alt-popup archive-chat-alt-popup" x-bind:class="{'active': archiveChatAltPopup === true}" x-on:click.self="archiveChatAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form archive-chat-alt-popup__form">
+    <div class="alt-popup__content archive-chat-alt-popup__content">
+     <div class="archive-chat-alt-popup__top-row">
+        <p class="alt-popup__title">Архивация чата</p>
+        <button class="archive-chat-alt-popup__close-btn" type="button" x-on:click="archiveChatAltPopup = false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+     </div>
+    <div class="alt-popup__body archive-chat-alt-popup__body">
+            <fieldset class="alt-popup__fieldset archive-chat-alt-popup__fieldset b-b">
+              <strong class="archive-chat-alt-popup__strong-text">Переписка не будет удалена, но перестанет отображаться в списке чатов.</strong>
+              <p class="archive-chat-alt-popup__text">Отправить чат в архив?</p>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group archive-chat-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item archive-chat-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary archive-chat-alt-popup__undo-btn" x-on:click="archiveChatAltPopup = false">
+                Отмена
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item archive-chat-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary archive-chat-alt-popup__archive-btn">
+                Добавить в архив
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

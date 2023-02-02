@@ -1,0 +1,207 @@
+<div class="popup edit-contragent-event-popup" x-bind:class="{'active': editContragentEventPopup === true}">
+    <form action="#" method="post" class="popup__form edit-contragent-event-popup__form">
+    <div class="popup__content edit-contragent-event-popup__content">
+  <div class="popup__top-row edit-contragent-event-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="editContragentEventPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="editContragentEventPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title edit-contragent-event-popup__title">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="11" fill="#42BA96"/>
+            </svg>            
+            Название события
+    </h2>
+    <div class="site-section__top-row-btn-group edit-contragent-event-popup__top-row-btn-group">
+        <button type="button" class="btn btn--secondary edit-contragent-event-popup__marked-as-complete-btn">
+            Пометить как завершенное
+        </button>
+        <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+            <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>     
+            </button>
+            <ul class="site-section__choose-status-dropdown-list edit-contragent-event-popup__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+               <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Счёт</button>
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Предложение</button>
+             </li>
+             <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Акт</button>
+             </li>
+             <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Задача</button>
+             </li>
+             <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Событие</button>
+             </li>
+             <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Новое письмо</button>
+             </li>
+            </ul>
+        </div>
+    </div>
+   </div>
+    <div class="popup__body edit-contragent-event-popup__body">
+    <div class="edit-contragent-event-popup__grid">
+      <fieldset class="edit-contragent-event-popup__fieldset b-b m-b datetime-fieldset">
+         <div class="edit-contragent-event-popup__datetime">
+            <svg class="edit-contragent-event-popup__datetime-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M14 1.13C14.8604 1.35031 15.623 1.85071 16.1676 2.55232C16.7122 3.25392 17.0078 4.11683 17.0078 5.005C17.0078 5.89318 16.7122 6.75608 16.1676 7.45769C15.623 8.1593 14.8604 8.6597 14 8.88M19 19V17C18.9949 16.1172 18.6979 15.2608 18.1553 14.5644C17.6126 13.868 16.8548 13.3707 16 13.15M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>  
+                <div class="edit-contragent-event-popup__datetime-right">
+                    <p class="edit-contragent-event-popup__day">
+                        Вторник,
+                    </p>
+                    <time datetime="15 ноября" class="edit-contragent-event-popup__date">
+                        15 ноября
+                    </time>
+                    <div class="edit-contragent-event-popup__time">
+                        <time datetime="15:05" class="edit-contragent-event-popup__date">
+                            15:05
+                        </time>
+                        -
+                        <time datetime="16:05" class="edit-contragent-event-popup__date">
+                            16:05
+                        </time>
+                    </div>
+                </div>              
+         </div>
+         <textarea class="edit-contragent-event-popup__event-descr-textarea" placeholder="Описание не заполнено">Описание не заполнено
+         </textarea>
+         <button type="button" class="btn btn--secondary edit-contragent-event-popup__attach-files-btn">
+            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.4998 4.66827L5.16647 9.0016C4.90125 9.26682 4.75226 9.62653 4.75226 10.0016C4.75226 10.3767 4.90125 10.7364 5.16647 11.0016C5.43169 11.2668 5.7914 11.4158 6.16647 11.4158C6.54154 11.4158 6.90125 11.2668 7.16647 11.0016L11.4998 6.66827C12.0302 6.13784 12.3282 5.41842 12.3282 4.66827C12.3282 3.91813 12.0302 3.1987 11.4998 2.66827C10.9694 2.13784 10.2499 1.83984 9.4998 1.83984C8.74966 1.83984 8.03024 2.13784 7.4998 2.66827L3.16647 7.0016C2.37082 7.79725 1.92383 8.87639 1.92383 10.0016C1.92383 11.1268 2.37082 12.206 3.16647 13.0016C3.96212 13.7973 5.04125 14.2442 6.16647 14.2442C7.29169 14.2442 8.37082 13.7973 9.16647 13.0016L13.4998 8.66827" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>  
+                Прикрепить файлы
+                <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.5 10H14.5L12.5 13.3333H4.5" fill="#467FD0"></path>
+                    <path d="M14.5 10H6.5L4.5 13.3333H12.5L14.5 10ZM14.5 10H10.5" stroke="#467FD0" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M8.5 6.66536L4.5 13.332L2.5 9.9987C2.5 9.9987 4.9379 5.93553 6.5 3.33203C7.28105 4.63378 8.5 6.66536 8.5 6.66536Z" fill="#42BA96" stroke="#42BA96" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10.5 9.9987L10.1 9.33203L8.5 6.66536C8.5 6.66536 7.28105 4.63378 6.5 3.33203C8.0621 3.33203 10.5 3.33203 10.5 3.33203L14.1 9.33203L14.5 9.9987H10.5Z" fill="#FFC107"></path>
+                    <path d="M10.1 9.33203L10.5 9.9987H14.5L14.1 9.33203M10.1 9.33203L8.5 6.66536C8.5 6.66536 7.28105 4.63378 6.5 3.33203C8.0621 3.33203 10.5 3.33203 10.5 3.33203L14.1 9.33203M10.1 9.33203H14.1" stroke="#FFC107" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>          
+        </button>
+      </fieldset>
+      <fieldset class="edit-contragent-event-popup__fieldset b-b m-b comments-fieldset">
+        <div class="edit-contragent-event-popup__form-control-group">
+            <p class="edit-contragent-event-popup__form-control-group-title">
+                Оставить комментарий
+            </p>
+            <textarea class="edit-contragent-event-popup__form-control-group-textarea" placeholder="Напишите комментарий"></textarea>
+            <button type="button" class="btn btn--secondary edit-contragent-event-popup__save-settings-btn">
+                Сохранить
+            </button>
+        </div>
+      </fieldset>
+      <fieldset class="edit-contragent-event-popup__fieldset b-b m-b participants-fieldset-2">
+        <div class="edit-contragent-event-popup__form-control-group">
+            <p class="edit-contragent-event-popup__form-control-group-title">
+                Участники
+            </p>
+            <ul role="list" class="edit-contragent-event-popup__participants-list">
+                <li class="edit-contragent-event-popup__participants-list-item">
+                    <input type="checkbox" id="participant" class="edit-contragent-event-popup__participants-list-item-checkbox">
+                    <label for="participant" class="edit-contragent-event-popup__participants-list-item-label">
+                        <p class="edit-contragent-event-popup__participants-list-item-title">Иван Иван</p>
+                        <p class="edit-contragent-event-popup__participants-list-item-text">Организатор</p>
+                    </label>
+                </li>
+                <li class="edit-contragent-event-popup__participants-list-item">
+                    <input type="checkbox" id="participant2" class="edit-contragent-event-popup__participants-list-item-checkbox">
+                    <label for="participant2" class="edit-contragent-event-popup__participants-list-item-label">
+                        <p class="edit-contragent-event-popup__participants-list-item-title">Иван Иван</p>
+                        <p class="edit-contragent-event-popup__participants-list-item-text">Не организатор</p>
+                    </label>
+                </li>
+            </ul>
+            <button type="button" class="edit-contragent-event-popup__add-participant-btn">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.00016 1.33203V10.6654M1.3335 5.9987H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Добавить участника                        
+            </button>
+        </div>
+      </fieldset>
+      <fieldset class="edit-contragent-event-popup__fieldset b-b m-b links-fieldset">
+        <div class="edit-contragent-event-popup__form-control-group">
+            <p class="edit-contragent-event-popup__form-control-group-title">
+                Связи
+            </p>
+            <div class="edit-contragent-event-popup__links-card">
+                <svg class="edit-contragent-event-popup__links-card-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                <p class="edit-contragent-event-popup__links-card-title">
+                    ООО “УРАЛРЕДУКТОР”
+                </p>                   
+            </div>
+            <button type="button" class="edit-contragent-event-popup__add-links-btn">
+                Изменить связи
+            </button>
+        </div>
+      </fieldset>
+      <fieldset class="edit-contragent-event-popup__fieldset b-b m-b participants-fieldset-1">
+        <div class="edit-contragent-event-popup__form-control-group">
+            <p class="edit-contragent-event-popup__form-control-group-title">
+                Участники
+            </p>
+            <div class="edit-contragent-event-popup__participants-wrapper">
+                <p class="edit-contragent-event-popup__participants-title">
+                    Календарь
+                </p>
+                <p class="edit-contragent-event-popup__participants-text">
+                    vtrpro@yandex.ru
+                </p>
+            </div>
+            <div class="edit-contragent-event-popup__participants-wrapper">
+                <p class="edit-contragent-event-popup__participants-title">
+                    Доступность
+                </p>
+                <p class="edit-contragent-event-popup__participants-text">
+                    Занят
+                </p>
+            </div>
+        </div>
+      </fieldset>
+      <fieldset class="edit-contragent-event-popup__fieldset reminder-fieldset">
+        <div class="edit-contragent-event-popup__form-control-group">
+            <p class="edit-contragent-event-popup__form-control-group-title">
+                Напоминание
+            </p>
+            <p class="edit-contragent-event-popup__reminder-text">
+                Напомнить через 30 минут
+            </p>
+        </div>
+      </fieldset>
+    </div>
+    <ul role="list" class="popup__btn-control-group edit-contragent-event-popup__btn-control-group">
+      <li class="popup__btn-control-group-item edit-contragent-event-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn edit-contragent-event-popup__undo-btn" x-on:click="editContragentEventPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item edit-contragent-event-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn edit-contragent-event-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+</div>

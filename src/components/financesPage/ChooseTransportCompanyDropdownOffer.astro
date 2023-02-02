@@ -1,0 +1,17 @@
+---
+const items = ['г. Екатеринбург', 'Вариант', 'Документы', 'Документы 2', 'Документы 3', 'Документы 4'];
+---
+
+<div class="create-offer-popup__choose-transp-comp-btn-wrapper" x-data="{inputVal: 'Выберите транспортную компанию', toggleDropdown: false}" x-on:click.outside="toggleDropdown = false">
+    <button type="button" class="create-offer-popup__choose-transp-comp-btn" x-text="inputVal" x-on:click="toggleDropdown = !toggleDropdown"></button>
+     <div class="create-offer-popup__choose-transp-comp-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+        <input type="text" class="create-offer-popup__choose-transp-comp-dropdown-search-input" value="Екатеринбург, улица">
+      <ul role="list" class="create-offer-popup__choose-transp-comp-dropdown-list">
+        {items.map((item) => 
+           <li class="create-offer-popup__choose-transp-comp-dropdown-list-item">
+            <input readonly class="create-offer-popup__choose-transp-comp-dropdown-list-item-input" value={item} x-on:click={`inputVal = '${item}'`}>
+            </li>
+        )}
+      </ul>
+    </div>
+</div>

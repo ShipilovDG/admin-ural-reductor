@@ -1,0 +1,270 @@
+---
+import FindUsersAltPopup from "./FindUsersAltPopup.astro";
+import UsersGroupPopupTable from "./UsersGroupPopupTable.astro";
+import Pagination from "../Pagination.astro";
+---
+
+<div class="popup new-users-group-popup" x-bind:class="{'active': newUsersGroupPopup === true}" x-data="{step: 1, toogleUsersGroupPopupTable: false}">
+    <form action="#" method="post" class="popup__form new-users-group-popup__form">
+    <div class="popup__content new-users-group-popup__content">
+    <div class="popup__top-row new-users-group-popup__top-row">
+        <button class="popup__close-btn mobile" type="button" x-on:click="newUsersGroupPopup = false">
+            <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>                  
+        </button>
+        <button class="popup__close-btn desktop" type="button" x-on:click="newUsersGroupPopup = false">
+            <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>            
+        </button>
+        <h2 class="popup__title new-users-group-popup__title">
+            Новая группа
+        </h2>
+    </div>
+    <div class="popup__body new-users-group-popup__body">
+        <div class="new-users-group-popup__step-progress">
+           <div class="new-users-group-popup__step-progress-circle" x-bind:class="{'active': step === 1}">
+             <p class="new-users-group-popup__step-progress-circle-number" x-bind:class="{'active': step === 1}"> 1 </p>
+            </div>
+           <div class="new-users-group-popup__step-progress-line" x-bind:class="{'active': step === 1}"></div>
+            <div class="new-users-group-popup__step-progress-circle" x-bind:class="{'active': step === 2}">
+              <p class="new-users-group-popup__step-progress-circle-number" x-bind:class="{'active': step === 2}">2</p>
+            </div>
+          <div class="new-users-group-popup__step-progress-line" x-bind:class="{'active': step === 2}"></div>
+            <div class="new-users-group-popup__step-progress-circle" x-bind:class="{'active': step === 3}">
+              <p class="new-users-group-popup__step-progress-circle-number" x-bind:class="{'active': step === 3}">3</p>
+             </div>
+        </div>
+        <div class="new-users-group-popup__step-progress-titles">
+          <p class="new-users-group-popup__step-progress-title" x-bind:class="{'active': step === 1}">
+            Общие
+          </p>
+          <p class="new-users-group-popup__step-progress-title" x-bind:class="{'active': step === 2}">
+            Доступ
+          </p>
+          <p class="new-users-group-popup__step-progress-title" x-bind:class="{'active': step === 3}">
+            Пользователи
+          </p>
+        </div>
+        <div class="swiper new-users-group-popup__step-slider">
+        <div class="swiper-wrapper new-users-group-popup__step-slider-list">
+        <fieldset class="swiper-slide new-users-group-popup__fieldset step-1">
+            <div class="new-users-group-popup__form-control-group step-title">
+                <p class="new-users-group-popup__form-control-group-title">
+                    Шаг 1 : Общие
+                </p>
+            </div>
+            <div class="new-users-group-popup__form-control-group">
+                <p class="new-users-group-popup__form-control-group-title">
+                    Название <sup>*</sup>
+                </p>
+                <div class="new-users-group-popup__form-control-wrapper new-users-group-popup__form-control-input-wrapper">
+                  <input type="text" class="new-users-group-popup__form-control-input" placeholder="Введите название группы">
+                </div>
+            </div>
+            <div class="new-users-group-popup__form-control-group">
+                <p class="new-users-group-popup__form-control-group-title">
+                    Описание
+                </p>
+                <textarea class="new-users-group-popup__textarea"></textarea>
+            </div>
+        </fieldset>
+        <fieldset class="swiper-slide new-users-group-popup__fieldset step-2">
+          <div class="new-users-group-popup__form-control-group step-title">
+            <p class="new-users-group-popup__form-control-group-title">
+              Шаг 2 : Доступ
+            </p>
+        </div>
+            <div class="new-users-group-popup__access-accordeon" x-data="{toggleAccordeon: false }">
+                <div class="new-users-group-popup__access-accordeon-top" x-on:click="toggleAccordeon = !toggleAccordeon">
+                    <h2 class="popup__title new-users-group-popup__title">
+                        Базовые модули
+                    </h2>
+                    <svg class="new-users-group-popup__access-accordeon-arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleAccordeon === true}">
+                        <path d="M1 1L9 9L17 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                </div>
+                <ul role="list" class="new-users-group-popup__access-accordeon-list" x-show="toggleAccordeon === true" x-collapse.duration.750ms x-data="{items: ['Задачи', 'Финансы', 'Файлы', 'Мессенджер', 'Заказы']}">
+                    <template x-for="item in items">
+                    <li class="new-users-group-popup__access-accordeon-list-item">
+                        <div class="new-users-group-popup__form-control-group">
+                            <p class="new-users-group-popup__form-control-group-title" x-text="item">
+                            </p>
+                            <div class="new-users-group-popup__form-control-wrapper new-users-group-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Доступ запрещен'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                                <input type="text" class="new-users-group-popup__form-control-select-result-input access-denied" value="Доступ запрещен" readonly x-model="resultInputVal">
+                                <div class="new-users-group-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                                <ul role="list" class="new-users-group-popup__form-control-select-list">
+                                  <li class="new-users-group-popup__form-control-select-list-item">
+                                    <input type="text" value="Доступ запрещен" readonly class="new-users-group-popup__form-control-select-list-item-input access-denied" x-on:click="resultInputVal = 'Доступ запрещен'">
+                                  </li>
+                                </ul>
+                                </div>
+                                <svg class="new-users-group-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>                  
+                              </div>
+                        </div>
+                    </li>
+                   </template>
+                </ul>
+            </div>
+            <div class="new-users-group-popup__access-accordeon" x-data="{toggleAccordeon: false }">
+                <div class="new-users-group-popup__access-accordeon-top" x-on:click="toggleAccordeon = !toggleAccordeon">
+                    <h2 class="popup__title new-users-group-popup__title">
+                        Приложения
+                    </h2>
+                    <svg class="new-users-group-popup__access-accordeon-arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleAccordeon === true}">
+                        <path d="M1 1L9 9L17 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                </div>
+                <ul role="list" class="new-users-group-popup__access-accordeon-list" x-show="toggleAccordeon === true" x-collapse.duration.750ms x-data="{items: ['Веб-формы', 'Акты', 'Товары', 'Списки', 'Заметки', 'Почта', 'Онбординг']}">
+                    <template x-for="item in items">
+                    <li class="new-users-group-popup__access-accordeon-list-item">
+                        <div class="new-users-group-popup__form-control-group">
+                            <p class="new-users-group-popup__form-control-group-title" x-text="item">
+                            </p>
+                            <div class="new-users-group-popup__form-control-wrapper new-users-group-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Доступ запрещен'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                                <input type="text" class="new-users-group-popup__form-control-select-result-input access-denied" value="Доступ запрещен" readonly x-model="resultInputVal">
+                                <div class="new-users-group-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                                <ul role="list" class="new-users-group-popup__form-control-select-list">
+                                  <li class="new-users-group-popup__form-control-select-list-item">
+                                    <input type="text" value="Доступ запрещен" readonly class="new-users-group-popup__form-control-select-list-item-input access-denied" x-on:click="resultInputVal = 'Доступ запрещен'">
+                                  </li>
+                                </ul>
+                                </div>
+                                <svg class="new-users-group-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>                  
+                              </div>
+                        </div>
+                    </li>
+                   </template>
+                </ul>
+            </div>
+            <div class="new-users-group-popup__access-accordeon" x-data="{toggleAccordeon: false }">
+                <div class="new-users-group-popup__access-accordeon-top" x-on:click="toggleAccordeon = !toggleAccordeon">
+                    <h2 class="popup__title new-users-group-popup__title">
+                        Интеграции
+                    </h2>
+                    <svg class="new-users-group-popup__access-accordeon-arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleAccordeon === true}">
+                        <path d="M1 1L9 9L17 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                </div>
+                <ul role="list" class="new-users-group-popup__access-accordeon-list" x-show="toggleAccordeon === true" x-collapse.duration.750ms x-data="{items: ['Импорт банковских выписок', 'CSV-Импорт', 'Телефония', 'DaData' ]}">
+                    <template x-for="item in items">
+                    <li class="new-users-group-popup__access-accordeon-list-item">
+                        <div class="new-users-group-popup__form-control-group">
+                            <p class="new-users-group-popup__form-control-group-title" x-text="item">
+                            </p>
+                            <div class="new-users-group-popup__form-control-wrapper new-users-group-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Доступ запрещен'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                                <input type="text" class="new-users-group-popup__form-control-select-result-input access-denied" value="Доступ запрещен" readonly x-model="resultInputVal">
+                                <div class="new-users-group-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                                <ul role="list" class="new-users-group-popup__form-control-select-list">
+                                  <li class="new-users-group-popup__form-control-select-list-item">
+                                    <input type="text" value="Доступ запрещен" readonly class="new-users-group-popup__form-control-select-list-item-input access-denied" x-on:click="resultInputVal = 'Доступ запрещен'">
+                                  </li>
+                                </ul>
+                                </div>
+                                <svg class="new-users-group-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>                  
+                              </div>
+                        </div>
+                    </li>
+                   </template>
+                </ul>
+            </div>
+        </fieldset>
+        <fieldset class="swiper-slide new-users-group-popup__fieldset step-3">
+          <div class="new-users-group-popup__form-control-group step-title step-3">
+            <p class="new-users-group-popup__form-control-group-title">
+              Шаг 3 : Пользователи
+            </p>
+            <button type="button" class="btn btn--primary new-users-group-popup__add-btn" x-on:click="findUsersAltPopup = true">
+                Добавить
+            </button>
+           </div>
+           <div class="site-section__body new-users-group-popup__body no-users-text" x-show="toogleUsersGroupPopupTable === false">
+            <p class="new-users-group-popup__no-users-text">Нет пользователей в группе</p>
+           </div>
+           <div class="site-section__body new-users-group-popup__body" x-show="toogleUsersGroupPopupTable === true">
+           <UsersGroupPopupTable></UsersGroupPopupTable>
+          <ul role="list" class="pagination new-users-group-popup__pagination">
+            <Pagination></Pagination>
+          </ul>
+          </div>
+        </fieldset>
+        </div>
+        </div>
+        <ul role="list" class="new-users-group-popup__btn-control-group" x-bind:class="{'active': step === 1}">
+            <li class="new-users-group-popup__btn-control-group-item">
+                <button type="button" class="btn btn--flat new-users-group-popup__undo-btn" x-on:click="editOrderPopup = false">
+                    Отменить
+                </button>
+            </li>
+            <li class="new-users-group-popup__btn-control-group-item">
+                <button type="button" class="btn btn--primary new-users-group-popup__next-btn" x-on:click="step = 2">
+                    Далее
+                </button>
+            </li>
+        </ul>
+        <ul role="list" class="new-users-group-popup__btn-control-group" x-bind:class="{'active': step === 2}">
+            <li class="new-users-group-popup__btn-control-group-item">
+                <button type="button" class="btn btn--secondary new-users-group-popup__prev-btn" x-on:click="step = 1">
+                    Назад
+                </button>
+            </li>
+            <li class="new-users-group-popup__btn-control-group-item">
+                <button type="button" class="btn btn--primary new-users-group-popup__next-btn" x-on:click="step = 3">
+                    Далее
+                </button>
+            </li>
+        </ul>
+        <ul role="list" class="new-users-group-popup__btn-control-group" x-bind:class="{'active': step === 3}">
+            <li class="new-users-group-popup__btn-control-group-item">
+                <button type="button" class="btn btn--secondary new-users-group-popup__prev-btn" x-on:click="step = 2">
+                    Назад
+                </button>
+            </li>
+            <li class="new-users-group-popup__btn-control-group-item">
+                <button type="button" class="btn btn--primary new-users-group-popup__next-btn" x-on:click="newUsersGroupPopup = false; toggleUsersTable = true">
+                    Далее
+                </button>
+            </li>
+        </ul>
+    </div>
+    </form>
+    <FindUsersAltPopup></FindUsersAltPopup>
+</div>
+<script type="module">
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
+
+  
+    const importCsvPopupStepSlider = new Swiper('.new-users-group-popup__step-slider', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        // autoHeight: true,
+        observeParents: true,
+        observeSlideChildren: true,
+        observer: true,
+        simulateTouch: false,
+        allowTouchMove: false,
+    })
+
+    const prevBtns = document.querySelectorAll('.new-users-group-popup__prev-btn');
+    const nextBtns = document.querySelectorAll('.new-users-group-popup__next-btn');
+
+    prevBtns.forEach(element => {
+        element.addEventListener('click', ()=> {
+        importCsvPopupStepSlider.slidePrev();
+    })
+    });
+
+    nextBtns.forEach(element => {
+        element.addEventListener('click', ()=> {
+        importCsvPopupStepSlider.slideNext();
+    })
+    });
+
+</script>

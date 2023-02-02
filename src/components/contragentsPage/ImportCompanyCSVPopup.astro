@@ -1,0 +1,559 @@
+<div class="popup import-csv-popup" x-bind:class="{'active': importCompanyCSVPopup === true}" x-data="{step: 1}">
+    <form action="#" method="post" class="popup__form import-csv-popup__form">
+    <div class="popup__content import-csv-popup__content">
+    <div class="popup__top-row import-csv-popup__top-row">
+        <button class="popup__close-btn mobile" type="button" x-on:click="importCompanyCSVPopup = false">
+            <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>                  
+        </button>
+        <button class="popup__close-btn desktop" type="button" x-on:click="importCompanyCSVPopup = false">
+            <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>            
+        </button>
+        <h2 class="popup__title import-csv-popup__title">
+            Импорт
+        </h2>
+    </div>
+    <div class="popup__body import-csv-popup__body">
+        <div class="import-csv-popup__step-progress">
+           <div class="import-csv-popup__step-progress-circle" x-bind:class="{'active': step === 1}">
+             <p class="import-csv-popup__step-progress-circle-number" x-bind:class="{'active': step === 1}"> 1 </p>
+            </div>
+           <div class="import-csv-popup__step-progress-line" x-bind:class="{'active': step === 1}"></div>
+            <div class="import-csv-popup__step-progress-circle" x-bind:class="{'active': step === 2}">
+              <p class="import-csv-popup__step-progress-circle-number" x-bind:class="{'active': step === 2}">2</p>
+            </div>
+          <div class="import-csv-popup__step-progress-line" x-bind:class="{'active': step === 2}"></div>
+            <div class="import-csv-popup__step-progress-circle" x-bind:class="{'active': step === 3}">
+              <p class="import-csv-popup__step-progress-circle-number" x-bind:class="{'active': step === 3}">3</p>
+             </div>
+          <div class="import-csv-popup__step-progress-line" x-bind:class="{'active': step === 3}"></div>
+            <div class="import-csv-popup__step-progress-circle" x-bind:class="{'active': step === 4}">
+              <p class="import-csv-popup__step-progress-circle-number" x-bind:class="{'active': step === 4}">4</p>
+             </div>
+        </div>
+        <div class="import-csv-popup__step-progress-titles">
+          <p class="import-csv-popup__step-progress-title" x-bind:class="{'active': step === 1}">
+            Настройки
+          </p>
+          <p class="import-csv-popup__step-progress-title" x-bind:class="{'active': step === 2}">
+            Соответствие полей
+          </p>
+          <p class="import-csv-popup__step-progress-title" x-bind:class="{'active': step === 3}">
+            Контроль дубликатов
+          </p>
+          <p class="import-csv-popup__step-progress-title" x-bind:class="{'active': step === 4}">
+            Импорт
+          </p>
+        </div>
+        <div class="swiper import-csv-popup__step-slider">
+        <div class="swiper-wrapper import-csv-popup__step-slider-list">
+        <fieldset class="swiper-slide import-csv-popup__fieldset step-1">
+            <div class="import-csv-popup__form-control-group step-title">
+                <p class="import-csv-popup__form-control-group-title">
+                    Шаг 1 : Настройки
+                </p>
+            </div>
+            <div class="import-csv-popup__form-control-group col-2">
+                <p class="import-csv-popup__form-control-group-title">
+                    Выберите файл для импорта <span>(только CSV)</span><sup>*</sup>
+                </p>
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-input-wrapper file-import">
+                    <svg class="import-csv-popup__import-file-icon" width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.33325 1V3.66667C7.33325 3.84348 7.40349 4.01305 7.52851 4.13807C7.65354 4.2631 7.82311 4.33333 7.99992 4.33333H10.6666M7.33325 1H2.66659C2.31296 1 1.97382 1.14048 1.72378 1.39052C1.47373 1.64057 1.33325 1.97971 1.33325 2.33333V11.6667C1.33325 12.0203 1.47373 12.3594 1.72378 12.6095C1.97382 12.8595 2.31296 13 2.66659 13H9.33325C9.68687 13 10.026 12.8595 10.2761 12.6095C10.5261 12.3594 10.6666 12.0203 10.6666 11.6667V4.33333M7.33325 1L10.6666 4.33333M3.99992 5H4.66659M3.99992 7.66667H7.99992M3.99992 10.3333H7.99992" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>   
+                  <input type="text" class="import-csv-popup__form-control-input" placeholder="Введите название группы">
+                </div>
+            </div>
+            <div class="import-csv-popup__form-control-group">
+                <p class="import-csv-popup__form-control-group-title">
+                    Кодировка импортируемого файла
+                </p>
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Определить автоматически'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Определить автоматически" readonly x-model="resultInputVal">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="import-csv-popup__form-control-select-list">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Определить автоматически" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Определить автоматически'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Определить автоматически 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Определить автоматически 2'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Определить автоматически 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Определить автоматически 3'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+            </div>
+            <div class="import-csv-popup__form-control-group">
+                <p class="import-csv-popup__form-control-group-title">
+                    Разделитель колонок в файле
+                </p>
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Определить автоматически'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Определить автоматически" readonly x-model="resultInputVal">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="import-csv-popup__form-control-select-list">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Определить автоматически" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Определить автоматически'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Определить автоматически 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Определить автоматически 2'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Определить автоматически 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Определить автоматически 3'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+            </div>
+            <div class="import-csv-popup__form-control-checkbox-wrapper col-2">
+                <input type="checkbox" name="Первая строка содержит названия колонок" id="Первая строка содержит названия колонок" class="import-csv-popup__checkbox">
+            <label for="Первая строка содержит названия колонок" class="import-csv-popup__label">Первая строка содержит названия колонок</label>
+            </div>
+            <div class="import-csv-popup__form-control-group">
+                <p class="import-csv-popup__form-control-group-title">
+                    Ответственный (по умолчанию)
+                </p>
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper resp" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'vtr@uralreduktor.ru'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                    <img src="/images/header-avatar-placeholder.svg" alt="responsible face avatar" loading="lazy" decoding="async" width="24" height="24" class="import-csv-popup__resp-avatar">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="vtr@uralreduktor.ru" readonly x-model="resultInputVal">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="import-csv-popup__form-control-select-list">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="vtr@uralreduktor.ru" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="vtr@uralreduktor.ru 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 2'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="vtr@uralreduktor.ru 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 3'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+            </div>
+            <div class="import-csv-popup__form-control-group">
+                <p class="import-csv-popup__form-control-group-title">
+                    Формат имени <span>(для поиска ответственного)</span>
+                </p>
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Иван Иванов'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Иван Иванов" readonly x-model="resultInputVal">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="import-csv-popup__form-control-select-list">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Иван Иванов" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван Иванов'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Иван Иванов 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван Иванов 2'">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Иван Иванов 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван Иванов 3'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="swiper-slide import-csv-popup__fieldset step-2">
+          <div class="import-csv-popup__form-control-group step-title">
+            <p class="import-csv-popup__form-control-group-title">
+              Шаг 2 : Соответствие полей
+            </p>
+        </div>
+            <div class="import-csv-popup__form-control-group comparison-fields">
+                <div class="import-csv-popup__comparison-fields-top">
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper comparison-fields" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Пропустить'}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Пропустить" readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <input type="text" class="import-csv-popup__form-control-dropdown-search-input">
+                  <ul role="list" class="import-csv-popup__form-control-select-list comparison-fields">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 2';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 3';toggleSelectList = false">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+                </div>
+                <ul role="list" class="import-csv-popup__fields-comparison-list">
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Профиль">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                </ul>
+            </div>
+            <div class="import-csv-popup__form-control-group comparison-fields">
+                <div class="import-csv-popup__comparison-fields-top">
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper comparison-fields" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Пропустить'}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Пропустить" readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <input type="text" class="import-csv-popup__form-control-dropdown-search-input">
+                  <ul role="list" class="import-csv-popup__form-control-select-list comparison-fields">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 2';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 3';toggleSelectList = false">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+                </div>
+                <ul role="list" class="import-csv-popup__fields-comparison-list">
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Профиль">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                </ul>
+            </div>
+            <div class="import-csv-popup__form-control-group comparison-fields">
+                <div class="import-csv-popup__comparison-fields-top">
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper comparison-fields" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Пропустить'}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Пропустить" readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <input type="text" class="import-csv-popup__form-control-dropdown-search-input">
+                  <ul role="list" class="import-csv-popup__form-control-select-list comparison-fields">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 2';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 3';toggleSelectList = false">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+                </div>
+                <ul role="list" class="import-csv-popup__fields-comparison-list">
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Профиль">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                </ul>
+            </div>
+            <div class="import-csv-popup__form-control-group comparison-fields">
+                <div class="import-csv-popup__comparison-fields-top">
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper comparison-fields" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Пропустить'}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Пропустить" readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <input type="text" class="import-csv-popup__form-control-dropdown-search-input">
+                  <ul role="list" class="import-csv-popup__form-control-select-list comparison-fields">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 2';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 3';toggleSelectList = false">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+                </div>
+                <ul role="list" class="import-csv-popup__fields-comparison-list">
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Профиль">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                </ul>
+            </div>
+            <div class="import-csv-popup__form-control-group comparison-fields">
+                <div class="import-csv-popup__comparison-fields-top">
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper comparison-fields" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Пропустить'}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Пропустить" readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <input type="text" class="import-csv-popup__form-control-dropdown-search-input">
+                  <ul role="list" class="import-csv-popup__form-control-select-list comparison-fields">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 2';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 3';toggleSelectList = false">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+                </div>
+                <ul role="list" class="import-csv-popup__fields-comparison-list">
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Профиль">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                </ul>
+            </div>
+            <div class="import-csv-popup__form-control-group comparison-fields">
+                <div class="import-csv-popup__comparison-fields-top">
+                <div class="import-csv-popup__form-control-wrapper import-csv-popup__form-control-select-wrapper comparison-fields" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Пропустить'}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="import-csv-popup__form-control-select-result-input" value="Пропустить" readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+                  <div class="import-csv-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                    <input type="text" class="import-csv-popup__form-control-dropdown-search-input">
+                  <ul role="list" class="import-csv-popup__form-control-select-list comparison-fields">
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 2" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 2';toggleSelectList = false">
+                    </li>
+                    <li class="import-csv-popup__form-control-select-list-item">
+                      <input type="text" value="Пропустить 3" readonly class="import-csv-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Пропустить 3';toggleSelectList = false">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="import-csv-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                  
+                </div>
+                </div>
+                <ul role="list" class="import-csv-popup__fields-comparison-list">
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Профиль">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                    <li class="import-csv-popup__fields-comparison-list-item">
+                        <input readonly class="import-csv-popup__fields-comparison-list-item-input" value="Документы">
+                    </li>
+                </ul>
+            </div>
+        </fieldset>
+        <fieldset class="swiper-slide import-csv-popup__fieldset step-3">
+          <div class="import-csv-popup__form-control-group step-title">
+            <p class="import-csv-popup__form-control-group-title">
+              Шаг 3 : Контроль дубликатов
+            </p>
+           </div>
+            <ul role="list" class="import-csv-popup__radio-list">
+                <li class="import-csv-popup__radio-list-item">
+                  <input type="radio" name="duplicate control" id="duplicate control 1" class="import-csv-popup__radio-input">
+                  <label for="duplicate control 1" class="import-csv-popup__radio-label">Контроль дубликатов 1</label>
+                </li>
+                <li class="import-csv-popup__radio-list-item">
+                    <input type="radio" name="duplicate control" id="duplicate control 2" class="import-csv-popup__radio-input">
+                    <label for="duplicate control 2" class="import-csv-popup__radio-label">Контроль дубликатов 2</label>
+                </li>
+                <li class="import-csv-popup__radio-list-item">
+                    <input type="radio" name="duplicate control" id="duplicate control 3" class="import-csv-popup__radio-input">
+                    <label for="duplicate control 3" class="import-csv-popup__radio-label">Контроль дубликатов 3</label>
+                </li>
+                <li class="import-csv-popup__radio-list-item">
+                    <input type="radio" name="duplicate control" id="duplicate control 4" class="import-csv-popup__radio-input">
+                    <label for="duplicate control 4" class="import-csv-popup__radio-label">Контроль дубликатов 4</label>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset class="swiper-slide import-csv-popup__fieldset step-4">
+          <div class="import-csv-popup__form-control-group step-title">
+            <p class="import-csv-popup__form-control-group-title">
+              Шаг 4 : Импорт
+            </p>
+           </div>
+            <div class="import-csv-popup__progress">
+                <p class="import-csv-popup__progress-title">
+                    Прогресс <span class="import-csv-popup__progress-percentage">35%</span>
+                </p>
+                <div class="import-csv-popup__progress-bar-wrapper">
+                    <div class="import-csv-popup__progress-bar"></div>
+                </div>
+                <div class="import-csv-popup__progress-loader">
+                    <span class="import-csv-popup__progress-loader-circle"></span>
+                    <span class="import-csv-popup__progress-loader-circle"></span>
+                    <span class="import-csv-popup__progress-loader-circle"></span>
+                </div>
+            </div>
+            <div class="import-csv-popup__success-import">
+                <p class="import-csv-popup__success-import-text">Импорт успешно завершён</p>
+                <a href="#" class="btn btn--primary import-csv-popup__success-import-btn">Контакты</a>
+            </div>
+        </fieldset>
+        </div>
+        </div>
+        <ul role="list" class="import-csv-popup__btn-control-group" x-bind:class="{'active': step === 1}">
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--flat import-csv-popup__undo-btn" x-on:click="editOrderPopup = false">
+                    Отменить
+                </button>
+            </li>
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--primary import-csv-popup__next-btn" x-on:click="step = 2">
+                    Далее
+                </button>
+            </li>
+        </ul>
+        <ul role="list" class="import-csv-popup__btn-control-group" x-bind:class="{'active': step === 2}">
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--secondary import-csv-popup__prev-btn" x-on:click="step = 1">
+                    Назад
+                </button>
+            </li>
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--flat import-csv-popup__undo-btn" x-on:click="editOrderPopup = false">
+                    Отменить
+                </button>
+            </li>
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--primary import-csv-popup__next-btn" x-on:click="step = 3">
+                    Далее
+                </button>
+            </li>
+        </ul>
+        <ul role="list" class="import-csv-popup__btn-control-group" x-bind:class="{'active': step === 3}">
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--secondary import-csv-popup__prev-btn" x-on:click="step = 2">
+                    Назад
+                </button>
+            </li>
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--flat import-csv-popup__undo-btn" x-on:click="editOrderPopup = false">
+                    Отменить
+                </button>
+            </li>
+            <li class="import-csv-popup__btn-control-group-item">
+                <button type="button" class="btn btn--primary import-csv-popup__next-btn" x-on:click="step = 4;initProgressPercentageTimer()">
+                    Далее
+                </button>
+            </li>
+        </ul>
+    </div>
+    </form>
+</div>
+<script is:inline>
+    const initProgressPercentageTimer = () => {
+        let importCsvPopupProgressPercentage = document.querySelector('.import-csv-popup__progress-percentage');
+    let progressBar = document.querySelector('.import-csv-popup__progress-bar');
+    let importCsvPopupProgress = document.querySelector('.import-csv-popup__progress');
+    let importCsvPopupSuccessImport = document.querySelector('.import-csv-popup__success-import');
+    let count = 35;
+
+    const increasingPercentages = () => {
+            importCsvPopupProgressPercentage.textContent = `${count++}%`;  
+            progressBar.style.width = `${count++}%`;
+    }
+
+    const hideImportCsvPopupProgressBlock = () => {
+        importCsvPopupProgress.classList.add('hidden');
+    }
+
+    const showImportCsvPopupSuccessImportBlock = () => {
+        importCsvPopupSuccessImport.classList.add('active');
+    }
+
+    const tick = () => {
+        increasingPercentages();
+        if (count >= 100) {
+            hideImportCsvPopupProgressBlock();
+            showImportCsvPopupSuccessImportBlock();
+       }
+    }
+    
+    const timer = () => {
+        setInterval(tick, 300);
+    }
+
+    increasingPercentages();
+    tick();
+    timer();
+    }
+    
+
+</script>
+<script type="module">
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
+
+  
+    const importCsvPopupStepSlider = new Swiper('.import-csv-popup__step-slider', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        autoHeight: true,
+        observeParents: true,
+        observeSlideChildren: true,
+        observer: true,
+        simulateTouch: false,
+        allowTouchMove: false,
+    })
+
+    const prevBtns = document.querySelectorAll('.import-csv-popup__prev-btn');
+    const nextBtns = document.querySelectorAll('.import-csv-popup__next-btn');
+
+    prevBtns.forEach(element => {
+        element.addEventListener('click', ()=> {
+        importCsvPopupStepSlider.slidePrev();
+    })
+    });
+
+    nextBtns.forEach(element => {
+        element.addEventListener('click', ()=> {
+        importCsvPopupStepSlider.slideNext();
+    })
+    });
+
+  </script>

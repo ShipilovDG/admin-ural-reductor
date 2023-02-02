@@ -1,0 +1,15 @@
+.goods-page-price-table {
+
+    &__table-list {
+        @include media-extra-large() {
+            padding-left: 24px;
+            grid-template-columns: 24px repeat(3,200px);
+        }
+    }
+
+    &__choose-status-dropdown-list {
+        bottom: 2rem;
+        right: -6rem;
+        top: unset;
+    }
+}

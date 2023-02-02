@@ -1,0 +1,507 @@
+<div class="popup create-event-popup" x-bind:class="{'active': createEventPopup === true}">
+    <form action="#" method="post" class="popup__form create-event-popup__form">
+    <div class="popup__content create-event-popup__content">
+  <div class="popup__top-row events-board-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="createEventPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="createEventPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title create-event-popup__title">
+        Название события 
+    </h2>
+</div>
+    <div class="popup__body create-event-popup__body">
+       <fieldset class="create-event-popup__fieldset">
+        <div class="create-event-popup__form-control-group event-name">
+            <p class="create-event-popup__form-control-group-title">
+                Название<sup>*</sup>
+            </p>
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-input-wrapper">
+              <input type="text" class="create-event-popup__form-control-input">
+            </div>
+         </div>
+           <div class="create-event-popup__form-control-group event-type">
+              <p class="create-event-popup__form-control-group-title">
+                Тип события
+              </p>
+              <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Встреча'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-event-popup__form-control-select-result-input" value="Встреча" readonly x-model="resultInputVal">
+                <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-event-popup__form-control-select-list">
+                  <li class="create-event-popup__form-control-select-list-item">
+                    <input type="text" value="Встреча" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Встреча'">
+                  </li>
+                  <li class="create-event-popup__form-control-select-list-item">
+                    <input type="text" value="Звонок" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Звонок'">
+                  </li>
+                  <li class="create-event-popup__form-control-select-list-item">
+                    <input type="text" value="Эл. почта" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Эл. почта'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+              </div>
+           </div>
+           <div class="create-event-popup__form-control-group date-start">
+            <p class="create-event-popup__form-control-group-title">
+                Дата начала
+            </p>
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '15.11.2022'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-event-popup__form-control-select-result-input" value="15.11.2022" readonly x-model="resultInputVal">
+              <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-event-popup__form-control-select-list">
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="15.11.2023" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '15.11.2023'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="15.11.2024" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '15.11.2024'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="15.11.2025" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '15.11.2025'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+        <div class="create-event-popup__form-control-group time-1">
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-input-wrapper">
+              <input class="create-event-popup__form-control-input" x-mask="15:20" value="15:20">
+            </div>
+         </div>
+         <div class="create-event-popup__form-control-group time-2">
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-input-wrapper">
+              <input class="create-event-popup__form-control-input" x-mask="18:22" value="18:22">
+            </div>
+         </div>
+         <div class="create-event-popup__form-control-group date-finish">
+            <p class="create-event-popup__form-control-group-title">
+                Дата завершения
+            </p>
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '15.11.2022'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-event-popup__form-control-select-result-input" value="15.11.2022" readonly x-model="resultInputVal">
+              <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-event-popup__form-control-select-list">
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="15.11.2023" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '15.11.2023'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="15.11.2024" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '15.11.2024'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="15.11.2025" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '15.11.2025'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+         <div class="create-event-popup__all-day-checkbox-wrapper">
+            <input type="checkbox" name="all-day" id="all-day" class="create-event-popup__all-day-checkbox">
+            <label for="all-day" class="create-event-popup__all-day-label">Весь день</label>
+         </div>
+         <div class="create-event-popup__form-control-group">
+            <p class="create-event-popup__form-control-group-title">
+                Описание
+            </p>
+            <textarea class="create-event-popup__form-control-group-textarea"></textarea>
+         </div>
+         <div class="create-event-popup__form-control-group event-place">
+            <p class="create-event-popup__form-control-group-title">
+                Место проведения
+            </p>
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-input-wrapper">
+              <input type="text" class="create-event-popup__form-control-input">
+            </div>
+         </div>
+         <div class="create-event-popup__form-control-group calendar">
+              <p class="create-event-popup__form-control-group-title">
+                Календарь
+              </p>
+              <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'vtrpro@yandex.ru'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="create-event-popup__form-control-select-result-input" value="vtrpro@yandex.ru" readonly x-model="resultInputVal">
+                <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="create-event-popup__form-control-select-list">
+                  <li class="create-event-popup__form-control-select-list-item">
+                    <input type="text" value="vtrpro@yandex.ru" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtrpro@yandex.ru'">
+                  </li>
+                  <li class="create-event-popup__form-control-select-list-item">
+                    <input type="text" value="vtrpro@yandex.ru 1" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtrpro@yandex.ru 1'">
+                  </li>
+                  <li class="create-event-popup__form-control-select-list-item">
+                    <input type="text" value="vtrpro@yandex.ru 2" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtrpro@yandex.ru 2'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+              </div>
+         </div>
+         <div class="create-event-popup__form-control-group">
+            <p class="create-event-popup__form-control-group-title">
+                Участники
+            </p>
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Участники'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-event-popup__form-control-select-result-input" value="Участники" readonly x-model="resultInputVal">
+              <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-event-popup__form-control-select-list">
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="Участники" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Участники'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="Участники 1" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Участники 1'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="Участники 2" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Участники 2'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+         <div class="create-event-popup__form-control-group" x-data="remindList">
+            <p class="create-event-popup__form-control-group-title">
+                Напомнить за
+            </p>
+            <ul role="list" class="create-event-popup__remind-list">
+                <li class="create-event-popup__remind-list-item" x-ref="createEventPopupRemindListItem1">
+                    <div class="create-event-popup__form-control-group remind-time-number">
+                    <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-input-wrapper">
+                        <input type="number" value="30" class="create-event-popup__form-control-input">
+                      </div>
+                    </div>
+                    <div class="create-event-popup__form-control-group remind-time-type">
+                        <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Минут'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                            <input type="text" class="create-event-popup__form-control-select-result-input" value="Минут" readonly x-model="resultInputVal">
+                            <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                            <ul role="list" class="create-event-popup__form-control-select-list">
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Минут" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Минут'">
+                              </li>
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Секунд" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Секунд'">
+                              </li>
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Часов" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Часов'">
+                              </li>
+                            </ul>
+                            </div>
+                            <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>                  
+                          </div>
+                    </div>
+                    <button type="button" x-on:click="$refs.createEventPopupRemindListItem1.remove()" class="create-event-popup__delete-remind-item-btn">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__remind-list-item" x-ref="createEventPopupRemindListItem2">
+                    <div class="create-event-popup__form-control-group remind-time-number">
+                    <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-input-wrapper">
+                        <input type="number" value="30" class="create-event-popup__form-control-input">
+                      </div>
+                    </div>
+                    <div class="create-event-popup__form-control-group remind-time-type">
+                        <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Минут'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                            <input type="text" class="create-event-popup__form-control-select-result-input" value="Минут" readonly x-model="resultInputVal">
+                            <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                            <ul role="list" class="create-event-popup__form-control-select-list">
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Минут" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Минут'">
+                              </li>
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Секунд" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Секунд'">
+                              </li>
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Часов" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Часов'">
+                              </li>
+                            </ul>
+                            </div>
+                            <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>                  
+                          </div>
+                    </div>
+                    <button type="button" x-on:click="$refs.createEventPopupRemindListItem2.remove()" class="create-event-popup__delete-remind-item-btn">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+            </ul>
+            <button type="button" class="create-event-popup__add-remind-btn" x-on:click="addRemindListItem">
+                Добавить напоминание
+            </button>
+         </div>
+         <div class="create-event-popup__form-control-group">
+            <p class="create-event-popup__form-control-group-title">
+                Цвет события
+            </p>
+            <ul role="list" class="create-event-popup__color-event-list">
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color1" class="create-event-popup__color-event-list-item-radio" checked>
+                    <button type="button" class="create-event-popup__color-event-btn danger">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color2" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn red_light">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color3" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn orange">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color4" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn yellow">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color5" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn green">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color6" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn blue-light">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color7" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn blue">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color8" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn primary_light">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color9" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn primary">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color9" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn grey600">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+                <li class="create-event-popup__color-event-list-item">
+                    <input type="radio" name="color" id="color10" class="create-event-popup__color-event-list-item-radio">
+                    <button type="button" class="create-event-popup__color-event-btn dark_grey">
+                        <svg class="create-event-popup__color-event-btn-check" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.66699 7.9987L8.33366 14.6654L21.667 1.33203" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                            
+                    </button>
+                </li>
+            </ul>
+         </div>
+         <div class="create-event-popup__form-control-group employment">
+            <p class="create-event-popup__form-control-group-title">
+                Занятость
+            </p>
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Занят'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-event-popup__form-control-select-result-input" value="Занят" readonly x-model="resultInputVal">
+              <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-event-popup__form-control-select-list">
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="Занят" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Занят'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="Занят 2" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Занят 2'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="Занят 3" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Занят 3'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+         <div class="create-event-popup__form-control-group private-event-settings">
+            <p class="create-event-popup__form-control-group-title">
+                Настройки приватности события
+            </p>
+            <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'По умолчанию'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <input type="text" class="create-event-popup__form-control-select-result-input" value="По умолчанию" readonly x-model="resultInputVal">
+              <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="create-event-popup__form-control-select-list">
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="По умолчанию" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'По умолчанию'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="По умолчанию 2" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'По умолчанию 2'">
+                </li>
+                <li class="create-event-popup__form-control-select-list-item">
+                  <input type="text" value="По умолчанию 3" readonly class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'По умолчанию 3'">
+                </li>
+              </ul>
+              </div>
+              <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+         <div class="create-event-popup__form-control-group">
+            <p class="create-event-popup__form-control-group-title">
+                Связи
+            </p>
+            <div class="create-event-popup__links-card">
+                <svg class="create-event-popup__links-card-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                <p class="create-event-popup__links-card-title">
+                    ООО “УРАЛРЕДУКТОР”
+                </p>                   
+            </div>
+            <button type="button" class="create-event-popup__add-links-btn">
+                Изменить связи
+            </button>
+         </div>
+         <button type="button" class="btn btn--secondary create-event-popup__attach-files-btn">
+            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.4998 4.66827L5.16647 9.0016C4.90125 9.26682 4.75226 9.62653 4.75226 10.0016C4.75226 10.3767 4.90125 10.7364 5.16647 11.0016C5.43169 11.2668 5.7914 11.4158 6.16647 11.4158C6.54154 11.4158 6.90125 11.2668 7.16647 11.0016L11.4998 6.66827C12.0302 6.13784 12.3282 5.41842 12.3282 4.66827C12.3282 3.91813 12.0302 3.1987 11.4998 2.66827C10.9694 2.13784 10.2499 1.83984 9.4998 1.83984C8.74966 1.83984 8.03024 2.13784 7.4998 2.66827L3.16647 7.0016C2.37082 7.79725 1.92383 8.87639 1.92383 10.0016C1.92383 11.1268 2.37082 12.206 3.16647 13.0016C3.96212 13.7973 5.04125 14.2442 6.16647 14.2442C7.29169 14.2442 8.37082 13.7973 9.16647 13.0016L13.4998 8.66827" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>  
+                Прикрепить файлы
+                <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.5 10H14.5L12.5 13.3333H4.5" fill="#467FD0"></path>
+                    <path d="M14.5 10H6.5L4.5 13.3333H12.5L14.5 10ZM14.5 10H10.5" stroke="#467FD0" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M8.5 6.66536L4.5 13.332L2.5 9.9987C2.5 9.9987 4.9379 5.93553 6.5 3.33203C7.28105 4.63378 8.5 6.66536 8.5 6.66536Z" fill="#42BA96" stroke="#42BA96" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M10.5 9.9987L10.1 9.33203L8.5 6.66536C8.5 6.66536 7.28105 4.63378 6.5 3.33203C8.0621 3.33203 10.5 3.33203 10.5 3.33203L14.1 9.33203L14.5 9.9987H10.5Z" fill="#FFC107"></path>
+                    <path d="M10.1 9.33203L10.5 9.9987H14.5L14.1 9.33203M10.1 9.33203L8.5 6.66536C8.5 6.66536 7.28105 4.63378 6.5 3.33203C8.0621 3.33203 10.5 3.33203 10.5 3.33203L14.1 9.33203M10.1 9.33203H14.1" stroke="#FFC107" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>          
+          </button>
+       </fieldset>
+       <ul role="list" class="popup__btn-control-group create-event-popup__btn-control-group">
+        <li class="popup__btn-control-group-item create-event-popup__btn-control-group-item">
+            <button type="button" class="btn btn--flat popup__undo-btn create-event-popup__undo-btn" x-on:click="editContragentEventPopup = false">
+                Отменить
+            </button>
+        </li>
+        <li class="popup__btn-control-group-item create-event-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary popup__save-btn create-event-popup__save-btn">
+                Сохранить
+            </button>
+        </li>
+        </ul>
+    </div>
+</div>
+</form>
+  </div>
+
+<script is:inline>
+document.addEventListener('alpine:init', () => {
+     const createEventPopupRemindList = document.querySelector('.create-event-popup__remind-list');
+ 
+ function increaseRemindListItemNumber1() {
+ let number = 3;
+ 
+ return function() {
+ return number++;
+ };
+ }
+ const remindListItemNumber1 = increaseRemindListItemNumber1();
+
+ function increaseRemindListItemNumber2() {
+ let number = 3;
+ 
+ return function() {
+ return number++;
+ };
+ }
+
+ const remindListItemNumber2 = increaseRemindListItemNumber2();
+ 
+        Alpine.data('remindList', () => ({
+          addRemindListItem() {
+            createEventPopupRemindList.insertAdjacentHTML('beforeend', 
+            ` 
+            <li class="create-event-popup__remind-list-item" x-ref="createEventPopupRemindListItem${remindListItemNumber1()}">
+                    <div class="create-event-popup__form-control-group remind-time-number">
+                    <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-input-wrapper">
+                        <input type="number" value="30" class="create-event-popup__form-control-input">
+                      </div>
+                    </div>
+                    <div class="create-event-popup__form-control-group remind-time-type">
+                        <div class="create-event-popup__form-control-wrapper create-event-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Минут'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                            <input type="text" class="create-event-popup__form-control-select-result-input" value="Минут" readonly="" x-model="resultInputVal">
+                            <div class="create-event-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                            <ul role="list" class="create-event-popup__form-control-select-list">
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Минут" readonly="" class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Минут'">
+                              </li>
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Секунд" readonly="" class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Секунд'">
+                              </li>
+                              <li class="create-event-popup__form-control-select-list-item">
+                                <input type="text" value="Часов" readonly="" class="create-event-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Часов'">
+                              </li>
+                            </ul>
+                            </div>
+                            <svg class="create-event-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                              </svg>                  
+                          </div>
+                    </div>
+                    <button type="button" class="create-event-popup__delete-remind-item-btn" x-on:click="$refs.createEventPopupRemindListItem${remindListItemNumber2()}.remove()">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>                            
+                    </button>
+                </li>
+            `);
+          }
+       }))
+   })
+</script>

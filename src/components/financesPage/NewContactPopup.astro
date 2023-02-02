@@ -1,0 +1,625 @@
+<div class="popup new-contact-popup" x-bind:class="{'active': newContactPopup === true}" x-data="{table: 1}">
+    <form action="#" method="post" class="popup__form new-contact-popup__form">
+    <div class="popup__content new-contact-popup__content">
+  <div class="popup__top-row new-contact-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="settingsPopup = false;newContactPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="settingsPopup = false;newContactPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title new-contact-popup__title">
+        Новый контакт 
+    </h2>
+</div>
+<ul role="list" class="site-section__table-tabs new-contact-popup__table-tabs">
+    <li class="site-section__table-tabs-item new-contact-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn new-contact-popup__table-tabs-item-btn active" x-on:click="table = 1" x-bind:class="{'active': table === 1}">
+            Общие
+        </button>
+    </li><li class="site-section__table-tabs-item new-contact-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn new-contact-popup__table-tabs-item-btn" x-on:click="table = 2" x-bind:class="{'active': table === 2}">
+            Реквизиты
+        </button>
+    </li><li class="site-section__table-tabs-item new-contact-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn new-contact-popup__table-tabs-item-btn" x-on:click="table = 3" x-bind:class="{'active': table === 3}">
+            Адреса
+        </button>
+    </li>
+    <li class="site-section__table-tabs-item new-contact-popup__table-tabs-item">
+        <button type="button" class="site-section__table-tabs-item-btn new-contact-popup__table-tabs-item-btn" x-on:click="table = 4" x-bind:class="{'active': table === 4}">
+            Доп.контакты
+        </button>
+    </li>
+</ul>
+    <div class="popup__body new-contact-popup__body">
+        <div class="new-contact-popup__body-wrapper" x-show="table === 1">
+       <fieldset class="new-contact-popup__fieldset b-b m-b">
+           <div class="new-contact-popup__form-control-group">
+              <p class="new-contact-popup__form-control-group-title">
+                Тип контрагента
+              </p>
+              <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Контакт'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <div class="new-contact-popup__form-control-select-icon-contact-wrapper">
+                    <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                <input type="text" class="new-contact-popup__form-control-select-result-input" value="Выбор контрагента" readonly x-model="resultInputVal">
+                </div>
+                <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="new-contact-popup__form-control-select-list">
+                  <li class="new-contact-popup__form-control-select-list-item contact">
+                    <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>  
+                    <input type="text" value="Контакт" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Контакт'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item contact">
+                    <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>  
+                    <input type="text" value="Контакт 2" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Контакт 2'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item contact">
+                    <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> 
+                    <input type="text" value="Контакт 3" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Контакт 3'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+              </div>
+           </div>
+           <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Категория
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Клиенты'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">                    
+              <input type="text" class="new-contact-popup__form-control-select-result-input customer" value="Клиенты" readonly x-model="resultInputVal">
+              <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="new-contact-popup__form-control-select-list">
+                <li class="new-contact-popup__form-control-select-list-item">
+                  <input type="text" value="Клиенты" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Клиенты'">
+                </li>
+                <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Клиенты 2" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Клиенты 2'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Клиенты 3" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Клиенты 3'">
+                  </li>
+              </ul>
+              </div>
+              <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+           </div>
+           <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Обращение
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Клиенты'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">                    
+              <input type="text" class="new-contact-popup__form-control-select-result-input customer" value="Клиенты" readonly x-model="resultInputVal">
+              <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="new-contact-popup__form-control-select-list">
+                <li class="new-contact-popup__form-control-select-list-item">
+                  <input type="text" value="Клиенты" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Клиенты'">
+                </li>
+                <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Клиенты 2" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Клиенты 2'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Клиенты 3" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Клиенты 3'">
+                  </li>
+              </ul>
+              </div>
+              <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+           </div>
+           <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Фамилия
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: ''}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">                    
+              <input type="text" class="new-contact-popup__form-control-select-result-input customer" value="" readonly x-model="resultInputVal">
+              <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="new-contact-popup__form-control-select-list">
+                <li class="new-contact-popup__form-control-select-list-item">
+                  <input type="text" value="Воронцов" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Воронцов'">
+                </li>
+                <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Воронцов 2" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Воронцов 2'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Воронцов 3" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Воронцов 3'">
+                  </li>
+              </ul>
+              </div>
+              <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+           </div>
+           <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Имя
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+           </div>
+           <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Отчество
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+           </div>
+           <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Ответственный
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Контакт'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+              <div class="new-contact-popup__form-control-select-icon-contact-wrapper">
+                  <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                        
+              <input type="text" class="new-contact-popup__form-control-select-result-input customer" value="Выбор контрагента" readonly x-model="resultInputVal">
+              </div>
+              <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="new-contact-popup__form-control-select-list">
+                <li class="new-contact-popup__form-control-select-list-item contact">
+                  <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>  
+                  <input type="text" value="Контакт" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Контакт'">
+                </li>
+                <li class="new-contact-popup__form-control-select-list-item contact">
+                  <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>  
+                  <input type="text" value="Контакт 2" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Контакт 2'">
+                </li>
+                <li class="new-contact-popup__form-control-select-list-item contact">
+                  <svg width="6" height="15" viewBox="0 0 6 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.66667 13.6667V10.3333L1 9.66667V7C1 6.82319 1.07024 6.65362 1.19526 6.5286C1.32029 6.40357 1.48986 6.33333 1.66667 6.33333H4.33333C4.51014 6.33333 4.67971 6.40357 4.80474 6.5286C4.92976 6.65362 5 6.82319 5 7V9.66667L4.33333 10.3333V13.6667M4.33333 2.33333C4.33333 3.06971 3.73638 3.66667 3 3.66667C2.26362 3.66667 1.66667 3.06971 1.66667 2.33333C1.66667 1.59695 2.26362 1 3 1C3.73638 1 4.33333 1.59695 4.33333 2.33333Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg> 
+                  <input type="text" value="Контакт 3" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Контакт 3'">
+                </li>
+              </ul>
+              </div>
+              <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+         <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Сфера деятельности
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Промышленность'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">                    
+              <input type="text" class="new-contact-popup__form-control-select-result-input customer" value="Промышленность" readonly x-model="resultInputVal">
+              <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+              <ul role="list" class="new-contact-popup__form-control-select-list">
+                <li class="new-contact-popup__form-control-select-list-item">
+                  <input type="text" value="Промышленность" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Промышленность'">
+                </li>
+                <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Промышленность 2" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Промышленность 2'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="Промышленность 3" readonly class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Промышленность 3'">
+                  </li>
+              </ul>
+              </div>
+              <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                  
+            </div>
+         </div>
+         <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+                Сайт
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input" value="https://www.google.com/">
+              </div>
+         </div>
+         <div class="new-contact-popup__tels-wrapper" 
+         x-data="{
+            addTelephone() {
+               let newContactPopupTelsFormControlWrapper = $el.querySelector('.new-contact-popup__tels-form-control-wrapper');
+               let newContactPopupFormControlGroupTel = $el.querySelector('.new-contact-popup__form-control-group.tel');
+               let clonedNewContactPopupFormControlGroupTel = newContactPopupFormControlGroupTel.cloneNode(true);
+               
+               newContactPopupTelsFormControlWrapper.append(clonedNewContactPopupFormControlGroupTel);
+            }
+         }"
+         >
+            <div class="new-contact-popup__tels-form-control-wrapper">
+              <p class="new-contact-popup__form-control-group-title">
+                  Телефон
+              </p>
+            <div class="new-contact-popup__form-control-group tel">
+              <div class="new-contact-popup__form-control-tel-wrapper">
+              <div class="new-contact-popup__form-control-select-wrapper tel-wrapper-1" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '+86'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="new-contact-popup__form-control-select-result-input" name="form-control-select-result-input" value="+86" readonly="" x-model="resultInputVal">
+                <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="new-contact-popup__form-control-select-list">
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="+86" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+86'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="+87" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+87'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="+7" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+7'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+              </div>
+              <input class="new-contact-popup__form-control-tel-input" x-mask="999-99-99-99" placeholder="Номер">
+              <div class="new-contact-popup__form-control-select-wrapper tel-wrapper-2" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Рабочий'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="new-contact-popup__form-control-select-result-input" name="form-control-select-result-input" value="Рабочий" readonly="" x-model="resultInputVal">
+                  <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="new-contact-popup__form-control-select-list">
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Рабочий" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                    </li>
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Сотовый" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                    </li>
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Другое" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                  
+              </div>
+             </div>
+           </div>
+           <div class="new-contact-popup__form-control-group tel">
+              <div class="new-contact-popup__form-control-tel-wrapper">
+              <div class="new-contact-popup__form-control-select-wrapper tel-wrapper-1" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '+7'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="new-contact-popup__form-control-select-result-input" name="form-control-select-result-input" value="+7" readonly="" x-model="resultInputVal">
+                <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                <ul role="list" class="new-contact-popup__form-control-select-list">
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="+7" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+7'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="+87" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+87'">
+                  </li>
+                  <li class="new-contact-popup__form-control-select-list-item">
+                    <input type="text" value="+88" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+88'">
+                  </li>
+                </ul>
+                </div>
+                <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+              </div>
+              <input class="new-contact-popup__form-control-tel-input" x-mask="999-99-99-99" placeholder="Номер">
+              <div class="new-contact-popup__form-control-select-wrapper tel-wrapper-2" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Другое'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="new-contact-popup__form-control-select-result-input" name="form-control-select-result-input" value="Другое" readonly="" x-model="resultInputVal">
+                  <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="new-contact-popup__form-control-select-list">
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Другое" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                    </li>
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Рабочий" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                    </li>
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Сотовый" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                  
+              </div>
+             </div>
+           </div>
+            </div>
+            <div class="new-contact-popup__form-control-group tel">
+              <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input" placeholder="Введите своё название">
+              </div>
+           </div>
+           <button type="button" class="new-contact-popup__add-tel-btn" x-on:click="addTelephone">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.99967 1.33398V10.6673M1.33301 6.00065H10.6663" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              Добавить телефон               
+           </button>
+          </div>
+          <div class="new-contact-popup__emails-wrapper"
+          x-data="{
+            addEmail() {
+               let newContactPopupEmailsFormControlWrapper = $el.querySelector('.new-contact-popup__emails-form-control-wrapper');
+               let newContactPopupFormControlGroupEmail = $el.querySelector('.new-contact-popup__form-control-group.email');
+               let clonedNewContactPopupFormControlGroupEmail = newContactPopupFormControlGroupEmail.cloneNode(true);
+               
+               newContactPopupEmailsFormControlWrapper.append(clonedNewContactPopupFormControlGroupEmail);
+            }
+         }"
+          >
+            <div class="new-contact-popup__emails-form-control-wrapper">
+              <p class="new-contact-popup__form-control-group-title">
+                Электронная почта
+            </p>
+            <div class="new-contact-popup__form-control-group col-2 email">
+              <div class="new-contact-popup__form-control-email-wrapper">
+              <input type="email" placeholder="Введите e-mail">
+              <div class="new-contact-popup__form-control-select-wrapper email-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Рабочий'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="new-contact-popup__form-control-select-result-input" name="form-control-select-result-input" value="Рабочий" readonly="" x-model="resultInputVal">
+                  <div class="new-contact-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                  <ul role="list" class="new-contact-popup__form-control-select-list">
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Рабочий" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Рабочий'">
+                    </li>
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Сотовый" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Сотовый'">
+                    </li>
+                    <li class="new-contact-popup__form-control-select-list-item">
+                      <input type="text" value="Другое" readonly="" class="new-contact-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Другое'">
+                    </li>
+                  </ul>
+                  </div>
+                  <svg class="new-contact-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                  
+              </div>
+             </div>
+            </div>
+            </div>
+            <button type="button" class="new-contact-popup__add-email-btn" x-on:click="addEmail">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.99967 1.33398V10.6673M1.33301 6.00065H10.6663" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Добавить email               
+            </button>
+          </div>
+       </fieldset>
+       <fieldset class="new-contact-popup__fieldset">
+        <div class="new-contact-popup__form-control-group">
+          <p class="new-contact-popup__form-control-group-title">
+              Описание
+          </p>
+          <textarea class="new-contact-popup__descr-textarea" placeholder="Введите текст"></textarea>
+         </div>
+         <div class="new-contact-popup__attach-files-list-wrapper" x-data="{files: []}">
+          <ul role="list" class="new-contact-popup__attach-files-list" x-bind:class="{'active': files.length > 0}">
+            <template x-for="file in files">
+                <li class="new-contact-popup__attach-files-list-item">
+                    <img src="/images/attach-files-placeholder.png" alt="attach files image" class="new-contact-popup__attach-files-list-item-img" loading="lazy" decoding="async">
+                    <div class="new-contact-popup__attach-files-list-item-info">
+                        <p class="new-contact-popup__attach-files-list-item-title" x-text="file.name">1</p>
+                        <p class="new-contact-popup__attach-files-list-item-size-format">
+                            <span x-text="file.size"></span> КБ <span x-text="file.type"></span> 
+                        </p>
+                    </div>
+                    <div class="new-contact-popup__attach-files-list-item-controls">
+                        <button type="button" class="new-contact-popup__attach-files-list-item-add-btn">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.00016 1.33203V10.6654M1.3335 5.9987H10.6668" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>      
+                        </button>
+                        <button type="button" class="new-contact-popup__attach-files-list-item-download-btn">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.6665 10.3346V11.668C1.6665 12.0216 1.80698 12.3607 2.05703 12.6108C2.30708 12.8608 2.64622 13.0013 2.99984 13.0013H10.9998C11.3535 13.0013 11.6926 12.8608 11.9426 12.6108C12.1927 12.3607 12.3332 12.0216 12.3332 11.668V10.3346M3.6665 6.33464L6.99984 9.66797M6.99984 9.66797L10.3332 6.33464M6.99984 9.66797V1.66797" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>      
+                        </button>
+                    </div>
+                </li>
+            </template>
+          </ul>
+         <div class="new-contact-popup__attach-files-btn-wrapper">
+           <input type="file" class="new-contact-popup__attach-files-btn-file-input" x-on:change="files = $el.files" multiple>
+          <button type="button" class="new-contact-popup__attach-files-btn">
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.9998 4.66632L4.66647 8.99965C4.40125 9.26487 4.25226 9.62458 4.25226 9.99965C4.25226 10.3747 4.40125 10.7344 4.66647 10.9997C4.93169 11.2649 5.2914 11.4139 5.66647 11.4139C6.04154 11.4139 6.40125 11.2649 6.66647 10.9997L10.9998 6.66632C11.5302 6.13588 11.8282 5.41646 11.8282 4.66632C11.8282 3.91617 11.5302 3.19675 10.9998 2.66632C10.4694 2.13588 9.74995 1.83789 8.9998 1.83789C8.24966 1.83789 7.53024 2.13588 6.9998 2.66632L2.66647 6.99965C1.87082 7.7953 1.42383 8.87443 1.42383 9.99965C1.42383 11.1249 1.87082 12.204 2.66647 12.9997C3.46212 13.7953 4.54125 14.2423 5.66647 14.2423C6.79169 14.2423 7.87082 13.7953 8.66647 12.9997L12.9998 8.66632" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Прикрепить файлы              
+           </button>
+         </div>
+        </div>
+       </fieldset>
+         </div>
+       <div class="new-contact-popup__body-wrapper" x-show="table === 2">
+        <fieldset class="new-contact-popup__fieldset">
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              Фамилия И.О.
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              ФИО полностью
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title data-title">
+              День рождения
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper datetimepicker-wrapper" id="dateOfBirthPicker">
+              <input class="new-contact-popup__form-control-input-date" type="text" readonly placeholder="--.--.----">
+            </div>
+           </div>
+           <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              ИНН
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              Паспортные данные
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+        </fieldset>
+       </div>
+       <div class="new-contact-popup__body-wrapper" x-show="table === 3">
+          <div class="new-contact-popup__accordeon" x-data="{toggleAccordeon: false }">
+            <div class="new-contact-popup__accordeon-top" x-on:click="toggleAccordeon = !toggleAccordeon">
+                <h2 class="popup__title new-contact-popup__title">
+                  Адрес регистрации
+                </h2>
+                <svg class="new-contact-popup__accordeon-arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleAccordeon === true}">
+                    <path d="M1 1L9 9L17 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>                        
+            </div>
+            <ul role="list" class="new-contact-popup__accordeon-list" x-show="toggleAccordeon === true" x-collapse.duration.750ms x-data="{items: ['Страна', 'Регион', 'Город', 'Почтовый индекс', 'Улица / номер дома', 'Квартира, офис, комната, этаж', 'Дополнительно']}">
+                <template x-for="item in items">
+                <li class="new-contact-popup__accordeon-list-item">
+                    <div class="new-contact-popup__form-control-group">
+                        <p class="new-contact-popup__form-control-group-title" x-text="item">
+                        </p>
+                        <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                          <input type="text" class="new-contact-popup__form-control-input">
+                        </div>
+                    </div>
+                </li>
+               </template>
+            </ul>
+          </div>
+          <div class="new-contact-popup__accordeon" x-data="{toggleAccordeon: false }">
+            <div class="new-contact-popup__accordeon-top" x-on:click="toggleAccordeon = !toggleAccordeon">
+                <h2 class="popup__title new-contact-popup__title">
+                  Фактический адрес
+                </h2>
+                <svg class="new-contact-popup__accordeon-arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleAccordeon === true}">
+                    <path d="M1 1L9 9L17 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>                        
+            </div>
+            <ul role="list" class="new-contact-popup__accordeon-list" x-show="toggleAccordeon === true" x-collapse.duration.750ms x-data="{items: ['Страна', 'Регион', 'Город', 'Почтовый индекс', 'Улица / номер дома', 'Квартира, офис, комната, этаж', 'Дополнительно']}">
+                <template x-for="item in items">
+                <li class="new-contact-popup__accordeon-list-item">
+                    <div class="new-contact-popup__form-control-group">
+                        <p class="new-contact-popup__form-control-group-title" x-text="item">
+                        </p>
+                        <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                          <input type="text" class="new-contact-popup__form-control-input">
+                        </div>
+                    </div>
+                </li>
+               </template>
+            </ul>
+          </div>
+      </div>
+      <div class="new-contact-popup__body-wrapper" x-show="table === 4">
+        <fieldset class="new-contact-popup__fieldset two-cols">
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              Соц.сеть
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              VK
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              Whatsapp
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              Telegram
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              Linkedin
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+          <div class="new-contact-popup__form-control-group">
+            <p class="new-contact-popup__form-control-group-title">
+              Instagram
+            </p>
+            <div class="new-contact-popup__form-control-wrapper new-contact-popup__form-control-input-wrapper">
+                <input type="text" class="new-contact-popup__form-control-input">
+              </div>
+          </div>
+        </fieldset>  
+      </div> 
+    <ul role="list" class="new-contact-popup__btn-control-group">
+      <li class="new-contact-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat new-contact-popup__undo-btn" x-on:click="newContactPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="new-contact-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary new-contact-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+  </ul>
+    </div>
+</div>
+</form>
+  </div>
+
+<script type="module">
+  // Tempus Dominus JavaScript datepicker https://getdatepicker.com/ 
+  import { TempusDominus } from 'https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.esm.js';
+
+  new TempusDominus(document.getElementById('dateOfBirthPicker'), {
+    display: {
+      theme: 'light',
+      buttons: {
+        clear: true,
+      },
+      components: {
+        clock: false,
+        hours: false,
+        minutes: false,
+        seconds: false,
+      },
+    }
+  });
+</script>
+  

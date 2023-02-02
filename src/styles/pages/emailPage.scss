@@ -1,0 +1,115 @@
+.email-page {
+    
+    &__top-row-left {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(3,max-content);
+        gap: 20px;
+    }
+
+    &__body-top {
+        display: none;
+
+        @include media-extra-large() {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 27px;
+            padding-left: 20px;
+            padding-right: 35px;
+        }
+    }
+
+    &__body-top-left {
+         display: grid;
+         align-items: center;
+         grid-template-columns: repeat(2,max-content);
+         gap: 16px;
+    }
+
+    &__body-top-right {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(3,max-content);
+        gap: 13px;
+    }
+
+    &__top-row {
+     padding-top: 31px;
+     padding-bottom: 31px;
+    }
+
+    &__bottom-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 27px;
+
+        @include media-extra-large() {
+            display: none;
+        }
+    }
+
+    &__title {
+        color: var(--primary);
+    }
+
+    &__body-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+    }
+
+    &__body-bottom.desktop-hide {
+        @include media-extra-large() {
+            display: none;
+        }
+    }
+
+    &__body-bottom.mobile-hide {
+        display: none;
+        @include media-extra-large() {
+            display: flex;
+        }
+    }
+
+    &__body-bottom-left {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(3,max-content);
+        gap: 15px;
+    }
+
+    &__body-bottom-right {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2,max-content);
+        gap: 15px;
+    }
+
+    &__toggle-email-type-btn {
+        font-weight: 400;
+font-size: 14px;
+line-height: 18px;
+color: var(--primary);
+border-bottom: 1px dashed var(--primary);
+padding-bottom: 4px;
+margin-top: 4px;
+    }
+
+    &__pagination {
+        padding-bottom: 16px;
+        padding-left: 16px;
+      }
+
+      &__choose-status-dropdown-list {
+        min-width: 250px;
+       left: 0;
+
+       @include media-extra-large() {
+        left: unset;
+        right: 0;
+       }
+      }
+}

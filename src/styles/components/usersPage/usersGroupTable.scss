@@ -1,0 +1,23 @@
+.users-group-table {
+
+    &__table-list-item-checkbox-wrapper.mobile-hide {
+        display: none;
+
+        @include media-extra-large() {
+            display: block;
+        }
+    }
+
+    &__table-list-item-checkbox-wrapper.desktop-hide {
+        @include media-extra-large() {
+            display: none;
+        }
+    }
+
+    &__table-list {
+        @include media-extra-large() {
+            grid-template-columns: 24px repeat(5,1fr);
+            padding-left: 20px;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<div class="popup add-good-cat-popup" x-bind:class="{'active': addGoodCatPopup === true}">
+    <form action="#" method="post" class="popup__form add-good-cat-popup__form">
+    <div class="popup__content add-good-cat-popup__content">
+  <div class="popup__top-row add-good-cat-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="addGoodCatPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="addGoodCatPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title add-good-cat-popup__title">
+        Добавление категории
+    </h2>
+   </div>
+    <div class="popup__body add-good-cat-popup__body">
+            <fieldset class="add-good-cat-popup__fieldset">
+                <div class="add-good-cat-popup__form-control-group">
+                    <p class="add-good-cat-popup__form-control-group-title">
+                        Название
+                    </p>
+                    <div class="add-good-cat-popup__form-control-wrapper add-good-cat-popup__form-control-input-wrapper">
+                        <input type="text" class="add-good-cat-popup__form-control-group-input" value="Розничная цена">
+                    </div>
+                </div>
+                <div class="add-good-cat-popup__form-control-group">
+                    <p class="add-good-cat-popup__form-control-group-title">
+                        Описание
+                    </p>
+                    <textarea class="add-good-cat-popup__form-control-group-textarea" placeholder="Введите описание"></textarea>
+                </div>
+            </fieldset>
+    <ul role="list" class="popup__btn-control-group add-good-cat-popup__btn-control-group">
+      <li class="popup__btn-control-group-item add-good-cat-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn add-good-cat-popup__undo-btn" x-on:click="addGoodCatPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item add-good-cat-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn add-good-cat-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+</div>

@@ -1,0 +1,41 @@
+// orders page styles
+
+.orders {
+
+  &__body {
+    padding-bottom: 36px;
+  }
+
+  &__body-top {
+    display: none;
+
+    @include media-extra-large() {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 27px;
+      padding-bottom: 16px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+    &__body-top-btn-group {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: max-content;
+        align-items: center;
+        gap: 16px;
+    }
+    
+    &__pagination {
+      padding-left: 20px;
+    }
+
+    @media (min-width:1200px) {
+      &__pagination {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    }
+  }

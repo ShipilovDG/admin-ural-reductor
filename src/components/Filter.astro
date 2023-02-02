@@ -1,0 +1,87 @@
+---
+const items = ['Статус', 'Организация', 'Документы 1', 'Документы 2', 'Документы 3', 'Документы 4'];
+
+let filterBtnWrapperClass;
+
+if(Astro.url.pathname === '/eventsBoard' || Astro.url.pathname === '/eventsBoard.html') {
+  filterBtnWrapperClass = 'site-section__filter-btn-wrapper events-board-page__filter-btn-wrapper';
+} else {
+  filterBtnWrapperClass = 'site-section__filter-btn-wrapper';
+}
+---
+
+<div x-data="{toggleDropdown: false }" x-on:click.outside="toggleDropdown = false" class={filterBtnWrapperClass}>
+    <button class="btn site-section__filter-btn" type="button" x-on:click="toggleDropdown = !toggleDropdown">
+      <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.50011 1H15.5001C15.6441 1.05051 15.7747 1.13331 15.8817 1.24206C15.9888 1.35082 16.0696 1.48264 16.1178 1.62742C16.1661 1.77221 16.1806 1.92612 16.1602 2.07737C16.1398 2.22861 16.085 2.37318 16.0001 2.5L11.0001 8V15L7.00011 12V8L2.00011 2.5C1.9152 2.37318 1.86044 2.22861 1.84004 2.07737C1.81963 1.92612 1.83411 1.77221 1.88237 1.62742C1.93063 1.48264 2.01139 1.35082 2.11847 1.24206C2.22554 1.13331 2.35609 1.05051 2.50011 1Z" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>            
+    </button>
+     <form class="site-section__filter-dropdown" action="#" method="post" x-bind:class="{'active': toggleDropdown === true }" x-data="{inputVal: 'По умолчанию'}">
+     <ul role="list" class="site-section__filter-dropdown-list">
+       <li class="site-section__filter-dropdown-list-item">
+          <button type="button" class="site-section__filter-dropdown-add-new-filter-btn" x-on:click="addNewFilterPopup = true">
+            <svg class="site-section__filter-dropdown-add-new-filter-btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 1V15M1 8H15" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                  
+            Новый фильтр
+          </button>
+       </li>
+       <li class="site-section__filter-dropdown-list-item">
+        <input type="text" class="site-section__filter-dropdown-list-item-input" value="Статус" readonly x-on:click="inputVal = 'Статус'">
+     </li>
+     <li class="site-section__filter-dropdown-list-item">
+        <input type="text" class="site-section__filter-dropdown-list-item-input" value="Ответственный" readonly x-on:click="inputVal = 'Ответственный'">
+     </li>
+     </ul>
+     <fieldset class="site-section__filter-dropdown-fieldset">
+         <input type="text" value="По умолчанию" class="site-section__filter-dropdown-input-def" x-model="inputVal" readonly x-ref="defInput">
+         <div class="site-section__filter-dropdown-fieldset-btn-group">
+           <button class="site-section__filter-dropdown-edit-btn" type="button" x-on:click="$refs.defInput.removeAttribute('readonly');$refs.defInput.focus()">
+            <svg class="site-section__filter-dropdown-edit-btn-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 3.5L14.5 7.5M1 17.0001H5L15.5 6.50006C16.0304 5.96963 16.3284 5.2502 16.3284 4.50006C16.3284 3.74991 16.0304 3.03049 15.5 2.50006C14.9696 1.96963 14.2501 1.67163 13.5 1.67163C12.7499 1.67163 12.0304 1.96963 11.5 2.50006L1 13.0001V17.0001Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                                 
+           </button>
+           <button class="site-section__filter-dropdown-favorite-btn" type="button">
+              <svg class="site-section__filter-dropdown-favorite-btn-icon" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.9998 16.75L4.82784 19.995L6.00684 13.122L1.00684 8.25495L7.90684 7.25495L10.9928 1.00195L14.0788 7.25495L20.9788 8.25495L15.9788 13.122L17.1578 19.995L10.9998 16.75Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                                                   
+           </button>
+           <button class="site-section__filter-dropdown-trash-btn" type="button">
+            <svg class="site-section__filter-dropdown-trash-btn-icon" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 5H17M7 9V15M11 9V15M2 5L3 17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H13C13.5304 19 14.0391 18.7893 14.4142 18.4142C14.7893 18.0391 15 17.5304 15 17L16 5M6 5V2C6 1.73478 6.10536 1.48043 6.29289 1.29289C6.48043 1.10536 6.73478 1 7 1H11C11.2652 1 11.5196 1.10536 11.7071 1.29289C11.8946 1.48043 12 1.73478 12 2V5" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                  
+           </button>
+         </div>
+     </fieldset>
+    </form>
+</div>
+<div class="site-section__choose-options-btn-wrapper" x-data="{ toggleDropdown: false, btn0: false, btn1: false,btn2: false,btn3: false,btn4: false, btn5: false }" x-on:click.outside="toggleDropdown = false" x-bind:class="{'active': btn0 === true || btn1 === true || btn2 === true || btn3 === true || btn4 === true || btn5 === true}">
+<ul role="list" class="site-section__filter-tag-list">
+      {items.map((item, index) => 
+      <li class="site-section__filter-tag-list-item" x-bind:class={`{'active': btn${index} === true }`}>
+      <input class="site-section__filter-tag-list-input" readonly>
+      <button type="button" class="btn btn--secondary site-section__filter-tag-list-btn">
+          <span class="site-section__filter-tag-list-btn-text">{item}</span>
+          <svg class="site-section__filter-tag-list-btn-icon" width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" x-on:click={`btn${index} = false`}>
+            <path d="M9 1L1 9M1 1L9 9" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                  
+        </button>
+      </li>
+      )}
+</ul>
+    <button class="choose-options-btn site-section__choose-options-btn" type="button" x-on:click="toggleDropdown = !toggleDropdown">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 1V15M1 8H15" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>                    
+    </button>
+    <form action="#" method="post" class="site-section__choose-options-btn-dropdown" x-bind:class="{'active': toggleDropdown === true}">
+     <ul role="list" class="site-section__choose-options-btn-dropdown-list">
+      {
+        items.map((item, index) => 
+        <li class="site-section__choose-options-btn-dropdown-list-item">
+          <input type="text" readonly value={item} x-on:click={`btn${index} = true`}>
+        </li>
+      )}
+     </ul>
+    </form>
+</div>

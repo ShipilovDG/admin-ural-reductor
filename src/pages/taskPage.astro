@@ -1,0 +1,270 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SearchForm from "../components/SearchForm.astro";
+import SearchBtn from "../components/SearchBtn.astro";
+import SearchBtnDropdown from "../components/SearchBtnDropdown.astro";
+import Filter from "../components/Filter.astro";
+import Pagination from "../components/Pagination.astro";
+import TaskPageTable from "../components/taskPage/TaskPageTable.astro";
+import EditTaskPopup from "../components/taskPage/EditTaskPopup.astro";
+---
+<Layout title="страница Задачи">
+  <section class="site-section task-page__site-section" x-data="{createTaskPopup: false, editTaskPopup: false, searchBtnDropdown: false }">
+    <div class="site-section__top-row task-page__top-row mobile">
+        <h2 class="site-section__title task-page__title">Задачи</h2>
+        <button class="btn btn--primary site-section__create-order-btn task-page__create-task-btn" type="button" x-on:click="createTaskPopup = true">
+            Создать
+          </button>
+      </div>
+    <div class="site-section__body task-page__body">
+        <div class="site-section__top-row task-page__top-row desktop">
+            <h2 class="site-section__title task-page__title">Задачи</h2>
+            <button class="btn btn--primary site-section__create-order-btn task-page__create-task-btn" type="button" x-on:click="createTaskPopup = true">
+                Создать
+              </button>
+          </div>
+          <div class="site-section__body-bottom task-page__body-bottom mobile">
+              <div class="site-section__body-bottom-left-group task-page__body-bottom-left-group">
+              <SearchBtn></SearchBtn>
+              <SearchBtnDropdown></SearchBtnDropdown>
+              </div>
+              <div class="site-section__body-bottom-right-group task-page__body-bottom-right-group">
+                <div class="choose-options-dropdown-wrapper task-page__choose-options-dropdown-wrapper" x-data="{toggleChooseOptionsDropdown: false}" x-on:click.outside="toggleChooseOptionsDropdown = false">
+                    <button class="choose-options-btn task-page__choose-options-btn" type="button" x-on:click="toggleChooseOptionsDropdown = true">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1V15M1 8H15" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>                    
+                    </button>
+                      <div class="choose-options-dropdown task-page__choose-options-dropdown" x-bind:class="{'active': toggleChooseOptionsDropdown === true}">
+                        <ul role="list" class="choose-options-dropdown__list task-page__choose-options-dropdown-list task-page__choose-options-dropdown-list--b-b task-page__choose-options-dropdown-list--p-b">
+                            <li class="choose-options-dropdown__list-item task-page__choose-options-dropdown-list-item">
+                                <button class="choose-options-dropdown__add-btn task-page__choose-options-dropdown-btn" type="button">
+                                    Cоздать проект
+                                </button>
+                            </li>
+                            <li class="choose-options-dropdown__list-item task-page__choose-options-dropdown-list-item">
+                                <button class="choose-options-dropdown__add-btn task-page__choose-options-dropdown-btn" type="button">
+                                    Создать компанию
+                                </button>
+                            </li>
+                            <li class="choose-options-dropdown__list-item task-page__choose-options-dropdown-list-item">
+                                <button class="choose-options-dropdown__add-btn task-page__choose-options-dropdown-btn" type="button">
+                                    Создать компанию
+                                </button>
+                            </li>
+                            <li class="choose-options-dropdown__list-item task-page__choose-options-dropdown-list-item">
+                                <button class="choose-options-dropdown__add-btn task-page__choose-options-dropdown-btn" type="button">
+                                    Создать контакт
+                                </button>
+                            </li>
+                        </ul>
+                        <ul role="list" class="choose-options-dropdown__list task-page__choose-options-dropdown-list task-page__choose-options-dropdown-list--p-t">
+                            <li class="choose-options-dropdown__list-item task-page__choose-options-dropdown-list-item">
+                                <button class="choose-options-dropdown__add-btn task-page__choose-options-dropdown-btn" type="button">
+                                    Новый пользователь
+                                </button>
+                            </li>
+                        </ul>
+                      </div>
+                </div>
+                <SearchForm></SearchForm>
+                <Filter></Filter>
+                <div class="task-page__group-btn-wrapper" x-data="{toggleDropdown: false, inputVal: 'Группировка' }" x-on:click.outside="toggleDropdown = false">
+                <button type="button" class="btn btn--secondary task-page__group-btn" x-on:click="toggleDropdown = !toggleDropdown" x-bind:class="{'active': toggleDropdown === true }">
+                    <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1H17M1 7H17M1 13H13" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg> 
+                 <p class="task-page__group-btn-title" x-show="toggleDropdown === true" x-text="inputVal"></p>
+                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="task-page__group-btn-icon-close" x-show="toggleDropdown === true">
+                    <path d="M9 1L1 9M1 1L9 9" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg> 
+                </button>
+                 <div class="task-page__group-btn-dropdown" x-bind:class="{'active': toggleDropdown === true }">
+                    <ul role="list" class="task-page__group-btn-dropdown-list">
+                        <li class="task-page__group-btn-dropdown-list-item" x-bind:class="{'active': inputVal === 'По контрагентам'}">
+                            <input type="text" readonly class="task-page__group-btn-dropdown-list-item-input" x-on:click="inputVal = 'По контрагентам';toggleDropdown = false" value="По контрагентам" x-bind:class="{'active': inputVal === 'По контрагентам'}">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="task-page__group-btn-dropdown-list-item-close-icon" x-show="inputVal === 'По контрагентам'" x-on:click="inputVal = 'Группировка';toggleDropdown = false">
+                                <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg> 
+                        </li>
+                        <li class="task-page__group-btn-dropdown-list-item" x-bind:class="{'active': inputVal === 'По ответственным'}">
+                            <input type="text" readonly class="task-page__group-btn-dropdown-list-item-input" x-on:click="inputVal = 'По ответственным';toggleDropdown = false" value="По ответственным" x-bind:class="{'active': inputVal === 'По ответственным'}">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="task-page__group-btn-dropdown-list-item-close-icon" x-show="inputVal === 'По ответственным'" x-on:click="inputVal = 'Группировка';toggleDropdown = false">
+                                <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg> 
+                        </li>
+                        <li class="task-page__group-btn-dropdown-list-item" x-bind:class="{'active': inputVal === 'По статусу'}">
+                            <input type="text" readonly class="task-page__group-btn-dropdown-list-item-input" x-on:click="inputVal = 'По статусу';toggleDropdown = false" value="По статусу " x-bind:class="{'active': inputVal === 'По статусу '}">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="task-page__group-btn-dropdown-list-item-close-icon" x-show="inputVal === 'По статусу'" x-on:click="inputVal = 'Группировка';toggleDropdown = false">
+                                <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg> 
+                        </li>
+                    </ul>
+                 </div>
+                </div>
+              </div>    
+          </div>
+          <div class="site-section__body-bottom task-page__body-bottom desktop">
+            <div class="site-section__body-bottom-left-group task-page__body-bottom-left-group">
+                <SearchForm></SearchForm>
+                <Filter></Filter>
+            </div>
+            <div class="task-page__group-btn-wrapper" x-data="{toggleDropdown: false, inputVal: 'Группировка' }" x-on:click.outside="toggleDropdown = false">
+                <button type="button" class="btn btn--secondary task-page__group-btn" x-on:click="toggleDropdown = !toggleDropdown">
+                    <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1H17M1 7H17M1 13H13" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg> 
+                 <p class="task-page__group-btn-title" x-text="inputVal"></p>
+                </button>
+                 <div class="task-page__group-btn-dropdown" x-bind:class="{'active': toggleDropdown === true }">
+                    <ul role="list" class="task-page__group-btn-dropdown-list">
+                        <li class="task-page__group-btn-dropdown-list-item" x-bind:class="{'active': inputVal === 'По контрагентам'}">
+                            <input type="text" readonly class="task-page__group-btn-dropdown-list-item-input" x-on:click="inputVal = 'По контрагентам';toggleDropdown = false" value="По контрагентам" x-bind:class="{'active': inputVal === 'По контрагентам'}">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="task-page__group-btn-dropdown-list-item-close-icon" x-show="inputVal === 'По контрагентам'" x-on:click="inputVal = 'Группировка';toggleDropdown = false">
+                                <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg> 
+                        </li>
+                        <li class="task-page__group-btn-dropdown-list-item" x-bind:class="{'active': inputVal === 'По ответственным'}">
+                            <input type="text" readonly class="task-page__group-btn-dropdown-list-item-input" x-on:click="inputVal = 'По ответственным';toggleDropdown = false" value="По ответственным" x-bind:class="{'active': inputVal === 'По ответственным'}">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="task-page__group-btn-dropdown-list-item-close-icon" x-show="inputVal === 'По ответственным'" x-on:click="inputVal = 'Группировка';toggleDropdown = false">
+                                <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg> 
+                        </li>
+                        <li class="task-page__group-btn-dropdown-list-item" x-bind:class="{'active': inputVal === 'По статусу'}">
+                            <input type="text" readonly class="task-page__group-btn-dropdown-list-item-input" x-on:click="inputVal = 'По статусу';toggleDropdown = false" value="По статусу " x-bind:class="{'active': inputVal === 'По статусу '}">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="task-page__group-btn-dropdown-list-item-close-icon" x-show="inputVal === 'По статусу'" x-on:click="inputVal = 'Группировка';toggleDropdown = false">
+                                <path d="M9 1L1 9M1 1L9 9" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg> 
+                        </li>
+                    </ul>
+                 </div>
+            </div>
+          </div>
+            <ul role="list" class="task-page__status-tabs">
+                <li class="task-page__status-tabs-item">
+                    <button type="button" class="task-page__status-tabs-item-btn">
+                        <span class="task-page__status-tabs-item-btn-count danger">29</span>
+                        просрочены
+                    </button>
+                </li>
+                <li class="task-page__status-tabs-item">
+                    <button type="button" class="task-page__status-tabs-item-btn">
+                        <span class="task-page__status-tabs-item-btn-count green">1</span>
+                        на сегодня
+                    </button>
+                </li>
+                <li class="task-page__status-tabs-item">
+                    <button type="button" class="task-page__status-tabs-item-btn">
+                        <span class="task-page__status-tabs-item-btn-count blue">29</span>
+                        Дела на завтра
+                    </button>
+                </li>
+            </ul>
+            <div class="task-page__grid mobile">
+            <TaskPageTable></TaskPageTable>
+            <ul role="list" class="pagination task-page__pagination">
+              <Pagination></Pagination>
+            </ul>
+            </div>
+      </div>
+      <div class="task-page__grid desktop">
+        <aside class="task-page__control-tasks-menu">
+            <ul role="list" class="task-page__control-tasks-menu-list b-b m-b">
+               <li class="task-page__control-tasks-menu-list-item">
+                   <a href="#" class="task-page__control-tasks-menu-list-item-link">
+                      <svg class="task-page__control-tasks-menu-list-item-icon" width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M11 1V5C11 5.26522 11.1054 5.51957 11.2929 5.70711C11.4804 5.89464 11.7348 6 12 6H16M11 1H7C6.46957 1 5.96086 1.21071 5.58579 1.58579C5.21071 1.96086 5 2.46957 5 3V13C5 13.5304 5.21071 14.0391 5.58579 14.4142C5.96086 14.7893 6.46957 15 7 15H14C14.5304 15 15.0391 14.7893 15.4142 14.4142C15.7893 14.0391 16 13.5304 16 13V6M11 1L16 6M12 15V17C12 17.5304 11.7893 18.0391 11.4142 18.4142C11.0391 18.7893 10.5304 19 10 19H3C2.46957 19 1.96086 18.7893 1.58579 18.4142C1.21071 18.0391 1 17.5304 1 17V7C1 6.46957 1.21071 5.96086 1.58579 5.58579C1.96086 5.21071 2.46957 5 3 5H5" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg> 
+                      <span class="task-page__control-tasks-menu-list-item-title">Все</span> 
+                      <span class="task-page__control-tasks-menu-list-item-count active">5</span>                              
+                   </a>
+               </li>
+               <li class="task-page__control-tasks-menu-list-item">
+                  <a href="#" class="task-page__control-tasks-menu-list-item-link">
+                      <svg class="task-page__control-tasks-menu-list-item-icon" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.9998 16.748L4.82784 19.993L6.00684 13.12L1.00684 8.253L7.90684 7.253L10.9928 1L14.0788 7.253L20.9788 8.253L15.9788 13.12L17.1578 19.993L10.9998 16.748Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                
+                     <span class="task-page__control-tasks-menu-list-item-title">Сегодня</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count">0</span>                              
+                  </a>
+              </li>
+              <li class="task-page__control-tasks-menu-list-item">
+                  <a href="#" class="task-page__control-tasks-menu-list-item-link">
+                      <svg class="task-page__control-tasks-menu-list-item-icon" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13 1V5M5 1V5M1 9H17M3 3H15C16.1046 3 17 3.89543 17 5V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V5C1 3.89543 1.89543 3 3 3ZM5 13H7V15H5V13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                       
+                     <span class="task-page__control-tasks-menu-list-item-title">Завтра</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count">0</span>                              
+                  </a>
+              </li>
+              <li class="task-page__control-tasks-menu-list-item">
+                  <a href="#" class="task-page__control-tasks-menu-list-item-link">
+                      <svg class="task-page__control-tasks-menu-list-item-icon" width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 1H16M5 7H16M5 13H16M1 1V1.01M1 7V7.01M1 13V13.01" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>              
+                     <span class="task-page__control-tasks-menu-list-item-title">Без даты</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count">5</span>                              
+                  </a>
+              </li>
+            </ul>
+            <ul role="list" class="task-page__control-tasks-menu-list b-b m-b">
+              <li class="task-page__control-tasks-menu-list-item">
+                     <span class="task-page__control-tasks-menu-list-item-title">Поручено</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count active">2</span>                              
+              </li>
+              <li class="task-page__control-tasks-menu-list-item">
+                     <span class="task-page__control-tasks-menu-list-item-title">Наблюдаю</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count active">0</span>                              
+              </li>
+              <li class="task-page__control-tasks-menu-list-item">
+                     <span class="task-page__control-tasks-menu-list-item-title">Помогаю</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count active">0</span>                              
+              </li>
+           </ul>
+           <ul role="list" class="task-page__control-tasks-menu-list b-b m-b">
+              <li class="task-page__control-tasks-menu-list-item">
+                     <span class="task-page__control-tasks-menu-list-item-title">Принять в работу</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count">0</span>                              
+              </li>
+              <li class="task-page__control-tasks-menu-list-item">
+                     <span class="task-page__control-tasks-menu-list-item-title">Ожидают контроля</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count">0</span>                              
+              </li>
+              <li class="task-page__control-tasks-menu-list-item">
+                     <span class="task-page__control-tasks-menu-list-item-title">Помогаю</span> 
+                     <span class="task-page__control-tasks-menu-list-item-count">0</span>                              
+              </li>
+           </ul>
+           <ul role="list" class="task-page__control-tasks-menu-list">
+              <li class="task-page__control-tasks-menu-list-item">
+                  <a href="#" class="task-page__control-tasks-menu-list-item-link">
+                      <svg class="task-page__control-tasks-menu-list-item-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.325 2.317C8.751 0.561 11.249 0.561 11.675 2.317C11.7389 2.5808 11.8642 2.82578 12.0407 3.032C12.2172 3.23822 12.4399 3.39985 12.6907 3.50375C12.9414 3.60764 13.2132 3.65085 13.4838 3.62987C13.7544 3.60889 14.0162 3.5243 14.248 3.383C15.791 2.443 17.558 4.209 16.618 5.753C16.4769 5.98466 16.3924 6.24634 16.3715 6.51677C16.3506 6.78721 16.3938 7.05877 16.4975 7.30938C16.6013 7.55999 16.7627 7.78258 16.9687 7.95905C17.1747 8.13553 17.4194 8.26091 17.683 8.325C19.439 8.751 19.439 11.249 17.683 11.675C17.4192 11.7389 17.1742 11.8642 16.968 12.0407C16.7618 12.2172 16.6001 12.4399 16.4963 12.6907C16.3924 12.9414 16.3491 13.2132 16.3701 13.4838C16.3911 13.7544 16.4757 14.0162 16.617 14.248C17.557 15.791 15.791 17.558 14.247 16.618C14.0153 16.4769 13.7537 16.3924 13.4832 16.3715C13.2128 16.3506 12.9412 16.3938 12.6906 16.4975C12.44 16.6013 12.2174 16.7627 12.0409 16.9687C11.8645 17.1747 11.7391 17.4194 11.675 17.683C11.249 19.439 8.751 19.439 8.325 17.683C8.26108 17.4192 8.13578 17.1742 7.95929 16.968C7.7828 16.7618 7.56011 16.6001 7.30935 16.4963C7.05859 16.3924 6.78683 16.3491 6.51621 16.3701C6.24559 16.3911 5.98375 16.4757 5.752 16.617C4.209 17.557 2.442 15.791 3.382 14.247C3.5231 14.0153 3.60755 13.7537 3.62848 13.4832C3.64942 13.2128 3.60624 12.9412 3.50247 12.6906C3.3987 12.44 3.23726 12.2174 3.03127 12.0409C2.82529 11.8645 2.58056 11.7391 2.317 11.675C0.561 11.249 0.561 8.751 2.317 8.325C2.5808 8.26108 2.82578 8.13578 3.032 7.95929C3.23822 7.7828 3.39985 7.56011 3.50375 7.30935C3.60764 7.05859 3.65085 6.78683 3.62987 6.51621C3.60889 6.24559 3.5243 5.98375 3.383 5.752C2.443 4.209 4.209 2.442 5.753 3.382C6.753 3.99 8.049 3.452 8.325 2.317Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M10 13C11.6569 13 13 11.6569 13 10C13 8.34315 11.6569 7 10 7C8.34315 7 7 8.34315 7 10C7 11.6569 8.34315 13 10 13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                
+                     <span class="task-page__control-tasks-menu-list-item-title">Завершенные</span>                           
+                  </a>
+              </li>
+           </ul>
+        </aside>
+        <div class="task-page__grid-right">
+           <div class="task-page__fast-create-task-wrapper">
+              <button type="button" class="task-page__fast-create-task-btn">
+                  Быстрое создание задачи
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.33366 3.66797H3.00033C2.6467 3.66797 2.30756 3.80844 2.05752 4.05849C1.80747 4.30854 1.66699 4.64768 1.66699 5.0013V11.0013C1.66699 11.3549 1.80747 11.6941 2.05752 11.9441C2.30756 12.1942 2.6467 12.3346 3.00033 12.3346H9.00033C9.35395 12.3346 9.69309 12.1942 9.94313 11.9441C10.1932 11.6941 10.3337 11.3549 10.3337 11.0013V7.66797M5.66699 8.33464L12.3337 1.66797M12.3337 1.66797H9.00033M12.3337 1.66797V5.0013" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                            
+              </button>
+              <button type="button" class="btn btn--primary task-page__fast-create-task-check-btn">
+                  <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 6L6 11L16 1" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                            
+              </button>
+           </div>
+           <TaskPageTable></TaskPageTable>
+        </div>
+      </div>
+      
+      <EditTaskPopup></EditTaskPopup>
+  </section>
+</Layout>

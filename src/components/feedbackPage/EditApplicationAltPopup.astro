@@ -1,0 +1,78 @@
+<div class="alt-popup edit-application-alt-popup" x-bind:class="{'active': editApplicationAltPopup === true}" x-on:click.self="editApplicationAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form edit-application-alt-popup__form">
+    <div class="alt-popup__content edit-application-alt-popup__content">
+     <div class="edit-application-alt-popup__top-row">
+        <div class="edit-application-alt-popup__avatar-title">
+            <img class="edit-application-alt-popup__avatar-img" src="/images/header-avatar-placeholder.svg" alt="avatar-user-img" width="24" height="24" loading="lazy" decoding="async">
+            <p class="edit-application-alt-popup__title">vtr@uralreduktor.ru</p>
+        </div>
+        <button class="edit-application-alt-popup__close-btn" type="button" x-on:click="editApplicationAltPopup = false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+     </div>
+    <div class="alt-popup__body edit-application-alt-popup__body">
+            <fieldset class="alt-popup__fieldset edit-application-alt-popup__fieldset m-b b-b">
+                <div class="edit-application-alt-popup__wrapper subject">
+                <p class="edit-application-alt-popup__title">Тема:</p>
+                 <p class="edit-application-alt-popup__subject-title">Червячный мотор-редуктор МЧ-40</p>
+                </div>
+            </fieldset>
+            <fieldset class="alt-popup__fieldset edit-application-alt-popup__fieldset m-b b-b">
+                <div class="edit-application-alt-popup__wrapper">
+                <strong class="edit-application-alt-popup__strong-title">ФИО:</strong>
+                 <p class="edit-application-alt-popup__title">Иван Иванович Иванов</p>
+                </div>
+                <div class="edit-application-alt-popup__wrapper">
+                    <strong class="edit-application-alt-popup__strong-title">Телефон:</strong>
+                     <p class="edit-application-alt-popup__title">+7 922 922 92 92</p>
+                </div>
+                <div class="edit-application-alt-popup__wrapper">
+                    <strong class="edit-application-alt-popup__strong-title">E-mail:</strong>
+                     <p class="edit-application-alt-popup__title">ggg@gmail.com</p>
+                </div>
+            </fieldset>
+            <fieldset class="alt-popup__fieldset edit-application-alt-popup__fieldset">
+                <div class="edit-application-alt-popup__order-wrapper">
+                    <p class="edit-application-alt-popup__order-title">Заказ:</p>
+                    <div class="edit-application-alt-popup__order-top">
+                        <p class="edit-application-alt-popup__order-title">Редуктор 1МПз2-40 (3МП-40)</p>
+                        <p class="edit-application-alt-popup__order-count">1 шт</p>
+                    </div>
+                    <ul role="list" class="edit-application-alt-popup__order-chars-list">
+                        <li class="edit-application-alt-popup__order-chars-list-item">
+                            <p class="edit-application-alt-popup__order-chars-list-item-title">Передаточное отношение</p>
+                            <p class="edit-application-alt-popup__order-chars-list-item-info">от 1 до 8</p>
+                        </li>
+                        <li class="edit-application-alt-popup__order-chars-list-item">
+                            <p class="edit-application-alt-popup__order-chars-list-item-title">Вариант сборки</p>
+                            <p class="edit-application-alt-popup__order-chars-list-item-info">1</p>
+                        </li>
+                        <li class="edit-application-alt-popup__order-chars-list-item">
+                            <p class="edit-application-alt-popup__order-chars-list-item-title">Вал входной</p>
+                            <p class="edit-application-alt-popup__order-chars-list-item-info">Выбранный вариант</p>
+                        </li>
+                        <li class="edit-application-alt-popup__order-chars-list-item">
+                            <p class="edit-application-alt-popup__order-chars-list-item-title">Вал выходной</p>
+                            <p class="edit-application-alt-popup__order-chars-list-item-info">Выбранный вариант</p>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group edit-application-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item edit-application-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary edit-application-alt-popup__offer-btn" x-on:click="">
+                Предложение
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item edit-application-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary edit-application-alt-popup__take-in-work-btn">
+                Взять в работу
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

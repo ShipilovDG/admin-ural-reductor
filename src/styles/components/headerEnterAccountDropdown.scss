@@ -1,0 +1,109 @@
+.header-enter-account-dropdown {
+    background-color: var(--gray100);
+    border: 1px solid var(--grey-color);
+    box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+    border-radius: 4px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    position: absolute;
+    right: 2rem;
+    top: 66px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s ease-in-out;
+    min-width: 294px;
+
+    &__title {
+        font-family: 'Inter',sans-serif;
+font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+text-align: center;
+color: var(--primary);
+padding-bottom: 20px;
+    }
+
+    &__fieldset {
+        display: grid;
+        gap: 12px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 32px;
+    }
+
+    &__fieldset.b-b {
+        border-bottom: 1px solid var(--grey-color);
+    }
+
+    &__form-control-group {
+        display: grid;
+        gap: 12px;
+      }
+
+      &__form-control-group-label {
+        font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+      }
+
+      &__form-control-wrapper {
+        background-color: var(--gray100);
+        border: 1px solid var(--grey-color);
+         border-radius: 4px; 
+         height: 34px;
+      }
+      
+      &__form-control-input-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 16px;
+      }   
+      
+      &__form-control-input {
+        height: 100%;
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+      }
+
+      &__sms-enter-btn {
+         text-decoration: underline;
+         font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-grey);
+margin-right: auto;
+      }
+
+      &__submit-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+width: 100%;
+      }
+
+      &__btn-group {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 12px;
+        display: grid;
+        gap: 20px;
+        justify-content: flex-start;
+      }
+
+      &__reg-btn,
+    &__forgot-pass-btn {
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--primary);
+    }
+}
+
+.header-enter-account-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+}

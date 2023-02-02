@@ -1,0 +1,106 @@
+<div class="alt-popup add-passport-folder-alt-popup" x-bind:class="{'active': addPassportFolderAltPopup === true}" x-on:click.self="addPassportFolderAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form add-passport-folder-alt-popup__form">
+    <div class="alt-popup__content add-passport-folder-alt-popup__content">
+     <div class="add-passport-folder-alt-popup__top-row">
+        <p class="alt-popup__title add-passport-folder-alt-popup__title">Заголовок</p>
+     </div>
+    <div class="alt-popup__body add-passport-folder-alt-popup__body">
+            <fieldset class="alt-popup__fieldset add-passport-folder-alt-popup__fieldset b-b">
+                <div class="alt-popup__form-control-group add-passport-folder-alt-popup__form-control-group">
+                    <p class="alt-popup__form-control-group-title add-passport-folder-alt-popup__form-control-group-title">
+                        Название папки
+                    </p>
+                    <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper add-passport-folder-alt-popup__form-control-wrapper add-passport-folder-alt-popup__form-control-input-wrapper">
+                        <input type="text" class="alt-popup__form-control-group-input  add-passport-folder-alt-popup__form-control-group-input" placeholder="Введите название">
+                    </div>
+                </div>
+                <div class="alt-popup__form-control-group add-passport-folder-alt-popup__form-control-group">
+                    <p class="alt-popup__form-control-group-title add-passport-folder-alt-popup__form-control-group-title">
+                        Контрагент
+                    </p>
+                    <div class="alt-popup__form-control-wrapper add-passport-folder-alt-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: ''}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                        <input type="text" class="add-passport-folder-alt-popup__form-control-select-result-input" placeholder="Введите название" readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+                        <div class="add-passport-folder-alt-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                         <input type="text" class="add-passport-folder-alt-popup__form-control-dropdown-search-input">
+                        <ul role="list" class="add-passport-folder-alt-popup__form-control-select-list b-t">
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="УЗТМ" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'УЗТМ';toggleSelectList = false;toggleArrow = false">
+                          </li>
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Кот Ивана Александрович" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Кот Ивана Александрович';toggleSelectList = false;toggleArrow = false">
+                          </li>
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Иван Александрович" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван Александрович';toggleSelectList = false;toggleArrow = false">
+                          </li>
+                        </ul>
+                         </div>
+                        <svg class="add-passport-folder-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                          <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                  
+                    </div>
+                </div>
+                <div class="alt-popup__form-control-group add-passport-folder-alt-popup__form-control-group">
+                    <p class="alt-popup__form-control-group-title add-passport-folder-alt-popup__form-control-group-title">
+                        Организация
+                    </p>
+                    <div class="alt-popup__form-control-wrapper add-passport-folder-alt-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Моя компания'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                        <input type="text" class="add-passport-folder-alt-popup__form-control-select-result-input" placeholder="Введите название" readonly x-model="resultInputVal">
+                        <div class="add-passport-folder-alt-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                        <ul role="list" class="add-passport-folder-alt-popup__form-control-select-list">
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Моя компания" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя компания'">
+                          </li>
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Моя компания 2" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя компания 2'">
+                          </li>
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Моя компания 3" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Моя компания 3'">
+                          </li>
+                        </ul>
+                         </div>
+                        <svg class="add-passport-folder-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                          <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                  
+                    </div>
+                </div>
+                <div class="alt-popup__form-control-group add-passport-folder-alt-popup__form-control-group">
+                    <p class="alt-popup__form-control-group-title add-passport-folder-alt-popup__form-control-group-title">
+                        Ответственный
+                    </p>
+                    <div class="alt-popup__form-control-wrapper add-passport-folder-alt-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'vtr@uralreduktor.ru'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                        <input type="text" class="add-passport-folder-alt-popup__form-control-select-result-input" placeholder="Введите название" readonly x-model="resultInputVal">
+                        <div class="add-passport-folder-alt-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                        <ul role="list" class="add-passport-folder-alt-popup__form-control-select-list">
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="vtr@uralreduktor.ru" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru'">
+                          </li>
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="vtr@uralreduktor.ru 2" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 2'">
+                          </li>
+                          <li class="add-passport-folder-alt-popup__form-control-select-list-item">
+                            <input type="text" value="vtr@uralreduktor.ru 3" readonly class="add-passport-folder-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'vtr@uralreduktor.ru 3'">
+                          </li>
+                        </ul>
+                         </div>
+                        <svg class="add-passport-folder-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                          <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                  
+                    </div>
+                </div>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group add-passport-folder-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item add-passport-folder-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary add-passport-folder-alt-popup__undo-btn" x-on:click="addPassportFolderAltPopup = false">
+                Отменить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item add-passport-folder-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary add-passport-folder-alt-popup__save-btn" x-on:click="addPassportFolderAltPopup = false; toogleUsersGroupPopupTable = true">
+                Ок
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

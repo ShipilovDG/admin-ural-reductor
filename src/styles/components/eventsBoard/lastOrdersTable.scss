@@ -1,0 +1,10 @@
+.last-orders-table {
+
+    &__choose-status-dropdown-list {
+         @include media-custom-max(1199px) {
+            top: unset;
+    bottom: 0;
+    max-height: 150px;
+         }
+    }
+}

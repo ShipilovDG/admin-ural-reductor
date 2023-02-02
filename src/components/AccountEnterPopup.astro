@@ -1,0 +1,48 @@
+<div class="popup account-enter-popup" x-bind:class="{'active': accountEnterPopup === true}" x-on:click.self="accountEnterPopup = false">
+    <form action="#" method="post" class="popup__form account-enter-popup__form">
+    <div class="popup__content account-enter-popup__content">
+  <div class="popup__top-row account-enter-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="accountEnterPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn account-enter-popup__close-btn desktop" type="button" x-on:click="accountEnterPopup = false">
+      <svg class="popup__close-btn-icon account-enter-popup__close-btn-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1L1 13M1 1L13 13" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                 
+    </button>
+    <h2 class="popup__title account-enter-popup__title">
+        Вход в аккаунт
+    </h2>
+</div>
+    <div class="popup__body account-enter-popup__body">
+       <fieldset class="account-enter-popup__fieldset">
+         <div class="account-enter-popup__form-control-group">
+          <label for="E-mail или логин" class="account-enter-popup__form-control-group-label">
+            E-mail или логин
+          </label>
+          <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+            <input type="text" name="E-mail или логин" id="E-mail или логин" placeholder="Введите логин" class="add-new-filter-popup__form-control-input">
+        </div>
+         </div>
+         <div class="account-enter-popup__form-control-group">
+            <label for="Пароль" class="account-enter-popup__form-control-group-label">
+                Пароль
+            </label>
+            <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+              <input type="password" name="Пароль" id="Пароль" placeholder="Введите пароль" class="add-new-filter-popup__form-control-input">
+          </div>
+        </div>
+        <button type="button" class="account-enter-popup__sms-enter-btn">войти по смс</button>
+        <button type="submit" class="btn btn--primary account-enter-popup__submit-btn">Войти</button>
+       </fieldset>
+       <div class="account-enter-popup__btn-group">
+        <button type="button" class="account-enter-popup__reg-btn">Я здесь впервые</button>
+        <button type="button" class="account-enter-popup__forgot-pass-btn">Забыли пароль?</button>
+    </div>
+    </div>
+</div>
+</form>
+  </div>
+  

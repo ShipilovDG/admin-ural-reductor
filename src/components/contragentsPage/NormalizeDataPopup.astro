@@ -1,0 +1,175 @@
+<div class="popup normalize-data-popup" x-bind:class="{'active': normalizeDataPopup === true}">
+    <form action="#" method="post" class="popup__form normalize-data-popup__form">
+    <div class="popup__content normalize-data-popup__content">
+  <div class="popup__top-row normalize-data-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="normalizeDataPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="normalizeDataPopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <h2 class="popup__title normalize-data-popup__title">
+        Актуализировать данные
+    </h2>
+   </div>
+    <div class="popup__body normalize-data-popup__body">
+        <p class="normalize-data-popup__tooltip">
+            Выберите из вариантов, выделенных красным
+        </p>
+        <div class="normalize-data-popup__grid">
+          <div class="normalize-data-popup__list-wrapper">
+            <h2 class="popup__title normalize-data-popup__title">
+                Данные компании
+            </h2>
+            <nav class="normalize-data-popup__list-nav">
+                <h3 class="normalize-data-popup__list-title">Адрес регистрации</h3>
+            <ul role="list" class="normalize-data-popup__list">
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Страна</p>
+                <p class="normalize-data-popup__list-item-info">Россия</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Регион</p>
+                <p class="normalize-data-popup__list-item-info">Свердловская обл</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Город</p>
+                <p class="normalize-data-popup__list-item-info">Екатеринбург</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Почтовый индекс</p>
+                <p class="normalize-data-popup__list-item-info">620100</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Улица, номер дома</p>
+                <p class="normalize-data-popup__list-item-info">Ул Куйбышева, д 102</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Квартира, офис, комната, этаж</p>
+                <p class="normalize-data-popup__list-item-info">кв 21</p>
+              </li>
+            </ul>
+           </nav>
+          </div>
+          <div class="normalize-data-popup__list-wrapper">
+            <h2 class="popup__title normalize-data-popup__title">
+                Данные из data
+            </h2>
+            <nav class="normalize-data-popup__list-nav">
+                <h3 class="normalize-data-popup__list-title">Адрес регистрации</h3>
+            <ul role="list" class="normalize-data-popup__list">
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Страна</p>
+                <p class="normalize-data-popup__list-item-info">Россия</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Регион</p>
+                <p class="normalize-data-popup__list-item-info">Свердловская обл</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Город</p>
+                <p class="normalize-data-popup__list-item-info">Екатеринбург</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Почтовый индекс</p>
+                <p class="normalize-data-popup__list-item-info">620100</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Улица, номер дома</p>
+                <p class="normalize-data-popup__list-item-info">Ул Куйбышева, д 102</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">Квартира, офис, комната, этаж</p>
+                <p class="normalize-data-popup__list-item-info">кв 21</p>
+              </li>
+            </ul>
+           </nav>
+          </div>
+          <div class="normalize-data-popup__list-wrapper">
+            <nav class="normalize-data-popup__list-nav">
+                <h3 class="normalize-data-popup__list-title">Реквизиты</h3>
+            <ul role="list" class="normalize-data-popup__list">
+              <li class="normalize-data-popup__list-item normalize">
+                <p class="normalize-data-popup__list-item-title">Название компании</p>
+                <div class="normalize-data-popup__list-item-radio-wrapper">
+                    <input type="radio" class="normalize-data-popup__list-item-radio" id="normalize1" name="normalize">
+                    <label for="normalize1" class="normalize-data-popup__list-item-radio-label">Ivan Sidorov</label>
+                </div>
+              </li>
+              <li class="normalize-data-popup__list-item normalize">
+                <p class="normalize-data-popup__list-item-title">Полное юридическое название</p>
+                <div class="normalize-data-popup__list-item-radio-wrapper">
+                    <input type="radio" class="normalize-data-popup__list-item-radio" id="normalize2" name="normalize">
+                    <label for="normalize2" class="normalize-data-popup__list-item-radio-label">Ivan Sidorov</label>
+                </div>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">ИНН</p>
+                <p class="normalize-data-popup__list-item-info">6672228600</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">КПП</p>
+                <p class="normalize-data-popup__list-item-info">668501001</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">ОГРН</p>
+                <p class="normalize-data-popup__list-item-info">1076672014528</p>
+              </li>
+            </ul>
+           </nav>
+          </div>
+          <div class="normalize-data-popup__list-wrapper">
+            <nav class="normalize-data-popup__list-nav">
+                <h3 class="normalize-data-popup__list-title">Реквизиты</h3>
+            <ul role="list" class="normalize-data-popup__list">
+              <li class="normalize-data-popup__list-item normalize">
+                <p class="normalize-data-popup__list-item-title">Название компании</p>
+                <div class="normalize-data-popup__list-item-radio-wrapper">
+                    <input type="radio" class="normalize-data-popup__list-item-radio" id="normalize3" name="normalize1">
+                    <label for="normalize3" class="normalize-data-popup__list-item-radio-label">ООО "УРАЛРЕДУКТОР"</label>
+                </div>
+              </li>
+              <li class="normalize-data-popup__list-item normalize">
+                <p class="normalize-data-popup__list-item-title">Полное юридическое название</p>
+                <div class="normalize-data-popup__list-item-radio-wrapper">
+                    <input type="radio" class="normalize-data-popup__list-item-radio" id="normalize4" name="normalize1">
+                    <label for="normalize4" class="normalize-data-popup__list-item-radio-label">ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "УРАЛРЕДУКТОР"</label>
+                </div>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">ИНН</p>
+                <p class="normalize-data-popup__list-item-info">6672228600</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">КПП</p>
+                <p class="normalize-data-popup__list-item-info">668501001</p>
+              </li>
+              <li class="normalize-data-popup__list-item">
+                <p class="normalize-data-popup__list-item-title">ОГРН</p>
+                <p class="normalize-data-popup__list-item-info">1076672014528</p>
+              </li>
+            </ul>
+           </nav>
+          </div>
+        </div>
+    </div>    
+    <ul role="list" class="popup__btn-control-group normalize-data-popup__btn-control-group">
+      <li class="popup__btn-control-group-item normalize-data-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn normalize-data-popup__undo-btn" x-on:click="normalizeDataPopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item normalize-data-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn normalize-data-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+  </div>

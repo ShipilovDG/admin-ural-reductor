@@ -1,0 +1,730 @@
+---
+import DeleteCommentAltPopup from "./DeleteCommentAltPopup.astro";
+import ViewSettingsPopup from "./ViewSettingsPopup.astro";
+---
+
+<div class="popup edit-message-popup" x-bind:class="{'active': editMessagePopup === true}">
+    <form action="#" method="post" class="popup__form edit-message-popup__form">
+    <div class="popup__content edit-message-popup__content">
+  <div class="popup__top-row edit-message-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="editMessagePopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="editMessagePopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <div class="edit-message-popup__title-row">
+    <h2 class="popup__title edit-message-popup__title">
+        Тема письма
+    </h2>
+    </div> 
+   </div>
+    <div class="popup__body edit-message-popup__body">
+        <fieldset class="edit-message-popup__fieldset desktop-hide">
+        <div class="edit-message-popup__body-top-row">
+         <button type="button" class="btn edit-message-popup__status-btn draft">Черновик</button>
+         <button type="button" class="edit-message-popup__edit-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+         </button>
+        </div>
+        <div class="edit-message-popup__message-window">
+            <div class="edit-message-popup__message-window-top">
+                <img class="edit-message-popup__message-window-top-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+            <div class="edit-message-popup__message-window-info">
+                <p class="edit-message-popup__info-card-title">
+                    vtrpro@yandex.ru
+                </p>
+                <div class="edit-message-popup__info-card-datetime">
+                    <time datetime="13.10.2022" class="edit-message-popup__info-card-date">13.10.2022</time> 
+                    <time datetime="16:05" class="edit-message-popup__info-card-time">16:05</time> 
+                </div>
+                <div class="edit-message-popup__info-card-datetime bottom">
+                    <time datetime="13.10.2022" class="edit-message-popup__info-card-date">13.10.2022</time> 
+                    <time datetime="16:05" class="edit-message-popup__info-card-time">16:05</time> 
+                </div>
+            </div>
+            </div>
+            <div class="edit-message-popup__message-window-btn-control-group-wrapper">
+            <div class="edit-message-popup__message-window-btn-control-group">
+              <button type="button" class="edit-message-popup__message-window-undo-btn">
+                <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.5 14V8C16.5 7.20435 16.1839 6.44129 15.6213 5.87868C15.0587 5.31607 14.2956 5 13.5 5H6.5M6.5 5L10.5 9M6.5 5L10.5 1M5.5 9L1.5 5L5.5 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+              </button>
+              <button type="button" class="edit-message-popup__message-window-msg-btn">
+                <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.5 3C19.5 1.89543 18.6046 1 17.5 1H3.5C2.39543 1 1.5 1.89543 1.5 3M19.5 3V13C19.5 14.1046 18.6046 15 17.5 15H3.5C2.39543 15 1.5 14.1046 1.5 13V3M19.5 3L10.5 9L1.5 3" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                                      
+              </button>
+              <button type="button" class="edit-message-popup__message-window-info-btn">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 6H10.51M9.5 10H10.5V14H11.5M19.5 10C19.5 14.9706 15.4706 19 10.5 19C5.52944 19 1.5 14.9706 1.5 10C1.5 5.02944 5.52944 1 10.5 1C15.4706 1 19.5 5.02944 19.5 10Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>          
+              </button>
+              <button type="button" class="edit-message-popup__message-window-delete-btn">
+                <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 5H17.5M7.5 9V15M11.5 9V15M2.5 5L3.5 17C3.5 17.5304 3.71071 18.0391 4.08579 18.4142C4.46086 18.7893 4.96957 19 5.5 19H13.5C14.0304 19 14.5391 18.7893 14.9142 18.4142C15.2893 18.0391 15.5 17.5304 15.5 17L16.5 5M6.5 5V2C6.5 1.73478 6.60536 1.48043 6.79289 1.29289C6.98043 1.10536 7.23478 1 7.5 1H11.5C11.7652 1 12.0196 1.10536 12.2071 1.29289C12.3946 1.48043 12.5 1.73478 12.5 2V5" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                            
+              </button>
+              <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                <button type="button" x-on:click="toggleStatusDropdown = !toggleStatusDropdown" class="edit-message-popup__message-window-folder-btn">
+                  <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.5 1H7.5L10.5 4H17.5C18.0304 4 18.5391 4.21071 18.9142 4.58579C19.2893 4.96086 19.5 5.46957 19.5 6V14C19.5 14.5304 19.2893 15.0391 18.9142 15.4142C18.5391 15.7893 18.0304 16 17.5 16H3.5C2.96957 16 2.46086 15.7893 2.08579 15.4142C1.71071 15.0391 1.5 14.5304 1.5 14V3C1.5 2.46957 1.71071 1.96086 2.08579 1.58579C2.46086 1.21071 2.96957 1 3.5 1Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg> 
+                </button>
+                <ul class="site-section__choose-status-dropdown-list edit-message-popup__choose-status-dropdown-list folder-btn" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                   <li class="site-section__choose-status-dropdown-list-item">
+                      <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Drafts</button>
+                   </li>
+                   <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button">template</button>
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button">INBOX</button>
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Outbox</button>
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Sent</button>
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Spam</button>
+             </li>
+             <li class="site-section__choose-status-dropdown-list-item">
+              <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Steam</button>
+           </li>
+           <li class="site-section__choose-status-dropdown-list-item">
+            <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Steam</button>
+         </li>
+                </ul>
+            </div>
+            </div>
+            </div>
+            <textarea class="edit-message-popup__message-window-textarea" placeholder="Текст письма"></textarea>
+            <ul role="list" class="edit-message-popup__btn-control-group message-window">
+              <li class="popup__btn-control-group-item edit-message-popup__btn-control-group-item">
+                  <button type="button" class="btn btn--primary popup__undo-btn edit-message-popup__reply-btn">
+                      Ответить
+                  </button>
+              </li>
+              <li class="popup__btn-control-group-item edit-message-popup__btn-control-group-item">
+                  <button type="button" class="btn btn--secondary popup__save-btn edit-message-popup__forward-btn">
+                      Переслать
+                  </button>
+              </li>
+            </ul>
+        </div>
+        <div class="edit-message-popup__comment-window-wrapper" x-data="{commentItems: [], textAreaValue: ''}">
+         <ul role="list" class="edit-message-popup__comment-window-list" x-bind:class="{'active': commentItems.length > 0 }">
+          <template x-for="commentItem in commentItems">
+            <li class="edit-message-popup__comment-window-list-item" x-data="{openReplyWindow: false, textAreaValueListItem: '', commentSubItems: [], editComment: false, deleteCommentAltPopup: false }">
+              <div class="edit-message-popup__comment-window-list-item-main">
+                <img class="edit-message-popup__comment-window-list-item-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+                <div class="edit-message-popup__comment-window-list-item-info">
+                <div class="edit-message-popup__comment-window-list-item-info-top">
+                  <div class="edit-message-popup__comment-window-list-item-info-top-left">
+                    <p class="edit-message-popup__comment-window-list-item-title">
+                      vtrpro@yandex.ru
+                    </p>
+                    <div class="edit-message-popup__comment-window-list-item-datetime">
+                      <time datetime="13.10.2022" class="edit-message-popup__comment-window-list-item-date">13.10.2022</time>
+                      <time datetime="16:05" class="edit-message-popup__comment-window-list-item-time">16:05</time>
+                    </div>
+                  </div>
+                  <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                    <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                      <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                        <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                        <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                        <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>     
+                    </button>
+                    <ul class="site-section__choose-status-dropdown-list edit-message-popup__choose-status-dropdown-list comment-window-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                       <li class="site-section__choose-status-dropdown-list-item">
+                          <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Скопировать ссылку</button>
+                       </li>
+                       <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="editComment = true">Редактировать</button>
+                     </li>
+                     <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn delete" type="button" x-on:click="deleteCommentAltPopup = true">Удалить</button>
+                     </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="edit-message-popup__comment-window-info" x-bind:class="{'active': editComment === true }">
+                <div class="edit-message-popup__comment-window-textarea-wrapper" x-bind:class="{'non-active': editComment === false }">
+                  <textarea class="edit-message-popup__comment-window-list-item-comment-text" x-text="commentItem" x-bind:class="{'disabled': editComment === false }"></textarea>
+                  <div class="edit-message-popup__comment-window-textarea-btn-group" x-show="editComment === true">
+                    <button type="button" class="edit-message-popup__comment-window-attach-btn">
+                      <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>                      
+                    </button>
+                    <button type="button" class="edit-message-popup__comment-window-toggle-letters-btn">
+                      <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 15V4.5C1.5 3.57174 1.86875 2.6815 2.52513 2.02513C3.1815 1.36875 4.07174 1 5 1C5.92826 1 6.8185 1.36875 7.47487 2.02513C8.13125 2.6815 8.5 3.57174 8.5 4.5V15M1.5 9H8.5M19.5 8V15M19.5 11.5C19.5 13.433 17.933 15 16 15C14.067 15 12.5 13.433 12.5 11.5C12.5 9.567 14.067 8 16 8C17.933 8 19.5 9.567 19.5 11.5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>                      
+                    </button>
+                    <button type="button" class="edit-message-popup__comment-window-mail-btn">
+                      <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 11.0037C14 13.2129 12.2091 15.0037 10 15.0037C7.79086 15.0037 6 13.2129 6 11.0037C6 8.79458 7.79086 7.00372 10 7.00372C12.2091 7.00372 14 8.79458 14 11.0037ZM14 11.0037L14 12.5038C14 13.1668 14.2634 13.8027 14.7322 14.2715C15.2011 14.7404 15.837 15.0038 16.5 15.0038C17.163 15.0038 17.7989 14.7404 18.2678 14.2715C18.7366 13.8027 19 13.1668 19 12.5038V11.0038C19.0025 9.06986 18.382 7.18659 17.2304 5.63295C16.0788 4.0793 14.4574 2.93791 12.6064 2.37785C10.7554 1.8178 8.77316 1.86888 6.95343 2.52352C5.13371 3.17815 3.57324 4.40154 2.50321 6.01243C1.43317 7.62332 0.910472 9.53604 1.01255 11.4672C1.11463 13.3984 1.83605 15.2454 3.06995 16.7345C4.30385 18.2236 5.98459 19.2757 7.86319 19.7348C9.74179 20.194 11.7183 20.0358 13.5 19.2838" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>                      
+                    </button>
+                  </div>
+                </div>
+                <div class="edit-message-popup__comment-window-info-bottom" x-show="editComment === true">
+                  <button type="button" class="btn btn--secondary edit-message-popup__comment-window-info-cancel-btn" x-on:click="editComment = false">
+                    Отменить
+                  </button>
+                  <button type="button" class="btn btn--primary edit-message-popup__comment-window-info-send-btn" x-on:click="editComment = false">
+                    Отправить
+                  </button>
+                </div>
+                 </div>
+                 <div class="edit-message-popup__comment-window-list-item-info-bottom">
+                   <button type="button" class="edit-message-popup__comment-window-list-item-toggle-heart-btn" x-data="{toggleHeart: false}" x-on:click="toggleHeart = !toggleHeart" x-bind:class="{'active': toggleHeart === true}">
+                    <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18.5001 10.5756L11.0001 18.0036L3.50006 10.5756C3.00536 10.0942 2.6157 9.51561 2.3556 8.87623C2.09551 8.23685 1.97062 7.55055 1.98879 6.86053C2.00697 6.17051 2.16782 5.49173 2.46121 4.86693C2.75461 4.24213 3.17419 3.68485 3.69354 3.23017C4.21289 2.7755 4.82076 2.43328 5.47887 2.22508C6.13697 2.01687 6.83106 1.94718 7.51743 2.0204C8.20379 2.09361 8.86756 2.30815 9.46693 2.6505C10.0663 2.99285 10.5883 3.4556 11.0001 4.00959C11.4136 3.45962 11.9362 3.00092 12.5352 2.6622C13.1341 2.32348 13.7966 2.11204 14.481 2.04111C15.1654 1.97019 15.8571 2.04129 16.5128 2.24999C17.1685 2.45868 17.7741 2.80047 18.2916 3.25396C18.8091 3.70745 19.2275 4.26288 19.5205 4.88549C19.8135 5.5081 19.9748 6.18448 19.9944 6.8723C20.0139 7.56013 19.8913 8.24459 19.6342 8.88284C19.3771 9.5211 18.991 10.0994 18.5001 10.5816" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                    
+                   </button>
+                   <button type="button" class="edit-message-popup__comment-window-list-item-reply-btn" x-on:click="openReplyWindow = !openReplyWindow">Ответить</button>
+                 </div>
+                </div>
+              </div>
+              <ul role="list" class="edit-message-popup__comment-window-list sublist" x-bind:class="{'active': commentSubItems.length > 0 }">
+                <template x-for="commentSubItem in commentSubItems">
+                  <li class="edit-message-popup__comment-window-list-item sublist">
+                    <div class="edit-message-popup__comment-window-list-item-main">
+                      <img class="edit-message-popup__comment-window-list-item-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+                      <div class="edit-message-popup__comment-window-list-item-info">
+                        <div class="edit-message-popup__comment-window-list-item-info-top">
+                          <div class="edit-message-popup__comment-window-list-item-info-top-left">
+                            <p class="edit-message-popup__comment-window-list-item-title">
+                              vtrpro@yandex.ru
+                            </p>
+                            <div class="edit-message-popup__comment-window-list-item-datetime">
+                              <time datetime="13.10.2022" class="edit-message-popup__comment-window-list-item-date">13.10.2022</time>
+                              <time datetime="16:05" class="edit-message-popup__comment-window-list-item-time">16:05</time>
+                            </div>
+                          </div>
+                        </div>
+                         <textarea class="edit-message-popup__comment-window-list-item-comment-text" disabled x-text="commentSubItem"></textarea>
+                         <div class="edit-message-popup__comment-window-list-item-info-bottom">
+                           <button type="button" class="edit-message-popup__comment-window-list-item-reply-btn">Ответить</button>
+                         </div>
+                        </div>
+                    </div>
+                  </li>
+                </template>
+              </ul>
+              <div class="edit-message-popup__comment-window-info sublist" x-show="openReplyWindow === true">
+                <div class="edit-message-popup__comment-window-textarea-wrapper">
+                  <textarea class="edit-message-popup__comment-window-textarea" placeholder="Введите текст" x-model="textAreaValueListItem"></textarea>
+                  <div class="edit-message-popup__comment-window-textarea-btn-group sublist">
+                    <button type="button" class="edit-message-popup__comment-window-attach-btn">
+                      <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>                      
+                    </button>
+                    <button type="button" class="edit-message-popup__comment-window-toggle-letters-btn">
+                      <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 15V4.5C1.5 3.57174 1.86875 2.6815 2.52513 2.02513C3.1815 1.36875 4.07174 1 5 1C5.92826 1 6.8185 1.36875 7.47487 2.02513C8.13125 2.6815 8.5 3.57174 8.5 4.5V15M1.5 9H8.5M19.5 8V15M19.5 11.5C19.5 13.433 17.933 15 16 15C14.067 15 12.5 13.433 12.5 11.5C12.5 9.567 14.067 8 16 8C17.933 8 19.5 9.567 19.5 11.5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>                      
+                    </button>
+                    <button type="button" class="edit-message-popup__comment-window-mail-btn">
+                      <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 11.0037C14 13.2129 12.2091 15.0037 10 15.0037C7.79086 15.0037 6 13.2129 6 11.0037C6 8.79458 7.79086 7.00372 10 7.00372C12.2091 7.00372 14 8.79458 14 11.0037ZM14 11.0037L14 12.5038C14 13.1668 14.2634 13.8027 14.7322 14.2715C15.2011 14.7404 15.837 15.0038 16.5 15.0038C17.163 15.0038 17.7989 14.7404 18.2678 14.2715C18.7366 13.8027 19 13.1668 19 12.5038V11.0038C19.0025 9.06986 18.382 7.18659 17.2304 5.63295C16.0788 4.0793 14.4574 2.93791 12.6064 2.37785C10.7554 1.8178 8.77316 1.86888 6.95343 2.52352C5.13371 3.17815 3.57324 4.40154 2.50321 6.01243C1.43317 7.62332 0.910472 9.53604 1.01255 11.4672C1.11463 13.3984 1.83605 15.2454 3.06995 16.7345C4.30385 18.2236 5.98459 19.2757 7.86319 19.7348C9.74179 20.194 11.7183 20.0358 13.5 19.2838" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>                      
+                    </button>
+                  </div>
+                </div>
+                <div class="edit-message-popup__comment-window-info-bottom sublist">
+                  <button type="button" class="btn btn--secondary edit-message-popup__comment-window-info-cancel-btn" x-on:click="textAreaValueListItem = ''; openReplyWindow = false">
+                    Отменить
+                  </button>
+                  <button type="button" class="btn btn--primary edit-message-popup__comment-window-info-send-btn" x-on:click="commentSubItems.push(textAreaValueListItem);textAreaValueListItem = '';openReplyWindow = false">
+                    Отправить
+                  </button>
+                </div>
+               </div>
+               <DeleteCommentAltPopup></DeleteCommentAltPopup>
+             </li>
+          </template>
+         </ul>
+        <div class="edit-message-popup__comment-window" x-data="{openReplyWindowInfo: false}" x-on:click.outside="openReplyWindowInfo = false">
+          <img class="edit-message-popup__comment-window-img" src="/images/header-avatar-placeholder.svg" alt="edit message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+           <div class="edit-message-popup__comment-window-right">
+             <input type="text" class="edit-message-popup__comment-window-right-input" placeholder="Оставить комментарий" readonly x-on:click="openReplyWindowInfo = true" x-show="openReplyWindowInfo === false">
+             <div class="edit-message-popup__comment-window-info" x-data="{tab: 'commentary'}" x-show="openReplyWindowInfo === true">
+              <div class="edit-message-popup__comment-window-info-tabs">
+                <button type="button" class="edit-message-popup__comment-window-info-tabs-btn edit-message-popup__comment-window-info-tabs-btn" x-on:click="tab = 'commentary'" x-bind:class="{'active': tab === 'commentary'}">Комментарий</button>
+                <button type="button" class="edit-message-popup__comment-window-info-tabs-btn edit-message-popup__comment-window-info-tabs-btn" x-on:click="tab = 'answer'" x-bind:class="{'active': tab === 'answer'}">Призвать к ответу</button>
+              </div>
+              <div class="edit-message-popup__comment-window-textarea-wrapper">
+                <textarea class="edit-message-popup__comment-window-textarea" placeholder="Введите текст" x-model="textAreaValue"></textarea>
+                <div class="edit-message-popup__comment-window-textarea-btn-group">
+                  <button type="button" class="edit-message-popup__comment-window-attach-btn">
+                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                      
+                  </button>
+                  <button type="button" class="edit-message-popup__comment-window-toggle-letters-btn">
+                    <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.5 15V4.5C1.5 3.57174 1.86875 2.6815 2.52513 2.02513C3.1815 1.36875 4.07174 1 5 1C5.92826 1 6.8185 1.36875 7.47487 2.02513C8.13125 2.6815 8.5 3.57174 8.5 4.5V15M1.5 9H8.5M19.5 8V15M19.5 11.5C19.5 13.433 17.933 15 16 15C14.067 15 12.5 13.433 12.5 11.5C12.5 9.567 14.067 8 16 8C17.933 8 19.5 9.567 19.5 11.5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                      
+                  </button>
+                  <button type="button" class="edit-message-popup__comment-window-mail-btn">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 11.0037C14 13.2129 12.2091 15.0037 10 15.0037C7.79086 15.0037 6 13.2129 6 11.0037C6 8.79458 7.79086 7.00372 10 7.00372C12.2091 7.00372 14 8.79458 14 11.0037ZM14 11.0037L14 12.5038C14 13.1668 14.2634 13.8027 14.7322 14.2715C15.2011 14.7404 15.837 15.0038 16.5 15.0038C17.163 15.0038 17.7989 14.7404 18.2678 14.2715C18.7366 13.8027 19 13.1668 19 12.5038V11.0038C19.0025 9.06986 18.382 7.18659 17.2304 5.63295C16.0788 4.0793 14.4574 2.93791 12.6064 2.37785C10.7554 1.8178 8.77316 1.86888 6.95343 2.52352C5.13371 3.17815 3.57324 4.40154 2.50321 6.01243C1.43317 7.62332 0.910472 9.53604 1.01255 11.4672C1.11463 13.3984 1.83605 15.2454 3.06995 16.7345C4.30385 18.2236 5.98459 19.2757 7.86319 19.7348C9.74179 20.194 11.7183 20.0358 13.5 19.2838" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>                      
+                  </button>
+                </div>
+              </div>
+              <div class="edit-message-popup__comment-window-info-bottom">
+                <button type="button" class="btn btn--secondary edit-message-popup__comment-window-info-cancel-btn" x-on:click="textAreaValue = ''; openReplyWindowInfo = false">
+                  Отменить
+                </button>
+                <button type="button" class="btn btn--primary edit-message-popup__comment-window-info-send-btn" x-on:click="commentItems.push(textAreaValue);textAreaValue = '';openReplyWindowInfo = false">
+                  Отправить
+                </button>
+                <button type="button" class="site-section__choose-status-btn" x-on:click="viewSettingsPopup = true">
+                  <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>     
+                </button>
+              </div>
+             </div>
+           </div>
+        </div>
+        </div>
+        <ul role="list" class="popup__tags-list edit-message-popup__tags-list" x-ref="editMessagePopupTagsList"></ul>
+        <div class="popup__add-tags-btn-wrapper edit-message-popup__add-tags-btn-wrapper" x-data="{toggleDropdown: false }">
+            <button type="button" class="popup__add-tags-btn edit-message-popup__add-tags-btn" x-on:click="toggleDropdown = !toggleDropdown">
+                Добавить тег
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.00016 1.33594V10.6693M1.3335 6.0026H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+            <div class="popup__add-tags-dropdown edit-message-popup__add-tags-dropdown" x-bind:class="{'active': toggleDropdown === true }">
+               <ul role="list" class="popup__add-tags-dropdown-list edit-message-popup__add-tags-dropdown-list">
+                  <li class="popup__add-tags-dropdown-list-item edit-message-popup__add-tags-dropdown-list-item">
+                    <input type="text" class="popup__add-tags-dropdown-list-item-input edit-message-popup__add-tags-dropdown-list-item-input" readonly value="CEO" x-on:click='toggleDropdown = false;  
+                    $refs.editMessagePopupTagsList.insertAdjacentHTML("beforeEnd", 
+                    `<li class="popup__tags-list-item edit-message-popup__tags-list-item">
+                       <button type="button" class="popup__tags-list-item-btn edit-message-popup__tags-list-item-btn">
+                           СЕО
+                       </button>
+                   </li>`)
+                    '>
+                  </li>
+                  <li class="popup__add-tags-dropdown-list-item edit-message-popup__add-tags-dropdown-list-item">
+                   <input type="text" class="popup__add-tags-dropdown-list-item-input edit-message-popup__add-tags-dropdown-list-item-input" readonly value="Дизайн" x-on:click='toggleDropdown = false;  
+                   $refs.editMessagePopupTagsList.insertAdjacentHTML("beforeEnd", 
+                   `<li class="popup__tags-list-item edit-message-popup__tags-list-item">
+                      <button type="button" class="popup__tags-list-item-btn edit-message-popup__tags-list-item-btn">
+                       Дизайн
+                      </button>
+                  </li>`)
+                   '>
+                 </li>
+                 <li class="popup__add-tags-dropdown-list-item edit-message-popup__add-tags-dropdown-list-item">
+                   <input type="text" class="popup__add-tags-dropdown-list-item-input edit-message-popup__add-tags-dropdown-list-item-input" readonly value="Проектировка" x-on:click='toggleDropdown = false;  
+                   $refs.editMessagePopupTagsList.insertAdjacentHTML("beforeEnd", 
+                   `<li class="popup__tags-list-item edit-message-popup__tags-list-item">
+                      <button type="button" class="popup__tags-list-item-btn edit-message-popup__tags-list-item-btn">
+                       Проектировка
+                      </button>
+                  </li>`)
+                   '>
+                 </li>
+               </ul>
+               <input type="text" class="popup__add-tags-dropdown-search-input edit-message-popup__add-tags-dropdown-search-input">
+           </div>
+        </fieldset>
+        <div class="edit-message-popup__body-grid">
+          <fieldset class="edit-message-popup__fieldset b-r">
+            <div class="edit-message-popup__body-top-row">
+              <button type="button" class="btn edit-message-popup__status-btn draft">Черновик</button>
+              <button type="button" class="edit-message-popup__edit-btn">
+                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                
+              </button>
+             </div>
+             <div class="edit-message-popup__message-window">
+                 <div class="edit-message-popup__message-window-top">
+                     <img class="edit-message-popup__message-window-top-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+                 <div class="edit-message-popup__message-window-info">
+                     <p class="edit-message-popup__info-card-title">
+                         vtrpro@yandex.ru
+                     </p>
+                     <div class="edit-message-popup__info-card-datetime">
+                         <time datetime="13.10.2022" class="edit-message-popup__info-card-date">13.10.2022</time> 
+                         <time datetime="16:05" class="edit-message-popup__info-card-time">16:05</time> 
+                     </div>
+                     <div class="edit-message-popup__info-card-datetime bottom">
+                         <time datetime="13.10.2022" class="edit-message-popup__info-card-date">13.10.2022</time> 
+                         <time datetime="16:05" class="edit-message-popup__info-card-time">16:05</time> 
+                     </div>
+                 </div>
+                 </div>
+                 <div class="edit-message-popup__message-window-btn-control-group-wrapper">
+                 <div class="edit-message-popup__message-window-btn-control-group">
+                   <button type="button" class="edit-message-popup__message-window-undo-btn">
+                     <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M16.5 14V8C16.5 7.20435 16.1839 6.44129 15.6213 5.87868C15.0587 5.31607 14.2956 5 13.5 5H6.5M6.5 5L10.5 9M6.5 5L10.5 1M5.5 9L1.5 5L5.5 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                         </svg>                    
+                   </button>
+                   <button type="button" class="edit-message-popup__message-window-msg-btn">
+                     <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M19.5 3C19.5 1.89543 18.6046 1 17.5 1H3.5C2.39543 1 1.5 1.89543 1.5 3M19.5 3V13C19.5 14.1046 18.6046 15 17.5 15H3.5C2.39543 15 1.5 14.1046 1.5 13V3M19.5 3L10.5 9L1.5 3" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                         </svg>                                      
+                   </button>
+                   <button type="button" class="edit-message-popup__message-window-info-btn">
+                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M10.5 6H10.51M9.5 10H10.5V14H11.5M19.5 10C19.5 14.9706 15.4706 19 10.5 19C5.52944 19 1.5 14.9706 1.5 10C1.5 5.02944 5.52944 1 10.5 1C15.4706 1 19.5 5.02944 19.5 10Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                         </svg>          
+                   </button>
+                   <button type="button" class="edit-message-popup__message-window-delete-btn">
+                     <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M1.5 5H17.5M7.5 9V15M11.5 9V15M2.5 5L3.5 17C3.5 17.5304 3.71071 18.0391 4.08579 18.4142C4.46086 18.7893 4.96957 19 5.5 19H13.5C14.0304 19 14.5391 18.7893 14.9142 18.4142C15.2893 18.0391 15.5 17.5304 15.5 17L16.5 5M6.5 5V2C6.5 1.73478 6.60536 1.48043 6.79289 1.29289C6.98043 1.10536 7.23478 1 7.5 1H11.5C11.7652 1 12.0196 1.10536 12.2071 1.29289C12.3946 1.48043 12.5 1.73478 12.5 2V5" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                         </svg>                            
+                   </button>
+                   <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                    <button type="button" x-on:click="toggleStatusDropdown = !toggleStatusDropdown" class="edit-message-popup__message-window-folder-btn">
+                      <svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3.5 1H7.5L10.5 4H17.5C18.0304 4 18.5391 4.21071 18.9142 4.58579C19.2893 4.96086 19.5 5.46957 19.5 6V14C19.5 14.5304 19.2893 15.0391 18.9142 15.4142C18.5391 15.7893 18.0304 16 17.5 16H3.5C2.96957 16 2.46086 15.7893 2.08579 15.4142C1.71071 15.0391 1.5 14.5304 1.5 14V3C1.5 2.46957 1.71071 1.96086 2.08579 1.58579C2.46086 1.21071 2.96957 1 3.5 1Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg> 
+                    </button>
+                    <ul class="site-section__choose-status-dropdown-list edit-message-popup__choose-status-dropdown-list folder-btn" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                       <li class="site-section__choose-status-dropdown-list-item">
+                          <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Drafts</button>
+                       </li>
+                       <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button">template</button>
+                     </li>
+                     <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button">INBOX</button>
+                     </li>
+                     <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Outbox</button>
+                     </li>
+                     <li class="site-section__choose-status-dropdown-list-item">
+                      <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Sent</button>
+                   </li>
+                   <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Spam</button>
+                 </li>
+                 <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Steam</button>
+               </li>
+               <li class="site-section__choose-status-dropdown-list-item">
+                <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Steam</button>
+             </li>
+                    </ul>
+                   </div>
+                 </div>
+                 </div>
+                 <textarea class="edit-message-popup__message-window-textarea" placeholder="Текст письма"></textarea>
+                 <ul role="list" class="edit-message-popup__btn-control-group message-window">
+                   <li class="popup__btn-control-group-item edit-message-popup__btn-control-group-item">
+                       <button type="button" class="btn btn--primary popup__undo-btn edit-message-popup__reply-btn">
+                           Ответить
+                       </button>
+                   </li>
+                   <li class="popup__btn-control-group-item edit-message-popup__btn-control-group-item">
+                       <button type="button" class="btn btn--secondary popup__save-btn edit-message-popup__forward-btn">
+                           Переслать
+                       </button>
+                   </li>
+                 </ul>
+             </div>
+             <div class="edit-message-popup__comment-window-wrapper" x-data="{commentItems: [], textAreaValue: ''}">
+              <ul role="list" class="edit-message-popup__comment-window-list" x-bind:class="{'active': commentItems.length > 0 }">
+               <template x-for="commentItem in commentItems">
+                 <li class="edit-message-popup__comment-window-list-item" x-data="{openReplyWindow: false, textAreaValueListItem: '', commentSubItems: [], editComment: false, deleteCommentAltPopup: false }">
+                   <div class="edit-message-popup__comment-window-list-item-main">
+                     <img class="edit-message-popup__comment-window-list-item-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+                     <div class="edit-message-popup__comment-window-list-item-info">
+                     <div class="edit-message-popup__comment-window-list-item-info-top">
+                       <div class="edit-message-popup__comment-window-list-item-info-top-left">
+                         <p class="edit-message-popup__comment-window-list-item-title">
+                           vtrpro@yandex.ru
+                         </p>
+                         <div class="edit-message-popup__comment-window-list-item-datetime">
+                           <time datetime="13.10.2022" class="edit-message-popup__comment-window-list-item-date">13.10.2022</time>
+                           <time datetime="16:05" class="edit-message-popup__comment-window-list-item-time">16:05</time>
+                         </div>
+                       </div>
+                       <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                         <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                           <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                             <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                             <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                             <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             </svg>     
+                         </button>
+                         <ul class="site-section__choose-status-dropdown-list edit-message-popup__choose-status-dropdown-list comment-window-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                            <li class="site-section__choose-status-dropdown-list-item">
+                               <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Скопировать ссылку</button>
+                            </li>
+                            <li class="site-section__choose-status-dropdown-list-item">
+                             <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="editComment = true">Редактировать</button>
+                          </li>
+                          <li class="site-section__choose-status-dropdown-list-item">
+                             <button class="site-section__choose-status-dropdown-list-item-btn delete" type="button" x-on:click="deleteCommentAltPopup = true">Удалить</button>
+                          </li>
+                         </ul>
+                       </div>
+                     </div>
+                     <div class="edit-message-popup__comment-window-info" x-bind:class="{'active': editComment === true }">
+                     <div class="edit-message-popup__comment-window-textarea-wrapper" x-bind:class="{'non-active': editComment === false }">
+                       <textarea class="edit-message-popup__comment-window-list-item-comment-text" x-text="commentItem" x-bind:class="{'disabled': editComment === false }"></textarea>
+                       <div class="edit-message-popup__comment-window-textarea-btn-group" x-show="editComment === true">
+                         <button type="button" class="edit-message-popup__comment-window-attach-btn">
+                           <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             </svg>                      
+                         </button>
+                         <button type="button" class="edit-message-popup__comment-window-toggle-letters-btn">
+                           <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M1.5 15V4.5C1.5 3.57174 1.86875 2.6815 2.52513 2.02513C3.1815 1.36875 4.07174 1 5 1C5.92826 1 6.8185 1.36875 7.47487 2.02513C8.13125 2.6815 8.5 3.57174 8.5 4.5V15M1.5 9H8.5M19.5 8V15M19.5 11.5C19.5 13.433 17.933 15 16 15C14.067 15 12.5 13.433 12.5 11.5C12.5 9.567 14.067 8 16 8C17.933 8 19.5 9.567 19.5 11.5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             </svg>                      
+                         </button>
+                         <button type="button" class="edit-message-popup__comment-window-mail-btn">
+                           <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M14 11.0037C14 13.2129 12.2091 15.0037 10 15.0037C7.79086 15.0037 6 13.2129 6 11.0037C6 8.79458 7.79086 7.00372 10 7.00372C12.2091 7.00372 14 8.79458 14 11.0037ZM14 11.0037L14 12.5038C14 13.1668 14.2634 13.8027 14.7322 14.2715C15.2011 14.7404 15.837 15.0038 16.5 15.0038C17.163 15.0038 17.7989 14.7404 18.2678 14.2715C18.7366 13.8027 19 13.1668 19 12.5038V11.0038C19.0025 9.06986 18.382 7.18659 17.2304 5.63295C16.0788 4.0793 14.4574 2.93791 12.6064 2.37785C10.7554 1.8178 8.77316 1.86888 6.95343 2.52352C5.13371 3.17815 3.57324 4.40154 2.50321 6.01243C1.43317 7.62332 0.910472 9.53604 1.01255 11.4672C1.11463 13.3984 1.83605 15.2454 3.06995 16.7345C4.30385 18.2236 5.98459 19.2757 7.86319 19.7348C9.74179 20.194 11.7183 20.0358 13.5 19.2838" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             </svg>                      
+                         </button>
+                       </div>
+                     </div>
+                     <div class="edit-message-popup__comment-window-info-bottom" x-show="editComment === true">
+                       <button type="button" class="btn btn--secondary edit-message-popup__comment-window-info-cancel-btn" x-on:click="editComment = false">
+                         Отменить
+                       </button>
+                       <button type="button" class="btn btn--primary edit-message-popup__comment-window-info-send-btn" x-on:click="editComment = false">
+                         Отправить
+                       </button>
+                     </div>
+                      </div>
+                      <div class="edit-message-popup__comment-window-list-item-info-bottom">
+                        <button type="button" class="edit-message-popup__comment-window-list-item-toggle-heart-btn" x-data="{toggleHeart: false}" x-on:click="toggleHeart = !toggleHeart" x-bind:class="{'active': toggleHeart === true}">
+                         <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M18.5001 10.5756L11.0001 18.0036L3.50006 10.5756C3.00536 10.0942 2.6157 9.51561 2.3556 8.87623C2.09551 8.23685 1.97062 7.55055 1.98879 6.86053C2.00697 6.17051 2.16782 5.49173 2.46121 4.86693C2.75461 4.24213 3.17419 3.68485 3.69354 3.23017C4.21289 2.7755 4.82076 2.43328 5.47887 2.22508C6.13697 2.01687 6.83106 1.94718 7.51743 2.0204C8.20379 2.09361 8.86756 2.30815 9.46693 2.6505C10.0663 2.99285 10.5883 3.4556 11.0001 4.00959C11.4136 3.45962 11.9362 3.00092 12.5352 2.6622C13.1341 2.32348 13.7966 2.11204 14.481 2.04111C15.1654 1.97019 15.8571 2.04129 16.5128 2.24999C17.1685 2.45868 17.7741 2.80047 18.2916 3.25396C18.8091 3.70745 19.2275 4.26288 19.5205 4.88549C19.8135 5.5081 19.9748 6.18448 19.9944 6.8723C20.0139 7.56013 19.8913 8.24459 19.6342 8.88284C19.3771 9.5211 18.991 10.0994 18.5001 10.5816" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                           </svg>                    
+                        </button>
+                        <button type="button" class="edit-message-popup__comment-window-list-item-reply-btn" x-on:click="openReplyWindow = !openReplyWindow">Ответить</button>
+                      </div>
+                     </div>
+                   </div>
+                   <ul role="list" class="edit-message-popup__comment-window-list sublist" x-bind:class="{'active': commentSubItems.length > 0 }">
+                     <template x-for="commentSubItem in commentSubItems">
+                       <li class="edit-message-popup__comment-window-list-item sublist">
+                         <div class="edit-message-popup__comment-window-list-item-main">
+                           <img class="edit-message-popup__comment-window-list-item-img" src="/images/header-avatar-placeholder.svg" alt="new message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+                           <div class="edit-message-popup__comment-window-list-item-info">
+                             <div class="edit-message-popup__comment-window-list-item-info-top">
+                               <div class="edit-message-popup__comment-window-list-item-info-top-left">
+                                 <p class="edit-message-popup__comment-window-list-item-title">
+                                   vtrpro@yandex.ru
+                                 </p>
+                                 <div class="edit-message-popup__comment-window-list-item-datetime">
+                                   <time datetime="13.10.2022" class="edit-message-popup__comment-window-list-item-date">13.10.2022</time>
+                                   <time datetime="16:05" class="edit-message-popup__comment-window-list-item-time">16:05</time>
+                                 </div>
+                               </div>
+                             </div>
+                              <textarea class="edit-message-popup__comment-window-list-item-comment-text" disabled x-text="commentSubItem"></textarea>
+                              <div class="edit-message-popup__comment-window-list-item-info-bottom">
+                                <button type="button" class="edit-message-popup__comment-window-list-item-reply-btn">Ответить</button>
+                              </div>
+                             </div>
+                         </div>
+                       </li>
+                     </template>
+                   </ul>
+                   <div class="edit-message-popup__comment-window-info sublist" x-show="openReplyWindow === true">
+                     <div class="edit-message-popup__comment-window-textarea-wrapper">
+                       <textarea class="edit-message-popup__comment-window-textarea" placeholder="Введите текст" x-model="textAreaValueListItem"></textarea>
+                       <div class="edit-message-popup__comment-window-textarea-btn-group sublist">
+                         <button type="button" class="edit-message-popup__comment-window-attach-btn">
+                           <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             </svg>                      
+                         </button>
+                         <button type="button" class="edit-message-popup__comment-window-toggle-letters-btn">
+                           <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M1.5 15V4.5C1.5 3.57174 1.86875 2.6815 2.52513 2.02513C3.1815 1.36875 4.07174 1 5 1C5.92826 1 6.8185 1.36875 7.47487 2.02513C8.13125 2.6815 8.5 3.57174 8.5 4.5V15M1.5 9H8.5M19.5 8V15M19.5 11.5C19.5 13.433 17.933 15 16 15C14.067 15 12.5 13.433 12.5 11.5C12.5 9.567 14.067 8 16 8C17.933 8 19.5 9.567 19.5 11.5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             </svg>                      
+                         </button>
+                         <button type="button" class="edit-message-popup__comment-window-mail-btn">
+                           <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M14 11.0037C14 13.2129 12.2091 15.0037 10 15.0037C7.79086 15.0037 6 13.2129 6 11.0037C6 8.79458 7.79086 7.00372 10 7.00372C12.2091 7.00372 14 8.79458 14 11.0037ZM14 11.0037L14 12.5038C14 13.1668 14.2634 13.8027 14.7322 14.2715C15.2011 14.7404 15.837 15.0038 16.5 15.0038C17.163 15.0038 17.7989 14.7404 18.2678 14.2715C18.7366 13.8027 19 13.1668 19 12.5038V11.0038C19.0025 9.06986 18.382 7.18659 17.2304 5.63295C16.0788 4.0793 14.4574 2.93791 12.6064 2.37785C10.7554 1.8178 8.77316 1.86888 6.95343 2.52352C5.13371 3.17815 3.57324 4.40154 2.50321 6.01243C1.43317 7.62332 0.910472 9.53604 1.01255 11.4672C1.11463 13.3984 1.83605 15.2454 3.06995 16.7345C4.30385 18.2236 5.98459 19.2757 7.86319 19.7348C9.74179 20.194 11.7183 20.0358 13.5 19.2838" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                             </svg>                      
+                         </button>
+                       </div>
+                     </div>
+                     <div class="edit-message-popup__comment-window-info-bottom sublist">
+                       <button type="button" class="btn btn--secondary edit-message-popup__comment-window-info-cancel-btn" x-on:click="textAreaValueListItem = ''; openReplyWindow = false">
+                         Отменить
+                       </button>
+                       <button type="button" class="btn btn--primary edit-message-popup__comment-window-info-send-btn" x-on:click="commentSubItems.push(textAreaValueListItem);textAreaValueListItem = '';openReplyWindow = false">
+                         Отправить
+                       </button>
+                     </div>
+                    </div>
+                    <DeleteCommentAltPopup></DeleteCommentAltPopup>
+                  </li>
+               </template>
+              </ul>
+             <div class="edit-message-popup__comment-window" x-data="{openReplyWindowInfo: false}" x-on:click.outside="openReplyWindowInfo = false">
+               <img class="edit-message-popup__comment-window-img" src="/images/header-avatar-placeholder.svg" alt="edit message popup info card image" width="32" height="32" loading="lazy" decoding="async">
+                <div class="edit-message-popup__comment-window-right">
+                  <input type="text" class="edit-message-popup__comment-window-right-input" placeholder="Оставить комментарий" readonly x-on:click="openReplyWindowInfo = true" x-show="openReplyWindowInfo === false">
+                  <div class="edit-message-popup__comment-window-info" x-data="{tab: 'commentary'}" x-show="openReplyWindowInfo === true">
+                   <div class="edit-message-popup__comment-window-info-tabs">
+                     <button type="button" class="edit-message-popup__comment-window-info-tabs-btn edit-message-popup__comment-window-info-tabs-btn" x-on:click="tab = 'commentary'" x-bind:class="{'active': tab === 'commentary'}">Комментарий</button>
+                     <button type="button" class="edit-message-popup__comment-window-info-tabs-btn edit-message-popup__comment-window-info-tabs-btn" x-on:click="tab = 'answer'" x-bind:class="{'active': tab === 'answer'}">Призвать к ответу</button>
+                   </div>
+                   <div class="edit-message-popup__comment-window-textarea-wrapper">
+                     <textarea class="edit-message-popup__comment-window-textarea" placeholder="Введите текст" x-model="textAreaValue"></textarea>
+                     <div class="edit-message-popup__comment-window-textarea-btn-group">
+                       <button type="button" class="edit-message-popup__comment-window-attach-btn">
+                         <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M13.0002 6.00045L6.50019 12.5005C6.10237 12.8983 5.87887 13.4378 5.87887 14.0005C5.87887 14.5631 6.10237 15.1026 6.50019 15.5005C6.89802 15.8983 7.43758 16.1218 8.00019 16.1218C8.5628 16.1218 9.10237 15.8983 9.50019 15.5005L16.0002 9.00045C16.7958 8.2048 17.2428 7.12567 17.2428 6.00045C17.2428 4.87523 16.7958 3.7961 16.0002 3.00045C15.2045 2.2048 14.1254 1.75781 13.0002 1.75781C11.875 1.75781 10.7958 2.2048 10.0002 3.00045L3.50019 9.50045C2.30672 10.6939 1.63623 12.3126 1.63623 14.0005C1.63623 15.6883 2.30672 17.307 3.50019 18.5005C4.69367 19.6939 6.31236 20.3644 8.00019 20.3644C9.68802 20.3644 11.3067 19.6939 12.5002 18.5005L19.0002 12.0005" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                           </svg>                      
+                       </button>
+                       <button type="button" class="edit-message-popup__comment-window-toggle-letters-btn">
+                         <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M1.5 15V4.5C1.5 3.57174 1.86875 2.6815 2.52513 2.02513C3.1815 1.36875 4.07174 1 5 1C5.92826 1 6.8185 1.36875 7.47487 2.02513C8.13125 2.6815 8.5 3.57174 8.5 4.5V15M1.5 9H8.5M19.5 8V15M19.5 11.5C19.5 13.433 17.933 15 16 15C14.067 15 12.5 13.433 12.5 11.5C12.5 9.567 14.067 8 16 8C17.933 8 19.5 9.567 19.5 11.5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                           </svg>                      
+                       </button>
+                       <button type="button" class="edit-message-popup__comment-window-mail-btn">
+                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M14 11.0037C14 13.2129 12.2091 15.0037 10 15.0037C7.79086 15.0037 6 13.2129 6 11.0037C6 8.79458 7.79086 7.00372 10 7.00372C12.2091 7.00372 14 8.79458 14 11.0037ZM14 11.0037L14 12.5038C14 13.1668 14.2634 13.8027 14.7322 14.2715C15.2011 14.7404 15.837 15.0038 16.5 15.0038C17.163 15.0038 17.7989 14.7404 18.2678 14.2715C18.7366 13.8027 19 13.1668 19 12.5038V11.0038C19.0025 9.06986 18.382 7.18659 17.2304 5.63295C16.0788 4.0793 14.4574 2.93791 12.6064 2.37785C10.7554 1.8178 8.77316 1.86888 6.95343 2.52352C5.13371 3.17815 3.57324 4.40154 2.50321 6.01243C1.43317 7.62332 0.910472 9.53604 1.01255 11.4672C1.11463 13.3984 1.83605 15.2454 3.06995 16.7345C4.30385 18.2236 5.98459 19.2757 7.86319 19.7348C9.74179 20.194 11.7183 20.0358 13.5 19.2838" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                           </svg>                      
+                       </button>
+                     </div>
+                   </div>
+                   <div class="edit-message-popup__comment-window-info-bottom">
+                     <button type="button" class="btn btn--secondary edit-message-popup__comment-window-info-cancel-btn" x-on:click="textAreaValue = ''; openReplyWindowInfo = false">
+                       Отменить
+                     </button>
+                     <button type="button" class="btn btn--primary edit-message-popup__comment-window-info-send-btn" x-on:click="commentItems.push(textAreaValue);textAreaValue = '';openReplyWindowInfo = false">
+                       Отправить
+                     </button>
+                     <div class="site-section__choose-status-dropdown-wrapper edit-message-popup__choose-status-dropdown-wrapper comment-window" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                       <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                         <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                           <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                           <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                           <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                           <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                           <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                           </svg>     
+                       </button>
+                       <ul class="site-section__choose-status-dropdown-list edit-message-popup__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                          <li class="site-section__choose-status-dropdown-list-item">
+                             <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Подключить новый e-mail</button>
+                          </li>
+                          <li class="site-section__choose-status-dropdown-list-item">
+                           <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Настройки</button>
+                        </li>
+                        <li class="site-section__choose-status-dropdown-list-item">
+                           <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Чёрный список</button>
+                        </li>
+                        <li class="site-section__choose-status-dropdown-list-item">
+                           <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Контакты</button>
+                        </li>
+                       </ul>
+                   </div>
+                   </div>
+                  </div>
+                </div>
+             </div>
+             </div>
+          </fieldset>
+          <fieldset class="edit-message-popup__fieldset">
+            <ul role="list" class="popup__tags-list edit-message-popup__tags-list" x-ref="editMessagePopupTagsListDesktop"></ul>
+            <div class="popup__add-tags-btn-wrapper edit-message-popup__add-tags-btn-wrapper" x-data="{toggleDropdown: false }">
+                <button type="button" class="popup__add-tags-btn edit-message-popup__add-tags-btn" x-on:click="toggleDropdown = !toggleDropdown">
+                    Добавить тег
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.00016 1.33594V10.6693M1.3335 6.0026H10.6668" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                    
+                </button>
+                <div class="popup__add-tags-dropdown edit-message-popup__add-tags-dropdown" x-bind:class="{'active': toggleDropdown === true }">
+                   <ul role="list" class="popup__add-tags-dropdown-list edit-message-popup__add-tags-dropdown-list">
+                      <li class="popup__add-tags-dropdown-list-item edit-message-popup__add-tags-dropdown-list-item">
+                        <input type="text" class="popup__add-tags-dropdown-list-item-input edit-message-popup__add-tags-dropdown-list-item-input" readonly value="CEO" x-on:click='toggleDropdown = false;  
+                        $refs.editMessagePopupTagsListDesktop.insertAdjacentHTML("beforeEnd", 
+                        `<li class="popup__tags-list-item edit-message-popup__tags-list-item">
+                           <button type="button" class="popup__tags-list-item-btn edit-message-popup__tags-list-item-btn">
+                               СЕО
+                           </button>
+                       </li>`)
+                        '>
+                      </li>
+                      <li class="popup__add-tags-dropdown-list-item edit-message-popup__add-tags-dropdown-list-item">
+                       <input type="text" class="popup__add-tags-dropdown-list-item-input edit-message-popup__add-tags-dropdown-list-item-input" readonly value="Дизайн" x-on:click='toggleDropdown = false;  
+                       $refs.editMessagePopupTagsListDesktop.insertAdjacentHTML("beforeEnd", 
+                       `<li class="popup__tags-list-item edit-message-popup__tags-list-item">
+                          <button type="button" class="popup__tags-list-item-btn edit-message-popup__tags-list-item-btn">
+                           Дизайн
+                          </button>
+                      </li>`)
+                       '>
+                     </li>
+                     <li class="popup__add-tags-dropdown-list-item edit-message-popup__add-tags-dropdown-list-item">
+                       <input type="text" class="popup__add-tags-dropdown-list-item-input edit-message-popup__add-tags-dropdown-list-item-input" readonly value="Проектировка" x-on:click='toggleDropdown = false;  
+                       $refs.editMessagePopupTagsListDesktop.insertAdjacentHTML("beforeEnd", 
+                       `<li class="popup__tags-list-item edit-message-popup__tags-list-item">
+                          <button type="button" class="popup__tags-list-item-btn edit-message-popup__tags-list-item-btn">
+                           Проектировка
+                          </button>
+                      </li>`)
+                       '>
+                     </li>
+                   </ul>
+                   <input type="text" class="popup__add-tags-dropdown-search-input edit-message-popup__add-tags-dropdown-search-input">
+               </div>
+          </fieldset>
+        </div>
+        <ul role="list" class="popup__btn-control-group new-message-popup__btn-control-group mobile-hide">
+          <li class="popup__btn-control-group-item new-message-popup__btn-control-group-item">
+              <button type="button" class="btn btn--flat popup__undo-btn new-message-popup__undo-btn" x-on:click="newMessagePopup = false">
+                  Отменить
+              </button>
+          </li>
+          <li class="popup__btn-control-group-item new-message-popup__btn-control-group-item">
+              <button type="button" class="btn btn--primary popup__save-btn new-message-popup__save-btn">
+                  Сохранить
+              </button>
+          </li>
+        </ul>
+    </div>
+</div>
+</form>
+</div>
+
+<ViewSettingsPopup></ViewSettingsPopup>

@@ -1,0 +1,21 @@
+---
+const items = ['10 календарных дней с даты поставки товара', '100% в течении 30 календарных дней', '100% в течении 30 рабочих дней с момента получения', '100% в течении 60 дней с момента поставки товара 2', '100% в течении 7 рабочих дней с даты поставки', '100% Оплата', '100% Предоплата', '30 календарных дней с даты поставки товара', '30% Предоплата,70% в течение 5 дней', '30% Предоплата,70% по факту готовности продукции', '30% Предоплата,70% по факту поставки товара', '40% предоплата, 60% по факту готовности продукции', '50% предоплата, 50% в течение 15 календарных дней', '50% предоплата, 50% в течение 30 календарных дней'];
+---
+
+
+<div class="create-offer-popup__form-control-wrapper create-offer-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '30% предоплата, остаток 70% по факту готовности продукции к отгрузке.'}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+    <input type="text" class="create-offer-popup__form-control-select-result-input payment-conds-input" value="30% предоплата, остаток 70% по факту готовности продукции к отгрузке." readonly x-model="resultInputVal" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+    <svg class="create-offer-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}" x-on:click.self="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList">
+      <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>  
+      <div class="create-offer-popup__payment-req-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+        <input type="text" class="create-offer-popup__payment-req-dropdown-search-input">
+      <ul role="list" class="create-offer-popup__payment-req-dropdown-list">
+        {items.map((item) => 
+            <li class="create-offer-popup__payment-req-dropdown-list-item">
+        <input type="text" value={item} readonly class="create-offer-popup__payment-req-dropdown-list-item-input" x-on:click={`resultInputVal = '${item}'`}>
+        </li>
+         )}
+    </ul>  
+      </div>              
+  </div>

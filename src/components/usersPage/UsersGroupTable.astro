@@ -1,0 +1,59 @@
+<div class="site-section__table-wrapper users-group-table__table-wrapper">
+    <nav class="site-section__table users-group-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list users-group-table__table-list users-group-table__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item users-group-table__table-list-item users-group-table__table-list-caption-item">
+            <div class="site-section__table-list-item-checkbox-wrapper users-group-table__table-list-item-checkbox-wrapper visibility-hidden desktop-hide" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox users-group-table__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label users-group-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+            </div>
+            <div class="site-section__table-list-item-checkbox-wrapper users-group-table__table-list-item-checkbox-wrapper mobile-hide" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+              <input type="checkbox" class="site-section__table-list-item-checkbox users-group-table__table-list-item-checkbox">
+              <label class="site-section__table-list-item-label users-group-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+              </label>
+          </div>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-group-table__table-list-item users-group-table__table-list-caption-item">
+            Активность
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-group-table__table-list-item users-group-table__table-list-caption-item">
+            Название
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-group-table__table-list-item users-group-table__table-list-caption-item">
+            Описание
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-group-table__table-list-item users-group-table__table-list-caption-item">
+            Сортировка
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item users-group-table__table-list-item users-group-table__table-list-caption-item">
+            Кол-во польз.
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list users-group-table__table-list">
+        <li class="site-section__table-list-item users-group-table__table-list-item">
+            <div class="site-section__table-list-item-checkbox-wrapper users-group-table__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox users-group-table__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label users-group-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item users-group-table__table-list-item">
+            <span class="site-section__indicator-new blinking"></span>
+        </li>
+        <li class="site-section__table-list-item users-group-table__table-list-item user" x-on:click="editUsersGroupPopup = true">
+            Название группы
+         </li>
+         <li class="site-section__table-list-item users-group-table__table-list-item user">
+            Описание группы
+         </li>
+         <li class="site-section__table-list-item users-group-table__table-list-item">
+            100
+        </li>
+        <li class="site-section__table-list-item users-group-table__table-list-item">
+            2
+        </li>
+      </ul>
+    </template>
+    </nav>
+</div>

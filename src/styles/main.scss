@@ -1,0 +1,246 @@
+@import "utils/functions";
+
+@import "utils/variables";
+
+@import "utils/mixins";
+
+@import "common/fonts";
+
+@import "common/global";
+
+// global components
+
+@import "components/header";
+
+@import "components/headerProfileDropdown";
+
+@import "components/headerEnterAccountDropdown";
+
+@import "components/footer";
+
+@import "components/footerMobileMenu";
+
+@import "components/footerProfileMenu";
+
+@import "components/footerOptionsDropdown";
+
+@import "components/accountEnterPopup";
+
+@import "components/asideNavMenu";
+
+@import "components/searchForm";
+
+@import "components/pagination";
+
+@import "components/tableTabs";
+
+@import "components/addNewFilter";
+
+@import "components/filter";
+
+@import "components/paramsLists";
+
+@import "components/paymentRequirementsDropdown";
+
+@import "components/chooseTransportCompanyDropdown";
+
+@import "components/settingsOrderListPopup";
+
+@import "components/authRegPopup";
+
+// pages + components
+
+@import "pages/orders";
+
+@import "components/ordersPage/createOrderPopup";
+
+@import "components/ordersPage/editOrderPopup";
+
+@import "components/ordersPage/ordersTable";
+
+
+@import "pages/eventsBoard";
+
+@import "components/eventsBoard/lastOrdersTable";
+
+@import "components/eventsBoard/lastCallsTable";
+
+
+@import "pages/financesPage";
+
+@import "components/financePage/financesOfferTable";
+
+@import "components/financePage/financesPageOfferPopup";
+
+@import "components/financePage/settingsFinanceModulePopup";
+
+@import "components/financePage/addOrganizationPopup";
+
+@import "components/financePage/sendOfferPopup";
+
+@import "components/financePage/createUserAccountPopup";
+
+@import "components/financePage/createOfferPopup";
+
+@import "components/financePage/createOfferFormPopup";
+
+@import "components/financePage/newContactPopup";
+
+@import "components/financePage/paymentRequirementsDropdownOffer";
+
+@import "components/financePage/paramsListsOffer";
+
+@import "components/financePage/ChooseTransportCompanyDropdownOffer";
+
+
+@import "pages/contragentsPage";
+
+@import "components/contragentsPage/settingsContragentsModulePopup";
+
+@import "components/contragentsPage/importCompanyCSVPopup";
+
+@import "components/contragentsPage/createContragentPopup";
+
+@import "components/contragentsPage/editContragentPopup";
+
+@import "components/contragentsPage/normalizeDataPopup";
+
+@import "components/contragentsPage/editEventPopup";
+
+@import "components/contragentsPage/createEventPopup";
+
+@import "components/contragentsPage/createTaskPopup";
+
+@import "components/contragentsPage/contragentsPageTable";
+
+@import "components/contragentsPage/editContragentPopupTableOffers";
+
+
+@import "pages/taskPage";
+
+@import "components/taskPage/editTaskPopup";
+
+
+@import "pages/goodsPage";
+
+@import "components/goodsPage/editGoodPopup";
+
+@import "components/goodsPage/addGoodPopup";
+
+@import "components/goodsPage/priceTable";
+
+@import "components/goodsPage/goodsCharsTable";
+
+@import "components/goodsPage/editGoodsPagePriceTablePopup";
+
+@import "components/goodsPage/editGoodsCategoriesTablePopup";
+
+@import "components/goodsPage/addPricePopup";
+
+@import "components/goodsPage/addGoodCatPopup";
+
+@import "components/goodsPage/createCharsPopup";
+
+@import "components/goodsPage/addCharsValuePopup";
+
+@import "components/goodsPage/editCharsValueAltPopup";
+
+@import "components/goodsPage/addGoodPopupTableChars";
+
+
+@import "pages/feedbackPage";
+
+@import "components/feedbackPage/Q&ATable";
+
+@import "components/feedbackPage/Q&AEditMessageAltPopup";
+
+@import "components/feedbackPage/applicationsTable";
+
+@import "components/feedbackPage/editApplicationAltPopup";
+
+@import "components/feedbackPage/deleteChatAltPopup";
+
+@import "components/feedbackPage/archiveChatAltPopup";
+
+
+@import "pages/settingsPage";
+
+
+@import "pages/userPage";
+
+
+@import "pages/usersPage";
+
+@import "components/usersPage/usersTable";
+
+@import "components/usersPage/inviteUserPopup";
+
+@import "components/usersPage/invitedUserAltPopup";
+
+@import "components/usersPage/inviteUserTable";
+
+@import "components/usersPage/usersGroupTable";
+
+@import "components/usersPage/newUsersGroupPopup";
+
+@import "components/usersPage/findUsersAltPopup";
+
+@import "components/usersPage/usersGroupPopupTable";
+
+@import "components/usersPage/editUsersGroupPopup";
+
+@import "components/usersPage/chooseUsersAltPopup";
+
+
+
+@import "pages/filesPage";
+
+@import "components/filesPage/documentFlowTable";
+
+@import "components/filesPage/documentFlowCardsList";
+
+@import "components/filesPage/viewCardInfoAltPopup";
+
+@import "components/filesPage/transferSectionsAltPopup";
+
+@import "components/filesPage/editActionsAltPopup";
+
+@import "components/filesPage/addPassportFolderAltPopup";
+
+@import "components/filesPage/documentFlowAddFolderAltPopup";
+
+
+@import "pages/emailPage";
+
+@import "components/emailPage/incomingMessagesTable";
+
+@import "components/emailPage/newMessagePopup";
+
+@import "components/emailPage/editMessagePopup";
+
+@import "components/emailPage/deleteCommentAltPopup";
+
+@import "components/emailPage/settingsEmailPageListPopup";
+
+@import "components/emailPage/viewSettingsPopup";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

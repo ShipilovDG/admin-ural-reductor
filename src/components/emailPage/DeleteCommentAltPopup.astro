@@ -1,0 +1,33 @@
+<div class="alt-popup delete-comment-alt-popup" x-bind:class="{'active': deleteCommentAltPopup === true}" x-on:click.self="deleteCommentAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form delete-comment-alt-popup__form">
+    <div class="alt-popup__content delete-comment-alt-popup__content">
+     <div class="delete-comment-alt-popup__top-row">
+        <p class="alt-popup__title delete-comment-alt-popup__title">Удалить?</p>
+        <button class="delete-comment-alt-popup__close-btn" type="button" x-on:click="deleteCommentAltPopup = false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+     </div>
+    <div class="alt-popup__body delete-comment-alt-popup__body">
+            <fieldset class="alt-popup__fieldset delete-comment-alt-popup__fieldset b-b">
+              <p class="delete-comment-alt-popup__text">
+                Удаленные элементы могут быть восстановлены в Корзине администратором.
+              </p>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group delete-comment-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item delete-comment-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary delete-comment-alt-popup__undo-btn" x-on:click="deleteCommentAltPopup = false">
+                Отменить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item delete-comment-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary delete-comment-alt-popup__delete-btn" x-on:click="$el.closest('.edit-message-popup__comment-window-list-item').remove(); commentItems.length = 0;deleteCommentAltPopup = false">
+                Удалить
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

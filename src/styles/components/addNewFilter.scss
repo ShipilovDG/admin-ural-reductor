@@ -1,0 +1,295 @@
+.add-new-filter-popup {
+    max-width: 100%;
+
+
+    &__body {
+      margin-left: 20px;
+      margin-right: 20px;
+      padding-left: 0;
+      padding-top: 16px;
+    }
+
+    &__content {
+      border: 1px solid var(--grey-color);
+      box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+      border-radius: 20px;
+    }
+
+    @media (min-width:1200px) {
+      &__content {
+        min-width: 600px;
+        max-height: 784px;
+        margin-top: 60px;
+      }
+    }
+
+    &__title {
+       display: grid;
+       gap: 16px;
+    }
+
+    &__fieldset {
+      display: grid;
+      gap: 16px;
+      padding-bottom: 24px;
+    }
+
+
+    &__form-control-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    @media (min-width:1200px) {
+      &__form-control-group {
+      gap: 16px;
+    }
+    }
+
+    &__form-control-groups {
+      display: grid;
+      align-items: center;
+      grid-template-columns: repeat(2,1fr);
+      gap: 8px;
+    }
+
+    &__form-control-group-title {
+      font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+    }
+
+    &__form-control-group-bottom {
+       display: grid;
+       align-items: center;
+       grid-template-columns: 1fr max-content;
+       gap: 16px;
+    }
+
+    &__form-control-group-bottom-left {
+      display: grid;
+      align-items: center;
+      grid-template-columns: repeat(2,1fr);
+      gap: 8px;
+    }
+
+    &__form-control-btn-group {
+       display: grid;
+       align-items: center;
+       grid-template-columns: repeat(2,max-content);
+       gap: 22px;
+    }
+
+    &__form-control-wrapper {
+      background-color: var(--gray100);
+      border: 1px solid var(--grey-color);
+       border-radius: 4px; 
+       height: 34px;
+    }
+
+    &__form-control-input-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 16px;
+    }
+
+    &__form-control-select-wrapper {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    &__form-control-select-result-input {
+      padding-left: 16px;
+      font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+background: var(--gray100);
+height: 100%;
+    }
+
+    &__form-control-select-arrow {
+      position: absolute;
+      right: 0;
+      width: 12px;
+      height: 6px;
+      margin-right: 18px;
+      margin-top: 4px;
+      transform: rotate(180deg);
+      transition: .3s ease-in-out;
+    }
+    &__form-control-select-arrow.active {
+      transform: rotate(0);
+    }
+
+    &__form-control-select-list {
+       padding: 0;
+       margin: 0;
+       display: grid;
+       padding-top: 8px;
+       padding-bottom: 8px;
+       position: absolute;
+       z-index: 99;
+       top: 2rem;
+       background: var(--gray100);
+       border: 1px solid var(--grey-color);
+       box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+       border-radius: 4px;
+       opacity: 0;
+       visibility: hidden;
+       transition: .3s ease-in-out;
+       width: 100%;
+    }
+
+    &__form-control-select-list.active {
+       opacity: 1;
+       visibility: visible;
+    }
+
+    &__form-control-select-list-item {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 16px;
+    }
+
+    &__form-control-select-list-item-input {
+      font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+    }
+
+    &__add-field-btn {
+       max-width: 140px;
+       margin-left: auto;
+       margin-right: auto;
+    }
+
+    &__btn-group {
+      border-top: 1px solid var(--grey-color);
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (min-width:1200px) {
+      &__btn-group {
+        display: grid;
+        align-items: center;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        gap: 16px;
+        justify-content: unset;
+      }
+    }
+
+    &__save-checkbox {
+      display: grid;
+      align-items: center;
+      grid-template-columns: max-content 1fr;
+      gap: 14px;
+      position: relative;
+    }
+
+    &__save-checkbox-input {
+      padding: 0;
+      margin: 0;
+      width: 22px;
+      height: 22px;
+      background-color: transparent;
+      opacity: 0;
+      cursor: pointer;
+  }
+
+  &__save-checkbox-input:checked + label::after {
+       opacity: 1;
+  }
+  &__save-checkbox-input:checked + label {
+      color: var(--dark);
+  }
+
+  &__save-checkbox-label {
+      font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+cursor: pointer;
+transition: .3s ease-in-out;
+  }
+
+  &__save-checkbox-label::before,
+  &__save-checkbox-label::after {
+      position: absolute;
+      left: 0;
+      content: '';
+  }
+
+  &__save-checkbox-label::before {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--grey600);
+      border-radius: 2px;
+      z-index: 0;
+  }
+
+  &__save-checkbox-label::after {
+      width: 22px;
+      height: 22px;
+      background: url("/icons/setting-checkbox-active.svg") no-repeat center/cover;
+      opacity: 0;
+      z-index: 1;
+      transition: .3s ease-in-out;
+  }
+
+  &__search-filter-btn {
+    max-width: 77px;
+  }
+
+  @media (min-width:1200px) {
+    &__search-filter-btn {
+    max-width: unset;
+    min-width: 77px;
+  }
+    }
+}
+
+@media (min-width:1200px) {
+  .add-new-filter-popup {
+     transform: unset;
+     max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -99;
+
+    &__close-btn.desktop {
+      position: static;
+    order: 1;
+    margin: 0;
+    border: none;
+    }
+
+    &__close-btn-icon {
+       width: 12px;
+       height: 12px;
+    }
+
+    &__top-row {
+      padding-bottom: 16px;
+    }
+  }
+
+  .add-new-filter-popup.active {
+    background-color: rgba(73, 80, 8, 0.2);
+    opacity: 1;
+    visibility: visible;
+    z-index: 99;
+  }
+}

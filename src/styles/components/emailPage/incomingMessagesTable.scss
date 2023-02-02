@@ -1,0 +1,69 @@
+.incoming-messages-table {
+
+  &__table-list {
+    @include media-extra-large() {
+      grid-template-columns: 16px 200px 497px repeat(3,1fr);
+    padding-left: 24px;
+    padding-right: 28px;
+    }
+  }
+
+    &__mail-name-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--green);
+      
+        @include media-extra-large() {
+           width: 20px;
+           height: 20px;
+           grid-row: span 2;
+        }
+      }
+      
+      &__mail-name {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2,max-content);
+        gap: 8px;
+      }
+      
+      &__mail-name-title {
+        font-weight: 400;
+      font-size: 16px;
+      line-height: 18px;
+      color: var(--dark);
+      
+      @include media-custom-max(1199px) {
+        max-width: 15ch;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      }
+      
+      &__mail-name-sender {
+        display: none;
+        font-weight: 400;
+      font-size: 16px;
+      line-height: 18px;
+      color: var(--dark-grey);
+      
+      @include media-extra-large() {
+        display: block;
+        max-width: 38ch;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        grid-column: 2;
+      }
+      }
+
+      &__resp-title {
+        max-width: 14ch;
+
+        @include media-extra-large() {
+           max-width: 100%;
+        }
+    }
+}

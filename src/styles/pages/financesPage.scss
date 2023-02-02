@@ -1,0 +1,111 @@
+// finances page styles
+.finances-page {
+
+    &__body {
+        padding-bottom: 36px;
+        @include media-extra-large() {
+            position: relative;
+            z-index: 0;
+        }
+    }
+
+    &__table-tabs {
+        @include media-custom-max(1199px) {
+            padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        scrollbar-width: none;
+        white-space: nowrap;
+        gap: 0;
+        }
+        @include media-extra-large() {
+            z-index: 1;
+            top: 1px;
+        }
+    }
+   
+    &__table-tabs-item-btn {
+        @include media-custom-max(1199px) {
+            font-size: 22px;
+            line-height: 24px;
+            padding: 8px 16px;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid var(--grey-color);
+        }
+    }
+
+    &__table-tabs-item-btn.active {
+        @include media-custom-max(1199px) {
+            background-color: unset;
+            border-color: unset;
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+    }
+
+    &__table-list {
+        @include media-extra-large() {
+            grid-template-columns: repeat(9,1fr);
+        }
+        @include media-custom-max(1440px) {
+            grid-template-columns: repeat(2,100px) 137px repeat(2,112px) repeat(4,1fr);
+        }
+    }
+
+    &__top-row {
+        justify-content: flex-end;
+        margin-right: 16px;
+        margin-top: 24px;
+
+        @include media-extra-large() {
+            justify-content: space-between;
+            margin-left: 20px;
+            padding-bottom: 0;
+        }
+    }
+
+    &__title {
+        @include media-extra-large() {
+            color: var(--primary);
+        }
+    }
+
+    &__top-row.mobile {
+        @include media-extra-large() {
+            display: none;
+        }
+    }
+
+    &__top-row.desktop {
+        display: none;
+        @include media-extra-large() {
+            display: flex;
+        }
+    }
+
+    &__body-bottom {
+        padding: 21px;
+    }
+
+    &__search-btn-dropdown {
+        top: 4.7rem;
+    }
+
+    &__resp-title {
+        @include media-extra-large() {
+            max-width: 8ch;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    &__top-row-settings-btn {
+        @include media-extra-large() {
+            order: 1;
+        }
+    }
+}

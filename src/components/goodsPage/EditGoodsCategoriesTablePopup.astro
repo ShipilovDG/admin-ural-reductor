@@ -1,0 +1,99 @@
+<div class="popup edit-goods-page-categories-table-popup" x-bind:class="{'active': editGoodsPageCategoriesTablePopup === true}" x-data="{editGoodsPageCategoriesTablePopupSettings: false}">
+    <form action="#" method="post" class="popup__form edit-goods-page-categories-table-popup__form">
+    <div class="popup__content edit-goods-page-categories-table-popup__content">
+  <div class="popup__top-row edit-goods-page-categories-table-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="editGoodsPageCategoriesTablePopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn desktop" type="button" x-on:click="editGoodsPageCategoriesTablePopup = false">
+        <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>            
+    </button>
+    <div class="edit-goods-page-categories-table-popup__title-row">
+    <h2 class="popup__title edit-goods-page-categories-table-popup__title">
+        Карточка категории
+    </h2>
+    <div class="site-section__choose-status-dropdown-wrapper edit-goods-page-categories-table-popup-title-row" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+        <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+          <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+            <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+            <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+            <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>     
+        </button>
+        <ul class="site-section__choose-status-dropdown-list edit-goods-page-categories-table-popup__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+           <li class="site-section__choose-status-dropdown-list-item">
+              <button class="site-section__choose-status-dropdown-list-item-btn icon-btn" type="button" x-on:click="editGoodsPageCategoriesTablePopupSettings = true;toggleStatusDropdown = false"><svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.99984 2.33219L10.6665 4.99886M1.6665 11.3322H4.33317L11.3332 4.33223C11.6868 3.97861 11.8855 3.499 11.8855 2.9989C11.8855 2.4988 11.6868 2.01919 11.3332 1.66557C10.9795 1.31194 10.4999 1.11328 9.99984 1.11328C9.49974 1.11328 9.02013 1.31194 8.6665 1.66557L1.6665 8.66557V11.3322Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Редактировать</button>
+           </li>
+           <li class="site-section__choose-status-dropdown-list-item">
+            <button class="site-section__choose-status-dropdown-list-item-btn icon-btn delete" type="button" x-on:click="toggleStatusDropdown = false"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.6665 3.66667H12.3332M5.6665 6.33333V10.3333M8.33317 6.33333V10.3333M2.33317 3.66667L2.99984 11.6667C2.99984 12.0203 3.14031 12.3594 3.39036 12.6095C3.64041 12.8595 3.97955 13 4.33317 13H9.6665C10.0201 13 10.3593 12.8595 10.6093 12.6095C10.8594 12.3594 10.9998 12.0203 10.9998 11.6667L11.6665 3.66667M4.99984 3.66667V1.66667C4.99984 1.48986 5.07008 1.32029 5.1951 1.19526C5.32012 1.07024 5.48969 1 5.6665 1H8.33317C8.50998 1 8.67955 1.07024 8.80457 1.19526C8.9296 1.32029 8.99984 1.48986 8.99984 1.66667V3.66667" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Удалить</button>
+         </li>
+        </ul>
+    </div>
+    </div>
+   </div>
+    <div class="popup__body edit-goods-page-categories-table-popup__body">
+            <fieldset class="edit-goods-page-categories-table-popup__fieldset" x-show="editGoodsPageCategoriesTablePopupSettings === false">
+               <ul role="list" class="edit-goods-page-categories-table-popup__list">
+                  <li class="edit-goods-page-categories-table-popup__list-item">
+                    <p class="edit-goods-page-categories-table-popup__list-item-title">Сортировка</p>
+                    <p class="edit-goods-page-categories-table-popup__list-item-info">1</p>
+                  </li>
+                  <li class="edit-goods-page-categories-table-popup__list-item">
+                    <p class="edit-goods-page-categories-table-popup__list-item-title">Описание</p>
+                    <p class="edit-goods-page-categories-table-popup__list-item-info">Не указано</p>
+                  </li>
+               </ul>
+            </fieldset>
+            <fieldset class="edit-goods-page-categories-table-popup__fieldset" x-show="editGoodsPageCategoriesTablePopupSettings === true">
+                <div class="edit-goods-page-categories-table-popup__form-control-group">
+                    <p class="edit-goods-page-categories-table-popup__form-control-group-title">
+                        Название
+                    </p>
+                    <div class="edit-goods-page-categories-table-popup__form-control-wrapper edit-goods-page-categories-table-popup__form-control-input-wrapper">
+                        <input type="text" class="edit-goods-page-categories-table-popup__form-control-group-input" value="Розничная цена">
+                    </div>
+                </div>
+                <div class="edit-goods-page-categories-table-popup__form-control-group">
+                    <p class="edit-goods-page-categories-table-popup__form-control-group-title">
+                        Сортировка
+                    </p>
+                    <div class="edit-goods-page-categories-table-popup__form-control-wrapper edit-goods-page-categories-table-popup__form-control-input-wrapper">
+                        <input type="text" class="edit-goods-page-categories-table-popup__form-control-group-input" value="1">
+                    </div>
+                </div>
+                <div class="edit-goods-page-categories-table-popup__form-control-group">
+                    <p class="edit-goods-page-categories-table-popup__form-control-group-title">
+                        Описание
+                    </p>
+                    <textarea class="edit-goods-page-categories-table-popup__form-control-group-textarea" placeholder="Введите описание"></textarea>
+                </div>
+            </fieldset>
+    <ul role="list" class="popup__btn-control-group edit-goods-page-categories-table-popup__btn-control-group">
+      <li class="popup__btn-control-group-item edit-goods-page-categories-table-popup__btn-control-group-item">
+          <button type="button" class="btn btn--flat popup__undo-btn edit-goods-page-categories-table-popup__undo-btn" x-on:click="editGoodsPageCategoriesTablePopup = false">
+              Отменить
+          </button>
+      </li>
+      <li class="popup__btn-control-group-item edit-goods-page-categories-table-popup__btn-control-group-item">
+          <button type="button" class="btn btn--primary popup__save-btn edit-goods-page-categories-table-popup__save-btn">
+              Сохранить
+          </button>
+      </li>
+    </ul>
+    </div>
+</div>
+</form>
+</div>

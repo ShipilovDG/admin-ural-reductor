@@ -1,0 +1,84 @@
+<div class="popup settings-popup settings-email-page-list-popup" x-bind:class="{'active': settingsEmailPageListPopup === true}" x-data="{checkedState: ''}">
+    <form action="#" method="post" class="popup__form settings-popup__form">
+    <div class="popup__content settings-popup__content">
+    <div class="popup__top-row settings-popup__top-row">
+        <button class="popup__close-btn mobile" type="button" x-on:click="settingsEmailPageListPopup = false">
+            <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>                  
+        </button>
+        <button class="popup__close-btn desktop" type="button" x-on:click="settingsEmailPageListPopup = false">
+            <svg class="popup__close-btn-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.53333 1L1 9.53333M1 1L9.53333 9.53333" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>            
+        </button>
+        <h2 class="popup__title settings-popup__title">
+            Настройка списка
+        </h2>
+    </div>
+    <div class="popup__body settings-popup__body">
+        <fieldset class="settings-popup__fieldset settings-email-page-list-popup__fieldset btn-control-group">
+          <button type="button" class="settings-email-page-list-popup__select-all-btn" x-on:click="checkedState = true">
+            Выделить всё
+          </button>
+          <button type="button" class="settings-email-page-list-popup__cancel-all-btn" x-on:click="checkedState = false">
+            Отменить всё
+          </button>
+        </fieldset>
+        <fieldset class="settings-popup__fieldset">
+        <ul role="list" class="settings-popup__list">
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="2" id="Контакт" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="Контакт" class="settings-popup__list-item-label">Контакт</label>
+            </li>
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="2" id="Дата" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="Дата" class="settings-popup__list-item-label">Дата</label>
+            </li>
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="2" id="Папка" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="Папка" class="settings-popup__list-item-label">Папка</label>
+            </li>
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="2" id="Теги" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="Теги" class="settings-popup__list-item-label">Теги</label>
+            </li>
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="2" id="№" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="№" class="settings-popup__list-item-label">№</label>
+            </li>
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="Прочитано" id="Прочитано" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="Прочитано" class="settings-popup__list-item-label">Прочитано</label>
+            </li>
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="2" id="Тип письма" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="Тип письма" class="settings-popup__list-item-label">Тип письма</label>
+            </li>
+            <li class="settings-popup__list-item">
+                <input type="checkbox" name="2" id="Связано с предложением" class="settings-popup__list-item-checkbox" x-bind:checked="checkedState === true ? true : false">
+                <label for="Связано с предложением" class="settings-popup__list-item-label">Связано с предложением</label>
+            </li>
+        </ul>
+        </fieldset>
+    </div>
+    <ul role="list" class="settings-popup__btn-control-group">
+        <li class="settings-popup__btn-control-group-item settings-popup__btn-control-group-item--undo-icon">
+            <svg class="settings-popup__undo-icon" width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.01803 10.5798C1.27091 12.509 2.21825 14.28 3.68271 15.5612C5.14717 16.8423 7.02834 17.5458 8.9741 17.54C10.9199 17.5342 12.7968 16.8194 14.2536 15.5295C15.7103 14.2397 16.6471 12.4631 16.8884 10.5323C17.1297 8.60158 16.6591 6.64907 15.5647 5.04027C14.4703 3.43148 12.827 2.27671 10.9426 1.79212C9.05813 1.30752 7.06166 1.52633 5.3269 2.40759C3.59214 3.28884 2.23802 4.77212 1.51803 6.57977M1.01803 1.57977L1.01803 6.57977L6.01803 6.57977M7.96802 9.57971C7.96802 9.02743 8.41573 8.57971 8.96802 8.57971C9.5203 8.57971 9.96802 9.02743 9.96802 9.57971C9.96802 10.132 9.5203 10.5797 8.96802 10.5797C8.41573 10.5797 7.96802 10.132 7.96802 9.57971Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                
+        </li>
+        <li class="settings-popup__btn-control-group-item">
+            <button type="button" class="btn btn--flat settings-popup__undo-btn" x-on:click="settingsEmailPageListPopup = false">
+                Отменить
+            </button>
+        </li>
+        <li class="settings-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary settings-popup__save-btn">
+                Сохранить
+            </button>
+        </li>
+    </ul>
+    </div>
+    </form>
+    </div>

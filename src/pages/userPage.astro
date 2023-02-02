@@ -1,0 +1,399 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TableTabs from "../components/TableTabs.astro";
+---
+<Layout title="страница Карточка пользователя">
+  <section class="site-section user-page__site-section desktop-hide" x-data="{table: 1, attachAvatarPhoto: false }">
+    <h1 class="site-section__page-title user-page__page-title">vtr@uralreduktor.ru</h1>
+    <TableTabs></TableTabs>
+    <div class="site-section__tab-wrapper" x-show="table === 1" x-data="{
+        toggleBtn: 'edit',
+        avatarBtnStatus: 'online',
+        editFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.removeAttribute('disabled');
+              })
+        },
+        saveFields() {
+            const inputs = $el.querySelectorAll('input');
+            [...inputs].forEach((input) => {
+                input.setAttribute('disabled', 'true');
+              })
+        }
+    }">
+        <form action="#" method="post" class="site-section__body user-page__body">
+           <fieldset class="user-page__fieldset">
+              <div class="user-page__attach-avatar-wrapper">
+                <div class="user-page__attach-avatar-wrapper-left">
+                <div class="user-page__avatar">
+                    <img src="" alt="settings Page Avatar Img" class="user-page__avatar-img hidden" decoding="async">
+                    <span class="user-page__avatar-letter">
+                        V 
+                    </span>
+               </div>
+                <button type="button" class="user-page__avatar-status-btn" x-text="avatarBtnStatus === 'online' ? 'В сети' : 'Не в сети'" x-bind:class="{'online': avatarBtnStatus === 'online', 'offline': avatarBtnStatus === 'offline'}"></button>
+               </div>
+               <div class="user-page__attach-avatar-wrapper-right">
+                <div class="user-page__attach-avatar-btn">
+                    <input type="file" class ="user-page__attach-avatar-file-input" accept=".jpg, .jpeg, .png">
+                    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.66667 5.33594H5C5.70724 5.33594 6.38552 5.05499 6.88562 4.55489C7.38572 4.05479 7.66667 3.37651 7.66667 2.66927C7.66667 2.31565 7.80714 1.97651 8.05719 1.72646C8.30724 1.47641 8.64638 1.33594 9 1.33594H17C17.3536 1.33594 17.6928 1.47641 17.9428 1.72646C18.1929 1.97651 18.3333 2.31565 18.3333 2.66927C18.3333 3.37651 18.6143 4.05479 19.1144 4.55489C19.6145 5.05499 20.2928 5.33594 21 5.33594H22.3333C23.0406 5.33594 23.7189 5.61689 24.219 6.11699C24.719 6.61708 25 7.29536 25 8.0026V20.0026C25 20.7098 24.719 21.3881 24.219 21.8882C23.7189 22.3883 23.0406 22.6693 22.3333 22.6693H3.66667C2.95942 22.6693 2.28115 22.3883 1.78105 21.8882C1.28095 21.3881 1 20.7098 1 20.0026V8.0026C1 7.29536 1.28095 6.61708 1.78105 6.11699C2.28115 5.61689 2.95942 5.33594 3.66667 5.33594Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13 17.3359C15.2091 17.3359 17 15.5451 17 13.3359C17 11.1268 15.2091 9.33594 13 9.33594C10.7909 9.33594 9 11.1268 9 13.3359C9 15.5451 10.7909 17.3359 13 17.3359Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                </div>
+                <button type="button" class="user-page__attach-avatar-edit-btn">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        
+                </button>
+                </div>
+              </div>
+              <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Логин (e-mail)
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
+                  <input type="text" disabled class="site-section__form-control-input user-page__form-control-input" value="vtr@uralreduktor.ru">
+                </div>
+             </div>
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Телефон
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
+                  <input type="tel" disabled class="site-section__form-control-input user-page__form-control-input" value="+7-999-999-99-99">
+                </div>
+             </div>
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Дата рождения
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
+                  <input disabled class="site-section__form-control-input user-page__form-control-input" placeholder="__.__.____" x-mask="99.99.9999">
+                </div>
+             </div>
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-page-title user-page__form-control-group-page-title">
+                    Группа
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper
+                site-section__form-control-select-wrapper user-page__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: 'Администратор'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input user-page__form-control-select-result-input" value="Администратор" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown user-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list user-page__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="Администратор" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="Администратор 2" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор 2'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="Администратор 3" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор 3'">
+                     </li>
+                   </ul>
+                   </div>
+                   <svg class="site-section__form-control-select-arrow user-page__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                     <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                  
+                </div>
+             </div>
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-page-title user-page__form-control-group-page-title">
+                    Часовой пояс
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper
+                site-section__form-control-select-wrapper user-page__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input user-page__form-control-select-result-input" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown user-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list user-page__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 2" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 2'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 3" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 3'">
+                     </li>
+                   </ul>
+                   </div>              
+                </div>
+             </div>
+           </fieldset>
+        </form>
+    </div>
+    <div class="site-section__tab-wrapper" x-show="table === 2">
+        <form action="#" method="post" class="site-section__body user-page__body user-company">
+            <fieldset class="user-page__fieldset">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title user-company">
+                    Компании пользователя
+                 </p>
+                 <ul role="list" class="user-page__user-company-list">
+                    <li class="user-page__user-company-list-item">
+                        <svg class="user-page__user-company-list-item-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> 
+                            <p class="user-page__user-company-list-item-title">ООО “Уралредуктор”</p>                           
+                    </li>
+                 </ul>
+            </fieldset>
+         </form>
+    </div>
+    <div class="site-section__tab-wrapper" x-show="table === 3">
+        <form action="#" method="post" class="site-section__body user-page__body admin-permissions">
+            <fieldset class="user-page__fieldset">
+               <ul role="list" class="user-page__admin-permissions-list" x-data="{items: [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}">
+                <li class="user-page__admin-permissions-list-item">
+                    <div class="user-page__checkbox-item">
+                        <input type="checkbox" name="adminPermissions" id="adminPermission1" class="user-page__checkbox" checked>
+                        <label for="adminPermission1" class="user-page__checkbox-label">Разрешение</label>
+                     </div>
+                </li>
+                <li class="user-page__admin-permissions-list-item">
+                    <div class="user-page__checkbox-item">
+                        <input type="checkbox" name="adminPermissions" id="adminPermission2" class="user-page__checkbox" checked>
+                        <label for="adminPermission2" class="user-page__checkbox-label">Разрешение</label>
+                     </div>
+                </li>
+                <template x-for="(item,index) in items">
+                    <li class="user-page__admin-permissions-list-item">
+                        <div class="user-page__checkbox-item">
+                            <input type="checkbox" name="adminPermissions"
+                            x-bind:id="'adminPermission'+item"
+                            class="user-page__checkbox">
+                            <label x-bind:for="'adminPermission'+item" class="user-page__checkbox-label">Разрешение</label>
+                         </div>
+                    </li>
+                </template>
+               </ul>
+            </fieldset>
+         </form>
+    </div>
+  </section>
+  <section class="site-section user-page__site-section mobile-hide" x-data="{table: 1, attachAvatarPhoto: false }">
+    <h1 class="site-section__page-title user-page__page-title">vtr@uralreduktor.ru</h1>
+    <div class="user-page__grid" x-data="{
+      toggleBtn: 'edit',
+      avatarBtnStatus: 'online',
+      editFields() {
+          const inputs = $el.querySelectorAll('input');
+          [...inputs].forEach((input) => {
+              input.removeAttribute('disabled');
+            })
+      },
+      saveFields() {
+          const inputs = $el.querySelectorAll('input');
+          [...inputs].forEach((input) => {
+              input.setAttribute('disabled', 'true');
+            })
+      }
+  }">
+    <div class="site-section__tab-wrapper">
+        <form action="#" method="post" class="site-section__body user-page__body personal-data">
+            <div class="user-page__attach-avatar-wrapper">
+                <div class="user-page__avatar">
+                    <img src="" alt="settings Page Avatar Img" class="user-page__avatar-img desktop hidden" decoding="async">
+                    <span class="user-page__avatar-letter desktop">
+                        V 
+                    </span>
+                    <div class="user-page__attach-avatar-btn">
+                        <input type="file" class ="user-page__attach-avatar-file-input desktop" accept=".jpg, .jpeg, .png">
+                        <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.66667 5.33594H5C5.70724 5.33594 6.38552 5.05499 6.88562 4.55489C7.38572 4.05479 7.66667 3.37651 7.66667 2.66927C7.66667 2.31565 7.80714 1.97651 8.05719 1.72646C8.30724 1.47641 8.64638 1.33594 9 1.33594H17C17.3536 1.33594 17.6928 1.47641 17.9428 1.72646C18.1929 1.97651 18.3333 2.31565 18.3333 2.66927C18.3333 3.37651 18.6143 4.05479 19.1144 4.55489C19.6145 5.05499 20.2928 5.33594 21 5.33594H22.3333C23.0406 5.33594 23.7189 5.61689 24.219 6.11699C24.719 6.61708 25 7.29536 25 8.0026V20.0026C25 20.7098 24.719 21.3881 24.219 21.8882C23.7189 22.3883 23.0406 22.6693 22.3333 22.6693H3.66667C2.95942 22.6693 2.28115 22.3883 1.78105 21.8882C1.28095 21.3881 1 20.7098 1 20.0026V8.0026C1 7.29536 1.28095 6.61708 1.78105 6.11699C2.28115 5.61689 2.95942 5.33594 3.66667 5.33594Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13 17.3359C15.2091 17.3359 17 15.5451 17 13.3359C17 11.1268 15.2091 9.33594 13 9.33594C10.7909 9.33594 9 11.1268 9 13.3359C9 15.5451 10.7909 17.3359 13 17.3359Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                    </div>
+               </div>
+                <button type="button" class="user-page__avatar-status-btn" x-text="avatarBtnStatus === 'online' ? 'В сети' : 'Не в сети'" x-bind:class="{'online': avatarBtnStatus === 'online', 'offline': avatarBtnStatus === 'offline'}"></button>
+              </div>
+           <fieldset class="user-page__fieldset">
+            <div class="site-section__form-control-group user-page__form-control-group data-title-row m-b b-b">
+                <p class="site-section__form-control-group-page-title user-page__form-control-group-page-title">
+                    Данные пользователя
+                 </p>
+                <button type="button" class="user-page__attach-avatar-edit-btn">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>  
+                </button>
+            </div>
+              <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Логин (e-mail)
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
+                  <input type="text" disabled class="site-section__form-control-input user-page__form-control-input" value="vtr@uralreduktor.ru">
+                </div>
+             </div>
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Телефон
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
+                  <input type="tel" disabled class="site-section__form-control-input user-page__form-control-input" value="+7-999-999-99-99">
+                </div>
+             </div>
+             <div class="user-page__form-control-group-row fio-date">
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    ФИО
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
+                  <input type="text" disabled class="site-section__form-control-input user-page__form-control-input">
+                </div>
+             </div>
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Дата рождения
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
+                  <input disabled class="site-section__form-control-input user-page__form-control-input" placeholder="__.__.____" x-mask="99.99.9999">
+                </div>
+             </div>
+             </div>
+             <div class="user-page__form-control-group-row group-time">
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Группа
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper
+                site-section__form-control-select-wrapper user-page__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: 'Администратор'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input user-page__form-control-select-result-input" value="Администратор" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown user-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list user-page__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="Администратор" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="Администратор 2" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор 2'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="Администратор 3" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = 'Администратор 3'">
+                     </li>
+                   </ul>
+                   </div>
+                   <svg class="site-section__form-control-select-arrow user-page__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                     <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                     </svg>                  
+                </div>
+             </div>
+             <div class="site-section__form-control-group user-page__form-control-group">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title">
+                    Часовой пояс
+                </p>
+                <div class="site-section__form-control-wrapper user-page__form-control-wrapper
+                site-section__form-control-select-wrapper user-page__form-control-select-wrapper" x-data="{toggleArrow: false, toggleSelectList: false, resultInputVal: '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                   <input type="text" class="site-section__form-control-select-result-input user-page__form-control-select-result-input" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly x-model="resultInputVal">
+                   <div class="site-section__form-control-dropdown user-page__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                   <ul role="list" class="site-section__form-control-select-list user-page__form-control-select-list">
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm)'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 2" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 2'">
+                     </li>
+                     <li class="site-section__form-control-select-list-item user-page__form-control-select-list-item">
+                       <input type="text" value="(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 3" readonly class="site-section__form-control-select-list-item-input user-page__form-control-select-list-item-input" x-on:click="resultInputVal = '(UTC +05:00) Yekaterinburg - 15:49 (3:49 pm) 3'">
+                     </li>
+                   </ul>
+                   </div>  
+                </div>            
+            </div>
+             </div>
+           </fieldset>
+        </form>
+    </div>
+    <div class="site-section__tab-wrapper">
+        <form action="#" method="post" class="site-section__body user-page__body user-company">
+            <fieldset class="user-page__fieldset">
+                <p class="site-section__form-control-group-title user-page__form-control-group-title user-company">
+                    Компании пользователя
+                 </p>
+                 <ul role="list" class="user-page__user-company-list">
+                    <li class="user-page__user-company-list-item">
+                        <svg class="user-page__user-company-list-item-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> 
+                            <p class="user-page__user-company-list-item-title">ООО “Уралредуктор”</p>                           
+                    </li>
+                 </ul>
+            </fieldset>
+         </form>
+    </div>
+    <div class="site-section__tab-wrapper user-page__tab-wrapper permissions">
+        <form action="#" method="post" class="site-section__body user-page__body admin-permissions">
+            <fieldset class="user-page__fieldset">
+                <p class="site-section__form-control-group-page-title user-page__form-control-group-page-title admin-permissions">
+                    Разрешения
+                 </p>
+               <ul role="list" class="user-page__admin-permissions-list" x-data="{items: [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]}">
+                <li class="user-page__admin-permissions-list-item">
+                    <div class="user-page__checkbox-item">
+                        <input type="checkbox" name="adminPermissionsDesktop" id="adminPermissionDesktop1" class="user-page__checkbox" checked>
+                        <label for="adminPermissionDesktop1" class="user-page__checkbox-label">Разрешение</label>
+                     </div>
+                </li>
+                <li class="user-page__admin-permissions-list-item">
+                    <div class="user-page__checkbox-item">
+                        <input type="checkbox" name="adminPermissionsDesktop" id="adminPermissionDesktop2" class="user-page__checkbox" checked>
+                        <label for="adminPermissionDesktop2" class="user-page__checkbox-label">Разрешение</label>
+                     </div>
+                </li>
+                <template x-for="(item,index) in items">
+                    <li class="user-page__admin-permissions-list-item">
+                        <div class="user-page__checkbox-item">
+                            <input type="checkbox" name="adminPermissionsDesktop"
+                            x-bind:id="'adminPermissionDesktop'+item"
+                            class="user-page__checkbox">
+                            <label x-bind:for="'adminPermissionDesktop'+item" class="user-page__checkbox-label">Разрешение</label>
+                         </div>
+                    </li>
+                </template>
+               </ul>
+            </fieldset>
+         </form>
+    </div>
+    </div>
+  </section>
+
+  <script type="module">
+    function attachAvatarImg() {
+ const fileSelector = document.querySelector('.user-page__attach-avatar-file-input');
+ const settingsPageAvatarLetter =  document.querySelector('.user-page__avatar-letter');
+ const settingsPageAvatarImg = document.querySelector('.user-page__avatar-img');
+fileSelector.addEventListener('change', (event) => {
+const file = event.target.files[0];
+const reader = new FileReader();
+reader.readAsDataURL(file);
+reader.addEventListener('load', event => {
+settingsPageAvatarImg.src = event.target.result;
+});
+settingsPageAvatarImg.classList.remove('hidden');
+settingsPageAvatarLetter.classList.add('hidden');
+});
+      }
+
+      attachAvatarImg();
+
+      function attachAvatarImgDesktop() {
+ const fileSelector = document.querySelector('.user-page__attach-avatar-file-input.desktop');
+ const settingsPageAvatarLetter =  document.querySelector('.user-page__avatar-letter.desktop');
+ const settingsPageAvatarImg = document.querySelector('.user-page__avatar-img.desktop');
+fileSelector.addEventListener('change', (event) => {
+const file = event.target.files[0];
+const reader = new FileReader();
+reader.readAsDataURL(file);
+reader.addEventListener('load', event => {
+settingsPageAvatarImg.src = event.target.result;
+});
+settingsPageAvatarImg.classList.remove('hidden');
+settingsPageAvatarLetter.classList.add('hidden');
+});
+      }
+
+      attachAvatarImgDesktop();
+ </script>
+</Layout>
+

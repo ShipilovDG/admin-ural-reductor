@@ -1,0 +1,199 @@
+.settings-finance-module-popup {
+    max-width: 1080px;
+
+    &__body {
+        padding-left: 0;
+        padding-bottom: 36px;
+
+        @include media-extra-large() {
+            border: none;
+        }
+    }
+
+    &__body-bottom {
+        padding: 21px;
+
+        @include media-extra-large() {
+            padding-top: 0;
+        }
+    }
+
+    &__title {
+        @include media-extra-large() {
+            color: var(--primary);
+        }
+    }
+
+    &__tab-wrapper {
+        margin-left: 16px;
+        margin-right: 16px;
+        display: none;
+        overflow: auto;
+        scrollbar-width: none;
+
+        @include media-extra-large() {
+            padding-top: 30px;
+        }
+    }
+
+    &__tab-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__tab-wrapper.active {
+            display: block;
+    }
+
+
+    &__table-tabs {
+        padding: 0;
+        padding-bottom: 1rem;
+        margin: 0;
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2,1fr);
+        overflow-x: auto;
+        scrollbar-width: none;
+        white-space: nowrap;
+        gap: 0;
+
+        @include media-extra-large() {
+            overflow-x: unset;
+            grid-template-columns: repeat(2,max-content);
+            border-bottom: 1px solid var(--grey-color);
+            padding-left: 30px;
+            padding-bottom: 0;
+            gap: 60px;
+        }
+    }
+   
+    &__table-tabs-item-btn {
+        font-size: 22px;
+line-height: 24px;
+padding: 8px 16px;
+border-radius: 0;
+border: none;
+border-bottom: 1px solid var(--grey-color);
+width: 100%;
+
+@include media-extra-large() {
+    border-bottom: 2px solid transparent;
+    font-size: 16px;
+line-height: 18px;
+padding: 8px;
+}
+    }
+
+    &__table-tabs-item-btn.active {
+        background-color: unset;
+        border-color: unset;
+        border-bottom-color: var(--primary);
+        color: var(--primary);
+    }
+
+    &__available-forms-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 16px;
+
+        @include media-extra-large() {
+            padding-top: 8px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+
+    &__available-forms-wrapper.mobile {
+        @include media-extra-large() {
+            display: none;
+        }
+    }
+
+    &__available-forms-wrapper.desktop {
+        display: none;
+        @include media-extra-large() {
+            display: flex;
+        }
+    }
+
+    &__org-top-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 16px;
+    }
+
+    &__create-offer-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+color: var(--gray100);
+max-width: 90px;
+    }
+
+    &__add-org-btn {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        color: var(--gray100);
+        max-width: 202px;
+
+        @include media-extra-large() {
+            margin-top: 8px;
+            margin-right: 20px;
+            margin-left: auto;
+        }
+    }
+
+    &__add-org-btn.mobile {
+        @include media-extra-large() {
+            display: none;
+        }
+    }
+
+    &__add-org-btn.desktop {
+        display: none;
+        @include media-extra-large() {
+            display: flex;
+        }
+    }
+
+    &__org-tooltip {
+        background-color: var(--blue);
+        padding: 16px;
+
+        @include media-extra-large() {
+            padding: 16px 20px;
+        }
+    }
+
+    &__org-tooltip-text {
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--gray100);
+    }
+
+    &__table-list {
+        @include media-extra-large() {
+            grid-template-columns: max-content repeat(2,1fr);
+            padding: 13px 0;
+            padding-left: 20px;
+        }
+    }
+
+    &__table-caption-list {
+        @include media-extra-large() {
+            padding: 8px 0;
+            padding-left: 20px;
+        }
+    }
+
+
+    &__table-list.org-list {
+        @include media-extra-large() {
+            grid-template-columns: max-content 1fr;
+        }
+    }
+}

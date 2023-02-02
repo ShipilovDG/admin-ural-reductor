@@ -1,0 +1,86 @@
+<div class="site-section__table-wrapper goods-page-price-table__table-wrapper">
+    <nav class="site-section__table goods-page-price-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+      <ul role="list" class="site-section__table-list site-section__table-caption-list goods-page-price-table__table-list goods-page-price-table__table-caption-list">
+        <li class="site-section__table-list-item site-section__table-caption-list-item goods-page-price-table__table-list-item goods-page-price-table__table-list-caption-item">
+            <div class="site-section__table-list-item-checkbox-wrapper goods-page-price-table__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox goods-page-price-table__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label goods-page-price-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page-price-table__table-list-item goods-page-price-table__table-list-caption-item">
+            Цена
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page-price-table__table-list-item goods-page-price-table__table-list-caption-item">
+            Описание
+          </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page-price-table__table-list-item goods-page-price-table__table-list-caption-item">
+            Сортировка
+        </li>
+        <li class="site-section__table-list-item site-section__table-list-caption-item goods-page-price-table__table-list-item goods-page-price-table__table-list-caption-item desktop-hide">
+            <div class="site-section__choose-status-dropdown-wrapper visibility-hidden" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                  <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>     
+                </button>
+                <ul class="site-section__choose-status-dropdown-list goods-page-price-table__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                   <li class="site-section__choose-status-dropdown-list-item">
+                      <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
+                   </li>
+                   <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
+                 </li>
+                </ul>
+            </div>
+        </li>
+      </ul>
+      <template x-for="table in tables">
+      <ul role="list" class="site-section__table-list goods-page-price-table__table-list">
+        <li class="site-section__table-list-item goods-page-price-table__table-list-item">
+            <div class="site-section__table-list-item-checkbox-wrapper goods-page-price-table__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="site-section__table-list-item-checkbox goods-page-price-table__table-list-item-checkbox">
+                <label class="site-section__table-list-item-label goods-page-price-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+                </div>
+        </li>
+        <li class="site-section__table-list-item goods-page-price-table__table-list-item" x-on:click="editGoodsPagePriceTablePopup = true">
+            Розничная    
+        </li>
+        <li class="site-section__table-list-item goods-page-price-table__table-list-item" x-on:click="editGoodsPagePriceTablePopup = true">
+            Нет описания
+         </li>
+        <li class="site-section__table-list-item goods-page-price-table__table-list-item" x-on:click="editGoodsPagePriceTablePopup = true">
+            1
+        </li>
+        <li class="site-section__table-list-item goods-page-price-table__table-list-item desktop-hide">
+            <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                  <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>     
+                </button>
+                <ul class="site-section__choose-status-dropdown-list goods-page-price-table__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                   <li class="site-section__choose-status-dropdown-list-item">
+                      <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
+                   </li>
+                   <li class="site-section__choose-status-dropdown-list-item">
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
+                 </li>
+                </ul>
+            </div>
+        </li>
+      </ul>
+    </template>
+    </nav>
+</div>

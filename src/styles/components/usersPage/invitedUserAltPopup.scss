@@ -1,0 +1,115 @@
+.invited-user-alt-popup {
+
+    &__content {
+        max-height: 100%;
+        max-width: 343px;
+    }
+
+    &__commercial-offer {
+        background-color: var(--gray100);
+        border: 1px solid var(--grey-color);
+        border-radius: 4px;
+    
+        @include media-extra-large() {
+            margin: 0;
+        }
+    }
+    
+    &__commercial-offer-top {
+        border-top: 1px solid var(--grey-color);
+        border-bottom: 1px solid var(--grey-color);
+        padding: 24px 0;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background-color: var(--gray200);
+    }
+    
+    &__commercial-offer-logo {
+        margin: auto;
+    }
+    
+    &__commercial-offer-body {
+        display: grid;
+    }
+    
+    &__commercial-offer-body-top {
+        font-family: 'Inter',sans-serif;
+        font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--dark);
+    display: grid;
+    gap: 16px;
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--grey-color);
+    }
+    
+    &__commercial-offer-body-middle {
+        padding: 30px;
+        border-bottom: 1px solid var(--grey-color);
+    }
+    
+    &__commercial-offer-body-middle-wrapper {
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        border-bottom: 1px solid var(--grey-color);
+    }
+    
+    
+    &__commercial-offer-body-account-list {
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 16px;
+    }
+    
+    &__commercial-offer-body-account-list-item {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 68px max-content;
+        gap: 13px;
+    
+        strong {
+            font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--dark);
+        }
+    
+        p {
+            font-family: 'Inter',sans-serif;
+            font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--dark);
+        }
+    }
+    
+    &__cabinet-link {
+        font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--gray100);
+    max-width: 227px;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    &__commercial-offer-body-bottom {
+        display: grid;
+        gap: 16px;
+        font-family: 'Inter',sans-serif;
+        font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 24px 16px;
+    }
+
+
+}

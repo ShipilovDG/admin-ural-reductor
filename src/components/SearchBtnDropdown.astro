@@ -1,0 +1,23 @@
+---
+let items = ['Результат поиска', 'Документы', 'Документы', 'Документы', 'Документы', 'Документы', 'Документы', 'Результат поиска'];
+
+let classes;
+
+if(Astro.url.pathname === '/financesPage' || Astro.url.pathname === '/financesPage.html') {
+    classes = 'site-section__search-btn-dropdown finances-page__search-btn-dropdown';
+} else {
+    classes = 'site-section__search-btn-dropdown';
+}
+---
+<div class={classes} x-bind:class="{'active': searchBtnDropdown === true}">
+    <input type="text" class="site-section__search-btn-dropdown-search-input">
+    <ul role="list" class="site-section__search-btn-dropdown-list">
+        {
+            items.map((item) => 
+              <li class="site-section__search-btn-dropdown-list-item">
+                <input readonly class="site-section__search-btn-dropdown-list-item-input" value={item} x-on:click="searchBtnDropdown = false">
+                </li>
+            )
+        }
+    </ul>
+</div>

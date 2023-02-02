@@ -1,0 +1,41 @@
+<div class="alt-popup transfer-sections-alt-popup" x-bind:class="{'active': transferSectionsAltPopup === true}" x-on:click.self="transferSectionsAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form transfer-sections-alt-popup__form">
+    <div class="alt-popup__content transfer-sections-alt-popup__content">
+     <div class="transfer-sections-alt-popup__top-row">
+        <p class="alt-popup__title transfer-sections-alt-popup__title">Выберите раздел для<br> переноса</p>
+     </div>
+    <div class="alt-popup__body transfer-sections-alt-popup__body">
+            <fieldset class="alt-popup__fieldset transfer-sections-alt-popup__fieldset b-b">
+               <ul role="list" class="transfer-sections-alt-popup__list">
+                 <li class="transfer-sections-alt-popup__list-item" x-data="{toggleSubList: true}">
+                     <button type="button" class="transfer-sections-alt-popup__list-item-file-btn" x-on:click="toggleSubList = !toggleSubList">Документы</button>
+                     <ul role="list" class="transfer-sections-alt-popup__sub-list" x-show="toggleSubList === true">
+                        <li class="transfer-sections-alt-popup__sub-list-item">
+                            <button type="button" class="transfer-sections-alt-popup__list-item-file-btn">Папка</button>
+                        </li>
+                        <li class="transfer-sections-alt-popup__sub-list-item">
+                            <button type="button" class="transfer-sections-alt-popup__list-item-file-btn">Папка</button>
+                        </li>
+                        <li class="transfer-sections-alt-popup__sub-list-item">
+                            <button type="button" class="transfer-sections-alt-popup__list-item-file-btn">Папка</button>
+                        </li>
+                     </ul>
+                 </li>
+               </ul>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group transfer-sections-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item transfer-sections-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary transfer-sections-alt-popup__undo-btn" x-on:click="transferSectionsAltPopup = false">
+                Отменить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item transfer-sections-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary transfer-sections-alt-popup__save-btn" x-on:click="transferSectionsAltPopup = false; toogleUsersGroupPopupTable = true">
+                Ок
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

@@ -1,0 +1,324 @@
+<div class="popup add-new-filter-popup" x-bind:class="{'active': addNewFilterPopup === true}" x-on:click.self="addNewFilterPopup = false">
+    <form action="#" method="post" class="popup__form add-new-filter-popup__form">
+    <div class="popup__content add-new-filter-popup__content">
+  <div class="popup__top-row add-new-filter-popup__top-row">
+    <button class="popup__close-btn mobile" type="button" x-on:click="addNewFilterPopup = false">
+      <svg class="popup__close-btn-icon" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L13 1" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                  
+  </button>
+    <button class="popup__close-btn add-new-filter-popup__close-btn desktop" type="button" x-on:click="addNewFilterPopup = false">
+      <svg class="popup__close-btn-icon add-new-filter-popup__close-btn-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 1L1 13M1 1L13 13" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>                 
+    </button>
+    <h2 class="popup__title add-new-filter-popup__title">
+        Фильтры
+    </h2>
+</div>
+    <div class="popup__body add-new-filter-popup__body">
+       <fieldset class="add-new-filter-popup__fieldset">
+         <div class="add-new-filter-popup__form-control-group">
+          <p class="add-new-filter-popup__form-control-group-title">
+              Дата
+          </p>
+          <div class="add-new-filter-popup__form-control-group-bottom">
+            <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Любая дата'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                <input type="text" class="add-new-filter-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 1" value="Любая дата" readonly="" x-model="resultInputVal">
+                <ul role="list" class="add-new-filter-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                  <li class="add-new-filter-popup__form-control-select-list-item">
+                    <input type="text" name="Любая дата" id="Любая дата 1" value="Любая дата" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Любая дата'">
+                  </li>
+                  <li class="add-new-filter-popup__form-control-select-list-item">
+                    <input type="text" name="Любая дата 2" id="Любая дата 3" value="Любая дата 2" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Любая дата 2'">
+                  </li>
+                  <li class="add-new-filter-popup__form-control-select-list-item">
+                    <input type="text" name="Любая дата 3" id="Любая дата 4" value="Любая дата 3" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Любая дата 3'">
+                  </li>
+                </ul>
+                <svg class="add-new-filter-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                  <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>                  
+              </div>
+              <div class="add-new-filter-popup__form-control-btn-group">
+                 <button type="button" class="add-new-filter-popup__cancel-btn">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 1L1 17M1 1L17 17" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                        
+                 </button>
+                 <button type="button" class="add-new-filter-popup__pin-btn">
+                    <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 2L9.66667 7.33334L4.33333 9.33334L2.33333 11.3333L11.6667 20.6667L13.6667 18.6667L15.6667 13.3333L21 8M7 16L1 22M14.3333 1.33334L21.6667 8.66667" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                                             
+                 </button>
+              </div>
+          </div>
+         </div>
+         <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Сумма
+            </p>
+            <div class="add-new-filter-popup__form-control-group-bottom">
+              <div class="add-new-filter-popup__form-control-group-bottom-left">
+              <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Равен'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="add-new-filter-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 2" value="Равен" readonly="" x-model="resultInputVal">
+                  <ul role="list" class="add-new-filter-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Равен" id="Равен" value="Равен" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Равен'">
+                    </li>
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Больше" id="Больше" value="Больше" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Больше'">
+                    </li>
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Меньше" id="Меньше" value="Меньше" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Меньше'">
+                    </li>
+                  </ul>
+                  <svg class="add-new-filter-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                  
+                </div>
+                <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+                    <input type="text" class="add-new-filter-popup__form-control-input">
+                </div>
+              </div>
+                <div class="add-new-filter-popup__form-control-btn-group">
+                   <button type="button" class="add-new-filter-popup__cancel-btn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 1L1 17M1 1L17 17" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                        
+                   </button>
+                   <button type="button" class="add-new-filter-popup__pin-btn">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 2L9.66667 7.33334L4.33333 9.33334L2.33333 11.3333L11.6667 20.6667L13.6667 18.6667L15.6667 13.3333L21 8M7 16L1 22M14.3333 1.33334L21.6667 8.66667" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                             
+                   </button>
+                </div>
+            </div>
+           </div>
+           <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Контрагент
+            </p>
+            <div class="add-new-filter-popup__form-control-group-bottom">
+                <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+                    <input type="text" class="add-new-filter-popup__form-control-input">
+                </div>
+                <div class="add-new-filter-popup__form-control-btn-group">
+                   <button type="button" class="add-new-filter-popup__cancel-btn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 1L1 17M1 1L17 17" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                        
+                   </button>
+                   <button type="button" class="add-new-filter-popup__pin-btn">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 2L9.66667 7.33334L4.33333 9.33334L2.33333 11.3333L11.6667 20.6667L13.6667 18.6667L15.6667 13.3333L21 8M7 16L1 22M14.3333 1.33334L21.6667 8.66667" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                             
+                   </button>
+                </div>
+            </div>
+           </div>
+           <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Статус
+            </p>
+            <div class="add-new-filter-popup__form-control-group-bottom">
+              <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-select-wrapper state-select" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Любая дата'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="add-new-filter-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 3" value="Любая дата" readonly="" x-model="resultInputVal">
+                  <ul role="list" class="add-new-filter-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Любая дата" id="Любая дата 44" value="Любая дата" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Любая дата'">
+                    </li>
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Любая дата 2" id="Любая дата 4" value="Любая дата 2" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Любая дата 2'">
+                    </li>
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Любая дата 3" id="Любая дата 33" value="Любая дата 3" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Любая дата 3'">
+                    </li>
+                  </ul>
+                  <svg class="add-new-filter-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                  
+                </div>
+                <div class="add-new-filter-popup__form-control-btn-group">
+                   <button type="button" class="add-new-filter-popup__cancel-btn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 1L1 17M1 1L17 17" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                        
+                   </button>
+                   <button type="button" class="add-new-filter-popup__pin-btn">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 2L9.66667 7.33334L4.33333 9.33334L2.33333 11.3333L11.6667 20.6667L13.6667 18.6667L15.6667 13.3333L21 8M7 16L1 22M14.3333 1.33334L21.6667 8.66667" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                             
+                   </button>
+                </div>
+            </div>
+           </div>
+           <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Организация
+            </p>
+            <div class="add-new-filter-popup__form-control-group-bottom">
+                <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+                    <input type="text" class="add-new-filter-popup__form-control-input">
+                </div>
+                <div class="add-new-filter-popup__form-control-btn-group">
+                   <button type="button" class="add-new-filter-popup__cancel-btn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 1L1 17M1 1L17 17" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                        
+                   </button>
+                   <button type="button" class="add-new-filter-popup__pin-btn">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 2L9.66667 7.33334L4.33333 9.33334L2.33333 11.3333L11.6667 20.6667L13.6667 18.6667L15.6667 13.3333L21 8M7 16L1 22M14.3333 1.33334L21.6667 8.66667" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                             
+                   </button>
+                </div>
+            </div>
+           </div>
+           <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Ответственный
+            </p>
+            <div class="add-new-filter-popup__form-control-group-bottom">
+                <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+                    <input type="text" class="add-new-filter-popup__form-control-input">
+                </div>
+                <div class="add-new-filter-popup__form-control-btn-group">
+                   <button type="button" class="add-new-filter-popup__cancel-btn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 1L1 17M1 1L17 17" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                        
+                   </button>
+                   <button type="button" class="add-new-filter-popup__pin-btn">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 2L9.66667 7.33334L4.33333 9.33334L2.33333 11.3333L11.6667 20.6667L13.6667 18.6667L15.6667 13.3333L21 8M7 16L1 22M14.3333 1.33334L21.6667 8.66667" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                             
+                   </button>
+                </div>
+            </div>
+           </div>
+           <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Срок действия
+            </p>
+            <div class="add-new-filter-popup__form-control-group-bottom">
+              <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: 'Период в N дней'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                  <input type="text" class="add-new-filter-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 4" value="Период в N дней" readonly="" x-model="resultInputVal">
+                  <ul role="list" class="add-new-filter-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Период в N дней" id="Период в N дней" value="Период в N дней" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Период в N дней'">
+                    </li>
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Период в N дней 2" id="Период в N дней 2" value="Период в N дней 2" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Период в N дней 2'">
+                    </li>
+                    <li class="add-new-filter-popup__form-control-select-list-item">
+                      <input type="text" name="Период в N дней 3" id="Период в N дней 3" value="Период в N дней 3" readonly="" class="add-new-filter-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Период в N дней 3'">
+                    </li>
+                  </ul>
+                  <svg class="add-new-filter-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                    <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>                  
+                </div>
+                <div class="add-new-filter-popup__form-control-btn-group">
+                   <button type="button" class="add-new-filter-popup__cancel-btn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 1L1 17M1 1L17 17" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                        
+                   </button>
+                   <button type="button" class="add-new-filter-popup__pin-btn">
+                      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 2L9.66667 7.33334L4.33333 9.33334L2.33333 11.3333L11.6667 20.6667L13.6667 18.6667L15.6667 13.3333L21 8M7 16L1 22M14.3333 1.33334L21.6667 8.66667" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                                             
+                   </button>
+                </div>
+            </div>
+           </div>
+           <div class="add-new-filter-popup__form-control-groups">
+           <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Последние N дней
+            </p>
+                <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+                    <input class="add-new-filter-popup__form-control-input" id="addNewFilterDatePicker1">
+                </div>
+           </div>
+           <div class="add-new-filter-popup__form-control-group">
+            <p class="add-new-filter-popup__form-control-group-title">
+                Следующие N дней
+            </p>
+                <div class="add-new-filter-popup__form-control-wrapper add-new-filter-popup__form-control-input-wrapper">
+                    <input class="add-new-filter-popup__form-control-input" id="addNewFilterDatePicker2">
+                </div>
+           </div>
+           </div>
+           <button type="button" class="btn btn--secondary add-new-filter-popup__add-field-btn">Добавить поле</button>
+           <div class="add-new-filter-popup__btn-group">
+              <div class="add-new-filter-popup__save-checkbox">
+                <input class="add-new-filter-popup__save-checkbox-input" type="checkbox" name="Сохранить фильтр" id="Сохранить фильтр">
+                <label class="add-new-filter-popup__save-checkbox-label" for="Сохранить фильтр">Сохранить</label>
+              </div>
+              <button type="button" class="btn btn--primary add-new-filter-popup__search-filter-btn">Поиск</button>
+           </div>
+       </fieldset>
+    </div>
+</div>
+</form>
+  </div>
+
+
+<script type="module">
+  // Tempus Dominus JavaScript datepicker https://getdatepicker.com/ 
+  import { TempusDominus, Namespace } from 'https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.esm.js';
+
+  const linkedPicker1Element = document.getElementById('addNewFilterDatePicker1');
+const linked1 = new TempusDominus(linkedPicker1Element, {
+  display: {
+      theme: 'light',
+      buttons: {
+        clear: true,
+      },
+      components: {
+        clock: false,
+        hours: false,
+        minutes: false,
+        seconds: false,
+      },
+    }
+});
+const linked2 = new TempusDominus(document.getElementById('addNewFilterDatePicker2'), {
+  display: {
+      theme: 'light',
+      buttons: {
+        clear: true,
+      },
+      components: {
+        clock: false,
+        hours: false,
+        minutes: false,
+        seconds: false,
+      },
+    },
+  useCurrent: false,
+});
+
+//using event listeners
+linkedPicker1Element.addEventListener(Namespace.events.change, (e) => {
+  linked2.updateOptions({
+    restrictions: {
+      minDate: e.detail.date,
+    },
+  });
+});
+
+//using subscribe method
+const subscription = linked2.subscribe(Namespace.events.change, (e) => {
+  linked1.updateOptions({
+    restrictions: {
+      maxDate: e.date,
+    },
+  });
+});
+
+  </script>
+
+  
