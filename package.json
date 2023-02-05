@@ -1,14 +1,36 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build"
-    },
-    "devDependencies": {
-        "axios": "^1.1.2",
-        "laravel-vite-plugin": "^0.7.2",
-        "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
-        "vite": "^4.0.0"
-    }
+  "name": "@example/minimal",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint:scss": "stylelint 'src/**/*.{astro,scss}'"
+  },
+  "dependencies": {
+    "@alpinejs/collapse": "^3.10.5",
+    "@astrojs/alpinejs": "^0.1.2",
+    "@eonasdan/tempus-dominus": "^6.2.7",
+    "@types/alpinejs": "^3.7.0",
+    "alpinejs": "^3.10.4",
+    "astro": "^1.4.6",
+    "autoprefixer": "^10.4.12",
+    "laravel-vite-plugin": "^0.7.3",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^7.8.2",
+    "swiper": "^8.4.4",
+    "vite": "^4.0.4"
+  },
+  "devDependencies": {
+    "cssnano": "^5.1.13",
+    "sass": "^1.55.0",
+    "stylelint": "^14.13.0",
+    "stylelint-config-recommended-scss": "^7.0.0",
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-config-standard-scss": "^5.0.0"
+  }
 }
