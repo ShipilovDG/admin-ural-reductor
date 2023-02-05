@@ -12,5 +12,7 @@ install: ## генерация окружения
 	@cp dist/js/scripts.js public/js/
 	@cp dist/*.html resources/views/
 	@cd resources/views/ && rename 's/\.html/.blade.php/' *.html
+	@php artisan key:generate
+	@chmod -R 777 storage/
 	@docker-compose up -d
 	@print "вам сюда http://localhost"
