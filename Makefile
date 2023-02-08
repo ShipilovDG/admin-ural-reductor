@@ -1,6 +1,7 @@
 .PHONY: install
 install: ## генерация окружения
 	@sudo apt install rename
+	@rm resources/views/*
 	@cp .env.example .env
 	@composer install
 	@npm install
@@ -13,6 +14,4 @@ install: ## генерация окружения
 	@cp dist/*.html resources/views/
 	@cd resources/views/ && rename 's/\.html/.blade.php/' *.html
 	@php artisan key:generate
-	@chmod -R 777 storage/
 	@docker-compose up -d
-	@print "вам сюда http://localhost"
