@@ -1,9 +1,13 @@
+.DEFAULT_GOAL := help
+
+include .env
+DIR := ${CURDIR}
+
 .PHONY: install
 install: ## генерация окружения
 	@sudo apt install rename
-	@rm resources/views/*
+	@rm -f resources/views/*
 	@cp .env.example .env
-	@composer install
 	@npm install
 	@npm run build
 	@mkdir -p public/assets/css/
@@ -13,5 +17,17 @@ install: ## генерация окружения
 	@cp dist/js/scripts.js public/js/
 	@cp dist/*.html resources/views/
 	@cd resources/views/ && rename 's/\.html/.blade.php/' *.html
+	@composer install
 	@php artisan key:generate
 	@docker-compose up -d
+
+.PHONY: up
+up: ## поднятие контейнеров
+	@docker compose up -d
+
+.PHONY: help
+help:
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-18s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+
+%:
+	@:
