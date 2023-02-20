@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,19 +16,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', fn() => view('login'))->name('login');
+Route::get('/login', function () {
+
+    if (Auth::check()) {
+        return redirect('userPage');
+    }
+
+    return view('login');
+})->name('login');
+
 Route::post('/login', [UserController::class, 'login']);
+Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/register', fn() => view('register'));
 Route::post('/register', [UserController::class, 'register']);
 
-Route::get('/contragentsPage', fn() => view('contragentsPage'));
-Route::get('/emailPage', fn() => view('emailPage'));
-Route::get('/eventsBoard', fn() => view('eventsBoard'));
-Route::get('/feedbackPage', fn() => view('feedbackPage'));
-Route::get('/financesPage', fn() => view('financesPage'));
-Route::get('/goodsPage', fn() => view('goodsPage'));
-Route::get('/orders', fn() => view('orders'));
-Route::get('/settingsPage', fn() => view('settingsPage'));
-Route::get('/taskPage', fn() => view('taskPage'));
-Route::get('/userPage', fn() => view('userPage'))->name('userPage');
-Route::get('/usersPage', fn() => view('usersPage'));
+Route::group(['middleware' => 'auth'], function () {
+    Route::patch('/user', [UserController::class, 'patch']);
+    Route::get('/user', [UserController::class, 'get']);
+    Route::delete('/user', [UserController::class, 'delete']);
+
+    Route::post('/product', [ProductsController::class, 'create']);
+    Route::get('/product', [ProductsController::class, 'get']);
+
+    Route::get('/contragentsPage', fn() => view('contragentsPage'));
+    Route::get('/emailPage', fn() => view('emailPage'));
+    Route::get('/eventsBoard', fn() => view('eventsBoard'));
+    Route::get('/feedbackPage', fn() => view('feedbackPage'));
+    Route::get('/financesPage', fn() => view('financesPage'));
+    Route::get('/goodsPage', fn() => view('goodsPage'));
+    Route::get('/orders', fn() => view('orders'));
+    Route::get('/settingsPage', fn() => view('settingsPage'));
+    Route::get('/taskPage', fn() => view('taskPage'));
+    Route::get('/userPage', fn() => view('userPage'))->name('userPage');
+    Route::get('/usersPage', fn() => view('usersPage'));
+});

@@ -15,19 +15,18 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('product_category_id');
-            $table->string('naming');
-            $table->string('category');
-            $table->string('factory_designation');
-            $table->string('vendor_code');
-            $table->json('dimensions');
-            $table->float('weight_kg');
-            $table->integer('price_type_id');
-            $table->json('files');
-            $table->json('tags');
-            $table->integer('producer_d');
-            $table->json('characteristics');
+            $table->integer('user_id')->nullable();
+            $table->integer('product_category_id')->nullable();
+            $table->string('naming')->nullable();
+            $table->string('factory_designation')->nullable();
+            $table->string('vendor_code')->nullable();
+            $table->json('dimensions')->nullable();
+            $table->float('weight_kg')->nullable();
+            $table->integer('price_type_id')->nullable();
+            $table->json('files')->nullable();
+            $table->json('tags')->nullable();
+            $table->integer('producer_id')->nullable();
+            $table->json('characteristics')->nullable();
             $table->timestamps();
         });
     }

@@ -54,7 +54,14 @@ class UserController extends Controller
         );
     }
 
-    public function patch(Request $request)
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('login');
+    }
+
+    public function patch(Request $request): JsonResponse
     {
         $request->validate([
             'id'           => 'required|numeric',
@@ -68,14 +75,29 @@ class UserController extends Controller
         ]);
 
         $user = $this->service->saveUser($request);
+
         return new JsonResponse([
             'success' => true,
-            'user' => $user
+            'user'    => $user,
         ]);
     }
 
-    public function get(Request $request)
+    public function get(Request $request): JsonResponse
     {
+        $request->validate(['id' => 'required|numeric']);
 
+        return new JsonResponse([
+            'user'    => $this->service->get($request),
+            'success' => true,
+        ]);
+    }
+
+    public function delete(Request $request): JsonResponse
+    {
+        $request->validate(['id' => 'required|numeric']);
+
+        return new JsonResponse([
+            'success' => $this->service->delete($request),
+        ]);
     }
 }

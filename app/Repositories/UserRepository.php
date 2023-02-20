@@ -21,7 +21,7 @@ class UserRepository
 
     public function saveUser(Request $request): User
     {
-        $user = User::findorfail($request->get('id'));
+        $user = User::findOrFail($request->get('id'));
 
         $user->login        = $request->get('login');
         $user->phone_number = $request->get('phone_number');
@@ -34,5 +34,20 @@ class UserRepository
         $user->save();
 
         return $user;
+    }
+
+    public function get(Request $request)
+    {
+        return User::findOrFail($request->get('id'));
+    }
+
+    public function delete(Request $request): bool|null
+    {
+        $user = User::find($request->get('id'));
+
+        /**
+         * @var User $user
+         */
+        return $user ? $user->delete() : false;
     }
 }
