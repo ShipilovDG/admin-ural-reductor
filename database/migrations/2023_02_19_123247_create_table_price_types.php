@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('sort_id');
             $table->string('description');
             $table->string('type');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -19,11 +19,16 @@ install: ## генерация окружения
 	@cd resources/views/ && rename 's/\.html/.blade.php/' *.html
 	@composer install
 	@php artisan key:generate
+	@docker exec laravel.test "php artisan migrate"
 	@docker-compose up -d
 
 .PHONY: up
 up: ## поднятие контейнеров
 	@docker compose up -d
+
+.PHONY: down
+down: ## поднятие контейнеров
+	@docker compose down
 
 .PHONY: help
 help:

@@ -30,13 +30,17 @@ Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/register', fn() => view('register'));
 Route::post('/register', [UserController::class, 'register']);
 
+Route::post('/product', [ProductsController::class, 'create']);
+
+Route::redirect('/', 'login');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::patch('/user', [UserController::class, 'patch']);
     Route::get('/user', [UserController::class, 'get']);
     Route::delete('/user', [UserController::class, 'delete']);
 
-    Route::post('/product', [ProductsController::class, 'create']);
     Route::get('/product', [ProductsController::class, 'get']);
+
 
     Route::get('/contragentsPage', fn() => view('contragentsPage'));
     Route::get('/emailPage', fn() => view('emailPage'));

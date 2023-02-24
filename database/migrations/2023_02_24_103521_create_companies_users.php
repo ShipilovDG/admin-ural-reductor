@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('producers', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::create('companies_users', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->unsigend();
+            $table->unsignedBigInteger('company_id')->unsigend();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('producers');
+        Schema::dropIfExists('companies_users');
     }
 };

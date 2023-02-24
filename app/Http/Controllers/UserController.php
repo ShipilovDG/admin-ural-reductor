@@ -47,11 +47,7 @@ class UserController extends Controller
         $user = $this->service->createUser($request);
 
 
-        return new JsonResponse([
-                'user'    => $user,
-                'success' => true,
-            ]
-        );
+        return redirect('userPage');
     }
 
     public function logout()
