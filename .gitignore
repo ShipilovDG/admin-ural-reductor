@@ -30,9 +30,10 @@ Thumbs.db
 *.log*
 
 # Папка с собранными файлами проекта
-dist/
+/dist/
 node_modules/
 package-lock.json
-/public/assets/css/*.css
+/public/assets/css/main.css
 /public/js/*.js
 /resources/views/*
+!/resources/views/swagger/main.blade.php

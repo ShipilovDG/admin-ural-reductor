@@ -31,4 +31,9 @@ class ProductService
     {
         $this->repository->getWithPagination();
     }
+
+    public function drop(int $productId): bool|null
+    {
+        return $this->repository->drop($productId);
+    }
 }

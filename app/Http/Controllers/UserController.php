@@ -27,12 +27,11 @@ class UserController extends Controller
         );
         $formFields = $request->only(['login', 'password']);
         if (Auth::attempt($formFields)) {
+            //TODO почитать по intended
             return redirect()->intended(route('userPage'));
         }
 
-        return redirect(route('login'))->withErrors(([
-            'Invalid credentials',
-        ]));
+        return redirect('login');
     }
 
     public function register(Request $request)
@@ -45,7 +44,7 @@ class UserController extends Controller
         );
 
         $user = $this->service->createUser($request);
-
+        Auth::login($user);
 
         return redirect('userPage');
     }
@@ -64,6 +63,7 @@ class UserController extends Controller
             'login'        => 'required',
             'email'        => 'email',
             'full_name'    => 'max:32',
+            'birth_date'   => 'date',
             'phone_number' => 'numeric|digits:10',
             'lang'         => 'string',
             'timezone'     => 'timezone',

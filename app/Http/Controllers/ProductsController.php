@@ -24,15 +24,16 @@ class ProductsController extends Controller
             'naming'              => 'email',
             'factory_designation' => 'max:32',
             'vendor_code'         => 'numeric|digits:10',
-            'attachment.*' => [
+            'attachment.*'        => [
                 'required',
-                File::types(['png'])
+                File::types(['png', 'pdf'])
                     ->max(12 * 1024),
             ],
-            'tags'                => 'string',
+            'tags.*'              => 'string',
             'producer_id'         => 'numeric',
             'characteristics'     => 'string',
             'weight_kg'           => 'float',
+            'description'         => 'string',
         ]);
 
         $product = $this->service->create($request);
@@ -41,6 +42,16 @@ class ProductsController extends Controller
             'success' => true,
             'product' => $product,
         ]);
+    }
+
+    public function drop(Request $request): JsonResponse
+    {
+        $request->validate([
+            'product_id' => 'int',
+        ]);
+        $responseResult = $this->service->drop((int) $request->get('product_id'));
+
+        return new JsonResponse($responseResult);
     }
 
     public function get(Request $request)

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -21,8 +22,8 @@ class ProductRepository
                 foreach ($filesArray as $file) {
                     $filePaths[] = $this->storeFile($file);
                 }
-            } else
-            {
+            }
+            else {
                 $filePaths[] = $this->storeFile($file);
             }
         }
@@ -30,7 +31,7 @@ class ProductRepository
         $product->files               = json_encode($filePaths);
         $product->product_category_id = $request->get('product_category_id');
         $product->vendor_code         = $request->get('vendor_code');
-        $product->tags                = $request->get('tags');
+        $product->tags                = Tag::factory()->make($request->get('tags'));
         $product->producer_id         = $request->get('producer_id');
         $product->characteristics     = $request->get('characteristics');
         $product->price_type_id       = $request->get('price_type_id');
@@ -40,19 +41,6 @@ class ProductRepository
         return $product;
     }
 
-    public function getByIds()
-    {
-
-    }
-
-    public function getWithPagination()
-    {
-
-    }
-
-    public function patch()
-    {
-    }
     private function storeFile(UploadedFile $file): string
     {
         $fileHash      = md5($file->getFilename());
@@ -62,5 +50,14 @@ class ProductRepository
         Storage::disk('local')->put($path, $file->getContent());
 
         return $path;
+    }
+
+    public function drop(int $productId): bool|null
+    {
+        $product = Product::find($productId);
+        /**
+         * @var $product Product
+         */
+        return $product->delete();
     }
 }

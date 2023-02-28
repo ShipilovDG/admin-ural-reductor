@@ -1,0 +1,68 @@
+openapi: 3.0.2
+info:
+  description: API для работы с Админкой
+  title: Admin API
+  version: 3.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: http://localhost
+paths:
+  /user/:
+    patch:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: Возвращает сохраненного пользователя и статус успешности сохранения
+      summary: Изменение настроек пользователя по Id
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    User:
+      example:
+        datetime: 2022-10-15 20:20:22
+        externalId: 111
+        description: Изменен какой-то параметр
+        userIp: 0.0.0.0
+        externalId2: 222
+        section: Hotels
+        id: 12
+      properties:
+        id:
+          example: 12
+          type: integer
+        externalId:
+          description: Связанная сущность
+          example: 111
+          type: integer
+        section:
+          description: Название секции истории изменений
+          example: Hotels
+          type: string
+        description:
+          description: Комментарий к истории изменений
+          example: Изменен какой-то параметр
+          type: string
+        userIp:
+          example: 0.0.0.0
+          type: string
+        externalId2:
+          description: Вторая связанная сущность
+          example: 222
+          type: integer
+        datetime:
+          description: Дата и время создания записи в формате DateTime, если не указать,
+            то выставится текущая дата и время
+          example: 2022-10-15 20:20:22
+      required:
+      - id
+      - login
+      type: object
+

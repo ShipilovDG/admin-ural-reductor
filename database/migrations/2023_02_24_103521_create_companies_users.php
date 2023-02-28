@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('companies_users', function (Blueprint $table) {
+        Schema::create('company_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->unsigend();
             $table->unsignedBigInteger('company_id')->unsigend();
             $table->foreign('user_id')->references('id')->on('users');
