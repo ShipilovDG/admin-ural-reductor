@@ -35,5 +35,5 @@ node_modules/
 package-lock.json
 /public/assets/css/main.css
 /public/js/*.js
-!/resources/views/swagger/*
 /resources/views/*
+!/resources/views/main.blade.php

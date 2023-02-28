@@ -54,33 +54,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/userPage', fn() => view('userPage'))->name('userPage');
     Route::get('/usersPage', fn() => view('usersPage'));
 
-    /**
-     * @OA\Get(
-     *     path="/",
-     *     @OA\Response(
-     *         response="200",
-     *         description="returns swagger ui"
-     *     )
-     * )
-     */
-    Route::get('/', );
-    /**
-     * @OA\Get(
-     *     path="/swagger",
-     *     @OA\Response(
-     *         response="200",
-     *         description="returns swagger json"
-     *     )
-     * )
-     */
+    Route::get('/main', fn() => view('main'));
     Route::get('/swagger', [SwaggerController::class, 'getSwaggerSchema']);
-    /**
-     * @OA\Get(
-     *     path="/getCategory",
-     *     @OA\Response(
-     *         response="200",
-     *         description="returns categoryObject"
-     *     )
-     * )
-     */
 });

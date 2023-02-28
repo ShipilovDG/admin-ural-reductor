@@ -10,10 +10,23 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     private UserService $service;
-
+    /**
+     * @OA\Info(
+     *      version="3.0.0",
+     *     title = "admin panel"
+     * )
+     * @OA\Get(
+     *      path="/profiles",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *     @OA\PathItem (
+     *     ),
+     * )
+     */
     public function __construct(UserService $service)
     {
-
         $this->service = $service;
     }
 
