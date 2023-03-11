@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', function () {
-
+var_dump(Auth::check());
     if (Auth::check()) {
         return redirect('userPage');
     }

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ErrorMessages;
 use App\Http\Services\UserService;
+use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -55,12 +59,16 @@ class UserController extends Controller
             ]
         );
         $formFields = $request->only(['login', 'password']);
-        if (Auth::attempt($formFields)) {
-            return redirect()->intended(route('userPage'));
+        $user       = User::all()->where('login', '=', $formFields['login'])->first();
+
+        if ($user && Hash::check($formFields['password'], $user->password)) {
+            Auth::login($user);
+            return redirect('userPage');
         }
 
         return redirect('login');
     }
+
     /**
      * @OA\Post(
      *     tags={"auth"},
@@ -85,8 +93,13 @@ class UserController extends Controller
      *         )
      *     ),
      *     @OA\Response(
-     *         response=200,
+     *         response=302,
      *         description="success: true",
+     *         @OA\JsonContent(),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="success: false, errors: user alrady register",
      *         @OA\JsonContent(),
      *     ),
      * )
@@ -99,9 +112,20 @@ class UserController extends Controller
                 'password' => 'min:8|required',
             ]
         );
+        try {
+            $user = $this->service->createUser($request);
+            Auth::login($user);
+        }
+        catch (QueryException $exception) {
+            if ( ! str_contains($exception->getMessage(), "Duplicate")) {
+                throw $exception;
+            }
 
-        $user = $this->service->createUser($request);
-        Auth::login($user);
+            return new JsonResponse([
+                'success' => false,
+                'errors'  => [ErrorMessages::USER_ALREADY_EXIST],
+            ]);
+        }
 
         return redirect('userPage');
     }
