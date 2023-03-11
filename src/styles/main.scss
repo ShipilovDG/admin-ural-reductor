@@ -115,6 +115,10 @@
 
 @import "components/contragentsPage/editContragentPopupTableOffers";
 
+@import "components/contragentsPage/remindAltPopup";
+
+@import "components/contragentsPage/regularTasksAltPopup";
+
 
 @import "pages/taskPage";
 
@@ -223,6 +227,12 @@
 @import "components/emailPage/settingsEmailPageListPopup";
 
 @import "components/emailPage/viewSettingsPopup";
+
+@import "components/emailPage/addNewEmailPopup";
+
+@import "components/emailPage/addedNewEmailSuccessAltPopup";
+
+@import "pages/login";
 
 
 

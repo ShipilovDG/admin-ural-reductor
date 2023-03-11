@@ -1,0 +1,51 @@
+.added-new-email-success-popup {
+
+    &__fieldset {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: 19px;
+    }
+
+    &__top-row {
+        border-bottom: 1px solid var(--grey-color);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }
+
+    &__fieldset.b-b {
+        border-bottom: 1px solid var(--grey-color);
+      }
+
+    &__title {
+        padding-bottom: 0;
+    }
+
+    &__subtitle {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+    }
+
+    &__content {
+        height: auto;
+        max-height: 100%;
+    }
+
+
+    &__btn-control-group {
+        justify-content: center;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    &__continue-btn {
+        min-width: 124px;
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+    }
+}

@@ -52,4 +52,9 @@ max-width: 76px;
               display: none;
             }
           }
+
+          &__invite-user-link {
+            text-decoration: none;
+            color: inherit;
+          }
 }

@@ -1,5 +1,5 @@
 <div class="site-section__table-wrapper incoming-messages-table__table-wrapper">
-    <nav class="site-section__table incoming-messages-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+    <nav class="site-section__table incoming-messages-table__table" x-data="{tables: [1,2,3,4,5]}">
       <ul role="list" class="site-section__table-list site-section__table-caption-list incoming-messages-table__table-list incoming-messages-table__table-caption-list">
         <li class="site-section__table-list-item site-section__table-caption-list-item incoming-messages-table__table-list-item incoming-messages-table__table-list-caption-item">
             <div class="site-section__table-list-item-checkbox-wrapper incoming-messages-table__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
@@ -24,6 +24,7 @@
             Теги
         </li>
       </ul>
+      <p class="incoming-messages-table__warning-text" x-show="tables.length === 0 && fakeTables.length === 0">Подключите E-mail</p>
       <template x-for="table in tables">
       <ul role="list" class="site-section__table-list incoming-messages-table__table-list">
         <li class="site-section__table-list-item incoming-messages-table__table-list-item">
@@ -79,6 +80,62 @@
           </div>
        </li>
       </ul>
+    </template>
+    <template x-for="fakeTable in fakeTables">
+        <ul role="list" class="site-section__table-list incoming-messages-table__table-list">
+            <li class="site-section__table-list-item incoming-messages-table__table-list-item">
+                <div class="site-section__table-list-item-checkbox-wrapper incoming-messages-table__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                    <input type="checkbox" class="site-section__table-list-item-checkbox incoming-messages-table__table-list-item-checkbox">
+                    <label class="site-section__table-list-item-label incoming-messages-table__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                    </label>
+                    </div>
+            </li>
+            <li class="site-section__table-list-item incoming-messages-table__table-list-item">
+                <div class="site-section__resp-wrapper">
+                    <img src="/images/header-avatar-placeholder.svg" alt="responsible face avatar" loading="lazy" decoding="async" width="24" height="24">
+                    <span class="site-section__resp-title incoming-messages-table__resp-title" x-text="fakeTable.contact">
+                      vtr@uralreduktor.ru
+                    </span>
+                </div>     
+            </li>
+            <li class="site-section__table-list-item incoming-messages-table__table-list-item" x-on:click="editMessagePopup = true">
+                <div class="incoming-messages-table__mail-name">
+                    <p class="incoming-messages-table__mail-name-indicator"></p>
+                    <p class="incoming-messages-table__mail-name-title">Fwd: Доступ на боевую среду</p>
+                    <p class="incoming-messages-table__mail-name-sender">Отправлено из мобильной Почты Mail.ru -------- Пересылаемое сообщение -------- От: Платежные решения Сбербанка Кому: , Дата: понедельник, 3 октября 2022 г., 13:09 +0500 Тема: Доступ на боевую среду &gt;Читайте нашу…
+                    </p>
+                </div>
+             </li>
+            <li class="site-section__table-list-item incoming-messages-table__table-list-item" x-on:click="editMessagePopup = true">
+                12 окт 2022
+            </li>
+            <li class="site-section__table-list-item incoming-messages-table__table-list-item" x-on:click="editMessagePopup = true">
+                INBOX
+             </li>
+            <li class="site-section__table-list-item incoming-messages-table__table-list-item site-section__table-list-item--tag-btn" x-data="{tag: 'design', toggleTagDropdown: false}" x-on:click.outside="toggleTagDropdown = false">
+              <button class="btn site-section__tag-btn incoming-messages-table__tag-btn site-section__tag-btn--design" type="button" x-bind:class="{'site-section__tag-btn--design': tag === 'design', 'site-section__tag-btn--СЕО': tag === 'СЕО','site-section__tag-btn--project': tag === 'Проджект' }" x-text="tag === 'design' ? 'Дизайн' : tag === 'СЕО' ? 'СЕО' : tag === 'Проджект' ? 'Проджект' : ''">
+                Ожидает ответ
+              </button>
+              <div class="site-section__choose-tag-dropdown-wrapper incoming-messages-table__choose-tag-dropdown-wrapper">
+                <button type="button" class="site-section__choose-tag-btn incoming-messages-table__choose-tag-btn" x-on:click="toggleTagDropdown = !toggleTagDropdown">
+                    <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 1L7.5 7L13.5 1" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>          
+                </button>
+                <ul class="site-section__choose-tag-dropdown-list incoming-messages-table__choose-tag-dropdown-list" role="list" x-bind:class="{'active': toggleTagDropdown === true}">
+                   <li class="site-section__choose-tag-dropdown-list-item incoming-messages-table__choose-tag-dropdown-list-item">
+                      <button class="site-section__choose-tag-dropdown-list-item-btn incoming-messages-table__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'design'; toggleStatusDropdown = false">Дизайн</button>
+                   </li>
+                   <li class="site-section__choose-tag-dropdown-list-item incoming-messages-table__choose-tag-dropdown-list-item">
+                    <button class="site-section__choose-tag-dropdown-list-item-btn incoming-messages-table__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'СЕО'; toggleStatusDropdown = false">СЕО</button>
+                 </li>
+                 <li class="site-section__choose-tag-dropdown-list-item incoming-messages-table__choose-tag-dropdown-list-item">
+                  <button class="site-section__choose-tag-dropdown-list-item-btn incoming-messages-table__choose-tag-dropdown-list-item-btn" type="button" x-on:click="tag = 'Проджект'; toggleStatusDropdown = false">Проджект</button>
+               </li>
+                </ul>
+              </div>
+           </li>
+          </ul>
     </template>
     </nav>
 </div>

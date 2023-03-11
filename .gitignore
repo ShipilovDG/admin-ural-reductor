@@ -36,4 +36,4 @@ package-lock.json
 /public/assets/css/main.css
 /public/js/*.js
 /resources/views/*
-!/resources/views/main.blade.php
+!/resources/views/swagger/main.blade.php

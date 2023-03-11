@@ -155,7 +155,7 @@
   @include media-extra-large() {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    grid-template-rows: 163px 253px 1fr;
+    grid-template-rows: max-content 253px 1fr;
   }
 }
 
@@ -1350,6 +1350,74 @@ line-height: 18px;
 max-width: 90px;
 margin-left: auto;
 margin-right: auto;
+}
+
+&__add-tel-btn {
+  justify-content: flex-start;
+  font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--primary);
+}
+
+&__tel-wrapper {
+  display: grid;
+  gap: 8px;
+}
+
+&__tel-list {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+&__tel-list-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2,max-content);
+  gap: 12px;
+}
+
+&__form-control-tel-wrapper {
+  background-color: var(--gray100);
+  border: 1px solid var(--grey-color);
+  border-radius: 4px; 
+  height: 34px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 80px repeat(2,1fr);
+  max-width: 377px;
+
+  .edit-contragent-popup__form-control-select-wrapper {
+    align-items: center;
+    display: flex;
+    position: relative;
+  }
+
+  .edit-contragent-popup__form-control-select-wrapper.tel-wrapper-1 {
+      border-right:1px solid var(--grey-color);
+      height: 100%;
+  }
+
+  .edit-contragent-popup__form-control-select-wrapper.tel-wrapper-2 {
+      border-left:1px solid var(--grey-color);
+      height: 100%;
+  }
+
+  .edit-contragent-popup__form-control-select-result-input {
+    background: var(--gray100);
+    color: var(--dark-grey);
+    font-size: 16px;
+    font-weight: 400;
+    height: 100%;
+    line-height: 18px;
+    padding-left: 16px;
+}
+}
+
+&__form-control-tel-input {
+padding-left: 16px;
 }
 
 &__form-control-wrapper.overall-group.editable {

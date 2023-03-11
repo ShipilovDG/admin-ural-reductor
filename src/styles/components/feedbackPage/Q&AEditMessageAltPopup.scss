@@ -193,5 +193,10 @@ color: var(--gray100);
     &__choose-options-dropdown {
         opacity: 1;
         visibility: visible;
+
+        @include media-extra-large() {
+            top: 0;
+            right: 2rem;
+        }
     }
 }

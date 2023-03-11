@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title="страница Вход/Авторизация">
+  <section class="site-section reg-auth-page__site-section">
+    <div class="alt-popup auth-reg-alt-popup" x-data="{tab: 1, smsEnter: false}">
+        <form action="#" method="post" class="alt-popup__form auth-reg-alt-popup__form">
+        <div class="alt-popup__content auth-reg-alt-popup__content">
+            <ul role="list" class="alt-popup__tabs auth-reg-alt-popup__tabs">
+                <li class="alt-popup__tabs-item auth-reg-alt-popup__tabs-item">
+                    <h2 class="alt-popup__title auth-reg-alt-popup__title" x-on:click="tab = 1" x-bind:class="{'active': tab === 1 || smsEnter === true }">
+                        Вход
+                    </h2>
+                </li>
+                <li class="alt-popup__tabs-item auth-reg-alt-popup__tabs-item">
+                    <h2 class="alt-popup__title auth-reg-alt-popup__title" x-on:click="tab = 2; smsEnter = false" x-bind:class="{'active': tab === 2}">
+                        Регистрация
+                    </h2>
+                </li>
+            </ul>
+        <div class="alt-popup__body auth-reg-alt-popup__body">
+                <fieldset class="alt-popup__fieldset auth-reg-alt-popup__fieldset" x-show="tab === 1">
+                    <p class="auth-reg-alt-popup__info">Вход для зарегестрированных пользователей</p>
+                    <div class="alt-popup__form-control-group auth-reg-alt-popup__form-control-group">
+                        <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper auth-reg-alt-popup__form-control-wrapper auth-reg-alt-popup__form-control-input-wrapper">
+                            <input type="text" class="alt-popup__form-control-group-input  auth-reg-alt-popup__form-control-group-input" placeholder="Введите логин">
+                        </div>
+                    </div>
+                    <div class="alt-popup__form-control-group auth-reg-alt-popup__form-control-group">
+                        <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper auth-reg-alt-popup__form-control-wrapper auth-reg-alt-popup__form-control-input-wrapper">
+                            <input type="password" class="alt-popup__form-control-group-input  auth-reg-alt-popup__form-control-group-input" placeholder="Введите пароль">
+                        </div>
+                    </div>
+                    <button type="button" class="alt-popup__enter-via-sms-btn auth-reg-alt-popup__enter-via-sms-btn" x-on:click="smsEnter = true; tab = null">войти по смс</button>
+                </fieldset>
+                <fieldset class="alt-popup__fieldset auth-reg-alt-popup__fieldset" x-show="tab === 2">
+                    <p class="auth-reg-alt-popup__info">Зарегистрируйте новый аккаунт</p>
+                    <div class="alt-popup__form-control-group auth-reg-alt-popup__form-control-group">
+                        <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper auth-reg-alt-popup__form-control-wrapper auth-reg-alt-popup__form-control-input-wrapper">
+                            <input type="text" class="alt-popup__form-control-group-input  auth-reg-alt-popup__form-control-group-input" placeholder="Введите логин...">
+                        </div>
+                    </div>
+                    <div class="alt-popup__form-control-group auth-reg-alt-popup__form-control-group">
+                        <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper auth-reg-alt-popup__form-control-wrapper auth-reg-alt-popup__form-control-input-wrapper">
+                            <input type="password" class="alt-popup__form-control-group-input  auth-reg-alt-popup__form-control-group-input" placeholder="Введите пароль...">
+                        </div>
+                    </div>
+                    <div class="alt-popup__form-control-group auth-reg-alt-popup__form-control-group">
+                        <div class="alt-popup__form-control-wrapper alt-popup__form-control-input-wrapper auth-reg-alt-popup__form-control-wrapper auth-reg-alt-popup__form-control-input-wrapper">
+                            <input type="password" class="alt-popup__form-control-group-input  auth-reg-alt-popup__form-control-group-input" placeholder="Повторите пароль...">
+                        </div>
+                    </div>
+                    <div class="auth-reg-alt-popup__policy">
+                        <input type="checkbox" class="auth-reg-alt-popup__policy-checkbox" id="policy">
+                        <label for="policy" class="auth-reg-alt-popup__policy-label">Cогласен с <a>условиями обработки данных</a> и <a>пользовательского соглашения</a></label>
+                    </div>
+                </fieldset>
+                <fieldset class="alt-popup__fieldset auth-reg-alt-popup__fieldset" x-show="smsEnter === true">
+                    <p class="auth-reg-alt-popup__info">Вход для зарегестрированных пользователей</p>
+                    <div class="auth-reg-alt-popup__form-control-tel-wrapper">
+                        <div class="auth-reg-alt-popup__form-control-select-wrapper tel-wrapper" x-data="{toggleArrow: true, toggleSelectList: false, resultInputVal: '+86'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                          <input type="text" class="auth-reg-alt-popup__form-control-select-result-input" name="form-control-select-result-input" value="+86" readonly="" x-model="resultInputVal">
+                          <div class="auth-reg-alt-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                          <ul role="list" class="auth-reg-alt-popup__form-control-select-list">
+                            <li class="auth-reg-alt-popup__form-control-select-list-item">
+                              <input type="text" value="+86" readonly="" class="auth-reg-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+86'">
+                            </li>
+                            <li class="auth-reg-alt-popup__form-control-select-list-item">
+                              <input type="text" value="+87" readonly="" class="auth-reg-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+87'">
+                            </li>
+                            <li class="auth-reg-alt-popup__form-control-select-list-item">
+                              <input type="text" value="+7" readonly="" class="auth-reg-alt-popup__form-control-select-list-item-input" x-on:click="resultInputVal = '+7'">
+                            </li>
+                          </ul>
+                          </div>
+                          <svg class="auth-reg-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>                  
+                      </div>
+                        <input x-mask="999-99-99-99" placeholder="ХХХ-ХХ-ХХ-ХХ">
+                    </div>
+                    <button type="button" class="alt-popup__enter-via-login-btn auth-reg-alt-popup__enter-via-login-btn" x-on:click="smsEnter = false; tab = 1">войти по логину</button>
+                </fieldset>
+        <ul role="list" class="alt-popup__btn-control-group auth-reg-alt-popup__btn-control-group" x-show="tab === 1">
+          <li class="alt-popup__btn-control-group-item auth-reg-alt-popup__btn-control-group-item">
+              <button type="button" class="alt-popup__forgot-pass-btn auth-reg-alt-popup__forgot-pass-btn">
+                Забыли пароль?
+              </button>
+          </li>
+          <li class="alt-popup__btn-control-group-item auth-reg-alt-popup__btn-control-group-item">
+              <button type="submit" class="btn btn--primary alt-popup__enter-btn auth-reg-alt-popup__enter-btn">
+                Войти
+              </button>
+          </li>
+        </ul>
+        <ul role="list" class="alt-popup__btn-control-group auth-reg-alt-popup__btn-control-group" x-show="tab === 2">
+            <li class="alt-popup__btn-control-group-item auth-reg-alt-popup__btn-control-group-item reg-btn">
+                <button type="button" class="btn btn--primary alt-popup__forgot-pass-btn auth-reg-alt-popup__reg-btn">
+                    Зарегистрироваться
+                </button>
+            </li>
+          </ul>
+          <ul role="list" class="alt-popup__btn-control-group auth-reg-alt-popup__btn-control-group" x-show="smsEnter === true">
+            <li class="alt-popup__btn-control-group-item auth-reg-alt-popup__btn-control-group-item enter-btn">
+                <button type="submit" class="btn btn--primary alt-popup__enter-btn auth-reg-alt-popup__enter-btn">
+                  Войти
+                </button>
+            </li>
+          </ul>
+        </div>
+    </div>
+    </form>
+    </div> 
+  </section>
+</Layout>

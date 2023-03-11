@@ -7,19 +7,20 @@ import Filter from "../components/Filter.astro";
 import Pagination from "../components/Pagination.astro";
 import TaskPageTable from "../components/taskPage/TaskPageTable.astro";
 import EditTaskPopup from "../components/taskPage/EditTaskPopup.astro";
+import CreateTaskPopup from "../components/contragentsPage/CreateTaskPopup.astro";
 ---
 <Layout title="страница Задачи">
   <section class="site-section task-page__site-section" x-data="{createTaskPopup: false, editTaskPopup: false, searchBtnDropdown: false }">
     <div class="site-section__top-row task-page__top-row mobile">
         <h2 class="site-section__title task-page__title">Задачи</h2>
-        <button class="btn btn--primary site-section__create-order-btn task-page__create-task-btn" type="button" x-on:click="createTaskPopup = true">
+        <button class="btn btn--primary site-section__create-order-btn task-page__create-task-btn" type="button" x-on:click="editTaskPopup = true">
             Создать
           </button>
       </div>
     <div class="site-section__body task-page__body">
         <div class="site-section__top-row task-page__top-row desktop">
             <h2 class="site-section__title task-page__title">Задачи</h2>
-            <button class="btn btn--primary site-section__create-order-btn task-page__create-task-btn" type="button" x-on:click="createTaskPopup = true">
+            <button class="btn btn--primary site-section__create-order-btn task-page__create-task-btn" type="button" x-on:click="editTaskPopup = true">
                 Создать
               </button>
           </div>
@@ -160,7 +161,7 @@ import EditTaskPopup from "../components/taskPage/EditTaskPopup.astro";
                     </button>
                 </li>
             </ul>
-            <div class="task-page__grid mobile">
+            <div class="task-page__grid mobile" x-data="{tableLists: [] }">
             <TaskPageTable></TaskPageTable>
             <ul role="list" class="pagination task-page__pagination">
               <Pagination></Pagination>
@@ -238,24 +239,23 @@ import EditTaskPopup from "../components/taskPage/EditTaskPopup.astro";
            <ul role="list" class="task-page__control-tasks-menu-list">
               <li class="task-page__control-tasks-menu-list-item">
                   <a href="#" class="task-page__control-tasks-menu-list-item-link">
-                      <svg class="task-page__control-tasks-menu-list-item-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8.325 2.317C8.751 0.561 11.249 0.561 11.675 2.317C11.7389 2.5808 11.8642 2.82578 12.0407 3.032C12.2172 3.23822 12.4399 3.39985 12.6907 3.50375C12.9414 3.60764 13.2132 3.65085 13.4838 3.62987C13.7544 3.60889 14.0162 3.5243 14.248 3.383C15.791 2.443 17.558 4.209 16.618 5.753C16.4769 5.98466 16.3924 6.24634 16.3715 6.51677C16.3506 6.78721 16.3938 7.05877 16.4975 7.30938C16.6013 7.55999 16.7627 7.78258 16.9687 7.95905C17.1747 8.13553 17.4194 8.26091 17.683 8.325C19.439 8.751 19.439 11.249 17.683 11.675C17.4192 11.7389 17.1742 11.8642 16.968 12.0407C16.7618 12.2172 16.6001 12.4399 16.4963 12.6907C16.3924 12.9414 16.3491 13.2132 16.3701 13.4838C16.3911 13.7544 16.4757 14.0162 16.617 14.248C17.557 15.791 15.791 17.558 14.247 16.618C14.0153 16.4769 13.7537 16.3924 13.4832 16.3715C13.2128 16.3506 12.9412 16.3938 12.6906 16.4975C12.44 16.6013 12.2174 16.7627 12.0409 16.9687C11.8645 17.1747 11.7391 17.4194 11.675 17.683C11.249 19.439 8.751 19.439 8.325 17.683C8.26108 17.4192 8.13578 17.1742 7.95929 16.968C7.7828 16.7618 7.56011 16.6001 7.30935 16.4963C7.05859 16.3924 6.78683 16.3491 6.51621 16.3701C6.24559 16.3911 5.98375 16.4757 5.752 16.617C4.209 17.557 2.442 15.791 3.382 14.247C3.5231 14.0153 3.60755 13.7537 3.62848 13.4832C3.64942 13.2128 3.60624 12.9412 3.50247 12.6906C3.3987 12.44 3.23726 12.2174 3.03127 12.0409C2.82529 11.8645 2.58056 11.7391 2.317 11.675C0.561 11.249 0.561 8.751 2.317 8.325C2.5808 8.26108 2.82578 8.13578 3.032 7.95929C3.23822 7.7828 3.39985 7.56011 3.50375 7.30935C3.60764 7.05859 3.65085 6.78683 3.62987 6.51621C3.60889 6.24559 3.5243 5.98375 3.383 5.752C2.443 4.209 4.209 2.442 5.753 3.382C6.753 3.99 8.049 3.452 8.325 2.317Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M10 13C11.6569 13 13 11.6569 13 10C13 8.34315 11.6569 7 10 7C8.34315 7 7 8.34315 7 10C7 11.6569 8.34315 13 10 13Z" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>                                
+                    <svg class="task-page__control-tasks-menu-list-item-icon" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 5C18.1046 5 19 4.10457 19 3C19 1.89543 18.1046 1 17 1H3C1.89543 1 1 1.89543 1 3C1 4.10457 1.89543 5 3 5M17 5H3M17 5V15C17 15.5304 16.7893 16.0391 16.4142 16.4142C16.0391 16.7893 15.5304 17 15 17H5C4.46957 17 3.96086 16.7893 3.58579 16.4142C3.21071 16.0391 3 15.5304 3 15V5M8 9H12" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                           
                      <span class="task-page__control-tasks-menu-list-item-title">Завершенные</span>                           
                   </a>
               </li>
            </ul>
         </aside>
-        <div class="task-page__grid-right">
+        <div class="task-page__grid-right" x-data="{tableLists: [], taskPageFastCreateTaskBtnInput: ''}">
            <div class="task-page__fast-create-task-wrapper">
               <button type="button" class="task-page__fast-create-task-btn">
-                  Быстрое создание задачи
+                <input type="text" placeholder="Быстрое создание задачи" class="task-page__fast-create-task-btn-input" x-model="taskPageFastCreateTaskBtnInput">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6.33366 3.66797H3.00033C2.6467 3.66797 2.30756 3.80844 2.05752 4.05849C1.80747 4.30854 1.66699 4.64768 1.66699 5.0013V11.0013C1.66699 11.3549 1.80747 11.6941 2.05752 11.9441C2.30756 12.1942 2.6467 12.3346 3.00033 12.3346H9.00033C9.35395 12.3346 9.69309 12.1942 9.94313 11.9441C10.1932 11.6941 10.3337 11.3549 10.3337 11.0013V7.66797M5.66699 8.33464L12.3337 1.66797M12.3337 1.66797H9.00033M12.3337 1.66797V5.0013" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>                            
               </button>
-              <button type="button" class="btn btn--primary task-page__fast-create-task-check-btn">
+              <button type="button" class="btn btn--primary task-page__fast-create-task-check-btn" x-on:click="taskPageFastCreateTaskBtnInput === '' ? '' : tableLists.push({name: taskPageFastCreateTaskBtnInput});taskPageFastCreateTaskBtnInput = ''">
                   <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 6L6 11L16 1" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>                            
@@ -266,5 +266,6 @@ import EditTaskPopup from "../components/taskPage/EditTaskPopup.astro";
       </div>
       
       <EditTaskPopup></EditTaskPopup>
+      <CreateTaskPopup></CreateTaskPopup>
   </section>
 </Layout>

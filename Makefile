@@ -6,7 +6,7 @@ DIR := ${CURDIR}
 .PHONY: install
 install: ## генерация окружения
 	@sudo apt install rename
-	@rm -f resources/views/*
+	@find resources/views/* ! -iregex '(main)' | xargs rm -f
 	@cp .env.example .env
 	@npm install
 	@npm run build
@@ -19,7 +19,7 @@ install: ## генерация окружения
 	@cd resources/views/ && rename 's/\.html/.blade.php/' *.html
 	@composer install
 	@php artisan key:generate
-	@docker exec laravel.test "php artisan migrate"
+	@docker-compose exec laravel.test php artisan migrate
 	@docker-compose up -d
 
 .PHONY: up

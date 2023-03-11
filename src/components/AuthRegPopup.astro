@@ -53,7 +53,7 @@
             <fieldset class="alt-popup__fieldset auth-reg-alt-popup__fieldset" x-show="smsEnter === true">
                 <p class="auth-reg-alt-popup__info">Вход для зарегестрированных пользователей</p>
                 <div class="auth-reg-alt-popup__form-control-tel-wrapper">
-                    <div class="auth-reg-alt-popup__form-control-select-wrapper tel-wrapper" x-data="{toggleArrow: true, toggleSelectList: true, resultInputVal: '+86'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                    <div class="auth-reg-alt-popup__form-control-select-wrapper tel-wrapper" x-data="{toggleArrow: true, toggleSelectList: false, resultInputVal: '+86'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
                       <input type="text" class="auth-reg-alt-popup__form-control-select-result-input" name="form-control-select-result-input" value="+86" readonly="" x-model="resultInputVal">
                       <div class="auth-reg-alt-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
                       <ul role="list" class="auth-reg-alt-popup__form-control-select-list">

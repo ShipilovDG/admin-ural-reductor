@@ -1,3 +1,7 @@
+---
+import QAEditMessageAltPopup from "./Q&AEditMessageAltPopup.astro";
+---
+
 <div class="site-section__table-wrapper Q-and-A-table__table-wrapper">
     <nav class="site-section__table Q-and-A-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
       <ul role="list" class="site-section__table-list site-section__table-caption-list Q-and-A-table__table-list Q-and-A-table__table-caption-list">
@@ -21,6 +25,7 @@
         </li>
       </ul>
       <template x-for="table in tables">
+      <div class="Q-and-A-table__table-list-wrapper" x-data="{QandAEditMessagesAltPopup: false, toggleStatusBtn: 'in-process'}">
       <ul role="list" class="site-section__table-list Q-and-A-table__table-list">
         <li class="site-section__table-list-item Q-and-A-table__table-list-item">
             <span class="site-section__indicator-new blinking"></span>
@@ -44,11 +49,13 @@
             Здравствуйте, тык пык мык
         </li>
         <li class="site-section__table-list-item Q-and-A-table__table-list-item">
-            <button class="btn site-section__status-btn Q-and-A-table__status-btn site-section__status-btn--in-process Q-and-A-table__status-btn--in-process" type="button">
+            <button class="btn site-section__status-btn Q-and-A-table__status-btn site-section__status-btn--in-process Q-and-A-table__status-btn--in-process" type="button" x-bind:class="{'site-section__status-btn--in-process Q-and-A-table__status-btn--in-process': toggleStatusBtn === 'in-process', 'site-section__status-btn--completed Q-and-A-table__status-btn--completed': toggleStatusBtn === 'completed'}" x-text="toggleStatusBtn === 'in-process' ? 'Ждёт ответа' : 'Отвечен'">
                 Ждёт ответа
             </button>
        </li>
       </ul>
+      <QAEditMessageAltPopup></QAEditMessageAltPopup>
+    </div>
     </template>
     </nav>
 </div>

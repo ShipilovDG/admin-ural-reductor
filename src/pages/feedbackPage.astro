@@ -8,13 +8,12 @@ import SearchBtnDropdown from "../components/SearchBtnDropdown.astro";
 import Filter from "../components/Filter.astro";
 import QATable from "../components/feedbackPage/Q&ATable.astro";
 import ApplicationsTable from "../components/feedbackPage/ApplicationsTable.astro";
-import QAEditMessageAltPopup from "../components/feedbackPage/Q&AEditMessageAltPopup.astro";
-import EditApplicationAltPopup from "../components/feedbackPage/EditApplicationAltPopup.astro";
 import DeleteChatAltPopup from "../components/feedbackPage/DeleteChatAltPopup.astro";
 import ArchiveChatAltPopup from "../components/feedbackPage/ArchiveChatAltPopup.astro";
+import CreateOfferPopup from "../components/financesPage/CreateOfferPopup.astro";
 ---
 <Layout title="страница Заявки и обращения">
-  <section class="site-section feedback-page__site-section" x-data="{table: 1, searchBtnDropdown: false, QandAEditMessagesAltPopup: false, editApplicationAltPopup: false, deleteChatAltPopup: false, archiveChatAltPopup: false }">
+  <section class="site-section feedback-page__site-section" x-data="{table: 1, searchBtnDropdown: false, deleteChatAltPopup: false, archiveChatAltPopup: false, createOfferPopup:false }">
     <h1 class="site-section__page-title feedback-page__page-title">Обратная связь</h1>
     <TableTabs></TableTabs>
     <div class="site-section__tab-wrapper" x-show="table === 1">
@@ -885,9 +884,8 @@ import ArchiveChatAltPopup from "../components/feedbackPage/ArchiveChatAltPopup.
         </div>
        </div>
     </div>
-    <QAEditMessageAltPopup></QAEditMessageAltPopup>
-    <EditApplicationAltPopup></EditApplicationAltPopup>
     <ArchiveChatAltPopup></ArchiveChatAltPopup>
+    <CreateOfferPopup></CreateOfferPopup>
   </section>
 </Layout>
 

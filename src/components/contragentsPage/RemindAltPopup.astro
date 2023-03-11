@@ -1,0 +1,76 @@
+<div class="alt-popup remind-alt-popup" x-bind:class="{'active': remindAltPopup === true}" x-on:click.self="remindAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form remind-alt-popup__form">
+    <div class="alt-popup__content remind-alt-popup__content">
+     <div class="remind-alt-popup__top-row">
+        <p class="alt-popup__title remind-alt-popup__title">Напомнить по</p>
+     </div>
+    <div class="alt-popup__body remind-alt-popup__body">
+            <fieldset class="alt-popup__fieldset remind-alt-popup__fieldset b-b">
+                <div class="remind-alt-popup__grid-top" x-bind:class="remindResultInputValDate === 'Дате' ? 'two-cols-date' : remindResultInputValDate === 'Дате начала' ? 'two-cols-datestart' : 'three-cols'">
+                    <div class="remind-alt-popup__form-control-group">
+                        <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                            <input type="text" class="remind-alt-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 1" value="Дате" readonly="" x-model="remindResultInputValDate">
+                            <ul role="list" class="remind-alt-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                              <li class="remind-alt-popup__form-control-select-list-item">
+                                <input type="text" value="Дате" readonly="" class="remind-alt-popup__form-control-select-list-item-input" x-on:click="remindResultInputValDate = $el.value">
+                              </li>
+                              <li class="remind-alt-popup__form-control-select-list-item">
+                                  <input type="text" value="Крайнему сроку" readonly="" class="remind-alt-popup__form-control-select-list-item-input" x-on:click="remindResultInputValDate = $el.value">
+                                </li>
+                                <li class="remind-alt-popup__form-control-select-list-item">
+                                  <input type="text" value="Дате начала" readonly="" class="remind-alt-popup__form-control-select-list-item-input" x-on:click="remindResultInputValDate = $el.value">
+                                </li>
+                            </ul>
+                            <svg class="remind-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                              <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                              </svg>                  
+                          </div>
+                    </div>
+                    <div class="remind-alt-popup__form-control-group" x-show="remindResultInputValDate === 'Крайнему сроку'">
+                        <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-input-wrapper">
+                            <input type="number" class="remind-alt-popup__form-control-input" value="1">
+                        </div>
+                    </div>
+                    <div class="remind-alt-popup__form-control-group">
+                        <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-input-wrapper">
+                            <input type="text" class="remind-alt-popup__form-control-input" placeholder="Указать дату и время" x-model="remindResultInputValDate2" x-show="remindResultInputValDate === 'Дате' || remindResultInputValDate === 'Дате начала'">
+                            <input type="text" class="remind-alt-popup__form-control-input" placeholder="Часов" disabled x-show="remindResultInputValDate === 'Крайнему сроку'">
+                        </div>
+                    </div>
+                </div>
+                <div class="remind-alt-popup__form-control-group">
+                    <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                        <input type="text" class="remind-alt-popup__form-control-select-result-input" name="form-control-select-result-input" id="form-control-select-result-input 1" value="Дате" readonly="" x-model="remindResultInputValResp">
+                        <ul role="list" class="remind-alt-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                          <li class="remind-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Дате" readonly="" class="remind-alt-popup__form-control-select-list-item-input" x-on:click="remindResultInputValResp = $el.value">
+                          </li>
+                          <li class="remind-alt-popup__form-control-select-list-item">
+                              <input type="text" value="Крайнему сроку" readonly="" class="remind-alt-popup__form-control-select-list-item-input" x-on:click="remindResultInputValResp = $el.value">
+                            </li>
+                            <li class="remind-alt-popup__form-control-select-list-item">
+                              <input type="text" value="Дате начала" readonly="" class="remind-alt-popup__form-control-select-list-item-input" x-on:click="remindResultInputValResp = $el.value">
+                            </li>
+                        </ul>
+                        <svg class="remind-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                          <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>                  
+                  </div>
+                </div>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group remind-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item remind-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary remind-alt-popup__reset-btn" x-on:click="remindResultInputValDate = 'Дате'; remindResultInputValDate2 = ''; remindResultInputValResp = 'Ответственному'">
+                Сбросить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item remind-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary remind-alt-popup__save-btn" x-on:click="remindAltPopup = false; remindListItems.push({dateName: remindResultInputValDate, dateValue: remindResultInputValDate2, responsible: remindResultInputValResp}); remindResultInputValDate = 'Дате'; remindResultInputValDate2 = ''; remindResultInputValResp = 'Ответственному'">
+                Применить
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>
