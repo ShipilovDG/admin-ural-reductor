@@ -31,7 +31,9 @@ class ProductRepository
         $product->files               = json_encode($filePaths);
         $product->product_category_id = $request->get('product_category_id');
         $product->vendor_code         = $request->get('vendor_code');
-        $product->tags                = Tag::factory()->make($request->get('tags'));
+        if ($request->get('tags')){
+            $product->tags                = var_dump(Tag::factory()->createMany($request->get('tags')));die();
+        }
         $product->producer_id         = $request->get('producer_id');
         $product->characteristics     = $request->get('characteristics');
         $product->price_type_id       = $request->get('price_type_id');
@@ -43,6 +45,7 @@ class ProductRepository
 
     private function storeFile(UploadedFile $file): string
     {
+        //TODO переделать роли файлов
         $fileHash      = md5($file->getFilename());
         $fileHash      = str_replace('.', '', $fileHash);
         $fileHashArray = str_split($fileHash, 2);
@@ -59,5 +62,10 @@ class ProductRepository
          * @var $product Product
          */
         return $product->delete();
+    }
+
+    public function get(Request $request)
+    {
+        return Product::findOrFail($request->get('id'));
     }
 }

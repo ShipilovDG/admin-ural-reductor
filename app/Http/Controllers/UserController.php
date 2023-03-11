@@ -10,26 +10,42 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     private UserService $service;
-    /**
-     * @OA\Info(
-     *      version="3.0.0",
-     *     title = "admin panel"
-     * )
-     * @OA\Get(
-     *      path="/profiles",
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *     @OA\PathItem (
-     *     ),
-     * )
-     */
+
     public function __construct(UserService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"auth"},
+     *     path="/login",
+     *     description="Авторизация пользователя",
+     *     @OA\Parameter(
+     *         description="Логин пользователя",
+     *         in="query",
+     *         name="login",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         description="Пароль пользователя",
+     *         in="query",
+     *         name="password",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success: true",
+     *         @OA\JsonContent(),
+     *     ),
+     * )
+     */
     public function login(Request $request)
     {
         $request->validate(
@@ -40,13 +56,41 @@ class UserController extends Controller
         );
         $formFields = $request->only(['login', 'password']);
         if (Auth::attempt($formFields)) {
-            //TODO почитать по intended
             return redirect()->intended(route('userPage'));
         }
 
         return redirect('login');
     }
-
+    /**
+     * @OA\Post(
+     *     tags={"auth"},
+     *     path="/register",
+     *     description="Регистрация пользователя",
+     *     @OA\Parameter(
+     *         description="Логин пользователя",
+     *         in="query",
+     *         name="login",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         description="Пароль пользователя",
+     *         in="query",
+     *         name="password",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success: true",
+     *         @OA\JsonContent(),
+     *     ),
+     * )
+     */
     public function register(Request $request)
     {
         $request->validate(
@@ -62,6 +106,17 @@ class UserController extends Controller
         return redirect('userPage');
     }
 
+    /**
+     * @OA\Get(
+     *     tags={"auth"},
+     *     path="/logout",
+     *     description="Выход пользователя",
+     *     @OA\Response(
+     *         response=302,
+     *         description="success: true"
+     *     ),
+     * )
+     */
     public function logout()
     {
         Auth::logout();
@@ -69,6 +124,23 @@ class UserController extends Controller
         return redirect('login');
     }
 
+    /**
+     * @OA\Patch(
+     *     tags={"user"},
+     *     path="/user",
+     *     description="Изменение настроек пользователя",
+     *     @OA\RequestBody(
+     *         description="Pet to add to the store",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success: true",
+     *         @OA\JsonContent(),
+     *     ),
+     * )
+     */
     public function patch(Request $request): JsonResponse
     {
         $request->validate([
@@ -91,6 +163,29 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get (
+     *     tags={"user"},
+     *     path="/user",
+     *     description="Получение пользователя по id",
+     *     @OA\Parameter(
+     *         description="ID пользователя",
+     *         in="query",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success: true",
+     *         @OA\JsonContent(),
+     *     ),
+     *
+     * )
+     */
     public function get(Request $request): JsonResponse
     {
         $request->validate(['id' => 'required|numeric']);
@@ -101,6 +196,28 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Delete(
+     *     tags={"user"},
+     *     path="/user",
+     *     description="Удаляет пользователя по id",
+     *     @OA\Parameter(
+     *         description="ID пользователя",
+     *         in="query",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success: true",
+     *         @OA\JsonContent()
+     *     ),
+     * )
+     */
     public function delete(Request $request): JsonResponse
     {
         $request->validate(['id' => 'required|numeric']);

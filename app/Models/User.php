@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use OpenApi\Attributes\Property;
+use OpenApi\Attributes\Schema;
 use Spatie\Permission\Traits\HasRoles;
 
+#[Schema]
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -42,6 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     /**
      * Get the unique identifier for the user.
      *
@@ -61,4 +64,24 @@ class User extends Authenticatable
     {
         return $this->password;
     }
+
+    #[Property(type: "int")]
+    private $id    = null;
+    #[Property(type: "string")]
+    private $login    = null;
+    #[Property(type: "string")]
+    private $password = null;
+    #[Property(type: "string")]
+    private $email = null;
+    #[Property(type: "string")]
+    private $full_name = null;
+    #[Property(type: "string")]
+    private $phone_number = null;
+    #[Property(type: "string")]
+    private $birth_date = null;
+    #[Property(type: "string")]
+    private $lang = null;
+    #[Property(type: "string")]
+    private $timezone = null;
+
 }

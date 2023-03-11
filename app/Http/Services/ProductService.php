@@ -36,4 +36,9 @@ class ProductService
     {
         return $this->repository->drop($productId);
     }
+
+    public function get(Request $request)
+    {
+        return $this->repository->get($request);
+    }
 }

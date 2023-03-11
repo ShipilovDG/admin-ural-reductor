@@ -23,7 +23,6 @@ return new class extends Migration
             $table->float('weight_kg')->nullable();
             $table->integer('price_type_id')->nullable();
             $table->json('files')->nullable();
-            $table->json('tags')->nullable();
             $table->integer('producer_id')->nullable();
             $table->json('characteristics')->nullable();
             $table->softDeletes();
