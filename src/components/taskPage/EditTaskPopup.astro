@@ -348,49 +348,81 @@
                     </li>
                 </ul>
             </fieldset>
-            <fieldset class="edit-task-popup__fieldset m-b b-b">
+            <fieldset class="edit-task-popup__fieldset m-b b-b" x-data="{remindListItems: []}">
                 <h2 class="popup__title edit-task-popup__title">
                     Напоминание
                 </h2>
                 <ul role="list" class="edit-task-popup__remind-list">
-                    <li class="edit-task-popup__remind-list-item">
-                        <div class="edit-task-popup__form-control-group remind-group">
-                            <p class="edit-task-popup__remind-group-date">За 1 дней по крайнему сроку</p>
-                            <p class="edit-task-popup__remind-group-resp">Ответственному</p>
-                            <!-- <input type="text" class="create-contragent-popup__form-control-input edge-date" value="За 1 дней по крайнему сроку" readonly>
-                            <input type="text" class="create-contragent-popup__form-control-input resp" value="Ответственному" readonly> -->
-                        </div>
-                            <div class="edit-task-popup__remind-list-item-controls">
-                                <button type="button" class="edit-task-popup__remind-list-item-edit-btn">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </button>
-                                <button type="button" class="edit-task-popup__remind-list-item-delete-btn">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>             
-                                </button>
+                    <template x-for="remindListItem in remindListItems">
+                        <li class="edit-task-popup__remind-list-item" x-data="{toggleEdit: false}">
+                            <div class="edit-task-popup__form-control-group remind-group" x-bind:contenteditable="toggleEdit === true ? true: false">
+                                <p class="edit-task-popup__remind-group-date">За 1 дней по крайнему сроку</p>
+                                <p class="edit-task-popup__remind-group-resp">Ответственному</p>
+                                <!-- <input type="text" class="create-contragent-popup__form-control-input edge-date" value="За 1 дней по крайнему сроку" readonly>
+                                <input type="text" class="create-contragent-popup__form-control-input resp" value="Ответственному" readonly> -->
                             </div>
-                    </li>
-                  </ul>
-                <button type="button" class="edit-task-popup__add-remind-btn">
+                                <div class="edit-task-popup__remind-list-item-controls">
+                                    <button type="button" class="edit-task-popup__remind-list-item-edit-btn" x-on:click="toggleEdit = !toggleEdit">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === false">
+                                        <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === true">
+                                            <path d="M1.6665 7.9987L8.33317 14.6654L21.6665 1.33203" stroke="#42BA96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg> 
+                                    </button>
+                                    <button type="button" class="edit-task-popup__remind-list-item-delete-btn" x-on:click="remindListItems = remindListItems.filter(item => item !== remindListItem)">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === false">
+                                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg> 
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === true">
+                                                <path d="M15 1L1 15M1 1L15 15" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>             
+                                    </button>
+                                </div>
+                        </li>
+                    </template>
+                </ul>
+                <button type="button" class="edit-task-popup__add-remind-btn" x-on:click="remindListItems.push({id:remindListItems.length + 1})">
                     Добавить напоминание
                  </button>
             </fieldset>
-            <fieldset class="edit-task-popup__fieldset m-b">
+            <fieldset class="edit-task-popup__fieldset m-b" x-data="{addInfoLinkCards:[], toggleList: false}">
                 <h2 class="popup__title edit-task-popup__title">
                     Связи
                 </h2>
-                <div class="edit-task-popup__add-info-link-card">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <p class="edit-task-popup__add-info-link-card-title">ООО “УРАЛРЕДУКТОР”</p>                        
-                </div> 
-                <button type="button" class="edit-task-popup__add-links-btn">
+                <template x-for="addInfoLinkCard in addInfoLinkCards">
+                    <div class="edit-task-popup__add-info-link-card">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <p class="edit-task-popup__add-info-link-card-title" x-text="addInfoLinkCard.value"></p>                        
+                    </div>
+                </template>
+                <div class="edit-task-popup__add-links-btn-wrapper" x-on:click.outside="toggleList = false">
+                <button type="button" class="edit-task-popup__add-links-btn" x-on:click="toggleList = !toggleList">
                     Добавить связи
                  </button>
+                 <ul role="list" class="edit-task-popup__add-links-list" x-bind:class="{'active': toggleList === true }">
+                    <li class="edit-task-popup__add-links-list-item">
+                        <svg class="edit-task-popup__add-links-list-item-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13H13M5 4.33333H5.66667M5 7H5.66667M5 9.66667H5.66667M8.33333 4.33333H9M8.33333 7H9M8.33333 9.66667H9M2.33333 13V2.33333C2.33333 1.97971 2.47381 1.64057 2.72386 1.39052C2.97391 1.14048 3.31304 1 3.66667 1H10.3333C10.687 1 11.0261 1.14048 11.2761 1.39052C11.5262 1.64057 11.6667 1.97971 11.6667 2.33333V13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <input type="text" class="edit-task-popup__add-links-list-item-input" value="ООО “Уралредуктор”" x-on:click="addInfoLinkCards.push({value: $el.value});toggleList = false">                        
+                    </li>
+                    <li class="edit-task-popup__add-links-list-item">
+                        <svg class="edit-task-popup__add-links-list-item-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13H13M5 4.33333H5.66667M5 7H5.66667M5 9.66667H5.66667M8.33333 4.33333H9M8.33333 7H9M8.33333 9.66667H9M2.33333 13V2.33333C2.33333 1.97971 2.47381 1.64057 2.72386 1.39052C2.97391 1.14048 3.31304 1 3.66667 1H10.3333C10.687 1 11.0261 1.14048 11.2761 1.39052C11.5262 1.64057 11.6667 1.97971 11.6667 2.33333V13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <input type="text" class="edit-task-popup__add-links-list-item-input" value="ООО “Иван конструктор”" x-on:click="addInfoLinkCards.push({value: $el.value});toggleList = false">                        
+                    </li>
+                    <li class="edit-task-popup__add-links-list-item">
+                        <svg class="edit-task-popup__add-links-list-item-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13H13M5 4.33333H5.66667M5 7H5.66667M5 9.66667H5.66667M8.33333 4.33333H9M8.33333 7H9M8.33333 9.66667H9M2.33333 13V2.33333C2.33333 1.97971 2.47381 1.64057 2.72386 1.39052C2.97391 1.14048 3.31304 1 3.66667 1H10.3333C10.687 1 11.0261 1.14048 11.2761 1.39052C11.5262 1.64057 11.6667 1.97971 11.6667 2.33333V13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <input type="text" class="edit-task-popup__add-links-list-item-input" value="ООО “Иван конструктор”" x-on:click="addInfoLinkCards.push({value: $el.value});toggleList = false">                        
+                    </li>
+                 </ul>
+                </div>
             </fieldset>
         </div>
         <div class="edit-task-popup__body-wrapper history" x-show="table === 2">
@@ -462,26 +494,7 @@
     </ul>
     </div>
     <div class="popup__body edit-task-popup__body desktop" x-data="dropInputFiler">
-        <div class="edit-task-popup__body-wrapper left" x-data="{ editTaskPopupCheckList: false, 
-        editTaskPopupSubtaskList: false,
-        editTaskPopupCheckListProgress: false, totalCheckBoxPercentageSum: '',
-        checkListCheckBoxes: {percentage1: false, percentage2: false, percentage3: false}
-        }"
-        x-init="$watch('checkListCheckBoxes', 
-        value => {
-        if(checkListCheckBoxes.percentage1 === true) {
-            checkListCheckBoxes.percentage1 = 33
-        } 
-        if(checkListCheckBoxes.percentage2 === true) {
-            checkListCheckBoxes.percentage2 = 33
-        } 
-        if(checkListCheckBoxes.percentage3 === true) {
-            checkListCheckBoxes.percentage3 = 33
-        } 
-        });
-        "
-        x-effect="totalCheckBoxPercentageSum = checkListCheckBoxes.percentage1 + checkListCheckBoxes.percentage2 + checkListCheckBoxes.percentage3"
-        >
+        <div class="edit-task-popup__body-wrapper left">
         <fieldset class="edit-task-popup__fieldset task-btns-group m-b b-b">
             <div class="edit-task-popup__task-status-btn-wrapper" x-data="{toggleDropdown: false, resultInputVal: 'Сделано'}" x-on:click.outside="toggleDropdown = false">
                 <button type="button" class="edit-task-popup__task-status-btn" x-on:click="toggleDropdown = !toggleDropdown" x-bind:class="{'done': resultInputVal === 'Сделано', 'in-process': resultInputVal === 'Сделать', 'in-work': resultInputVal === 'В работе', 'complete': resultInputVal === 'Завершено'}">
@@ -533,7 +546,13 @@
                     </svg>                   
             </button>
         </fieldset>
-            <fieldset class="edit-task-popup__fieldset check-list-descr-group m-b b-b">
+            <fieldset class="edit-task-popup__fieldset check-list-descr-group m-b b-b" 
+            x-data="{
+                editTaskPopupCheckLists: [],
+                editTaskPopupCheckListItemId: 1,
+                totalChechedCheckboxCount: 0
+            }"
+            >
                 <div class="edit-task-popup__descr-textarea-controls">
                     <textarea class="edit-task-popup__descr-textarea" x-ref="editTaskPopupDescrTextarea" disabled x-on:keydown.enter="$refs.editTaskPopupDescrTextarea.setAttribute('disabled', 'true');$refs.editTaskPopupDescrTextarea.blur()" x-on:focusout="$refs.editTaskPopupDescrTextarea.setAttribute('disabled', 'true')" placeholder="Описание не заполнено"></textarea>
                     <button type="button" class="edit-task-popup__add-info-edit-btn" x-on:click="$refs.editTaskPopupDescrTextarea.removeAttribute('disabled');$refs.editTaskPopupDescrTextarea.focus()">
@@ -543,106 +562,47 @@
                     </button>
                    </div>
              <div class="edit-task-popup__check-list-progress-wrapper">
-                <button type="button" class="edit-task-popup__add-check-list-btn" x-on:click="editTaskPopupCheckList = true;editTaskPopupCheckListProgress = true" x-text="editTaskPopupCheckList === true ? 'Чек-лист' : 'Добавить чек-лист'" x-bind:class="{'active': editTaskPopupCheckList === true }">Добавить чек-лист</button>
-                <div class="edit-task-popup__check-list-progress" x-show="editTaskPopupCheckListProgress === true">
-                    <span class="edit-task-popup__progress-percentage" x-text="`${totalCheckBoxPercentageSum}%`" x-ref="checkListProgressPercentageCount" x-init="$nextTick(() => { if($el.innerText === '99%') {console.log($el.innerText)} })"></span>
+                <button type="button" class="edit-task-popup__add-check-list-btn" x-on:click="editTaskPopupCheckLists.push({})" x-text="editTaskPopupCheckLists.length === 0 ? 'Чек-лист' : 'Добавить чек-лист'">Добавить чек-лист</button>
+                <div class="edit-task-popup__check-list-progress" x-show="editTaskPopupCheckLists.length > 0">
+                    <span class="edit-task-popup__progress-percentage" x-text="(!isNaN(totalChechedCheckboxCount) && totalChechedCheckboxCount !== 0) ? Math.round(((totalChechedCheckboxCount /editTaskPopupCheckLists.length) * 100)) + '%' : 0 + '%'"></span>
                     <div class="edit-task-popup__progress-bar-wrapper">
-                        <div class="edit-task-popup__progress-bar" x-bind:style="`width: ${totalCheckBoxPercentageSum}%`" x-ref="checkListProgressBar" x-init="$watch('$refs.checkListProgressBar', 
-                        value => value.style.width === '99%' ? value.style.width = '100%': '');"></div>
+                        <div class="edit-task-popup__progress-bar" x-bind:style="(!isNaN(totalChechedCheckboxCount) && totalChechedCheckboxCount !== 0) ?'width:' + Math.round(((totalChechedCheckboxCount /editTaskPopupCheckLists.length) * 100)) + '%' : 'width:' + 0 + '%'"></div>
                     </div>
                 </div>
-            </div>
-                <ul role="list" class="edit-task-popup__check-list" x-show="editTaskPopupCheckList === true">
-                    <li class="edit-task-popup__check-list-item" x-ref="editTaskPopupCheckListItem1">
-                        <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
-                            <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
-                              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
-                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
-                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
-                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>     
-                            </button>
-                            <ul class="site-section__choose-status-dropdown-list edit-task-popup__choose-status-dropdown-list check-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
-                               <li class="site-section__choose-status-dropdown-list-item">
-                                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
-                               </li>
-                               <li class="site-section__choose-status-dropdown-list-item">
-                                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
-                             </li>
-                            </ul>
-                        </div>
-                        <div class="edit-task-popup__check-list-checkbox-wrapper" x-on:click="toggleCheckboxState = !toggleCheckboxState;checkListCheckBoxes.percentage1 = !checkListCheckBoxes.percentage1" x-bind:class="{'active': toggleCheckboxState === true}" x-data="{toggleCheckboxState: false}">
-                            <input type="checkbox" class="edit-task-popup__check-list-checkbox">
+             </div>
+                <ul role="list" class="edit-task-popup__check-list">
+                    <template x-for="editTaskPopupCheckList in editTaskPopupCheckLists">
+                        <li class="edit-task-popup__check-list-item">
+                            <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                                <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                                  <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                                    <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>     
+                                </button>
+                                <ul class="site-section__choose-status-dropdown-list edit-task-popup__choose-status-dropdown-list check-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                                   <li class="site-section__choose-status-dropdown-list-item">
+                                      <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
+                                   </li>
+                                   <li class="site-section__choose-status-dropdown-list-item">
+                                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
+                                 </li>
+                                </ul>
                             </div>
-                        <input type="text" class="edit-task-popup__check-list-input-text" value="Отправить что-нибудь">
-                        <button type="button" class="edit-task-popup__check-list-item-delete-btn" x-on:click="$refs.editTaskPopupCheckListItem1.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                    </li>
-                    <li class="edit-task-popup__check-list-item" x-ref="editTaskPopupCheckListItem2">
-                        <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
-                            <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
-                              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
-                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
-                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
-                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>     
+                            <div class="edit-task-popup__check-list-checkbox-wrapper" x-on:click="toggleCheckboxState === false ? totalChechedCheckboxCount++: totalChechedCheckboxCount--; toggleCheckboxState = !toggleCheckboxState" x-bind:class="{'active': toggleCheckboxState === true}" x-data="{toggleCheckboxState: false}">
+                                <input type="checkbox" class="edit-task-popup__check-list-checkbox">
+                                </div>
+                            <input type="text" class="edit-task-popup__check-list-input-text" value="Отправить что-нибудь">
+                            <button type="button" class="edit-task-popup__check-list-item-delete-btn" x-on:click="editTaskPopupCheckLists = editTaskPopupCheckLists.filter(i => i !== editTaskPopupCheckList)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </button>
-                            <ul class="site-section__choose-status-dropdown-list edit-task-popup__choose-status-dropdown-list check-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
-                               <li class="site-section__choose-status-dropdown-list-item">
-                                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
-                               </li>
-                               <li class="site-section__choose-status-dropdown-list-item">
-                                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
-                             </li>
-                            </ul>
-                        </div>
-                        <div class="edit-task-popup__check-list-checkbox-wrapper" x-on:click="toggleCheckboxState = !toggleCheckboxState;checkListCheckBoxes.percentage2 = !checkListCheckBoxes.percentage2" x-bind:class="{'active': toggleCheckboxState === true}" x-data="{toggleCheckboxState: false}">
-                            <input type="checkbox" class="edit-task-popup__check-list-checkbox">
-                            </div>
-                        <input type="text" class="edit-task-popup__check-list-input-text" value="Отправить что-нибудь">
-                        <button type="button" class="edit-task-popup__check-list-item-delete-btn" x-on:click="$refs.editTaskPopupCheckListItem2.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                    </li>
-                    <li class="edit-task-popup__check-list-item" x-ref="editTaskPopupCheckListItem3">
-                        <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
-                            <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
-                              <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
-                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
-                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
-                                <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>     
-                            </button>
-                            <ul class="site-section__choose-status-dropdown-list edit-task-popup__choose-status-dropdown-list check-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
-                               <li class="site-section__choose-status-dropdown-list-item">
-                                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="">Импорт контактов из CSV</button>
-                               </li>
-                               <li class="site-section__choose-status-dropdown-list-item">
-                                <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="importCompanyCSVPopup = true">Импорт компании из CSV</button>
-                             </li>
-                            </ul>
-                        </div>
-                        <div class="edit-task-popup__check-list-checkbox-wrapper" x-on:click="toggleCheckboxState = !toggleCheckboxState;checkListCheckBoxes.percentage3 = !checkListCheckBoxes.percentage3" x-bind:class="{'active': toggleCheckboxState === true}" x-data="{toggleCheckboxState: false}">
-                            <input type="checkbox" class="edit-task-popup__check-list-checkbox">
-                        </div>
-                        <input type="text" class="edit-task-popup__check-list-input-text" placeholder="Нажмите, чтобы ввести текст">
-                        <button type="button" class="edit-task-popup__check-list-item-delete-btn" x-on:click="$refs.editTaskPopupCheckListItem3.remove()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                    </li>
+                        </li>
+                    </template>
                 </ul>
                 <ul role="list" class="edit-task-popup__attach-files-list desktop">
                 </ul>
@@ -660,18 +620,109 @@
                         Добавить файлы с сервера                  
                 </button>
             </fieldset>
-            <fieldset class="edit-task-popup__fieldset m-b b-b">
+            <fieldset class="edit-task-popup__fieldset m-b b-b subtask-group"
+            x-data="{
+                subtaskListItems: [],
+                subtaskListItemId: 1,
+                totalChechedCheckboxCount: 0,
+                newSubTask: false,
+                addNewSubTask: false,
+            }"
+            >
                 <div class="edit-task-popup__subtask-title-row">
                     <h2 class="popup__title edit-task-popup__title">
                         Подзадачи
                     </h2>
+                    <div class="edit-task-popup__subtask-progress" x-show="subtaskListItems.length > 0">
+                        <span class="edit-task-popup__progress-percentage" x-text="(!isNaN(totalChechedCheckboxCount) && totalChechedCheckboxCount !== 0) ? Math.round(((totalChechedCheckboxCount /subtaskListItems.length) * 100)) + '%' : 0 + '%'" x-ref="createTaskPopupProgressPercentage"></span>
+                        <div class="edit-task-popup__progress-bar-wrapper">
+                            <div class="edit-task-popup__progress-bar" x-bind:style="(!isNaN(totalChechedCheckboxCount) && totalChechedCheckboxCount !== 0) ?'width:' + Math.round(((totalChechedCheckboxCount /subtaskListItems.length) * 100)) + '%' : 'width:' + 0 + '%'"></div>
+                        </div>
+                    </div>
                 </div>
-                 <button type="button" class="edit-task-popup__new-subtask-btn">
+                <ul role="list" class="edit-task-popup__subtask-list">
+                    <template x-for="(subtaskListItem,index) in subtaskListItems" :key="index">
+                        <li class="edit-task-popup__subtask-list-item">
+                            <div class="edit-task-popup__subtask-list-item-inputs">
+                            <div class="edit-task-popup__subtask-list-item-checkbox-wrapper" x-data="{toggleCheckboxState: false}" x-on:click="toggleCheckboxState === false ? totalChechedCheckboxCount++: totalChechedCheckboxCount--; toggleCheckboxState = !toggleCheckboxState" x-bind:class="{'active': toggleCheckboxState === true}">
+                                <input type="checkbox" class="edit-task-popup__subtask-list-item-checkbox">
+                            </div>
+                            <input type="text" class="edit-task-popup__subtask-list-item-input-text" value="Отправить что-нибудь">
+                           </div>
+                            <div class="edit-task-popup__subtask-list-item-controls">
+                                <button type="button" class="edit-task-popup__subtask-list-item-view-btn">
+                                    <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                 
+                                </button>
+                                <button type="button" class="edit-task-popup__subtask-list-item-new-link-btn">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 4H3C2.46957 4 1.96086 4.21071 1.58579 4.58579C1.21071 4.96086 1 5.46957 1 6V15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H12C12.5304 17 13.0391 16.7893 13.4142 16.4142C13.7893 16.0391 14 15.5304 14 15V10M7 11L17 1M17 1H12M17 1V6" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                             
+                                </button>
+                                <button type="button" class="edit-task-popup__subtask-list-item-delete-btn" x-on:click="subtaskListItems = subtaskListItems.filter(i => i !== subtaskListItem); totalChechedCheckboxCount = document.querySelectorAll('.edit-task-popup__subtask-list-item-checkbox-wrapper.active').length"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+                <div class="edit-task-popup__subtask-groups-wrapper" x-show="newSubTask === true || addNewSubTask === true">
+                    <div class="edit-task-popup__form-control-group" x-on:click="subtaskListItems.push({})" x-show="newSubTask === true">
+                        <div class="edit-task-popup__form-control-wrapper edit-task-popup__form-control-input-wrapper subtask">
+                          <input type="text" class="edit-task-popup__form-control-input" placeholder="Быстрое создание подзадачи">
+                          <svg class="edit-task-popup__form-control-subtask-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.33341 3.66797H3.00008C2.64646 3.66797 2.30732 3.80844 2.05727 4.05849C1.80722 4.30854 1.66675 4.64768 1.66675 5.0013V11.0013C1.66675 11.3549 1.80722 11.6941 2.05727 11.9441C2.30732 12.1942 2.64646 12.3346 3.00008 12.3346H9.00008C9.3537 12.3346 9.69284 12.1942 9.94289 11.9441C10.1929 11.6941 10.3334 11.3549 10.3334 11.0013V7.66797M5.66675 8.33464L12.3334 1.66797M12.3334 1.66797H9.00008M12.3334 1.66797V5.0013" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                        
+                        </div>
+                     </div>
+                     <div class="edit-task-popup__form-control-group new-subtask-group" x-show="addNewSubTask === true">
+                        <div class="edit-task-popup__form-control-wrapper edit-task-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: false, resultInputVal: 'Иван'}" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                          <div class="edit-task-popup__task-priority-wrapper">
+                            <div class="edit-task-popup__form-control-select-placeholer-wrapper">
+                                <p class="edit-task-popup__placeholder-letter" x-text="resultInputVal === 'Иван' ? 'И' : resultInputVal === 'Андрей' ? 'A' : ''">
+                                </p>
+                                <input type="text" class="edit-task-popup__form-control-select-result-input subtask" value="Иван" readonly x-model="resultInputVal">
+                               </div>                
+                          </div>
+                          <div class="edit-task-popup__form-control-dropdown" x-bind:class="{'active': toggleSelectList === true}">
+                          <ul role="list" class="edit-task-popup__form-control-select-list">
+                            <li class="edit-task-popup__form-control-select-list-item">
+                              <input type="text" value="Иван" readonly class="edit-task-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Иван'">
+                            </li>
+                            <li class="edit-task-popup__form-control-select-list-item">
+                              <input type="text" value="Андрей" readonly class="edit-task-popup__form-control-select-list-item-input" x-on:click="resultInputVal = 'Андрей'">
+                            </li>
+                          </ul>
+                          </div>
+                          <svg class="edit-task-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                            <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>                  
+                        </div>
+                        <div class="edit-task-popup__subtask-controls">
+                            <button type="button" class="btn btn--secondary edit-task-popup__subtask-delete-btn">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 1L1 13M1 1L13 13" stroke="#7C69EF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                             </button>
+                             <button type="button" class="btn btn--primary edit-task-popup__subtask-check-btn">
+                                <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 6L6 11L16 1" stroke="#F9FBFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                
+                             </button>
+                        </div>
+                     </div>
+                    </div>
+                <div class="edit-task-popup__subtasks-btn-wrapper">
+                 <button type="button" class="edit-task-popup__new-subtask-btn" x-on:click="newSubTask = !newSubTask">
                     Новая подзадача
                  </button>
-                 <button type="button" class="edit-task-popup__add-exist-subtask-btn">
+                 <button type="button" class="edit-task-popup__add-exist-subtask-btn" x-on:click="addNewSubTask = !addNewSubTask">
                     Добавить подзадачу из сущеcтвующих
                  </button>
+                </div>
             </fieldset>
             <fieldset class="edit-task-popup__fieldset history">
                 <h2 class="popup__title edit-task-popup__title">
@@ -820,49 +871,81 @@
                 </li>
             </ul>
         </fieldset>
-        <fieldset class="edit-task-popup__fieldset remind-group m-b b-b">
+        <fieldset class="edit-task-popup__fieldset remind-group m-b b-b" x-data="{remindListItems: [] }">
             <h2 class="popup__title edit-task-popup__title">
                 Напоминание
             </h2>
             <ul role="list" class="edit-task-popup__remind-list">
-                <li class="edit-task-popup__remind-list-item">
-                    <div class="edit-task-popup__form-control-group remind-group">
-                        <p class="edit-task-popup__remind-group-date">За 1 дней по крайнему сроку</p>
-                        <p class="edit-task-popup__remind-group-resp">Ответственному</p>
-                        <!-- <input type="text" class="create-contragent-popup__form-control-input edge-date" value="За 1 дней по крайнему сроку" readonly>
-                        <input type="text" class="create-contragent-popup__form-control-input resp" value="Ответственному" readonly> -->
-                    </div>
-                        <div class="edit-task-popup__remind-list-item-controls">
-                            <button type="button" class="edit-task-popup__remind-list-item-edit-btn">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                            <button type="button" class="edit-task-popup__remind-list-item-delete-btn">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>             
-                            </button>
+                <template x-for="remindListItem in remindListItems">
+                    <li class="edit-task-popup__remind-list-item" x-data="{toggleEdit: false}">
+                        <div class="edit-task-popup__form-control-group remind-group" x-bind:contenteditable="toggleEdit === true ? true: false">
+                            <p class="edit-task-popup__remind-group-date">За 1 дней по крайнему сроку</p>
+                            <p class="edit-task-popup__remind-group-resp">Ответственному</p>
+                            <!-- <input type="text" class="create-contragent-popup__form-control-input edge-date" value="За 1 дней по крайнему сроку" readonly>
+                            <input type="text" class="create-contragent-popup__form-control-input resp" value="Ответственному" readonly> -->
                         </div>
-                </li>
-              </ul>
-            <button type="button" class="edit-task-popup__add-remind-btn">
+                            <div class="edit-task-popup__remind-list-item-controls">
+                                <button type="button" class="edit-task-popup__remind-list-item-edit-btn" x-on:click="toggleEdit = !toggleEdit">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === false">
+                                    <path d="M10.9162 2.90847L15.0915 7.08372M1 17H5.17525L16.1353 6.03997C16.689 5.4863 17 4.73536 17 3.95235C17 3.16934 16.689 2.4184 16.1353 1.86472C15.5816 1.31105 14.8307 1 14.0477 1C13.2646 1 12.5137 1.31105 11.96 1.86472L1 12.8248V17Z" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === true">
+                                        <path d="M1.6665 7.9987L8.33317 14.6654L21.6665 1.33203" stroke="#42BA96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg> 
+                                </button>
+                                <button type="button" class="edit-task-popup__remind-list-item-delete-btn" x-on:click="remindListItems = remindListItems.filter(item => item !== remindListItem)">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === false">
+                                        <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg> 
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" x-show="toggleEdit === true">
+                                            <path d="M15 1L1 15M1 1L15 15" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>             
+                                </button>
+                            </div>
+                    </li>
+                </template>
+            </ul>
+            <button type="button" class="edit-task-popup__add-remind-btn" x-on:click="remindListItems.push({id:remindListItems.length + 1})">
                 Добавить напоминание
              </button>
         </fieldset>
-        <fieldset class="edit-task-popup__fieldset links-group m-b">
+        <fieldset class="edit-task-popup__fieldset links-group m-b" x-data="{addInfoLinkCards:[], toggleList: false}">
             <h2 class="popup__title edit-task-popup__title">
                 Связи
             </h2>
-            <div class="edit-task-popup__add-info-link-card">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <p class="edit-task-popup__add-info-link-card-title">ООО “УРАЛРЕДУКТОР”</p>                        
-            </div> 
-            <button type="button" class="edit-task-popup__add-links-btn">
+            <template x-for="addInfoLinkCard in addInfoLinkCards">
+                <div class="edit-task-popup__add-info-link-card">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 19H19M7 6H8M7 10H8M7 14H8M12 6H13M12 10H13M12 14H13M3 19V3C3 2.46957 3.21071 1.96086 3.58579 1.58579C3.96086 1.21071 4.46957 1 5 1H15C15.5304 1 16.0391 1.21071 16.4142 1.58579C16.7893 1.96086 17 2.46957 17 3V19" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="edit-task-popup__add-info-link-card-title" x-text="addInfoLinkCard.value"></p>                        
+                </div>
+            </template>
+            <div class="edit-task-popup__add-links-btn-wrapper" x-on:click.outside="toggleList = false">
+            <button type="button" class="edit-task-popup__add-links-btn" x-on:click="toggleList = !toggleList"> 
                 Добавить связи
              </button>
+             <ul role="list" class="edit-task-popup__add-links-list" x-bind:class="{'active': toggleList === true }">
+                <li class="edit-task-popup__add-links-list-item">
+                    <svg class="edit-task-popup__add-links-list-item-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13H13M5 4.33333H5.66667M5 7H5.66667M5 9.66667H5.66667M8.33333 4.33333H9M8.33333 7H9M8.33333 9.66667H9M2.33333 13V2.33333C2.33333 1.97971 2.47381 1.64057 2.72386 1.39052C2.97391 1.14048 3.31304 1 3.66667 1H10.3333C10.687 1 11.0261 1.14048 11.2761 1.39052C11.5262 1.64057 11.6667 1.97971 11.6667 2.33333V13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" class="edit-task-popup__add-links-list-item-input" value="ООО “Уралредуктор”" x-on:click="addInfoLinkCards.push({value: $el.value});toggleList = false">                        
+                </li>
+                <li class="edit-task-popup__add-links-list-item">
+                    <svg class="edit-task-popup__add-links-list-item-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13H13M5 4.33333H5.66667M5 7H5.66667M5 9.66667H5.66667M8.33333 4.33333H9M8.33333 7H9M8.33333 9.66667H9M2.33333 13V2.33333C2.33333 1.97971 2.47381 1.64057 2.72386 1.39052C2.97391 1.14048 3.31304 1 3.66667 1H10.3333C10.687 1 11.0261 1.14048 11.2761 1.39052C11.5262 1.64057 11.6667 1.97971 11.6667 2.33333V13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" class="edit-task-popup__add-links-list-item-input" value="ООО “Иван конструктор”" x-on:click="addInfoLinkCards.push({value: $el.value});toggleList = false">                        
+                </li>
+                <li class="edit-task-popup__add-links-list-item">
+                    <svg class="edit-task-popup__add-links-list-item-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13H13M5 4.33333H5.66667M5 7H5.66667M5 9.66667H5.66667M8.33333 4.33333H9M8.33333 7H9M8.33333 9.66667H9M2.33333 13V2.33333C2.33333 1.97971 2.47381 1.64057 2.72386 1.39052C2.97391 1.14048 3.31304 1 3.66667 1H10.3333C10.687 1 11.0261 1.14048 11.2761 1.39052C11.5262 1.64057 11.6667 1.97971 11.6667 2.33333V13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" class="edit-task-popup__add-links-list-item-input" value="ООО “Иван конструктор”" x-on:click="addInfoLinkCards.push({value: $el.value});toggleList = false">                        
+                </li>
+             </ul>
+            </div>
         </fieldset>
          </div>
     <ul role="list" class="popup__btn-control-group edit-task-popup__btn-control-group">

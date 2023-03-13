@@ -134,6 +134,10 @@
             top: 1px;
         }
     }
+
+    &__table-tabs.static {
+        position: static;
+    }
     
     &__table-tabs-item-btn {
         position: relative;

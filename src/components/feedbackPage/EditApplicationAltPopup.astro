@@ -1,4 +1,4 @@
-<div class="alt-popup edit-application-alt-popup" x-bind:class="{'active': editApplicationAltPopup === true}" x-on:click.self="editApplicationAltPopup = false">
+<div class="alt-popup edit-application-alt-popup" x-bind:class="{'active': editApplicationAltPopup === true}" x-on:click.self="editApplicationAltPopup = false" x-init="$watch('editApplicationAltPopup', value => document.querySelector('.header').classList.toggle('static')); $watch('editApplicationAltPopup', value => document.querySelector('.feedback-page__table-tabs').classList.toggle('static'))">
     <form action="#" method="post" class="alt-popup__form edit-application-alt-popup__form">
     <div class="alt-popup__content edit-application-alt-popup__content">
      <div class="edit-application-alt-popup__top-row">
@@ -33,7 +33,7 @@
                      <p class="edit-application-alt-popup__title">ggg@gmail.com</p>
                 </div>
             </fieldset>
-            <fieldset class="alt-popup__fieldset edit-application-alt-popup__fieldset">
+            <fieldset class="alt-popup__fieldset edit-application-alt-popup__fieldset m-b b-b">
                 <div class="edit-application-alt-popup__order-wrapper">
                     <p class="edit-application-alt-popup__order-title">Заказ:</p>
                     <div class="edit-application-alt-popup__order-top">
@@ -60,14 +60,38 @@
                     </ul>
                 </div>
             </fieldset>
+            <fieldset class="alt-popup__fieldset edit-application-alt-popup__fieldset m-b b-b">
+                <ul role="list" class="edit-application-alt-popup__goods-list">
+                    <li class="edit-application-alt-popup__goods-list-item">
+                        <div class="edit-application-alt-popup__goods-list-item-left">
+                            <img src="/images/edit-application-alt-popup-goods-list-item-img.png" alt="edit application alt popup goods list item image" class="edit-application-alt-popup__goods-list-item-img" loading="lazy" decoding="async" width="80" height="51">
+                            <p class="edit-application-alt-popup__goods-list-item-title">КЦ2-1000</p>
+                        </div>
+                        <p class="edit-application-alt-popup__goods-list-item-count">
+                            <span>1</span>
+                            шт
+                        </p>
+                    </li>
+                    <li class="edit-application-alt-popup__goods-list-item">
+                        <div class="edit-application-alt-popup__goods-list-item-left">
+                            <img src="/images/edit-application-alt-popup-goods-list-item-img.png" alt="edit application alt popup goods list item image" class="edit-application-alt-popup__goods-list-item-img" loading="lazy" decoding="async" width="80" height="51">
+                            <p class="edit-application-alt-popup__goods-list-item-title">КЦ2-1000</p>
+                        </div>
+                        <p class="edit-application-alt-popup__goods-list-item-count">
+                            <span>1</span> 
+                            шт
+                        </p>
+                    </li>
+                </ul>
+            </fieldset>
     <ul role="list" class="alt-popup__btn-control-group edit-application-alt-popup__btn-control-group">
         <li class="alt-popup__btn-control-group-item edit-application-alt-popup__btn-control-group-item">
-            <button type="button" class="btn btn--secondary edit-application-alt-popup__offer-btn" x-on:click="">
+            <button type="button" class="btn btn--secondary edit-application-alt-popup__offer-btn" x-on:click="editApplicationAltPopup = false;createOfferPopup = true">
                 Предложение
             </button>
         </li>
         <li class="alt-popup__btn-control-group-item edit-application-alt-popup__btn-control-group-item">
-            <button type="button" class="btn btn--primary edit-application-alt-popup__take-in-work-btn">
+            <button type="button" class="btn btn--primary edit-application-alt-popup__take-in-work-btn" x-on:click="editApplicationAltPopup = false;toggleStatusBtn = 'completed'">
                 Взять в работу
             </button>
         </li>

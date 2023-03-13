@@ -103,7 +103,7 @@
                     <div class="create-offer-form-popup__commercial-offer-body">
                       <div class="create-offer-form-popup__commercial-offer-body-top">
                        <p class="create-offer-form-popup__commercial-offer-body-text">Добрый день,</p>
-                       <p class="create-offer-form-popup__commercial-offer-body-text">Высылаем Вам коммерческое предложение от <time class="create-offer-form-popup__commercial-offer-body-date" datetime="хх.хх.хххх.">хх.хх.хххх.</time></p>
+                       <p class="create-offer-form-popup__commercial-offer-body-text" x-data="{toggleEdit: false}" x-bind:contenteditable="toggleEdit === false ?false:true" x-on:click="toggleEdit = true" x-on:keydown.window.enter="toggleEdit = false" x-on:click.outside="toggleEdit = false">Высылаем Вам коммерческое предложение от <time class="create-offer-form-popup__commercial-offer-body-date" datetime="хх.хх.хххх.">хх.хх.хххх.</time></p>
                        <p class="create-offer-form-popup__commercial-offer-body-text">Вы можете скачать предложение или посмотреть его в личном кабинете по ссылке ниже:</p>
                       </div>
                       <div class="create-offer-form-popup__commercial-offer-body-middle">

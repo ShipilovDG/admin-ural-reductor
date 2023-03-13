@@ -126,6 +126,7 @@ gap: 8px;
      &__grid-right {
         display: grid;
         gap: 8px;
+        grid-auto-rows: max-content;
 
         @include media-extra-large() {
             padding-top: 8px;
@@ -144,13 +145,16 @@ gap: 8px;
         justify-content: space-between;
         padding: 8px 16px;
         height: 34px;
+background-color: var(--gray100);
+border: 1px solid var(--grey-color);
+border-radius: 4px;
+     }
+
+     &__fast-create-task-btn-input {
         font-weight: 400;
 font-size: 16px;
 line-height: 18px;
 color: var(--dark-grey);
-background-color: var(--gray100);
-border: 1px solid var(--grey-color);
-border-radius: 4px;
      }
 
 

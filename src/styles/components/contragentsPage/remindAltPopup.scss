@@ -1,0 +1,149 @@
+.remind-alt-popup {
+
+    &__title {
+        padding-bottom: 0;
+    }
+
+    &__content {
+        max-height: 100%;
+        height: auto;
+    }
+
+    &__top-row {
+        border-bottom: 1px solid var(--grey-color);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+   &__fieldset {
+    display: grid;
+    gap: 8px;
+   }
+
+   &__fieldset.b-b {
+      border-bottom: 1px solid var(--grey-color);
+   }
+
+   &__grid-top {
+    display: grid;
+    align-items: center;
+    gap: 8px;
+   }
+
+   &__grid-top.two-cols-date {
+    grid-template-columns: 92px 1fr;
+   }
+
+   &__grid-top.two-cols-datestart {
+    grid-template-columns: repeat(2,1fr);
+   }
+
+   &__grid-top.three-cols {
+    grid-template-columns: 1fr 40px 58px;
+   }
+
+   &__form-control-group {
+    display: grid;
+    gap: 8px;
+
+    @include media-extra-large() {
+        gap: 16px;
+    }
+  }
+
+ &__form-control-wrapper {
+    background-color: var(--gray100);
+    border: 1px solid var(--grey-color);
+     border-radius: 4px; 
+     height: 34px;
+  }
+
+  &__form-control-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 16px;
+  }
+
+  &__form-control-select-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &__form-control-select-result-input {
+    padding-left: 16px;
+    font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+background: var(--gray100);
+height: 100%;
+  }
+
+  &__form-control-select-arrow {
+    position: absolute;
+    right: 0;
+    width: 12px;
+    height: 6px;
+    margin-right: 18px;
+    margin-top: 4px;
+    transform: rotate(180deg);
+    transition: .3s ease-in-out;
+  }
+  &__form-control-select-arrow.active {
+    transform: rotate(0);
+  }
+
+  &__form-control-select-list {
+     padding: 0;
+     margin: 0;
+     display: grid;
+     padding-top: 8px;
+     padding-bottom: 8px;
+     position: absolute;
+     z-index: 99;
+     top: 2rem;
+     background: var(--gray100);
+     border: 1px solid var(--grey-color);
+     box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+     border-radius: 4px;
+     opacity: 0;
+     visibility: hidden;
+     transition: .3s ease-in-out;
+     width: 100%;
+  }
+
+  &__form-control-select-list.active {
+     opacity: 1;
+     visibility: visible;
+  }
+
+  &__form-control-select-list-item {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 16px;
+  }
+
+  &__form-control-select-list-item-input {
+    font-family: 'Inter',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+  }
+
+    &__reset-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 100px;
+    }
+
+    &__save-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 114px;
+    }
+}

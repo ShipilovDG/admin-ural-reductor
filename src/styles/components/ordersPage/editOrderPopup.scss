@@ -98,7 +98,7 @@
       }
     }
 
-    &__fieldset--4-cols {
+    &__fieldset--4-cols.two-cols-adaptive {
       @include media-extra-large() {
         grid-template-columns: repeat(4,max-content);
         gap: 20px;

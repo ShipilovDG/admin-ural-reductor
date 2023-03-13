@@ -1,3 +1,7 @@
+---
+import EditApplicationAltPopup from "./EditApplicationAltPopup.astro";
+---
+
 <div class="site-section__table-wrapper applications-table__table-wrapper">
     <nav class="site-section__table applications-table__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
       <ul role="list" class="site-section__table-list site-section__table-caption-list applications-table__table-list applications-table__table-caption-list">
@@ -24,6 +28,7 @@
         </li>
       </ul>
       <template x-for="table in tables">
+      <div class="applications-table__table-list-wrapper" x-data="{editApplicationAltPopup: false, toggleStatusBtn: 'in-process'}">
       <ul role="list" class="site-section__table-list applications-table__table-list">
         <li class="site-section__table-list-item applications-table__table-list-item">
             <span class="site-section__indicator-new blinking"></span>
@@ -47,17 +52,19 @@
              </div>
          </li>
         <li class="site-section__table-list-item applications-table__table-list-item">
-            <button class="btn site-section__status-btn applications-table__status-btn site-section__status-btn--in-process applications-table__status-btn--in-process" type="button">
+            <button class="btn site-section__status-btn applications-table__status-btn site-section__status-btn--in-process applications-table__status-btn--in-process" type="button" x-bind:class="{'site-section__status-btn--in-process applications-table__status-btn--in-process': toggleStatusBtn === 'in-process', 'site-section__status-btn--completed applications-table__status-btn--completed': toggleStatusBtn === 'completed'}" x-text="toggleStatusBtn === 'in-process' ? 'Ждёт ответа' : 'В работе'">
                 Ждёт ответа
             </button>
        </li>
        <li class="site-section__table-list-item applications-table__table-list-item user" x-on:click="editApplicationAltPopup = true">
-        <div class="applications-table__resp-wrapper">
+        <div class="applications-table__resp-wrapper" x-show="toggleStatusBtn === 'completed'">
            <img class="applications-table__avatar-resp-img" src="/images/header-avatar-placeholder.svg" alt="avatar-resp-img" width="24" height="24" loading="lazy" decoding="async">
            <p class="applications-table__resp-title">ИванИванович</p>
         </div>
     </li>
       </ul>
+      <EditApplicationAltPopup></EditApplicationAltPopup>
+      </div>
     </template>
     </nav>
 </div>

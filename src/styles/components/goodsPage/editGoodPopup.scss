@@ -22,12 +22,10 @@
       }
       
       &__title-row {
-        @include media-extra-large() {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
       &__choose-status-dropdown-wrapper.edit-good-popup-title-row {
@@ -340,6 +338,77 @@ justify-content: center;
         max-width: 221px;
     }
  }
+ &__attach-files-list {
+    padding: 0;
+    padding-top: 16px;
+    padding-bottom: 19px;
+    margin: 0;
+    display: grid;
+    gap: 11px;
+  
+    @include media-extra-large() {
+      max-width: 221px;
+    }
+  }
+  
+  &__attach-files-list-item {
+    border: 1px solid var(--grey-color);
+    background-color: var(--gray100);
+    border-radius: 4px;
+    padding: 8px 16px;
+    display: grid;
+    grid-template-columns: repeat(2,max-content);
+    gap: 16px;
+    position: relative;
+    transition: .3s ease-in-out;
+  }
+  &__attach-files-list-item:hover {
+     background-color: var(--hover);
+     border-color: var(--secondary);
+  }
+  &__attach-files-list-item:hover .create-contragent-popup__attach-files-list-item-controls {
+    display: grid;
+  }
+  
+  &__attach-files-list-item-img {
+    width: 34px;
+    height: 34px;
+  }
+  
+  &__attach-files-list-item-info {
+    display: grid;
+    gap: 4px;
+  }
+  
+  &__attach-files-list-item-title {
+    font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--dark);
+  }
+  
+  &__attach-files-list-item-size-format {
+     display: grid;
+     grid-template-columns: repeat(3,max-content);
+     gap: 4px;
+     font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--dark-grey);
+  }
+  
+  &__attach-files-list-item-controls {
+    display: none;
+    align-items: center;
+    grid-template-columns: repeat(2,max-content);
+    gap: 8px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .3s ease-in-out;
+    margin-right: 16px;
+    margin-top: 8px;
+  }
 
  &__attach-files-btn,
 &__add-server-files-btn {

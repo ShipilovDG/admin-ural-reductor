@@ -1,9 +1,11 @@
 <div class="create-order-popup__params-lists-wrapper" 
 x-data="
 {
-countInputVal2: 1,
 paramsLists: [],
-totalCountVal: 0,
+countInputVal: 1,
+totalCount: 0,
+totalWeight: 0,
+totalVolume: 0,
 }"
 >
     <nav class="create-order-popup__params-lists-nav">
@@ -17,7 +19,7 @@ totalCountVal: 0,
       <li class="create-order-popup__params-caption-list-item t-a-c">Цена с НДС</li>
       <li class="create-order-popup__params-caption-list-item t-a-c">Сумма</li>
     </ul>
-    <template x-for="paramsList in paramsLists" :key="paramsList.id">
+    <template x-for="(paramsList,index) in paramsLists">
     <ul role="list" class="create-order-popup__params-list params-group b-b p-b">
       <li class="create-order-popup__params-list-item number-item t-a-c">
         <span class="create-order-popup__item-number" x-text="paramsList.id"></span>
@@ -32,7 +34,7 @@ totalCountVal: 0,
              <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#161C2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
              </svg>                    
          </button>
-         <button type="button" class="create-order-popup__delete-btn" x-bind:class="{'active': toggleDropdown === true}" x-on:click="$el.closest('.create-order-popup__params-list.params-group').remove()">
+         <button type="button" class="create-order-popup__delete-btn" x-bind:class="{'active': toggleDropdown === true}" x-on:click="paramsLists = paramsLists.filter(i => i !== paramsList)">
            Удалить           
         </button>
         </div>
@@ -73,7 +75,7 @@ totalCountVal: 0,
        <h4 class="create-order-popup__params-list-item-title">Кол-во</h4>
        <div class="create-order-popup__form-control-group">
          <div class="create-order-popup__form-control-wrapper create-order-popup__form-control-input-wrapper count-wrapper">
-           <input type="number" class="create-order-popup__form-control-input count-input" x-model="paramsList.countInputVal" x-init="$watch('paramsList.countInputVal', value =>  totalCountVal += value)">
+           <input type="number" class="create-order-popup__form-control-input count-input" x-model="totalCount += Number($el.target.value)" value="1">
          </div>
       </div>
       </li>
@@ -136,7 +138,7 @@ totalCountVal: 0,
     </ul>
    </template>
    </nav>
-   <button class="create-order-popup__bottom-params-list-add-btn adaptive" type="button" x-on:click="paramsLists.push({ id: paramsLists.length + 1, countInputVal: 1 })">
+   <button class="create-order-popup__bottom-params-list-add-btn adaptive" type="button" x-on:click="paramsLists.push({ id: paramsLists.length + 1})">
      Добавить строку
    </button>
    <ul role="list" class="create-order-popup__bottom-params-list adaptive">
@@ -146,19 +148,19 @@ totalCountVal: 0,
     <li class="create-order-popup__bottom-params-list-item">
      <h4 class="create-order-popup__params-list-item-title">Кол-во</h4>
      <div class="create-order-popup__form-control-wrapper create-order-popup__form-control-input-wrapper sumup-input-wrapper">
-       <input disabled class="create-order-popup__form-control-input-number" x-model="totalCountVal">
+       <input disabled class="create-order-popup__form-control-input-number count-input-number" x-model="totalCount">
      </div>
    </li>
    <li class="create-order-popup__bottom-params-list-item">
      <h4 class="create-order-popup__params-list-item-title">Вес,кг</h4>
      <div class="create-order-popup__form-control-wrapper create-order-popup__form-control-input-wrapper sumup-input-wrapper">
-       <input type="number" readonly class="create-order-popup__form-control-input-number" value="2">
+       <input type="number" readonly class="create-order-popup__form-control-input-number" x-model="totalWeight">
      </div>
    </li>
    <li class="create-order-popup__bottom-params-list-item">
      <h4 class="create-order-popup__params-list-item-title">Объём, м3</h4>
      <div class="create-order-popup__form-control-wrapper create-order-popup__form-control-input-wrapper sumup-input-wrapper-last">
-       <input type="number" readonly class="create-order-popup__form-control-input-number" value="2">
+       <input type="number" readonly class="create-order-popup__form-control-input-number" x-model="totalVolume">
      </div>
    </li>
     <li class="create-order-popup__bottom-params-list-item sum-item">

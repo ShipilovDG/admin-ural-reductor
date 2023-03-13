@@ -1,0 +1,46 @@
+<div class="alt-popup added-new-email-success-popup" x-bind:class="{'active': addedNewEmailSuccessAltPopup === true}" x-on:click.self="addedNewEmailSuccessAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form added-new-email-success-popup__form">
+    <div class="alt-popup__content added-new-email-success-popup__content">
+        <div class="added-new-email-success-popup__top-row">
+            <p class="alt-popup__title added-new-email-success-popup__title">Новый адрес эл. почты успешно подключен</p>
+            <button class="added-new-email-success-popup__close-btn" type="button" x-on:click="addedNewEmailSuccessAltPopup = false">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 1L1 15M1 1L15 15" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+         </div>
+    <div class="alt-popup__body added-new-email-success-popup__body">
+            <fieldset class="alt-popup__fieldset added-new-email-success-popup__fieldset b-b">
+                <p class="added-new-email-success-popup__subtitle">Переключаться между почтовыми ящиками вы сможете в меню почты</p>
+                <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
+                    <button type="button" class="site-section__choose-status-btn" x-on:click="toggleStatusDropdown = !toggleStatusDropdown">
+                      <svg width="5" height="18" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" fill="#869AB8"></path>
+                        <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" fill="#869AB8"></path>
+                        <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" fill="#869AB8"></path>
+                        <path d="M2 10C2.55228 10 3 9.55228 3 9C3 8.44772 2.55228 8 2 8C1.44772 8 1 8.44772 1 9C1 9.55228 1.44772 10 2 10Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2 17C2.55228 17 3 16.5523 3 16C3 15.4477 2.55228 15 2 15C1.44772 15 1 15.4477 1 16C1 16.5523 1.44772 17 2 17Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2 3C2.55228 3 3 2.55228 3 2C3 1.44772 2.55228 1 2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3Z" stroke="#869AB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>     
+                    </button>
+                    <ul class="site-section__choose-status-dropdown-list added-new-email-success-popup__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
+                       <li class="site-section__choose-status-dropdown-list-item">
+                          <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Подключить новый e-mail</button>
+                       </li>
+                       <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn delete" type="button">Отключить e-mail</button>
+                     </li>
+                    </ul>
+                </div>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group added-new-email-success-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item added-new-email-success-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary added-new-email-success-popup__continue-btn" x-on:click="addedNewEmailSuccessAltPopup = false">
+                Продолжить
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

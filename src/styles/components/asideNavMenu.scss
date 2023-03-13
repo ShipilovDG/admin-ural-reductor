@@ -29,6 +29,7 @@ color: var(--dark-grey);
     &__list-item {
         position: relative;
         transition: .3s ease-in-out;
+        cursor: pointer;
     }
 
     &__list-item:hover,

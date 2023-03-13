@@ -9,10 +9,12 @@ import IncomingMessagesTable from "../components/emailPage/IncomingMessagesTable
 import NewMessagePopup from "../components/emailPage/NewMessagePopup.astro";
 import EditMessagePopup from "../components/emailPage/EditMessagePopup.astro";
 import SettingsEmailPageListPopup from "../components/emailPage/SettingsEmailPageListPopup.astro";
+import AddNewEmailPopup from "../components/emailPage/AddNewEmailPopup.astro";
+import AddedNewEmailSuccessAltPopup from "../components/emailPage/AddedNewEmailSuccessAltPopup.astro";
 ---
 
 <Layout title="страница Почта">
-    <section class="site-section email-page__site-section" x-data="{ addNewFilterPopup: false, searchBtnDropdown: false, newMessagePopup: false, editMessagePopup: false, settingsEmailPageListPopup: false, viewSettingsPopup: false, toggleEmailBtn: false }">
+    <section class="site-section email-page__site-section" x-data="{ addNewFilterPopup: false, searchBtnDropdown: false, newMessagePopup: false, editMessagePopup: false, settingsEmailPageListPopup: false, viewSettingsPopup: false, toggleEmailBtn: false, addNewEmailPopup: false, addedNewEmailSuccessAltPopup: false, fakeTables:[] }">
         <div class="site-section__top-row email-page__top-row">
             <div class="email-page__top-row-left">
                 <div class="site-section__choose-status-dropdown-wrapper" x-data="{toggleStatusDropdown: false}" x-on:click.outside="toggleStatusDropdown = false">
@@ -28,16 +30,19 @@ import SettingsEmailPageListPopup from "../components/emailPage/SettingsEmailPag
                     </button>
                     <ul class="site-section__choose-status-dropdown-list email-page__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
                        <li class="site-section__choose-status-dropdown-list-item">
-                          <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Подключить новый e-mail</button>
+                          <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="addNewEmailPopup = true">Подключить новый e-mail</button>
                        </li>
                        <li class="site-section__choose-status-dropdown-list-item">
+                        <button class="site-section__choose-status-dropdown-list-item-btn delete" type="button">Отключить e-mail</button>
+                     </li>
+                       <!-- <li class="site-section__choose-status-dropdown-list-item">
                         <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Настройки</button>
                      </li>
                      <li class="site-section__choose-status-dropdown-list-item">
                         <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Чёрный список</button>
-                     </li>
+                     </li> -->
                      <li class="site-section__choose-status-dropdown-list-item">
-                        <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Контакты</button>
+                        <a class="site-section__choose-status-dropdown-list-item-btn" href="/usersPage">Контакты</a>
                      </li>
                     </ul>
                 </div>
@@ -106,16 +111,19 @@ import SettingsEmailPageListPopup from "../components/emailPage/SettingsEmailPag
               </button>
               <ul class="site-section__choose-status-dropdown-list email-page__choose-status-dropdown-list" role="list" x-bind:class="{'active': toggleStatusDropdown === true}">
                  <li class="site-section__choose-status-dropdown-list-item">
-                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Подключить новый e-mail</button>
+                    <button class="site-section__choose-status-dropdown-list-item-btn" type="button" x-on:click="addNewEmailPopup = true">Подключить новый e-mail</button>
                  </li>
                  <li class="site-section__choose-status-dropdown-list-item">
+                  <button class="site-section__choose-status-dropdown-list-item-btn delete" type="button">Отключить e-mail</button>
+               </li>
+                 <!-- <li class="site-section__choose-status-dropdown-list-item">
                   <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Настройки</button>
                </li>
                <li class="site-section__choose-status-dropdown-list-item">
                   <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Чёрный список</button>
-               </li>
+               </li> -->
                <li class="site-section__choose-status-dropdown-list-item">
-                  <button class="site-section__choose-status-dropdown-list-item-btn" type="button">Контакты</button>
+                  <a class="site-section__choose-status-dropdown-list-item-btn" href="/usersPage">Контакты</a>
                </li>
               </ul>
             </div>
@@ -159,5 +167,7 @@ import SettingsEmailPageListPopup from "../components/emailPage/SettingsEmailPag
         <NewMessagePopup></NewMessagePopup>
         <EditMessagePopup></EditMessagePopup>
         <SettingsEmailPageListPopup></SettingsEmailPageListPopup>
+        <AddNewEmailPopup></AddNewEmailPopup>
+        <AddedNewEmailSuccessAltPopup></AddedNewEmailSuccessAltPopup>
     </section>
   </Layout>

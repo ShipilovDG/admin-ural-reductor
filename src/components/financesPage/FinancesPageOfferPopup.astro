@@ -1,4 +1,4 @@
-<div class="popup finances-page-offer-popup" x-bind:class="{'active': financesPageOfferPopup === true}" x-data="{table: 1}">
+<div class="popup finances-page-offer-popup" x-bind:class="{'active': financesPageOfferPopup === true}" x-data="{table: 1, markAsSended: false}">
     <form action="#" method="post" class="popup__form">
     <div class="popup__content finances-page-offer-popup__content">
   <div class="popup__top-row finances-page-offer-popup__top-row">
@@ -59,7 +59,7 @@
     </div>
     </div>
     <div class="popup__title-top-controls-row finances-page-offer-popup__title-top-controls-row mobile">
-      <button type="button" class="btn btn--danger finances-page-offer-popup__draft-btn">
+      <button type="button" class="btn btn--danger finances-page-offer-popup__draft-btn" x-bind:class="markAsSended === false ? 'btn--danger' : 'btn--success'" x-text="markAsSended === false ? 'Черновик' : 'Отправлено'">
         Черновик
       </button>
       <button type="button" class="btn btn--secondary finances-page-offer-popup__account-convert-btn">
@@ -114,7 +114,7 @@
         <button type="button" class="btn btn--secondary finances-page-offer-popup__send-via-email-btn" x-on:click="sendOfferPopup = true">
             Отправить по e-mail
         </button>
-        <button type="button" class="finances-page-offer-popup__marked-as-sended-btn">Отметить как отправленное</button>
+        <button type="button" class="finances-page-offer-popup__marked-as-sended-btn" x-on:click="markAsSended = true">Отметить как отправленное</button>
         </div>
        </div>
        <div class="finances-page-offer-popup__order-wrapper">
@@ -213,10 +213,104 @@
     </div>
     <div class="popup__body finances-page-offer-popup__body table-2" x-bind:class="{'active': table === 2}">
       <div class="finances-page-offer-popup__general-view-wrapper">
-        <button type="button" class="btn btn--danger finances-page-offer-popup__draft-btn desktop">
+        <button type="button" class="btn finances-page-offer-popup__draft-btn desktop" x-bind:class="markAsSended === false ? 'btn--danger' : 'btn--success'" x-text="markAsSended === false ? 'Черновик' : 'Отправлено'">
             Черновик
           </button>
-           <img src="/images/finances-page-offer-popup-view-img.jpg" alt="general view image" loading="lazy" decoding="async" width="343" height="486" class="finances-page-offer-popup__general-view-img">
+           <div class="finances-page-offer-popup__commercial-offer">
+              <div class="finances-page-offer-popup__commercial-offer-top">
+                <img src="/images/finances-page-offer-popup-commercial-offer-img.png" alt="general view image" loading="lazy" decoding="async" width="335" height="155" class="finances-page-offer-popup__commercial-offer-top-img">
+                <ul role="list" class="finances-page-offer-popup__commercial-offer-top-list">
+                  <li class="finances-page-offer-popup__commercial-offer-top-list-item">
+                    <strong>Общество с ограниченной ответственностью  «Вектор»</strong>
+                  </li>
+                  <li class="finances-page-offer-popup__commercial-offer-top-list-item">
+                    <strong> Юр. адрес: 620012, Свердловская область, г. Екатеринбург, ул. Машиностроителей, 19</strong>
+                  </li>
+                  <li class="finances-page-offer-popup__commercial-offer-top-list-item">
+                    <strong>ИНН: 6679016273</strong>
+                  </li>
+                  <li class="finances-page-offer-popup__commercial-offer-top-list-item">
+                    <strong>Тел: +7 (343) 236-44-44</strong>
+                  </li>
+                  <li class="finances-page-offer-popup__commercial-offer-top-list-item">
+                    <strong>www.uralreduktor.ru</strong>
+                  </li>
+                </ul>
+              </div>
+              <div class="finances-page-offer-popup__commercial-offer-body">
+                <div class="finances-page-offer-popup__commercial-offer-body-top">
+                  <div class="finances-page-offer-popup__commercial-offer-body-top-left">
+                     <p>Исх.№ 221006 05</p>
+                     <p>«06» октября 2022 г.</p>
+                  </div>
+                  <div class="finances-page-offer-popup__commercial-offer-body-top-right">
+                    <p>Филиал "Оренбургский" ПАО «Т Плюс»</p>
+                 </div>
+                </div>
+                <p class="finances-page-offer-popup__commercial-offer-title">Коммерческое предложение.</p>
+                <p class="finances-page-offer-popup__commercial-offer-subtitle">В ответ на Ваш запрос от 06.10.2022г., по поставке продукции, готовы предложить следующее:</p>
+                <div class="finances-page-offer-popup__commercial-offer-table-wrapper">
+                <table class="finances-page-offer-popup__commercial-offer-table">
+                  <thead class="finances-page-offer-popup__commercial-offer-thead">
+                    <tr class="finances-page-offer-popup__commercial-offer-tr">
+                        <th class="finances-page-offer-popup__commercial-offer-th"><strong>№</strong></th>
+                        <th class="finances-page-offer-popup__commercial-offer-th"><strong>Тип</strong></th>
+                        <th class="finances-page-offer-popup__commercial-offer-th"><strong>Наименование</strong></th>
+                        <th class="finances-page-offer-popup__commercial-offer-th"><strong>Кол-во</strong></th>
+                        <th class="finances-page-offer-popup__commercial-offer-th"><strong>Цена за ед. с НДС, руб</strong></th>
+                        <th class="finances-page-offer-popup__commercial-offer-th"><strong>Итого с НДС, руб</strong></th>
+                        <th class="finances-page-offer-popup__commercial-offer-th"><strong>Срок изготовления, дней</strong></th>
+                    </tr>
+                </thead>
+                <tbody class="finances-page-offer-popup__commercial-offer-tbody">
+                    <tr class="finances-page-offer-popup__commercial-offer-tr">
+                      <td class="finances-page-offer-popup__commercial-offer-td">1</td>
+                        <td class="finances-page-offer-popup__commercial-offer-td">Мотор-редуктор</td>
+                        <td class="finances-page-offer-popup__commercial-offer-td">МР2-500Ф1В-44,8-30/32</td>
+                        <td class="finances-page-offer-popup__commercial-offer-td">100</td>
+                        <td class="finances-page-offer-popup__commercial-offer-td">978 000,00</td>
+                        <td class="finances-page-offer-popup__commercial-offer-td">978 000,00</td>
+                        <td class="finances-page-offer-popup__commercial-offer-td">60-90</td>
+                    </tr>
+                </tbody>
+                <tfoot class="finances-page-offer-popup__commercial-offer-tfoot">
+                  <tr class="finances-page-offer-popup__commercial-offer-tr">
+                    <td class="finances-page-offer-popup__commercial-offer-td overall-sum"><strong>Итого:</strong></td>
+                    <td class="finances-page-offer-popup__commercial-offer-td count"><strong>978 000,00</strong></td>
+                  </tr>
+                </tfoot>
+                </table>
+              </div>
+                <ul role="list" class="finances-page-offer-popup__commercial-offer-conditions-list">
+                  <li class="finances-page-offer-popup__commercial-offer-conditions-list-item">
+                    <strong>Условия поставки:</strong>
+                    <p>доставка до склада Получателя в г. Оренбург за счет Поставщика.
+                    </p>
+                  </li>
+                  <li class="finances-page-offer-popup__commercial-offer-conditions-list-item">
+                    <strong>Условия оплаты:</strong>
+                    <p>30% предоплата, остаток 70% по факту готовности продукции к отгрузке.</p>
+                  </li>
+                  <li class="finances-page-offer-popup__commercial-offer-conditions-list-item">
+                    <strong>Гарантийный срок:</strong>
+                    <p>30% предоплата, остаток 70% по факту готовности продукции к отгрузке.</p>
+                  </li>
+                  <li class="finances-page-offer-popup__commercial-offer-conditions-list-item">
+                    <strong>Срок действия предложения:</strong>
+                    <p>30 дней</p>
+                  </li>
+                </ul>
+                <div class="finances-page-offer-popup__commercial-offer-bottom">
+                   <div class="finances-page-offer-popup__commercial-offer-bottom-left">
+                     <p>С уважением,</p>
+                     <p>Директор ООО «Вектор»</p>
+                  </div> 
+                  <img src="/images/finances-page-offer-popup-commercial-offer-sign-img.png" alt="commercial offer sign image" class="finances-page-offer-popup__commercial-offer-sign-img" width="335" height="252" loading="lazy" decoding="async">
+                  <p class="finances-page-offer-popup__commercial-offer-director-name">Половинкин С.В.</p>
+                </div>
+                <p class="finances-page-offer-popup__commercial-offer-bottom-title">Исх.№ 221006 05</p>
+              </div>
+           </div>
       </div>
     </div>
 </div>

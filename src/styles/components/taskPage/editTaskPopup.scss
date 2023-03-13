@@ -148,8 +148,148 @@
     padding-left: 30px;
 }
 
-&__fieldset.check-list-descr-group {
+&__fieldset.check-list-descr-group,
+&__fieldset.subtask-group {
     padding-right: 20px;
+}
+
+&__form-control-group {
+    display: grid;
+    gap: 8px;
+
+    @include media-extra-large() {
+        gap: 16px;
+    }
+  }
+
+  &__form-control-group.task-name {
+    @include media-extra-large() {
+        grid-column: span 3;
+    }
+  }
+
+  &__form-control-group.priority {
+    @include media-extra-large() {
+        grid-column: span 1;
+    }
+  }
+
+  &__form-control-group.new-subtask-group {
+    grid-template-columns: repeat(2,max-content);
+    gap: 19px;
+
+    @include media-extra-large() {
+       grid-template-columns: 4fr 1fr;
+    }
+ }
+
+  &__form-control-wrapper {
+    background-color: var(--gray100);
+    border: 1px solid var(--grey-color);
+     border-radius: 4px; 
+     height: 34px;
+     position: relative;
+  }
+
+  &__form-control-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 16px;
+  }
+
+  &__form-control-select-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &__form-control-select-result-input {
+    padding-left: 16px;
+    font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark-grey);
+background: var(--gray100);
+height: 100%;
+  }
+
+  &__form-control-select-result-input.subtask {
+    padding-left: 0;
+  }
+
+  &__form-control-select-result-input.priority {
+    padding-left: 0;
+  }
+
+  &__form-control-select-arrow {
+    position: absolute;
+    right: 0;
+    width: 12px;
+    height: 6px;
+    margin-right: 18px;
+    margin-top: 4px;
+    transform: rotate(180deg);
+    transition: .3s ease-in-out;
+  }
+  &__form-control-select-arrow.active {
+    transform: rotate(0);
+  }
+
+  &__form-control-dropdown {
+    position: absolute;
+     z-index: 99;
+     top: 2.5rem;
+     background: var(--gray100);
+     border: 1px solid var(--grey-color);
+     box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+     border-radius: 4px;
+     opacity: 0;
+     visibility: hidden;
+     transition: .3s ease-in-out;
+     width: 100%;
+  }
+
+  &__form-control-dropdown.active {
+     opacity: 1;
+     visibility: visible;
+  }
+
+  &__form-control-select-list {
+     padding: 0;
+     margin: 0;
+     display: grid;
+     padding-top: 8px;
+     padding-bottom: 8px;
+  }
+
+  &__form-control-select-list-item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+}
+
+&__form-control-select-list-item.priority {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2,max-content);
+    gap: 16px;
+  }
+
+&__form-control-select-list-item-input {
+    font-family: 'Inter',sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--dark-grey);
+  }
+
+  &__task-priority-wrapper {
+    display: grid;
+    align-items: center;
+    gap: 16px;
+    grid-template-columns: repeat(2,max-content);
+    padding-left: 16px;
 }
 
 &__task-status-btn-wrapper {
@@ -798,7 +938,11 @@ font-size: 16px;
 line-height: 18px;
 color: var(--primary);
 }
-
+&__add-links-btn-wrapper {
+    position: relative;
+    display: grid;
+    gap: 8px;
+}
 &__add-links-btn {
     font-weight: 600;
 font-size: 16px;
@@ -806,7 +950,41 @@ line-height: 18px;
 color: var(--primary);
 margin-right: auto;
 }
+&__add-links-list {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    max-width: 343px;
+    background-color: var(--gray100);
+    border: 1px solid var(--grey-color);
+    box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+    border-radius: 4px;
+    padding: 16px 18px;
+    padding-left: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+}
 
+&__add-links-list.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+&__add-links-list-item {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+}
+
+&__add-links-list-item-input {
+    font-family: 'Inter',sans-serif;
+    color: var(--dark-grey);
+    font-size: 16px;
+    line-height: 18px;
+}
 &__btn-control-group {
     padding: 20px;
     margin: 0;
@@ -953,5 +1131,214 @@ height: 80px;
       margin-right: 13px;
       margin-top: 13px;
   }
+
+  &__subtask-groups-wrapper {
+    display: grid;
+    gap: 20px;
+}
+
+  &__subtasks-btn-wrapper {
+     display: grid;
+     gap: 20px;
+
+     @include media-extra-large() {
+        grid-template-columns: repeat(2,max-content);
+     }
+  }
+
+  &__subtask-title-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+
+    @include media-extra-large() {
+        grid-template-columns: max-content 1fr;
+    }
+  }
+
+  &__subtask-progress {
+    align-items: center;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: max-content 1fr;
+  }
+
+  &__subtask-list {
+    display: grid;
+    gap: 13px;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__subtask-list-item {
+    align-items: center;
+    display: grid;
+    gap: 26px;
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  &__subtask-list-item-inputs {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2,max-content);
+    gap: 12px;
+  }
+
+  &__subtask-list-item-checkbox-wrapper {
+    position: relative;
+    width: 16px;
+    height: 16px;
+}
+
+&__subtask-list-item-checkbox-wrapper::before,
+&__subtask-list-item-checkbox-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: .3s ease-in-out;
+}
+
+&__subtask-list-item-checkbox-wrapper::before {
+     border: 2px solid var(--grey600);
+     border-radius: 4px;
+}
+
+&__subtask-list-item-checkbox-wrapper::after {
+    background: url("/icons/setting-checkbox-active.svg") no-repeat center/cover;
+    opacity: 0;
+    z-index: 1;
+}
+
+&__subtask-list-item-checkbox-wrapper.active::after {
+    opacity: 1;
+}
+
+&__subtask-list-item-checkbox {
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+}
+
+&__subtask-list-item-controls {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3,max-content);
+    gap: 34px;
+
+    @include media-extra-large() {
+        justify-content: flex-end;
+        gap: 26px;
+    }
+}
+&__subtask-list-item-view-btn {
+    height: 18px;
+    width: 12px;
+}
+&__subtask-list-item-new-link-btn {
+    width: 16px;
+    height: 16px;
+}
+
+&__subtask-list-item-delete-btn {
+   width: 14px;
+   height: 14px;
+}
+
+&__form-control-subtask-icon {
+    position: absolute;
+    right: 0;
+    margin-right: 12px;
+}
+
+&__subtask-controls {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2,max-content);
+    gap: 16px;
+}
+
+&__subtask-delete-btn,
+&__subtask-check-btn {
+    width: 34px;
+    height: 34px;
+}
+
+&__new-subtask-btn,
+&__add-exist-subtask-btn {
+    font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+color: var(--primary);
+margin-right: auto;
+}
+
+&__form-control-select-placeholer-wrapper {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2,max-content);
+    gap: 8px;
+}
+
+&__placeholder-letter {
+    width: 16px;
+    height: 16px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+color: var(--gray100);
+text-transform: uppercase;
+}
+
+&__form-control-select-names-list {
+    padding: 0;
+    padding-left: 16px;
+    margin: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 8px;
+    max-width: 233px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+&__form-control-select-names-list::-webkit-scrollbar {
+    display: none;
+}
+
+&__form-control-select-names-list-item {
+    background-color: var(--hover);
+    border: 1px solid var(--grey-color);
+    border-radius: 4px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3,max-content);
+    gap: 8px;
+    height: 26px;
+    min-width: 104px;
+    justify-content: center;
+}
+
+&__form-control-select-names-list-item-name {
+    font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+}
+
+&__form-control-select-names-list-item-delete-btn {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+}
 
 }

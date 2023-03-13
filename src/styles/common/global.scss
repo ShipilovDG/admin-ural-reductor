@@ -294,6 +294,19 @@ select:focus-within {
    cursor: not-allowed;
 }
 
+.btn--success {
+  background-color: var(--green);
+  color: var(--gray100);
+  border: 1px solid var(--green);
+}
+
+.btn--success:disabled,
+.btn--success.disabled {
+   opacity: .2;
+   pointer-events: none;
+   cursor: not-allowed;
+}
+
 .popup {
   position: fixed;
   z-index: 999;
@@ -1761,6 +1774,10 @@ color: var(--dark-grey);
 
 &__create-btn-dropdown-list-item-input.delete {
   color: var(--danger);
+}
+
+&__choose-status-dropdown-list-item-btn {
+  text-decoration: none;
 }
 
 &__choose-status-dropdown-list-item-btn.delete {

@@ -1,0 +1,45 @@
+<div class="alt-popup add-new-email-popup" x-bind:class="{'active': addNewEmailPopup === true}" x-on:click.self="addNewEmailPopup = false" x-data="{togglePasswordVisibility: false, contactInputVal: '', passwordInputVal: ''}">
+    <form action="#" method="post" class="alt-popup__form add-new-email-popup__form">
+    <div class="alt-popup__content add-new-email-popup__content">
+     <div class="add-new-email-popup__top-row">
+        <p class="alt-popup__title add-new-email-popup__title">Подключить новый e-mail</p>
+     </div>
+    <div class="alt-popup__body add-new-email-popup__body">
+            <fieldset class="alt-popup__fieldset add-new-email-popup__fieldset b-b">
+                <div class="add-new-email-popup__control-group">
+                    <label for="Телефон или адрес эл.почты" class="add-new-email-popup__control-group-label">
+                        Телефон или адрес эл.почты
+                    </label>
+                    <div class="add-new-email-popup__form-control-wrapper add-new-email-popup__form-control-input-wrapper">
+                      <input type="text" name="Телефон или адрес эл.почты" id="Телефон или адрес эл.почты" placeholder="Введите телефон или адрес эл.почты" class="add-new-email-popup__form-control-input" x-model="contactInputVal">
+                  </div>
+                </div>
+                <div class="add-new-email-popup__control-group">
+                    <label for="Пароль" class="add-new-email-popup__control-group-label">
+                        Пароль
+                    </label>
+                    <div class="add-new-email-popup__form-control-wrapper add-new-email-popup__form-control-input-wrapper">
+                      <input type="password" name="Пароль" id="Пароль" placeholder="Введите пароль" class="add-new-email-popup__form-control-input" x-bind:type="togglePasswordVisibility === false ? 'password' : 'text'" x-model="passwordInputVal">
+                  </div>
+                </div>
+                <div class="add-new-email-popup__show-password-checkbox-wrapper">
+                    <input type="checkbox" name="Показать пароль" id="Показать пароль" class="add-new-email-popup__show-password-checkbox" x-on:change="togglePasswordVisibility = !togglePasswordVisibility">
+                    <label for="Показать пароль" class="add-new-email-popup__show-password-checkbox-label">Показать пароль</label>
+                </div>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group add-new-email-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item add-new-email-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary add-new-email-popup__undo-btn" x-on:click="addNewEmailPopup = false;contactInputVal = '';passwordInputVal = ''">
+                Отменить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item add-new-email-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary add-new-email-popup__save-btn" x-on:click="fakeTables.push({contact: contactInputVal});contactInputVal = '';passwordInputVal = '';addNewEmailPopup = false;addedNewEmailSuccessAltPopup = true">
+                Ок
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>

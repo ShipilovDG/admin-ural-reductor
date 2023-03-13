@@ -1,0 +1,126 @@
+.add-new-email-popup {
+
+    &__fieldset {
+        display: grid;
+        gap: 16px;
+    }
+
+    &__top-row {
+        border-bottom: 1px solid var(--grey-color);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    &__fieldset.b-b {
+        border-bottom: 1px solid var(--grey-color);
+      }
+
+    &__control-group {
+        display: grid;
+        gap: 8px;
+    }
+
+    &__control-group-label {
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+    }
+
+    &__form-control-wrapper {
+        background-color: var(--gray100);
+        border: 1px solid var(--grey-color);
+         border-radius: 4px; 
+         height: 34px;
+      }
+      
+      &__form-control-input-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 16px;
+      }
+
+    &__title {
+        padding-bottom: 0;
+    }
+
+    &__content {
+        height: auto;
+        max-height: 100%;
+    }
+
+    &__show-password-checkbox-wrapper {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2,max-content);
+        gap: 12px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    &__show-password-checkbox {
+         opacity: 0;
+         visibility: hidden;
+         width: 16px;
+         height: 16px;
+         cursor: pointer;
+    }
+
+    &__show-password-checkbox:checked + .add-new-email-popup__show-password-checkbox-label::after {
+        opacity: 1;
+    }
+
+    &__show-password-checkbox-label {
+        font-weight: 400;
+font-size: 16px;
+line-height: 18px;
+color: var(--dark);
+cursor: pointer;
+    }
+
+    &__show-password-checkbox-label::before,
+    &__show-password-checkbox-label::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 16px;
+        height: 16px;
+        transition: .3s ease-in-out;
+    }
+
+    &__show-password-checkbox-label::before {
+        border: 2px solid var(--grey-color);
+        border-radius: 4px;
+    }
+
+    &__show-password-checkbox-label::after {
+        background: url("/icons/setting-checkbox-active.svg") no-repeat center/cover;
+        opacity: 0;
+        z-index: 1;
+    }
+
+    &__undo-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 103px;
+    }
+
+    &__save-btn {
+        font-weight: 600;
+font-size: 16px;
+line-height: 18px;
+min-width: 84px;
+    }
+
+    &__btn-control-group {
+        @include media-extra-large() {
+            justify-content: flex-end;
+            display: grid;
+            grid-template-columns: repeat(2,max-content);
+            gap: 16px;
+        }
+    }
+}

@@ -141,7 +141,7 @@
      gap: 19px;
 
      @include media-extra-large() {
-        grid-template-columns: 673px 1fr;
+        grid-template-columns: 4fr 1fr;
      }
   }
 
@@ -481,6 +481,11 @@ color: var(--dark);
     min-width: 213px;
 }
 
+&__attach-files-list-wrapper {
+    display: grid;
+    gap: 8px;
+}
+
 &__attach-files-list {
     display: grid;
     gap: 8px;
@@ -489,8 +494,10 @@ color: var(--dark);
 
     @include media-extra-large() {
         grid-column: span 4;
-        grid-template-columns: repeat(2,max-content);
         gap: 20px;
+        grid-gap: 20px;
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 
@@ -948,12 +955,54 @@ line-height: 18px;
 color: var(--primary);
 }
 
+&__add-links-btn-wrapper {
+    position: relative;
+    display: grid;
+    gap: 8px;
+}
+
 &__add-links-btn {
     font-weight: 600;
 font-size: 16px;
 line-height: 18px;
 color: var(--primary);
 margin-right: auto;
+}
+
+&__add-links-list {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    max-width: 343px;
+    background-color: var(--gray100);
+    border: 1px solid var(--grey-color);
+    box-shadow: 0px 4px 8px rgba(73, 80, 87, 0.15);
+    border-radius: 4px;
+    padding: 16px 18px;
+    padding-left: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+}
+
+&__add-links-list.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+&__add-links-list-item {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+}
+
+&__add-links-list-item-input {
+    font-family: 'Inter',sans-serif;
+    color: var(--dark-grey);
+    font-size: 16px;
+    line-height: 18px;
 }
 
 &__remind-list {
@@ -1157,6 +1206,35 @@ color: var(--grey600);
 font-size: 16px;
 line-height: 18px;
 color: var(--dark-grey);
+}
+
+&__tags-list {
+    padding-top: 0;
+}
+
+&__add-tags-dropdown {
+    @include media-extra-large() {
+        bottom: -170px;
+    }
+}
+
+&__subtask-groups-wrapper {
+    display: grid;
+    gap: 20px;
+
+    @include media-extra-large() {
+        grid-template-columns: 0.8fr 1fr;
+        
+    }
+}
+
+&__subtask-btns-wrapper {
+    display: grid;
+    gap: 20px;
+
+    @include media-extra-large() {
+        grid-template-columns: repeat(2,max-content);
+    }
 }
 
 }

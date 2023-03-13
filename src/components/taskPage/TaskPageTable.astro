@@ -1,5 +1,5 @@
 <div class="site-section__table-wrapper task-page__table-wrapper">
-    <nav class="site-section__table task-page__table" x-data="{tables: [1,2,3,4,5,6,7,8,9,10]}">
+    <nav class="site-section__table task-page__table">
       <ul role="list" class="site-section__table-list site-section__table-caption-list task-page__table-list task-page__table-caption-list">
         <li class="site-section__table-list-item site-section__table-caption-list-item task-page__table-list-item task-page__table-list-caption-item">
             Завершено
@@ -19,7 +19,6 @@
         <li class="site-section__table-list-item site-section__table-list-caption-item task-page__table-list-item task-page__table-list-caption-item empty">
         </li>
       </ul>
-      <template x-for="table in tables">
       <ul role="list" class="site-section__table-list task-page__table-list">
         <li class="site-section__table-list-item task-page__table-list-item mobile">
             <div class="task-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
@@ -62,6 +61,175 @@
             </button>
        </li>
       </ul>
-    </template>
+      <ul role="list" class="site-section__table-list task-page__table-list">
+        <li class="site-section__table-list-item task-page__table-list-item mobile">
+            <div class="task-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+            <input type="checkbox" class="task-page__table-list-item-checkbox">
+            <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+            </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item" x-on:click="editTaskPopup = true">
+            <div class="task-page__table-list-item-checkbox-wrapper desktop" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="task-page__table-list-item-checkbox">
+                <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+                </div>
+            <svg class="task-page__table-list-item-type-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M14 1.13C14.8604 1.35031 15.623 1.85071 16.1676 2.55232C16.7122 3.25392 17.0078 4.11683 17.0078 5.005C17.0078 5.89318 16.7122 6.75608 16.1676 7.45769C15.623 8.1593 14.8604 8.6597 14 8.88M19 19V17C18.9949 16.1172 18.6979 15.2608 18.1553 14.5644C17.6126 13.868 16.8548 13.3707 16 13.15M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                              
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item group-name" x-on:click="editTaskPopup = true">
+            Название группы
+         </li>
+        <li class="site-section__table-list-item task-page__table-list-item term" x-on:click="editTaskPopup = true">
+             Вчера
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item appointer" x-on:click="editTaskPopup = true">
+            <button type="button" class="task-page__table-list-item-remove-btn desktop">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+            <div class="task-page__table-list-item-appointer-letter">
+                ШК
+            </div>
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item term mobile">
+            <button type="button" class="task-page__table-list-item-remove-btn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+       </li>
+      </ul>
+      <ul role="list" class="site-section__table-list task-page__table-list">
+        <li class="site-section__table-list-item task-page__table-list-item mobile">
+            <div class="task-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+            <input type="checkbox" class="task-page__table-list-item-checkbox">
+            <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+            </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item" x-on:click="editTaskPopup = true">
+            <div class="task-page__table-list-item-checkbox-wrapper desktop" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="task-page__table-list-item-checkbox">
+                <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+                </div>
+            <svg class="task-page__table-list-item-type-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M14 1.13C14.8604 1.35031 15.623 1.85071 16.1676 2.55232C16.7122 3.25392 17.0078 4.11683 17.0078 5.005C17.0078 5.89318 16.7122 6.75608 16.1676 7.45769C15.623 8.1593 14.8604 8.6597 14 8.88M19 19V17C18.9949 16.1172 18.6979 15.2608 18.1553 14.5644C17.6126 13.868 16.8548 13.3707 16 13.15M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                              
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item group-name" x-on:click="editTaskPopup = true">
+            Название группы
+         </li>
+        <li class="site-section__table-list-item task-page__table-list-item term" x-on:click="editTaskPopup = true">
+             Вчера
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item appointer" x-on:click="editTaskPopup = true">
+            <button type="button" class="task-page__table-list-item-remove-btn desktop">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+            <div class="task-page__table-list-item-appointer-letter">
+                ШК
+            </div>
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item term mobile">
+            <button type="button" class="task-page__table-list-item-remove-btn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+       </li>
+      </ul>
+      <ul role="list" class="site-section__table-list task-page__table-list">
+        <li class="site-section__table-list-item task-page__table-list-item mobile">
+            <div class="task-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+            <input type="checkbox" class="task-page__table-list-item-checkbox">
+            <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+            </label>
+            </div>
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item" x-on:click="editTaskPopup = true">
+            <div class="task-page__table-list-item-checkbox-wrapper desktop" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="task-page__table-list-item-checkbox">
+                <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+                </div>
+            <svg class="task-page__table-list-item-type-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M14 1.13C14.8604 1.35031 15.623 1.85071 16.1676 2.55232C16.7122 3.25392 17.0078 4.11683 17.0078 5.005C17.0078 5.89318 16.7122 6.75608 16.1676 7.45769C15.623 8.1593 14.8604 8.6597 14 8.88M19 19V17C18.9949 16.1172 18.6979 15.2608 18.1553 14.5644C17.6126 13.868 16.8548 13.3707 16 13.15M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                              
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item group-name" x-on:click="editTaskPopup = true">
+            Название группы
+         </li>
+        <li class="site-section__table-list-item task-page__table-list-item term" x-on:click="editTaskPopup = true">
+             Вчера
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item appointer" x-on:click="editTaskPopup = true">
+            <button type="button" class="task-page__table-list-item-remove-btn desktop">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+            <div class="task-page__table-list-item-appointer-letter">
+                ШК
+            </div>
+        </li>
+        <li class="site-section__table-list-item task-page__table-list-item term mobile">
+            <button type="button" class="task-page__table-list-item-remove-btn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+            </button>
+       </li>
+      </ul>
+      <template x-for="tableList in tableLists">
+        <ul role="list" class="site-section__table-list task-page__table-list">
+            <li class="site-section__table-list-item task-page__table-list-item mobile">
+                <div class="task-page__table-list-item-checkbox-wrapper" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                <input type="checkbox" class="task-page__table-list-item-checkbox">
+                <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                </label>
+                </div>
+            </li>
+            <li class="site-section__table-list-item task-page__table-list-item" x-on:click="editTaskPopup = true">
+                <div class="task-page__table-list-item-checkbox-wrapper desktop" x-data="{checkedState: false}" x-on:click="checkedState = !checkedState">
+                    <input type="checkbox" class="task-page__table-list-item-checkbox">
+                    <label class="task-page__table-list-item-label" x-bind:class="{'active': checkedState === true}">
+                    </label>
+                    </div>
+                <svg class="task-page__table-list-item-type-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 19V17C1 15.9391 1.42143 14.9217 2.17157 14.1716C2.92172 13.4214 3.93913 13 5 13H9C10.0609 13 11.0783 13.4214 11.8284 14.1716C12.5786 14.9217 13 15.9391 13 17V19M14 1.13C14.8604 1.35031 15.623 1.85071 16.1676 2.55232C16.7122 3.25392 17.0078 4.11683 17.0078 5.005C17.0078 5.89318 16.7122 6.75608 16.1676 7.45769C15.623 8.1593 14.8604 8.6597 14 8.88M19 19V17C18.9949 16.1172 18.6979 15.2608 18.1553 14.5644C17.6126 13.868 16.8548 13.3707 16 13.15M11 5C11 7.20914 9.20914 9 7 9C4.79086 9 3 7.20914 3 5C3 2.79086 4.79086 1 7 1C9.20914 1 11 2.79086 11 5Z" stroke="#DF4759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                              
+            </li>
+            <li class="site-section__table-list-item task-page__table-list-item group-name" x-on:click="editTaskPopup = true" x-text="tableList.name">
+                Название группы
+             </li>
+            <li class="site-section__table-list-item task-page__table-list-item term" x-on:click="editTaskPopup = true">
+                 Вчера
+            </li>
+            <li class="site-section__table-list-item task-page__table-list-item appointer" x-on:click="editTaskPopup = true">
+                <button type="button" class="task-page__table-list-item-remove-btn desktop">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                    
+                </button>
+                <div class="task-page__table-list-item-appointer-letter">
+                    ШК
+                </div>
+            </li>
+            <li class="site-section__table-list-item task-page__table-list-item term mobile">
+                <button type="button" class="task-page__table-list-item-remove-btn" x-on:click="tables.filter(i => i !== tableList)">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#859AB9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                    
+                </button>
+           </li>
+        </ul>
+      </template>
     </nav>
 </div>

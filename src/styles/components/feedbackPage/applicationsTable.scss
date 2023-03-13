@@ -62,11 +62,18 @@ color: var(--dark);
 
     &__table-list-item.user {
        justify-content: flex-start;
+       min-height: 48px;
+
+       @include media-extra-large() {
+        justify-content: center;
+       }
     }
 
-    &__status-btn--in-process {
+    &__status-btn--in-process,
+    &__status-btn--completed {
         max-width: 116px;
     }
+
 
     &__table-list-item-product {
         max-width: 11ch;

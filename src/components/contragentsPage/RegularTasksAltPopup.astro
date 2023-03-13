@@ -1,0 +1,104 @@
+<div class="alt-popup regular-tasks-alt-popup" x-bind:class="{'active': regularTasksAltPopup === true}" x-on:click.self="regularTasksAltPopup = false">
+    <form action="#" method="post" class="alt-popup__form regular-tasks-alt-popup__form">
+    <div class="alt-popup__content regular-tasks-alt-popup__content">
+    <div class="alt-popup__body regular-tasks-alt-popup__body">
+            <fieldset class="alt-popup__fieldset regular-tasks-alt-popup__fieldset b-b">
+                <div class="regular-tasks-alt-popup__form-control-group">
+                    <p class="add-new-filter-popup__form-control-group-title">
+                        Режим
+                    </p>
+                    <div class="regular-tasks-alt-popup__form-control-wrapper regular-tasks-alt-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                        <input type="text" class="regular-tasks-alt-popup__form-control-select-result-input" value="Ежедневно" readonly="" x-model="regularTasksInputValMode">
+                        <ul role="list" class="regular-tasks-alt-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                          <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Ежедневно" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValMode = $el.value">
+                          </li>
+                          <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                              <input type="text" value="Еженедельно" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValMode = $el.value">
+                            </li>
+                            <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                              <input type="text" value="Ежемесячно" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValMode = $el.value">
+                            </li>
+                            <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                                <input type="text" value="Ежегодно" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValMode = $el.value">
+                              </li>
+                              <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                                <input type="text" value="По будням" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValMode = $el.value">
+                              </li>
+                        </ul>
+                        <svg class="regular-tasks-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                          <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>                  
+                    </div>
+                </div>
+                <div class="regular-tasks-alt-popup__form-control-group">
+                    <p class="add-new-filter-popup__form-control-group-title">
+                        Интервал в днях
+                    </p>
+                    <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-input-wrapper">
+                        <input type="number" class="remind-alt-popup__form-control-input"  x-model="regularTasksInputValDayInterval">
+                    </div>
+                </div>
+                <div class="regular-tasks-alt-popup__form-control-group">
+                    <p class="add-new-filter-popup__form-control-group-title">
+                        Время
+                    </p>
+                    <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-input-wrapper">
+                        <input class="remind-alt-popup__form-control-input"  x-model="regularTasksInputValTime" x-mask="99:99">
+                    </div>
+                </div>
+                <div class="regular-tasks-alt-popup__form-control-group">
+                    <p class="add-new-filter-popup__form-control-group-title">
+                        Завершить
+                    </p>
+                    <div class="regular-tasks-alt-popup__form-control-wrapper regular-tasks-alt-popup__form-control-select-wrapper" x-data="{toggleArrow: true, toggleSelectList: true }" x-on:click="toggleArrow = !toggleArrow;toggleSelectList = !toggleSelectList" x-on:click.outside="toggleArrow = false;toggleSelectList = false">
+                        <input type="text" class="regular-tasks-alt-popup__form-control-select-result-input" value="Без даты окончания" readonly="" x-model="regularTasksInputValComplete">
+                        <ul role="list" class="regular-tasks-alt-popup__form-control-select-list" x-bind:class="{'active': toggleSelectList === true}">
+                          <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                            <input type="text" value="Без даты окончания" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValComplete = $el.value; regularTasksInputValDateOver = ''; regularTasksInputValRepeat = null">
+                          </li>
+                          <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                              <input type="text" value="Дата окончания" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValComplete = $el.value">
+                            </li>
+                            <li class="regular-tasks-alt-popup__form-control-select-list-item">
+                              <input type="text" value="После повторения" readonly="" class="regular-tasks-alt-popup__form-control-select-list-item-input" x-on:click="regularTasksInputValComplete = $el.value; regularTasksInputValDateOver = ''; regularTasksInputValRepeat = null">
+                            </li>
+                        </ul>
+                        <svg class="regular-tasks-alt-popup__form-control-select-arrow" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg" x-bind:class="{'active': toggleArrow === true}">
+                          <path d="M1 1L7 7L13 1" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>                  
+                    </div>
+                </div>
+                <div class="regular-tasks-alt-popup__form-control-group" x-show="regularTasksInputValComplete === 'Дата окончания'">
+                    <p class="add-new-filter-popup__form-control-group-title">
+                        Дата окончания
+                    </p>
+                    <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-input-wrapper">
+                        <input class="remind-alt-popup__form-control-input"  x-model="regularTasksInputValDateOver" placeholder="Ввести дату" x-mask="99.99.9999">
+                    </div>
+                </div>
+                <div class="regular-tasks-alt-popup__form-control-group" x-show="regularTasksInputValComplete === 'После повторения'">
+                    <p class="add-new-filter-popup__form-control-group-title">
+                        Повторения
+                    </p>
+                    <div class="remind-alt-popup__form-control-wrapper remind-alt-popup__form-control-input-wrapper">
+                        <input type="number" class="remind-alt-popup__form-control-input"  x-model="regularTasksInputValRepeat" placeholder="1">
+                    </div>
+                </div>
+            </fieldset>
+    <ul role="list" class="alt-popup__btn-control-group regular-tasks-alt-popup__btn-control-group">
+        <li class="alt-popup__btn-control-group-item regular-tasks-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--secondary regular-tasks-alt-popup__reset-btn" x-on:click="regularTasksInputValMode = 'Ежедневно'; regularTasksInputValDayInterval = 1; regularTasksInputValTime = '14:47'; regularTasksInputValComplete = 'Без даты окончания'; regularTasksInputValDateOver = ''; regularTasksInputValRepeat = 1">
+                Сбросить
+            </button>
+        </li>
+        <li class="alt-popup__btn-control-group-item regular-tasks-alt-popup__btn-control-group-item">
+            <button type="button" class="btn btn--primary regular-tasks-alt-popup__save-btn" x-on:click="regularTasksAltPopup = false; regularTasks.push({mode: regularTasksInputValMode, dayInterval: regularTasksInputValDayInterval, time: regularTasksInputValTime, completion: regularTasksInputValComplete, dateOver: regularTasksInputValDateOver, repeat: regularTasksInputValRepeat}); regularTasksInputValMode = 'Ежедневно'; regularTasksInputValDayInterval = 1; regularTasksInputValTime = '14:47'; regularTasksInputValComplete = 'Без даты окончания'; regularTasksInputValDateOver = ''; regularTasksInputValRepeat = 1">
+                Применить
+            </button>
+        </li>
+      </ul>
+    </div>
+</div>
+</form>
+</div>
