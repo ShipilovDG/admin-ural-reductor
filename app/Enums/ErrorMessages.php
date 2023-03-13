@@ -2,9 +2,7 @@
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
-
-class ErrorMessages extends Enum
+class ErrorMessages
 {
     const USER_ALREADY_EXIST = 'Пользователь с данным именем уже зарегистрирован';
 }
