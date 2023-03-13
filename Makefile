@@ -6,7 +6,7 @@ DIR := ${CURDIR}
 .PHONY: install
 install: ## генерация окружения
 	@sudo apt install rename
-	@find resources/views/* ! -iregex '(main)' | xargs rm -f
+	@rm -f resources/views/*.blade.php
 	@cp .env.example .env
 	@npm install
 	@npm run build

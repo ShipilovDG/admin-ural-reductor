@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', function () {
-var_dump(Auth::check());
     if (Auth::check()) {
         return redirect('userPage');
     }
@@ -54,6 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/userPage', fn() => view('userPage'))->name('userPage');
     Route::get('/usersPage', fn() => view('usersPage'));
 
-    Route::get('/main', fn() => view('main'));
+    Route::get('/swagger/main', fn() => view('swagger.main'));
     Route::get('/swagger', [SwaggerController::class, 'getSwaggerSchema']);
 });
