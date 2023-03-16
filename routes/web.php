@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/user', [UserController::class, 'delete']);
 
     Route::get('/product', [ProductsController::class, 'get']);
+    Route::patch('/product', [ProductsController::class, 'patch']);
+    Route::get('/products', [ProductsController::class, 'getAll']);
     Route::post('/product', [ProductsController::class, 'create']);
 
 

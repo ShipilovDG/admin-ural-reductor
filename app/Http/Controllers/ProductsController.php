@@ -120,4 +120,38 @@ class ProductsController extends Controller
             'success' => true,
         ]);
     }
+    public function patch(Request $request)
+    {
+        $request->validate([
+            'id' => 'numeric|required',
+            'product_category_id' => 'numeric',
+            'naming'              => '',
+            'factory_designation' => 'max:32',
+            'vendor_code'         => 'numeric|digits:10',
+            'attachment.*'        => [
+                File::types(['png', 'pdf'])
+                    ->max(12 * 1024),
+            ],
+            'tags.*'              => 'string',
+            'producer_id'         => 'numeric',
+            'characteristics'     => 'string',
+            'weight_kg'           => 'numeric',
+            'description'         => 'string',
+        ]);
+        return new JsonResponse([
+            'product'    => $this->service->patch($request),
+            'success' => true,
+        ]);
+    }
+
+
+    public function getAll(Request $request)
+    {
+        $request->validate(['query' => 'string']);
+
+        return new JsonResponse([
+            'products'    => $this->service->getWithPagination($request),
+            'success' => true,
+        ]);
+    }
 }

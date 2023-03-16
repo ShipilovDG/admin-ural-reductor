@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\Product;
 use App\Repositories\ProductRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class ProductService
@@ -24,12 +25,17 @@ class ProductService
 
     public function patch(Request $request): Product
     {
-        $this->repository->patch();
+        return $this->repository->patch($request);
     }
 
-    public function getWithPagination(Request $request): Product
+    /**
+     * @param Request $request
+     *
+     * @return Collection
+     */
+    public function getWithPagination(Request $request): Collection
     {
-        $this->repository->getWithPagination();
+        return $this->repository->getWithPagination($request->get('query'));
     }
 
     public function drop(int $productId): bool|null

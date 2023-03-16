@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\CharacteristicService;
 use Illuminate\Http\Request;
 
 class CharacteristicController extends Controller
 {
 
-    public function __construct()
+
+    private CharacteristicService $service;
+
+    public function __construct(CharacteristicService $service)
     {
+        $this->service = $service;
     }
 
     public function drop(Request $request)
@@ -32,6 +37,6 @@ class CharacteristicController extends Controller
 
     public function create(Request $request)
     {
-
+        $this->service->create($request);
     }
 }
