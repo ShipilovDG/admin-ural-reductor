@@ -21,7 +21,7 @@ class CharacteristicRepository
 
     public function getAll(Request $request): Collection
     {
-        return Characteristic::all()->where('title', $request->get('title'));
+        return Characteristic::all()->where('title', 'like', '%' . $request->get('title') . '%');
     }
 
     public function update(Request $request): Characteristic
