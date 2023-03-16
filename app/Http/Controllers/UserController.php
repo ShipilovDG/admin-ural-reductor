@@ -250,4 +250,8 @@ class UserController extends Controller
             'success' => $this->service->delete($request),
         ]);
     }
+    public function getCurrent(Request $request): JsonResponse
+    {
+        return new JsonResponse([$request->user()->id]);
+    }
 }

@@ -35,6 +35,7 @@ Route::redirect('/', 'login');
 Route::group(['middleware' => 'auth'], function () {
     Route::patch('/user', [UserController::class, 'patch']);
     Route::get('/user', [UserController::class, 'get']);
+    Route::get('/userCurrent', [UserController::class, 'getCurrent']);
     Route::delete('/user', [UserController::class, 'delete']);
 
     Route::get('/product', [ProductsController::class, 'get']);
