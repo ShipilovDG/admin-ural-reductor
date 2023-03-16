@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="страница Вход/Авторизация">
   <section class="site-section reg-auth-page__site-section">
     <div class="alt-popup auth-reg-alt-popup" x-data="{tab: 1, smsEnter: false}">
-        <form action="#" method="post" class="alt-popup__form auth-reg-alt-popup__form">
+        <form action="/login" method="post" class="alt-popup__form auth-reg-alt-popup__form" x-on:submit.prevent="">
         <div class="alt-popup__content auth-reg-alt-popup__content">
             <ul role="list" class="alt-popup__tabs auth-reg-alt-popup__tabs">
                 <li class="alt-popup__tabs-item auth-reg-alt-popup__tabs-item">
