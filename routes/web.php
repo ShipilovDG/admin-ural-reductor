@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/taskPage', fn() => view('taskPage'));
     Route::get('/userPage', fn() => view('userPage'))->name('userPage');
     Route::get('/usersPage', fn() => view('usersPage'));
-
-    Route::get('/swagger/main', fn() => view('swagger.main'));
-    Route::get('/swagger', [SwaggerController::class, 'getSwaggerSchema']);
 });
+
+Route::get('/swagger/main', fn() => view('swagger.main'));
+Route::get('/swagger', [SwaggerController::class, 'getSwaggerSchema']);
