@@ -191,7 +191,7 @@ import TableTabs from "../components/TableTabs.astro";
       }
   }">
     <div class="site-section__tab-wrapper">
-        <form action="#" method="post" class="site-section__body user-page__body personal-data">
+        <form class="site-section__body user-page__body personal-data" id="userDataForm" x-init="fetchUserData()">
             <div class="user-page__attach-avatar-wrapper">
                 <div class="user-page__avatar">
                     <img src="" alt="settings Page Avatar Img" class="user-page__avatar-img desktop hidden" decoding="async">
@@ -224,7 +224,7 @@ import TableTabs from "../components/TableTabs.astro";
                     Логин (e-mail)
                 </p>
                 <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
-                  <input type="text" disabled class="site-section__form-control-input user-page__form-control-input" value="vtr@uralreduktor.ru">
+                  <input type="text" disabled class="site-section__form-control-input user-page__form-control-input login-email" x-ref="firstInputDesktop">
                 </div>
              </div>
              <div class="site-section__form-control-group user-page__form-control-group">
@@ -232,7 +232,7 @@ import TableTabs from "../components/TableTabs.astro";
                     Телефон
                 </p>
                 <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
-                  <input type="tel" disabled class="site-section__form-control-input user-page__form-control-input" value="+7-999-999-99-99">
+                  <input type="tel" disabled class="site-section__form-control-input user-page__form-control-input tel">
                 </div>
              </div>
              <div class="user-page__form-control-group-row fio-date">
@@ -241,7 +241,7 @@ import TableTabs from "../components/TableTabs.astro";
                     ФИО
                 </p>
                 <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
-                  <input type="text" disabled class="site-section__form-control-input user-page__form-control-input">
+                  <input type="text" disabled class="site-section__form-control-input user-page__form-control-input fio">
                 </div>
              </div>
              <div class="site-section__form-control-group user-page__form-control-group">
@@ -249,7 +249,7 @@ import TableTabs from "../components/TableTabs.astro";
                     Дата рождения
                 </p>
                 <div class="site-section__form-control-wrapper user-page__form-control-wrapper user-page__form-control-input-wrapper">
-                  <input disabled class="site-section__form-control-input user-page__form-control-input" placeholder="__.__.____" x-mask="99.99.9999">
+                  <input disabled class="site-section__form-control-input user-page__form-control-input birthdate" placeholder="__.__.____" x-mask="99.99.9999">
                 </div>
              </div>
              </div>
@@ -395,5 +395,27 @@ settingsPageAvatarLetter.classList.add('hidden');
 
       attachAvatarImgDesktop();
  </script>
+ <script is:inline>
+  const fetchUserData = async () => {
+    const userPageFormControlInputLoginEmail = document.querySelector('.user-page__form-control-input.login-email');
+    const userPageFormControlInputTel = document.querySelector('.user-page__form-control-input.tel');
+    const userPageFormControlInputFio = document.querySelector('.user-page__form-control-input.fio');
+    const userPageFormControlInputBirthDate = document.querySelector('.user-page__form-control-input.birthdate');
+    
+             try {
+            const response = await fetch(`http://admin-ural-reductor/user?id=16`);
+            const data = await response.json();
+            console.log(data);
+
+            userPageFormControlInputLoginEmail.value = data.user.login;
+            userPageFormControlInputTel.value = data.user.phone_number;
+            userPageFormControlInputFio.value = data.user.full_name;
+            userPageFormControlInputBirthDate.value = data.user.birth_date;
+          } 
+          catch(error) {
+              throw new Error(`ошибка: ${error}`);
+          }
+      }
+</script>
 </Layout>
 
